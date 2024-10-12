@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BC_Market (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "BC_Market (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

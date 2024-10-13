@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace BC_Market.Factory
 {
-    internal class Factory
+    public interface IFactory <T>
     {
+        IBUS<T> CreateBUS();
+        IDAO<T> CreateDAO();
     }
 }

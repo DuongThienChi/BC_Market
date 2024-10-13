@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+	  <WindowsSdkPackageVersion>10.0.22621.38</WindowsSdkPackageVersion>
     <RootNamespace>BC_Market</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;ARM64</Platforms>
@@ -12,6 +13,29 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Fonts\Poppins-Black.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-BlackItalic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-Bold.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-BoldItalic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-ExtraBold.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-ExtraBoldItalic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-ExtraLight.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-ExtraLightItalic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-Italic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-Light.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-LightItalic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-Medium.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-MediumItalic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-Regular.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-SemiBold.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-SemiBoldItalic.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-Thin.ttf" />
+    <Content Remove="Assets\Fonts\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ForgotWindow.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -41,6 +65,31 @@
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\Poppins-Black.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-BlackItalic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Bold.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-BoldItalic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-ExtraBold.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-ExtraBoldItalic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-ExtraLight.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-ExtraLightItalic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Italic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Light.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-LightItalic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Medium.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-MediumItalic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Regular.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-SemiBold.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-SemiBoldItalic.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Thin.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ForgotWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!--

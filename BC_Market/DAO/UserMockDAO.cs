@@ -46,8 +46,12 @@ namespace BC_Market.DAO
                 {
                     return users.FirstOrDefault(u => u.Username == configuration["Id"]);
                 }
+                else return users;
             }
-            else return users;
+            else
+            {
+                return users;
+            }
         }
         //public USER GetByID(string id)
         //{

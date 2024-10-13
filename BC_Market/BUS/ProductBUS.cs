@@ -9,15 +9,15 @@ using BC_Market.Models;
 using Windows.System;
 namespace BC_Market.BUS
 {
-    public class UserBUS : IBUS<USER>
+    public class ProductBUS : IBUS<Product>
     {
-        public readonly IDAO<USER> _dao;
+        public readonly IDAO<Product> _dao;
 
-        public IBUS<USER> CreateNew(IDAO<USER> dao)
+        public IBUS<Product> CreateNew(IDAO<Product> dao)
         {
-            return new UserBUS(dao);
+            return new ProductBUS(dao);
         }
-        public UserBUS(IDAO<USER> dao)
+        public ProductBUS(IDAO<Product> dao)
         {
             _dao = dao;
         }
@@ -26,6 +26,7 @@ namespace BC_Market.BUS
         {
             return _dao.Get(configuration);
         }
+
         // Các phương thức khác...
     }
 

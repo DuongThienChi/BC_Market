@@ -9,8 +9,6 @@ namespace BC_Market.DAO
 {
     public interface IDAO <T>
     {
-        public List<T> GetAll();
-        public T GetByID(string id);
-
+        public dynamic Get(Dictionary<string, string> configuration);
     }
 }

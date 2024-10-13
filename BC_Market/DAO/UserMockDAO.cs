@@ -13,7 +13,7 @@ namespace BC_Market.DAO
     public class UserMockDAO : IDAO<USER>
     {
         public UserMockDAO() { }
-        public List<USER> GetAll()
+        public dynamic Get(Dictionary<string, string> configuration)
         {
             var users = new List<USER>
           {
@@ -39,11 +39,19 @@ namespace BC_Market.DAO
                   Roles = new List<Role> { new Role { Name = "Shoper" }
                   } },
           };
-            return users;
+            if (configuration != null)
+            {
+                string id;
+                if (configuration.TryGetValue("id", out id))
+                {
+                    return users.FirstOrDefault(u => u.Username == configuration["Id"]);
+                }
+            }
+            else return users;
         }
-        public USER GetByID(string id)
-        {
-            return GetAll().FirstOrDefault(u => u.Id == id);
-        }
+        //public USER GetByID(string id)
+        //{
+        //    return Get().FirstOrDefault(u => u.Id == id);
+        //}
     }
 }

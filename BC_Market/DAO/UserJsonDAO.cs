@@ -11,13 +11,7 @@ namespace BC_Market.DAO
 {
     public class UserJsonDAO : IDAO<USER>
     {
-        public List<USER> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public USER GetByID(string id)
-        {
+        public  dynamic Get(Dictionary<string, string> configuration) {
             throw new NotImplementedException();
         }
     }

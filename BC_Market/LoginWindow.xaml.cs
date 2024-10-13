@@ -21,16 +21,24 @@ namespace BC_Market
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : Window
+    public sealed partial class LoginWindow : Window
     {
-        public MainWindow()
+        public LoginWindow()
         {
             this.InitializeComponent();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void login_button_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+
+        }
+
+        private void forgot_text_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var forgotWindow = new ForgotWindow();
+            forgotWindow.Activate();
+
+            this.Close();
         }
     }
 }

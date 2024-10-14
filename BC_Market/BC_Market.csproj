@@ -35,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="ForgotWindow.xaml" />
+    <None Remove="Views\AdminDashboardPage.xaml" />
+    <None Remove="Views\Dashboard.xaml" />
+    <None Remove="Views\ManagerDashboardPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Fonts\Poppins-Black.ttf" />
@@ -84,6 +86,21 @@
     <Resource Include="Assets\Fonts\Poppins-SemiBoldItalic.ttf" />
     <Resource Include="Assets\Fonts\Poppins-Thin.ttf" />
     <Resource Include="Assets\Fonts\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\ManagerDashboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\AdminDashboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Dashboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ForgotWindow.xaml">

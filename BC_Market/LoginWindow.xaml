@@ -96,6 +96,7 @@
                      Grid.Row="3"
                      Margin="0 15 0 0"
                      PlaceholderText="Enter your username"
+                     x:Name="username_input"
                      >
                 <TextBox.HeaderTemplate>
                     <DataTemplate>
@@ -114,6 +115,7 @@
                          Grid.Row="4"
                          Margin="0 15 0 0"
                          PlaceholderText="Enter your password" 
+                         x:Name="password_input"
                     >
 
                 <PasswordBox.HeaderTemplate>
@@ -138,9 +140,35 @@
 
                 <CheckBox Foreground="#FAC1D9"
                           Grid.Column="0"
+                          Content="Remember me"
                     >
-                    Remember me
+                    <!--<VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Target="CheckBox.Foreground" Value="#FAC1D9"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+
+                        <VisualStateGroup x:Name="CheckStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Target="CheckBox.Foreground" Value="#FAC1D9"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="PointerOver">
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="ContentPresenter"
+                                                        Storyboard.TargetProperty="(CheckBox.Foreground).(SolidColorBrush.Color)"
+                                                        To="Red" Duration="0:0:0.3" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>-->
                 </CheckBox>
+
 
                 <TextBlock x:Name="forgot_text"
                            Tapped="forgot_text_Tapped"

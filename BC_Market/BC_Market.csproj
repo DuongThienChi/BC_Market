@@ -38,6 +38,7 @@
     <None Remove="Views\AdminDashboardPage.xaml" />
     <None Remove="Views\Dashboard.xaml" />
     <None Remove="Views\ManagerDashboardPage.xaml" />
+    <None Remove="Views\ShopperDashboardPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -86,6 +87,11 @@
     <Resource Include="Assets\Fonts\Poppins-SemiBoldItalic.ttf" />
     <Resource Include="Assets\Fonts\Poppins-Thin.ttf" />
     <Resource Include="Assets\Fonts\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\ShopperDashboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\ManagerDashboardPage.xaml">

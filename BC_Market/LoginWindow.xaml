@@ -96,6 +96,7 @@
                      Grid.Row="3"
                      Margin="0 15 0 0"
                      PlaceholderText="Enter your username"
+                     x:Name="username_input"
                      >
                 <TextBox.HeaderTemplate>
                     <DataTemplate>
@@ -114,6 +115,7 @@
                          Grid.Row="4"
                          Margin="0 15 0 0"
                          PlaceholderText="Enter your password" 
+                         x:Name="password_input"
                     >
 
                 <PasswordBox.HeaderTemplate>

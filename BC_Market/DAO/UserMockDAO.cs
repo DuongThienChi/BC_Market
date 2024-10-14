@@ -16,7 +16,7 @@ namespace BC_Market.DAO
         public dynamic Get(Dictionary<string, string> configuration)
         {
             var users = new List<USER>
-          {
+            {
               new USER {
                   Id = "1",
                   Username = "admin",
@@ -36,7 +36,7 @@ namespace BC_Market.DAO
                   Username = "shopper",
                   Password = "1234",
                   Email = "shopper@gmail.com",
-                  Roles = new List<Role> { new Role { Name = "Shoper" }
+                  Roles = new List<Role> { new Role { Name = "Shopper" }
                   } },
           };
             if (configuration != null)

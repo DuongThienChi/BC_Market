@@ -23,9 +23,19 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class Dashboard : Window
     {
-        public Dashboard()
+        public Dashboard(Type type)
         {
             this.InitializeComponent();
+
+            DashboardFrame.Navigate(type);
+        }
+
+        private void Window_Closed(object sender, WindowEventArgs args)
+        {
+            var loginWindow = new LoginWindow();
+            loginWindow.Activate();
+
+            this.Close();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BC_Market.Factory
 {
     public class UserFactory : IFactory<USER>
     {
-        public IBUS<USER> CreateBUS()
+        public  IBUS<USER> CreateBUS()
         {
             return new UserBUS(CreateDAO()); // Tạo và trả về USERBUS
         }

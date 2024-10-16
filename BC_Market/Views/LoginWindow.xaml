@@ -63,6 +63,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
@@ -141,6 +142,7 @@
                 <CheckBox Foreground="#FAC1D9"
                           Grid.Column="0"
                           Content="Remember me"
+                          x:Name="remember_me"
                     >
                     <!--<VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
@@ -182,18 +184,44 @@
                 </TextBlock>
             </Grid>
 
-            <Button x:Name="login_button"
-                    Background="#FAC1D9"
-                    Foreground="Black"
-                    CornerRadius="10"
-                    Grid.Column="1"
-                    Grid.Row="6"
-                    HorizontalAlignment="Center"
-                    Click="login_button_Click"
+            <TextBlock x:Name="notice_box"
+                       Foreground="Red"
+                       Grid.Column="1"
+                       Grid.Row="6"
+                       HorizontalAlignment="Center"
+                       >
+            </TextBlock>
+            
+            <Grid Grid.Column="1"
+                  Grid.Row="7"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="login_button"
+                        Background="#FAC1D9"
+                        Foreground="Black"
+                        CornerRadius="10"
+                        HorizontalAlignment="Center"
+                        Click="login_button_Click"
+                        Grid.Column="1"
                     >
-                Login
-            </Button>
+                    Login
+                </Button>
+
+                <Button x:Name="register_button"
+                        Background="White"
+                        Foreground="Black"
+                        CornerRadius="10"
+                        HorizontalAlignment="Center"
+                        Click="register_button_Click"
+                        Grid.Column="0"
+                    >
+                    Register
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
-
 </Window>

@@ -35,6 +35,11 @@ namespace BC_Market
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void Window_Closed(object sender, WindowEventArgs args)
+        {
             var loginWindow = new LoginWindow();
             loginWindow.Activate();
 

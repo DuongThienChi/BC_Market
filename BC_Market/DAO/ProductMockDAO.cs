@@ -22,7 +22,7 @@ namespace BC_Market.DAO
                     Name = "Fresh Pork",
                     Description = "1kg Fresh Pork",
                     Price = 10,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/Red meat.jpg",
                     CategoryId = "M01", // Meat
                     Stock = 100,
                     Status = "Available",
@@ -33,7 +33,7 @@ namespace BC_Market.DAO
                     Name = "Chicken Breast",
                     Description = "500g Chicken Breast",
                     Price = 7,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/Red meat.jpg",
                     CategoryId = "M01", // Meat
                     Stock = 100,
                     Status = "Available",
@@ -44,7 +44,7 @@ namespace BC_Market.DAO
                     Name = "Salmon Fillet",
                     Description = "500g Fresh Salmon",
                     Price = 15,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/fish.jpg",
                     CategoryId = "SF01", // SeaFood
                     Stock = 100,
                     Status = "Available",
@@ -55,7 +55,7 @@ namespace BC_Market.DAO
                     Name = "Shrimps",
                     Description = "1kg Shrimps",
                     Price = 12,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/fish.jpg",
                     CategoryId = "SF01", // SeaFood
                     Stock = 100,
                     Status = "Available",
@@ -66,7 +66,7 @@ namespace BC_Market.DAO
                     Name = "Whole Milk",
                     Description = "1L Fresh Whole Milk",
                     Price = 3,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/milk.png",
                     CategoryId = "Mk01", // Milk
                     Stock = 100,
                     Status = "Available",
@@ -77,7 +77,7 @@ namespace BC_Market.DAO
                     Name = "Skimmed Milk",
                     Description = "1L Skimmed Milk",
                     Price = 2.5,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/milk.png",
                     CategoryId = "Mk01", // Milk
                     Stock = 100,
                     Status = "Available",
@@ -88,7 +88,7 @@ namespace BC_Market.DAO
                     Name = "Broccoli",
                     Description = "500g Fresh Broccoli",
                     Price = 4,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/veget.png",
                     CategoryId = "Vet01", // Vegetable
                     Stock = 100,
                     Status = "Available",
@@ -99,7 +99,7 @@ namespace BC_Market.DAO
                     Name = "Carrots",
                     Description = "1kg Fresh Carrots",
                     Price = 3,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/veget.png",
                     CategoryId = "Vet01", // Vegetable
                     Stock = 100,
                     Status = "Available",
@@ -110,7 +110,7 @@ namespace BC_Market.DAO
                     Name = "Spinach",
                     Description = "500g Fresh Spinach",
                     Price = 5,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/veget.png",
                     CategoryId = "Vet01", // Vegetable
                     Stock = 100,
                     Status = "Available",
@@ -121,7 +121,7 @@ namespace BC_Market.DAO
                     Name = "Tomatoes",
                     Description = "1kg Fresh Tomatoes",
                     Price = 4,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/veget.png",
                     CategoryId = "Vet01", // Vegetable
                     Stock = 100,
                     Status = "Available",
@@ -132,7 +132,7 @@ namespace BC_Market.DAO
                     Name = "Ground Beef",
                     Description = "500g Ground Beef",
                     Price = 9,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/Red meat.jpg",
                     CategoryId = "M01", // Meat
                     Stock = 100,
                     Status = "Available",
@@ -143,7 +143,7 @@ namespace BC_Market.DAO
                     Name = "Yogurt",
                     Description = "500g Yogurt",
                     Price = 6,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/milk.png",
                     CategoryId = "Mk01", // Milk
                     Stock = 100,
                     Status = "Available",
@@ -154,7 +154,7 @@ namespace BC_Market.DAO
                     Name = "Shrimp Paste",
                     Description = "500g Shrimp Paste",
                     Price = 10,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/fish.jpg",
                     CategoryId = "SF01", // SeaFood
                     Stock = 100,
                     Status = "Available",
@@ -165,7 +165,7 @@ namespace BC_Market.DAO
                     Name = "Cucumber",
                     Description = "1kg Fresh Cucumber",
                     Price = 3,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/veget.png",
                     CategoryId = "Vet01", // Vegetable
                     Stock = 100,
                     Status = "Available",
@@ -176,7 +176,7 @@ namespace BC_Market.DAO
                     Name = "Tofu",
                     Description = "500g Fresh Tofu",
                     Price = 4,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/veget.png",
                     CategoryId = "Vet01", // Vegetable
                     Stock = 100,
                     Status = "Available",
@@ -187,7 +187,7 @@ namespace BC_Market.DAO
                     Name = "Cod Fillet",
                     Description = "500g Cod Fillet",
                     Price = 13,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/fish.jpg",
                     CategoryId = "SF01", // SeaFood
                     Stock = 100,
                     Status = "Available",
@@ -198,7 +198,7 @@ namespace BC_Market.DAO
                     Name = "Face Cream",
                     Description = "50ml Face Cream",
                     Price = 20,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/kemps.jpg",
                     CategoryId = "BH01", // Beauty & Health
                     Stock = 100,
                     Status = "Available",
@@ -209,7 +209,7 @@ namespace BC_Market.DAO
                     Name = "Shampoo",
                     Description = "500ml Hair Shampoo",
                     Price = 8,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/kemps.jpg",
                     CategoryId = "BH01", // Beauty & Health
                     Stock = 100,
                     Status = "Available",
@@ -220,7 +220,7 @@ namespace BC_Market.DAO
                     Name = "Body Lotion",
                     Description = "500ml Body Lotion",
                     Price = 10,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/kemps.jpg",
                     CategoryId = "BH01", // Beauty & Health
                     Stock = 100,
                     Status = "Available",
@@ -231,7 +231,7 @@ namespace BC_Market.DAO
                     Name = "Salmon Roe",
                     Description = "100g Fresh Salmon Roe",
                     Price = 30,
-                    ImagePath = "",
+                    ImagePath = "/Assets/Images/fish.jpg",
                     CategoryId = "SF01", // SeaFood
                     Stock = 100,
                     Status = "Available",

@@ -1,15 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
+    x:Name="ThisPage"
     x:Class="BC_Market.Views.ShopperDashboardPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BC_Market.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" 
+    xmlns:local1="using:BC_Market.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <!-- Bố trí thành 2 hàng: 1 cho header, 1 cho navigation -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <!-- Hàng cho header -->
+            <RowDefinition Height="*" />
+            <!-- Hàng cho navigation -->
+        </Grid.RowDefinitions>
 
-    <TextBlock>
-        shopper dashboard
-    </TextBlock>
+        <!-- Header nằm trên cùng -->
+        <Grid Grid.Row="0" Background="#292C2D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="BC Market"
+               FontSize="18"
+               FontWeight="Bold"
+               Foreground="#FAC1D9"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Padding="10 0 0 0"
+               Grid.Column="0"/>
+
+            <Image Source="/Assets/Icons/notify.png" 
+               Width="25" Height="25"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Margin="0 5 20 0"
+               Grid.Column="1"/>
+
+            <Border Background="White" Width="1" Height="30" Grid.Column="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 20 0"/>
+            <Border CornerRadius="15" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Background="Transparent"
+                    Margin="0 0 20 0"
+                    >
+                <Image Source="/Assets/Images/MyAvatar.jpg" 
+               Width="30" Height="30" 
+               Stretch="UniformToFill" />
+            </Border>
+        </Grid>
+
+
+        <!-- Navigation nằm ở hàng dưới -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Navigation Panel -->
+            <Border Grid.Column="0" Background="#CCCCCC">
+                <StackPanel VerticalAlignment="Top" >
+                    <!-- Navigation items -->
+                    <Button Content="All" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand['All']}"/>
+                    <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+                    <Button Content="Vegetable" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center"  Command="{x:Bind ViewModel.GetCategoryCommand['Vegetable']}"/>
+                    <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+                    <Button Content="Meat" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center"  Command="{x:Bind ViewModel.GetCategoryCommand['Meat']}"/>
+                    <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+                    <Button Content="Milk" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center"  Command="{x:Bind ViewModel.GetCategoryCommand['Milk']}"/>
+                    <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+                    <Button Content="Seafood" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center"  Command="{x:Bind ViewModel.GetCategoryCommand['Seafood']}"/>
+                    <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+                    <Button Content="Beauty &amp; Health" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center"  Command="{x:Bind ViewModel.GetCategoryCommand['BH']}"/>
+                    <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+                   <!-- <Button Content="Logout" Command="{x:Bind ViewModel.LogoutCommand}"/>-->
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Thanh Search-->
+                        <Grid Grid.Column="0" Height="40" Margin="60 5 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border CornerRadius="25" BorderThickness="1" BorderBrush="Black"  Grid.Column="0"  >
+                                <AutoSuggestBox x:Name="AutoSuggestBox"
+                                                CornerRadius="25"  PlaceholderText="Search" Height="45" Foreground="Gray" 
+                                                VerticalContentAlignment="Center"
+                                                ItemsSource="{x:Bind ViewModel.Suggestions, Mode=OneWay}"
+                                                QuerySubmitted="AutoSuggestionsBox_QuerySubmitted"
+                                                SuggestionChosen="AutoSuggestionsBox_SuggestionChosen"
+                                                TextChanged="AutoSuggestionsBox_TextChanged" />    
+                            </Border>
+
+                            <Button PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited" Width="50" Margin="10 0 0 0"
+                            BorderThickness="0"  Background="Transparent"  Grid.Column="1"
+                            Click="SearchButton_Clicked"
+                            > 
+                                <AnimatedIcon x:Name="SearchAnimatedIcon">
+                                    <AnimatedIcon.Source>
+                                        <animatedvisuals:AnimatedFindVisualSource/>
+                                    </AnimatedIcon.Source>
+                                    <AnimatedIcon.FallbackIconSource>
+                                        <SymbolIconSource Symbol="Find"/>
+                                    </AnimatedIcon.FallbackIconSource>
+                                </AnimatedIcon>
+                            </Button>
+                        </Grid>
+                        <!-- My Cart -->
+                        <Grid Grid.Column="1" Height="40" Margin="0 5 60 0">
+                            <Canvas Width="60" Height="60" >
+                                <!-- Hình ảnh giỏ hàng -->
+                                <Button
+                                    BorderThickness="0" Background="Transparent"
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center"
+                                    Click="CartButton_Clicked"
+                                    >
+                                    <Image Source="/Assets/Icons/cart 1.png"
+                                       Width="30" 
+                                       Height="30" 
+                                       Canvas.Left="0" 
+                                       Canvas.Top="20"
+                                       Canvas.ZIndex="0"
+                                    />
+                                </Button>
+                                <Border Width="15" 
+                                        Height="15" 
+                                        Background="#FFDB5C" 
+                                        CornerRadius="12.5" 
+                                        Canvas.Left="30" 
+                                        Canvas.Top="0"
+                                        HorizontalAlignment="Center" 
+                                        Canvas.ZIndex="1"
+                                        VerticalAlignment="Center">
+                                    <TextBlock Text="{x:Bind ViewModel.ProductInCart, Mode=OneWay}" 
+                                           Foreground="Black" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"
+                                           FontSize="10"
+                                            />
+                                </Border>
+                            </Canvas>
+                            <!--<TextBlock Text="My Cart" FontSize="15" Foreground="Black"  
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center"  Grid.Column="1"
+                                     Grid.Row="0"
+                                    
+                                     /> -->
+
+                        </Grid>
+                    </Grid>
+                    <!--  ItemRepeater Binding de hien thi danh sach san pham -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="80 20 80 10">
+                        <ItemsRepeater ItemsSource="{x:Bind ViewModel.PagedProducts, Mode=OneWay}"  >
+                            <ItemsRepeater.Layout>
+                                <UniformGridLayout MaximumRowsOrColumns="5" MinItemWidth="120" MinItemHeight="240"
+                                    MinRowSpacing="3" MinColumnSpacing="3" ItemsStretch="Fill" Orientation="Horizontal">
+                                </UniformGridLayout>
+                            </ItemsRepeater.Layout>
+
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate x:DataType="local1:Product">
+                                    <Grid BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="2*"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{x:Bind ImagePath}" Grid.Row="0"/>
+                                        <TextBlock Text="{x:Bind CategoryId}" FontSize="14" FontStyle="Italic" Grid.Row="1" Margin="10 5 0 0"/>
+                                        <TextBlock Text="{x:Bind Name}" FontWeight="Bold" FontSize="16" Grid.Row="2" Margin="10 0 0 0"/>
+                                        <TextBlock Text="{x:Bind Description}" FontSize="14" Grid.Row="3" Margin="10 0 0 0"/>
+                                        <Grid Grid.Row="4" Margin="10 0 0 0" VerticalAlignment="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Giá (Price) -->
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock FontSize="18" FontWeight="Bold" Foreground="#3BB77E">
+                                                    <Run Text="$"/>
+                                                    <Run Text="{x:Bind Price, Mode=OneWay}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+
+                                            <!-- Nút Add -->
+                                            <Button Background="#DEF9EC" Grid.Column="1" HorizontalAlignment="Right" Padding="10,5" Command="{Binding DataContext.AddCartCommand, ElementName=ThisPage}" CommandParameter="{x:Bind}">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <Image Source="/Assets/Icons/shopping-cart.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                                                    <TextBlock Foreground="#3BB77E" Text="Add" FontSize="16" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+
+                        </ItemsRepeater>
+                    </ScrollViewer>
+                    <!-- Chuyen trang -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button Content="&#x276E;" Command="{x:Bind ViewModel.PreviousPageCommand}"/>
+                        <TextBlock Text="Page" TextAlignment="Center" Margin="5 5 0 0"/>
+                        <TextBlock Text="{x:Bind ViewModel.CurrentPage, Mode=OneWay}" TextAlignment="Center" Margin="5 5 0 0"/>
+                        <TextBlock Text="of" TextAlignment="Center" Margin="5 5 0 0" />
+                        <TextBlock Text="{x:Bind ViewModel.TotalPages, Mode=OneWay}" TextAlignment="Center" Margin="5 5 0 0"/>
+                        <Button Content="&#x276F;" Command="{x:Bind ViewModel.NextPageCommand}" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
 </Page>

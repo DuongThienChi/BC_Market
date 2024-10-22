@@ -8,9 +8,11 @@ using BC_Market.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using PropertyChanged;
 
 namespace BC_Market.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class ShopperOrderViewModel : ObservableObject
     {
         private ObservableCollection<KeyValuePair<Product, int>> _carts;
@@ -28,7 +30,11 @@ namespace BC_Market.ViewModels
                 }
             }
         }
-  
+        public ShopperOrderViewModel()
+        {
+            DeleteItemCommand = new RelayCommand<CartProduct>(DeleteItem);
+        }
+        public ICommand DeleteItemCommand { get; }
         public ObservableCollection<CartProduct> CartItems { get; set; }
         public double TotalPrice
         {
@@ -42,10 +48,26 @@ namespace BC_Market.ViewModels
                 return total;
             }
         }
-
-        public ShopperOrderViewModel()
+        private void DeleteItem(CartProduct product)
         {
-           
+            var item = CartList.FirstOrDefault(x => x.Key.Id == product.Product.Id);
+            if (item.Value > 1)
+            {
+                int index = CartList.IndexOf(item);
+                CartList[index] = new KeyValuePair<Product, int>(item.Key, item.Value - 1);
+                CartItems[CartItems.IndexOf(product)].Quantity -= 1;
+            }
+            else
+            {
+                CartList.Remove(item);
+                CartItems.Remove(product);
+            }
+            OnPropertyChanged(nameof(TotalPrice));
+            OnPropertyChanged(nameof(CartItems));
+            OnPropertyChanged(nameof(CartList));
+
         }
+
+        
     }
 }

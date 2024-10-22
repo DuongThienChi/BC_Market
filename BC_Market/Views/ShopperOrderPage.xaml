@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
+    x:Name="OrderPage"
     x:Class="BC_Market.Views.ShopperOrderPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -92,7 +93,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
-            <CheckBox Content="" Grid.Column="0" Padding="5 0 0 0"/>
+            <CheckBox x:Name="allCheckBox" Content="" Grid.Column="0" Padding="5 0 0 0" Checked="allCheckBox_Checked" Unchecked="allCheckBox_Unchecked" />
             <TextBlock Text="Product" FontSize="16" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Text="Product Name" FontSize="16" FontWeight="Bold" Grid.Column="2" Padding="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Text="Quantity" FontSize="16" FontWeight="Bold" Grid.Column="3" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -118,14 +119,14 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="0.5*" />
                             </Grid.ColumnDefinitions>
-                            <CheckBox Content="" Grid.Column="0"
+                            <CheckBox x:Name="itemCheckBox"  Content="" Grid.Column="0"
                                  Padding="5 0 0 0"  />
                             <Image Source="{x:Bind Product.ImagePath}" Grid.Column="1"/>
                             <StackPanel  Padding="10 0 0 0"  Grid.Column="2" >
                                 <TextBlock Text="{x:Bind Product.Name}" FontWeight="Bold" FontSize="16"/>
                                 <TextBlock Text="{x:Bind Product.Description}" FontSize="14"/>
                             </StackPanel>
-                            <TextBlock Text="{x:Bind Quantity}" FontSize="16" FontWeight="Bold"  Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
+                            <TextBlock Text="{x:Bind Quantity, Mode=OneWay}" FontSize="16" FontWeight="Bold"  Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
                             <StackPanel Orientation="Horizontal"  Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">
                                     <Run Text="$"/>
@@ -138,6 +139,9 @@
                                     <Run Text="{x:Bind TotalPrice, Mode=OneWay}"/>
                                 </TextBlock>
                             </StackPanel>
+                            <Button Grid.Column="6" Background="Transparent" Command="{Binding DataContext.DeleteItemCommand, ElementName=OrderPage}" CommandParameter="{x:Bind}" >
+                                <Image Source="/Assets/Icons/material-symbols-light_delete.png" Width="20" Height="20"/>
+                            </Button>
                         </Grid>
                     </DataTemplate>
                 </ItemsRepeater.ItemTemplate>

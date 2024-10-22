@@ -31,6 +31,7 @@ namespace BC_Market.Views
         {
             this.InitializeComponent();
             ViewModel = new ShopperOrderViewModel();
+            this.DataContext = ViewModel;
         
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -45,14 +46,28 @@ namespace BC_Market.Views
         {
             var shopPage = new ShopperDashboardPage();
             shopPage.ViewModel.CartList = ViewModel.CartList.ToDictionary(item => item.Key, item => item.Value);
-            shopPage.ViewModel.ProductInCart = ViewModel.CartList.Count;
+            var NumberProduct = 0;
+            foreach (var item in ViewModel.CartList)
+            {
+                NumberProduct += item.Value;
+            }
+            shopPage.ViewModel.ProductInCart = NumberProduct;
             var Params = new
             {
                 CartList = ViewModel.CartList,
-                ProductInCart = ViewModel.CartList.Count
+                ProductInCart = NumberProduct,
             };
             this.Frame.Navigate(typeof(ShopperDashboardPage), Params);
         }
 
+        private void allCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void allCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

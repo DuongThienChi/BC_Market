@@ -7,16 +7,15 @@ using BC_Market.Models;
 using BC_Market.BUS;
 using BC_Market.Factory;
 using Windows.System;
+using System.Collections.ObjectModel;
 
 namespace BC_Market.DAO
 {
     public class UserMockDAO : IDAO<USER>
     {
-        public UserMockDAO() { }
-        public dynamic Get(Dictionary<string, string> configuration)
-        {
-            var users = new List<USER>
-            {
+
+        public ObservableCollection<USER> users = new ObservableCollection<USER>
+           {
               new USER {
                   Id = "1",
                   Username = "admin",
@@ -38,7 +37,16 @@ namespace BC_Market.DAO
                   Email = "shopper@gmail.com",
                   Roles = new List<Role> { new Role { Name = "Shopper" }
                   } },
-          };
+            };
+        public UserMockDAO() { }
+
+        public void Add(USER obj)
+        {
+            users.Add(obj);
+        }
+
+        public dynamic Get(Dictionary<string, string> configuration)
+        {
             if (configuration != null)
             {
                 string id;

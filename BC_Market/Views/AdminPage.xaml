@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BC_Market.Views.AdminPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Market.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#111315"
+    >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"
+          CornerRadius="30"
+          Background="#292C2D"
+        >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <!-- app's name -->
+                <RowDefinition Height="10*"/>
+                <!-- nav bar -->
+                <RowDefinition Height="2*"/>
+                <!-- logout -->
+            </Grid.RowDefinitions>
+
+            <!-- app's name-->
+            <TextBlock Foreground="#FAC1D9"
+                       HorizontalAlignment="Center"
+                       Margin="0 10 0 0 "
+                       FontSize="20"
+                       Grid.Row="0"
+                       FontWeight="Bold"
+                   >
+                 BC Market
+            </TextBlock>
+
+            <Grid Grid.Row="1"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button HorizontalAlignment="Center"
+                        Grid.Row="0"
+                        x:Name="accountManagement_button"
+                        Click="accountManagement_button_Click"
+                        Background="#292C2D"
+                        VerticalAlignment="Top"
+                        >
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="../Assets\Image\logout-button.png"
+                           MaxWidth="50"
+                           MinWidth="30"
+                        >
+
+                        </Image>
+                        <TextBlock Foreground="#FAC1D9"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   >
+                            Account Management
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+
+            <!-- Logout button -->
+            <Button HorizontalAlignment="Center"
+                    Grid.Row="2"
+                    x:Name="logout_button"
+                    Click="logout_button_Click"
+                    Background="#292C2D"
+                >
+                <StackPanel Orientation="Vertical">
+                    <Image Source="../Assets\Image\logout-button.png"
+                           MaxWidth="50"
+                           MinWidth="30"
+                        >
+
+                    </Image>
+                    <TextBlock Foreground="#FAC1D9"
+                               FontSize="15"
+                               >
+                        Logout
+                    </TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Frame x:Name="mainFrame"
+                Grid.Column="1"
+                />
+    </Grid>
+</Page>

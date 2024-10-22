@@ -13,6 +13,12 @@ namespace BC_Market.DAO
     public class CategoryMockDAO : IDAO<Category>
     {
         public CategoryMockDAO() { }
+
+        public void Add(Category obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public dynamic Get(Dictionary<string, string> configuration)
         {
             var categories = new List<Category>

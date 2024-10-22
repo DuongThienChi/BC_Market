@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BC_Market.Views.AdminManageAccountPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Market.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local1="using:BC_Market.Converter"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!-- Resource -->
+    <Page.Resources>
+        <local1:IdToColorConverter x:Key="IdToColorConverter"/>
+    </Page.Resources>
+
+
+    <!-- Main layout -->
+    <Grid Background="#111315">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0"
+              >
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        >
+                <Button Background="#292C2D"
+                        Foreground="white"
+                        Margin="10 0 0 0"
+                        CornerRadius="100"
+                        VerticalAlignment="Center"
+                        x:Name="backButton"
+                        Click="backButton_Click"
+                        >
+                    &lt;
+                </Button>
+
+                <TextBlock Foreground="White"
+                           VerticalAlignment="Center"
+                           Margin="10 0 0 0 "
+                           FontSize="20"
+                           FontWeight="Bold"
+                           >
+                    Account Management
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        
+                        >
+                <Image Source="../Assets\Image\icons8-bell-50.png" 
+                       Width="50"
+                       Margin="0 0 10 0 "
+                       />
+
+                <Image Source="../Assets\Image\avatar09.png"
+                       />
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              >
+            <TextBlock Text="Account"
+                       Foreground="White"
+                       FontSize="20"
+                       Margin="10 0 0 0"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Left"
+                       />
+
+            <Button HorizontalAlignment="Right"
+                    Background="#FAC1D9"
+                    Content="Add Account"
+                    x:Name="addAccount"
+                    Click="addAccount_Click"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Margin="0 0 10 0"
+                    >
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- ScrollView's header -->
+            <Grid Padding="0 10"
+                  Margin="20 0"
+                  CornerRadius="10"
+                  Grid.Row="0"
+                  Background="#111315"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="ID" 
+                           Grid.Column="0"
+                           Foreground="White"
+                           Padding="5 0"
+                           />
+                <TextBlock Text="Username" 
+                           Grid.Column="1"
+                           Foreground="White"
+                           />
+                <TextBlock Text="Password" 
+                           Grid.Column="2"
+                           Foreground="White"
+                           />
+                <TextBlock Text="Email" 
+                           Grid.Column="3"
+                           Foreground="White"
+                           />
+                <TextBlock Text="Time create" 
+                           Grid.Column="4"
+                           Foreground="White"
+                           />
+                <TextBlock Text="Roles" 
+                           Grid.Column="5"
+                           Foreground="White"
+                           />
+            </Grid>
+            
+            <!-- Scroll view -->
+            <ScrollView Grid.Row="1">
+                <ItemsRepeater x:Name="accountList" 
+                               HorizontalAlignment="Stretch" 
+                               ItemsSource="{Binding Items}"
+                               >
+                    <ItemsRepeater.Layout>
+                        <StackLayout Orientation="Vertical"/>
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                        <Grid Padding="0 10"
+                              Margin="20 0"
+                              Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                              >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Id}" 
+                                       Grid.Column="0"
+                                       Foreground="White" 
+                                       Padding="5 0"
+                                       />
+                            <TextBlock Text="{Binding Username}" 
+                                       Grid.Column="1"
+                                       Foreground="White"
+                                       />
+                            <TextBlock Text="{Binding Password}" 
+                                       Grid.Column="2"
+                                       Foreground="White"
+                                       />
+                            <TextBlock Text="{Binding Email}" 
+                                       Grid.Column="3"
+                                       Foreground="White"
+                                       />
+                            <TextBlock Text="{Binding CreateAt}" 
+                                       Grid.Column="4"
+                                       Foreground="White"
+                                       />
+                            <TextBlock Text="{Binding Roles[0].Name}" 
+                                       Grid.Column="5"
+                                       Foreground="White"
+                                       />
+                        </Grid>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </ScrollView>
+
+        </Grid>
+
+        <!-- Content Dialog -->
+        <ContentDialog x:Name="addAccountDialog"
+                        Title="Add Account"
+                        PrimaryButtonText="Add"
+                        CloseButtonText="Cancel"
+                        PrimaryButtonClick="addAccountDialog_PrimaryButtonClick"
+                        CloseButtonClick="addAccountDialog_CloseButtonClick"
+                        >
+            <StackPanel Orientation="Vertical">
+                <TextBox x:Name="id"
+                         PlaceholderText="ID"
+                         Margin="10 0 10 0"
+                         />
+
+                <TextBox x:Name="username"
+                         PlaceholderText="Username"
+                         Margin="10 0 10 0"
+                         />
+                <TextBox x:Name="password"
+                         PlaceholderText="Password"
+                         Margin="10 0 10 0"
+                         />
+                <TextBox x:Name="email"
+                         PlaceholderText="Email"
+                         Margin="10 0 10 0"
+                         />
+                <ComboBox x:Name="role"
+                          PlaceholderText="Role"
+                          Margin="10 0 10 0"
+                          />
+            </StackPanel>
+        </ContentDialog>
+
+    </Grid>
+</Page>

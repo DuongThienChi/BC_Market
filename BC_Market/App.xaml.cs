@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using BC_Market.Views;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -41,7 +42,7 @@ namespace BC_Market
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new LoginWindow();
+            m_window = new HomeWindow();
             m_window.Activate();
         }
 

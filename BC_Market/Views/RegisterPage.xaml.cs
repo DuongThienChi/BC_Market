@@ -1,12 +1,3 @@
-using BC_Market.Factory;
-using BC_Market.Models;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +5,15 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Navigation;
+using BC_Market.Factory;
+using BC_Market.Models;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -21,11 +21,11 @@ using Windows.Foundation.Collections;
 namespace BC_Market.Views
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RegisterWindow : Window
+    public sealed partial class RegisterPage : Page
     {
-        public RegisterWindow()
+        public RegisterPage()
         {
             this.InitializeComponent();
         }
@@ -71,7 +71,7 @@ namespace BC_Market.Views
 
                 notice_box.Text = "Register successfully!";
 
-                this.Close();
+                this.Frame.Navigate(typeof(LoginPage));
             }
         }
 
@@ -93,17 +93,9 @@ namespace BC_Market.Views
             return false;
         }
 
-        private void Window_Closed(object sender, WindowEventArgs args)
+        private void BackToLogin_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var loginWindow = new LoginWindow();
-            loginWindow.Activate();
-
-            this.Close();
-        }
-
-        private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            this.Close();
+            this.Frame.Navigate(typeof(LoginPage));
         }
     }
 }

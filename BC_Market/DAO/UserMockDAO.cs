@@ -7,12 +7,14 @@ using BC_Market.Models;
 using BC_Market.BUS;
 using BC_Market.Factory;
 using Windows.System;
+using System.Collections.ObjectModel;
 
 namespace BC_Market.DAO
 {
     public class UserMockDAO : IDAO<USER>
     {
-        public List<USER> users = new List<USER>
+
+        public ObservableCollection<USER> users = new ObservableCollection<USER>
            {
               new USER {
                   Id = "1",

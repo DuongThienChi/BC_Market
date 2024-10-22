@@ -1,5 +1,10 @@
-using BC_Market.Factory;
-using BC_Market.Views;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -7,30 +12,24 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using BC_Market.Factory;
 using System.Security.Cryptography;
 using System.Text;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace BC_Market
+namespace BC_Market.Views
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginWindow : Window
+    public sealed partial class LoginPage : Page
     {
         public delegate void SendMessageDelegate(string message);
         public event SendMessageDelegate SendMessageEvent;
-        public LoginWindow()
+        public LoginPage()
         {
             this.InitializeComponent();
 
@@ -61,7 +60,7 @@ namespace BC_Market
                     password_input.Password = password;
                 }
             }
-            
+
         }
 
         private void login_button_Click(object sender, RoutedEventArgs e)
@@ -80,11 +79,11 @@ namespace BC_Market
                 {
                     if (user.Roles[0].Name == "Admin")
                     {
-                        login_button.Tag = typeof(AdminDashboardPage);
+                        login_button.Tag = typeof(AdminPage);
                     }
                     else if (user.Roles[0].Name == "Manager")
                     {
-                        login_button.Tag = typeof(ManagerDashboardPage);
+                        login_button.Tag = typeof(ManagerPage);
                     }
                     else if (user.Roles[0].Name == "Shopper")
                     {
@@ -93,9 +92,6 @@ namespace BC_Market
 
                     var button = sender as Button;
                     var type = button.Tag as Type;
-
-                    var dashboardWindow = new Dashboard(type);
-                    dashboardWindow.Activate();
 
                     if (remember_me.IsChecked == true)
                     {
@@ -107,7 +103,7 @@ namespace BC_Market
                         var passwordInBytes = Encoding.UTF8.GetBytes(passwordRaw);
                         var entropyInBytes = new byte[20];
                         using (var rng = RandomNumberGenerator.Create())
-                        rng.GetBytes(entropyInBytes);
+                            rng.GetBytes(entropyInBytes);
                         var encryptedPasswordInBytes = ProtectedData.Protect(
                         passwordInBytes,
                         entropyInBytes,
@@ -122,7 +118,8 @@ namespace BC_Market
                         localSettings.Values["Username"] = username;
                     }
 
-                    this.Close();
+                    this.Frame.Navigate(type);
+                    
                     return;
                 }
                 else
@@ -134,18 +131,12 @@ namespace BC_Market
 
         private void forgot_text_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var forgotWindow = new ForgotWindow();
-            forgotWindow.Activate();
-
-            this.Close();
+            this.Frame.Navigate(typeof(ForgotPage));
         }
 
         private void register_button_Click(object sender, RoutedEventArgs e)
         {
-            var registerWindow = new RegisterWindow();
-            registerWindow.Activate();
-
-            this.Close();
+            this.Frame.Navigate(typeof(RegisterPage));
         }
     }
 }

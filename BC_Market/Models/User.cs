@@ -16,6 +16,16 @@ namespace BC_Market.Models
 
             // Mỗi người dùng có thể có nhiều vai trò
             public List<Role> Roles { get; set; }
+
+            public USER CreateUser (string username, string password , List<Role> roles)
+            {
+                return new USER
+                {
+                    Username = username,
+                    Password = password,
+                    Roles = roles
+                };
+        }
             
         }
 

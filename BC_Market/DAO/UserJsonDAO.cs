@@ -11,6 +11,11 @@ namespace BC_Market.DAO
 {
     public class UserJsonDAO : IDAO<USER>
     {
+        public void Add(USER obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public  dynamic Get(Dictionary<string, string> configuration) {
             throw new NotImplementedException();
         }

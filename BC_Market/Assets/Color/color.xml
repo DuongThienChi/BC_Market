@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<color name="mainBackgroundColor">#111315</color>
+	<color name="mainTextColor">#FAC1D9</color>
+	<color name="secondBackgroundColor">#292C2D</color>
+	<color name="thirdBackgroundColor">#3D4142</color>
+	<color name="noticeTextColor">Red</color>
+</resources>

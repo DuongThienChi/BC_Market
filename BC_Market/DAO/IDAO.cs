@@ -10,5 +10,7 @@ namespace BC_Market.DAO
     public interface IDAO <T>
     {
         public dynamic Get(Dictionary<string, string> configuration);
+
+        public void Add(T obj);
     }
 }

@@ -33,6 +33,16 @@
     <Content Remove="Assets\Fonts\Poppins-SemiBoldItalic.ttf" />
     <Content Remove="Assets\Fonts\Poppins-Thin.ttf" />
     <Content Remove="Assets\Fonts\Poppins-ThinItalic.ttf" />
+    <Content Remove="Assets\Icons\cart 1.png" />
+    <Content Remove="Assets\Icons\location.png" />
+    <Content Remove="Assets\Icons\notify.png" />
+    <Content Remove="Assets\Icons\shopping-cart.png" />
+    <Content Remove="Assets\Images\fish.jpg" />
+    <Content Remove="Assets\Images\kemps.jpg" />
+    <Content Remove="Assets\Images\milk.png" />
+    <Content Remove="Assets\Images\MyAvatar.jpg" />
+    <Content Remove="Assets\Images\Red meat.jpg" />
+    <Content Remove="Assets\Images\veget.png" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="ForgotWindow.xaml" />
@@ -45,6 +55,7 @@
     <None Remove="Views\ManagerPage.xaml" />
     <None Remove="Views\RegisterPage.xaml" />
     <None Remove="Views\ShopperDashboardPage.xaml" />
+    <None Remove="Views\ShopperOrderPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,6 +106,42 @@
     <Resource Include="Assets\Fonts\Poppins-ThinItalic.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Assets\Icons\cart 1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Icons\location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Icons\notify.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Icons\shopping-cart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\fish.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\kemps.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\milk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\MyAvatar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\Red meat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\veget.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Page Update="Views\ShopperOrderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\ShopperDashboardPage.xaml">
     <Content Update="Assets\Image\log-out.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

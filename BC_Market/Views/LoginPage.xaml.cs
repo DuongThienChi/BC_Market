@@ -27,8 +27,6 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        public delegate void SendMessageDelegate(string message);
-        public event SendMessageDelegate SendMessageEvent;
         public LoginPage()
         {
             this.InitializeComponent();

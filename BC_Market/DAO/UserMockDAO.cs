@@ -45,6 +45,18 @@ namespace BC_Market.DAO
             users.Add(obj);
         }
 
+        public void Delete(USER obj)
+        {
+            foreach (USER user in users)
+            {
+                if (user.Username == obj.Username)
+                {
+                    users.Remove(user);
+                    break;
+                }
+            }
+        }
+
         public dynamic Get(Dictionary<string, string> configuration)
         {
             if (configuration != null)
@@ -59,6 +71,20 @@ namespace BC_Market.DAO
             else
             {
                 return users;
+            }
+        }
+
+        public void Update(USER obj)
+        {
+            foreach (USER item in users)
+            {
+                if (item.Username == obj.Username)
+                {
+                    item.Username = obj.Username;
+                    item.Password = obj.Password;
+                    item.Roles = obj.Roles;
+                    break;
+                }
             }
         }
         //public USER GetByID(string id)

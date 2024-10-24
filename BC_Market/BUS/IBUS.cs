@@ -9,6 +9,7 @@ namespace BC_Market.BUS
 {
     public interface IBUS<T> { 
         IBUS<T> CreateNew(IDAO<T> dao);
-        public  dynamic Get(Dictionary<string, string> configuration);    
+        public dynamic Get(Dictionary<string, string> configuration);
+        void UpdateUser(object user);
     }
 }

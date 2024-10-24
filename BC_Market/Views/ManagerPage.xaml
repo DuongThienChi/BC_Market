@@ -9,63 +9,108 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#111315"
-    >
+    <Grid>
+        <!-- Bố trí thành 2 hàng: 1 cho header, 1 cho navigation -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <!-- Hàng cho header -->
+            <RowDefinition Height="*" />
+            <!-- Hàng cho navigation -->
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Header nằm trên cùng -->
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#292C2D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="BC Market"
+               FontSize="18"
+               FontWeight="Bold"
+               Foreground="#FAC1D9"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Padding="10 0 0 0"
+               Grid.Column="0"/>
+
+            <Image Source="../Assets\Icons\notify.png" 
+               Width="25" Height="25"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Margin="0 5 20 0"
+               Grid.Column="1"/>
+
+            <Border Background="White" Width="1" Height="30" Grid.Column="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 20 0"/>
+            <Border CornerRadius="15" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Background="Transparent"
+                    Margin="0 0 20 0"
+                    >
+                <Image Source="../Assets\Images\MyAvatar.jpg" 
+               Width="30" Height="30" 
+               Stretch="UniformToFill" />
+            </Border>
+        </Grid>
+
+        <!-- thanh navigation -->
         <Grid Grid.Column="0"
-          CornerRadius="30"
-          Background="#292C2D"
-        >
+                Grid.Row="1"
+                Background="#3D4142"
+            >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <!-- app's name -->
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="2*"/>
                 <!-- logout -->
             </Grid.RowDefinitions>
 
-            <!-- app's name-->
-            <TextBlock Foreground="#FAC1D9"
-                       HorizontalAlignment="Center"
-                       Margin="0 10 0 0 "
-                       FontSize="20"
-                       Grid.Row="0"
-                       FontWeight="Bold"
-                   >
-                 BC Market
-            </TextBlock>
 
-            <GridView>
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
 
-            </GridView>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="product_btn" Click="product_btn_Click" Background="#3D4142">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="../Assets\Images\feature-button.png" Width="20"/>
+                        <TextBlock Text="Product" Foreground="#FAC1D9"/>
+                    </StackPanel>
+                    
+                </Button>
+
+            </Grid>
 
             <!-- Logout button -->
             <Button HorizontalAlignment="Center"
-                    Grid.Row="2"
-                    x:Name="logout_button"
-                    Click="logout_button_Click"
-                    Background="#292C2D"
+                Grid.Row="2"
+                x:Name="logout_button"
+                Click="logout_button_Click"
+                Background="#3D4142"
                 >
                 <StackPanel Orientation="Vertical">
-                    <Image Source="../Assets\Image\logout-button.jpg"
-                           MaxWidth="50"
-                           MinWidth="30"
+                    <Image Source="../Assets\Images\logout-button.png"
+                            Width="20"
                         >
 
                     </Image>
                     <TextBlock Foreground="#FAC1D9">
-                        Logout
+                    Logout
                     </TextBlock>
                 </StackPanel>
             </Button>
         </Grid>
 
         <Frame x:Name="mainFrame"
-                Grid.Column="1"
-                />
+                Grid.Column="1" Grid.Row="1"/>
     </Grid>
+
+
 </Page>

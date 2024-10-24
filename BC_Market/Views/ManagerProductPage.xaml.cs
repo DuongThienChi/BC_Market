@@ -21,9 +21,9 @@ namespace BC_Market.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ManagerDashboardPage : Page
+    public sealed partial class ManagerProductPage : Page
     {
-        public ManagerDashboardPage()
+        public ManagerProductPage()
         {
             this.InitializeComponent();
         }

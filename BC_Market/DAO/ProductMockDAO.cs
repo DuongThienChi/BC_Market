@@ -19,6 +19,11 @@ namespace BC_Market.DAO
             throw new NotImplementedException();
         }
 
+        public void Delete(Product obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public dynamic Get(Dictionary<string, string> configuration)
         {
             var products = new List<Product>
@@ -254,6 +259,11 @@ namespace BC_Market.DAO
                 else return products;
             }
             else return products;
+        }
+
+        public void Update(Product obj)
+        {
+            throw new NotImplementedException();
         }
         //public PRODUCT GetByID(string id)
         //{

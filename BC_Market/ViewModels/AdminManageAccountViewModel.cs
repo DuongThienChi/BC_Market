@@ -32,7 +32,5 @@ namespace BC_Market.ViewModels
             Items = new ObservableCollection<USER>(users);
         }
 
-        private ObservableCollection<USER> _items;
-
     }
 }

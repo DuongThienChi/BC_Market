@@ -124,7 +124,6 @@ namespace BC_Market.ViewModels
             AllProducts = _bus.Get(null);
             TotalPages = (int)Math.Ceiling((double)AllProducts.Count / PageSize);
             FilterProduct = AllProducts;
-            Console.WriteLine(AllProducts.Count);
         }
 
         private void GetProductsByCategory(string categoryId)

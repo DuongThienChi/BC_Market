@@ -19,6 +19,11 @@ namespace BC_Market.DAO
             throw new NotImplementedException();
         }
 
+        public void Delete(Category obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public dynamic Get(Dictionary<string, string> configuration)
         {
             var categories = new List<Category>
@@ -58,6 +63,11 @@ namespace BC_Market.DAO
                 else return categories;
             }
             else return categories;
+        }
+
+        public void Update(Category obj)
+        {
+            throw new NotImplementedException();
         }
         //public PRODUCT GetByID(string id)
         //{

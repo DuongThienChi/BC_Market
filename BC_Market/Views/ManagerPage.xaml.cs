@@ -26,11 +26,17 @@ namespace BC_Market.Views
         public ManagerPage()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(ManagerProductPage));
         }
 
         private void logout_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LoginPage));
+        }
+
+        private void product_btn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(typeof(ManagerProductPage));
         }
     }
 }

@@ -26,7 +26,27 @@ namespace BC_Market.BUS
         {
             return _dao.Get(configuration);
         }
-        // Các phương thức khác...
+
+        public void UpdateUser(object user)
+        {
+            var userFactory = new UserFactory();
+            var userBUS = userFactory.CreateBUS();
+
+            var listUser = userBUS.Get(null);
+
+            foreach (USER item in listUser)
+            {
+                if (item.Username == ((USER)user).Username)
+                {
+                    item.Username = ((USER)user).Username;
+                    item.Password = ((USER)user).Password;
+                    item.Roles = ((USER)user).Roles;
+                    _dao.Add(item);
+                    break;
+                }
+            }
+        }
+        
     }
 
 }

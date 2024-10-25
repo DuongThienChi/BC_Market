@@ -51,7 +51,7 @@
                     Background="#292C2D"
                 >
                 <StackPanel Orientation="Vertical">
-                    <Image Source="../Assets\Image\logout-button.jpg"
+                    <Image Source="../Assets\Images\logout-button.jpg"
                            MaxWidth="50"
                            MinWidth="30"
                         >

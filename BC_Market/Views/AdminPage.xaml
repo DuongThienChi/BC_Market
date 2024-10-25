@@ -54,7 +54,7 @@
                         VerticalAlignment="Top"
                         >
                     <StackPanel Orientation="Vertical">
-                        <Image Source="../Assets\Image\logout-button.png"
+                        <Image Source="../Assets\Images\logout-button.png"
                            MaxWidth="50"
                            MinWidth="30"
                         >
@@ -79,7 +79,7 @@
                     Background="#292C2D"
                 >
                 <StackPanel Orientation="Vertical">
-                    <Image Source="../Assets\Image\logout-button.png"
+                    <Image Source="../Assets\Images\logout-button.png"
                            MaxWidth="50"
                            MinWidth="30"
                         >

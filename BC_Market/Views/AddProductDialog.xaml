@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="BC_Market.Views.AddProductDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Market.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"    
+    Background="#aa000000"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    Visibility="Collapsed"
+    >
+
+    <Grid HorizontalAlignment="Stretch" 
+          Background="#80000000">
+
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch"
+          
+          >
+            <Border Background="White" CornerRadius="8" Padding="20">
+                <ScrollView VerticalScrollBarVisibility="Visible">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Add New Product" FontSize="20" FontWeight="Bold" Grid.Row="0"/>
+                        <!-- Nội dung của dialog -->
+                        <TextBox Grid.Row="1" Header="Product Id" PlaceholderText="Enter product ID" x:Name="Id" Margin="0,10,0,0"/>
+                        <TextBox Grid.Row="2" Header="Product Name" PlaceholderText="Enter product name" x:Name="Name" Margin="0,10,0,0"/>
+                        <TextBox Grid.Row="3" Header="Description" PlaceholderText="Write description" x:Name="Descript" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="0,10,0,0"/>
+                        <TextBox Grid.Row="4" Header="Product Price" PlaceholderText="Enter product price" x:Name="Price" Margin="0,10,0,0"/>
+                        <TextBox Grid.Row="5" Header="Product Stock" PlaceholderText="Enter product stock" x:Name="Stock" Margin="0,10,0,0"/>
+                        <TextBox Grid.Row="6" Header="Product CategoryId" PlaceholderText="Enter product categoryId" x:Name="CategoryId" Margin="0,10,0,0"/>
+                        <TextBox Grid.Row="7" Header="Product Status" PlaceholderText="Enter product tatus" x:Name="Status" Margin="0,10,0,0"/>
+                        <TextBlock Grid.Row="8" x:Name="Notice" Foreground="red"/>
+                        <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                            <Button Content="Cancel" Click="CloseDialog" Margin="0,0,10,0"/>
+                            <Button Content="Save" Click="SaveCate"/>
+                        </StackPanel>
+                    </Grid>
+                </ScrollView>
+            </Border>
+        </Grid>
+    </Grid>
+
+</UserControl>

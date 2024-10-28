@@ -1,5 +1,7 @@
+using BC_Market.BUS;
 using BC_Market.Factory;
 using BC_Market.Models;
+using BC_Market.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,6 +28,7 @@ namespace BC_Market.Views
     public sealed partial class AdminEditAccountPage : Page
     {
         private USER user;
+        private AdminManageAccountViewModel ViewModel;
 
         public AdminEditAccountPage()
         {
@@ -36,7 +39,9 @@ namespace BC_Market.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            user = (USER)e.Parameter;
+            var package = e.Parameter as dynamic;
+            user = package.user;
+            ViewModel = package.ViewModel;
             username_input.Text = user.Username;
             password_input.Password = user.Password;
         }
@@ -50,9 +55,10 @@ namespace BC_Market.Views
         {
             var username = username_input.Text;
             var password = password_input.Password;
-            var role = RolesBox.SelectedItem.ToString();
+            var selectedRole = RolesBox.SelectedItem as ComboBoxItem;
+            var role = selectedRole.Content.ToString();
 
-            if(password == "")
+            if (password == "")
             {
                 notice_box.Text = "Password cannot be empty!";
                 return;
@@ -62,11 +68,6 @@ namespace BC_Market.Views
                 notice_box.Text = "Role cannot be empty!";
                 return;
             }
-
-
-            var userFactory = new UserFactory();
-            var userBUS = userFactory.CreateBUS();
-            var userDAO = userFactory.CreateDAO();
 
             var user = new USER()
             {
@@ -81,8 +82,8 @@ namespace BC_Market.Views
                 }
             };
 
-            userBUS.UpdateUser(user);
-            this.Frame.Navigate(typeof(AdminManageAccountPage));
+            ViewModel.Update(user);
+            this.Frame.Navigate(typeof(AdminManageAccountPage),ViewModel);
         }
     }
 }

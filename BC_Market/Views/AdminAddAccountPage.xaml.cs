@@ -1,5 +1,6 @@
 using BC_Market.Factory;
 using BC_Market.Models;
+using BC_Market.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -25,10 +26,17 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class AdminAddAccountPage : Page
     {
+        private AdminManageAccountViewModel ViewModel;
         public AdminAddAccountPage()
         {
             this.InitializeComponent();
             RolesBox.SelectedIndex = 0;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel = e.Parameter as AdminManageAccountViewModel;
         }
 
         private void Cancel_Tapped(object sender, TappedRoutedEventArgs e)
@@ -56,28 +64,27 @@ namespace BC_Market.Views
             }
             else
             {
-                var userFactory = new UserFactory();
-                var userBUS = userFactory.CreateBUS();
-                var userDAO = userFactory.CreateDAO();
+                var role = RolesBox.SelectedItem as ComboBoxItem;
 
                 var user = new USER()
                 {
+                    Id = (ViewModel.Items.Count + 1).ToString(),
                     Username = username,
                     Password = password,
                     Roles = new List<Role>()
                     {
                         new Role()
                         {
-                            Name = RolesBox.SelectedItem.ToString()
+                            Name = role.Content.ToString()
                         }
                     }
                 };
 
-                userDAO.Add(user);
+                ViewModel.AddAccount(user);
 
                 notice_box.Text = "Add successfully!";
 
-                this.Frame.Navigate(typeof(AdminManageAccountPage));
+                this.Frame.Navigate(typeof(AdminManageAccountPage), ViewModel);
             }
         }
     }

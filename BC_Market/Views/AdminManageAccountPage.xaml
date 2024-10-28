@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:local1="using:BC_Market.Converter"
+    xmlns:local2="using:BC_Market.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -58,12 +59,12 @@
                         VerticalAlignment="Center"
                         
                         >
-                <Image Source="../Assets\Image\icons8-bell-50.png" 
+                <Image Source="../Assets\Images\icons8-bell-50.png" 
                        Width="50"
                        Margin="0 0 10 0 "
                        />
 
-                <Image Source="../Assets\Image\avatar09.png"
+                <Image Source="../Assets\Images\avatar09.png"
                        />
 
             </StackPanel>
@@ -113,6 +114,7 @@
                     <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="ID" 
@@ -144,19 +146,19 @@
 
             <!-- Scroll view -->
             <ScrollView Grid.Row="1">
-                <ItemsRepeater x:Name="accountList" 
+                <ItemsRepeater x:Name="accountList"
                                HorizontalAlignment="Stretch" 
-                               ItemsSource="{Binding Items}"
+                               ItemsSource="{x:Bind ViewModel.Items}"
                                >
                     <ItemsRepeater.Layout>
                         <StackLayout Orientation="Vertical"/>
                     </ItemsRepeater.Layout>
                     <ItemsRepeater.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="0 10"
+                        <DataTemplate x:DataType="local2:USER">
+                            <Grid CornerRadius="4"
+                                  Padding="0 10"
                                   Margin="20 0"
                                   Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
-                                  
                               >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.5*"/>
@@ -185,7 +187,7 @@
                                        Grid.Column="3"
                                        Foreground="White"
                                        />
-                                <TextBlock Text="{Binding CreateAt}" 
+                                <TextBlock Text="{Binding CreatedAt}" 
                                        Grid.Column="4"
                                        Foreground="White"
                                        />

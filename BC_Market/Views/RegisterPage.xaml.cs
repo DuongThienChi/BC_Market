@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using BC_Market.Factory;
 using BC_Market.Models;
+using BC_Market.ViewModels;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,9 +26,16 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class RegisterPage : Page
     {
+        private LoginPageViewModel ViewModel = new LoginPageViewModel();
         public RegisterPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel = e.Parameter as LoginPageViewModel;
         }
 
         private void register_button_Click(object sender, RoutedEventArgs e)
@@ -50,37 +58,32 @@ namespace BC_Market.Views
             }
             else
             {
-                var userFactory = new UserFactory();
-                var userBUS = userFactory.CreateBUS();
-                var userDAO = userFactory.CreateDAO();
 
                 var user = new USER()
                 {
+                    Id = (ViewModel.ListAccount.Count + 1).ToString(),
                     Username = username,
                     Password = password,
                     Roles = new List<Role>()
                     {
                         new Role()
                         {
-                            Name = "Shopper"
+                            Name = "Admin"
                         }
                     }
                 };
 
-                userDAO.Add(user);
+                ViewModel.AddAccount(user);
 
                 notice_box.Text = "Register successfully!";
 
-                this.Frame.Navigate(typeof(LoginPage));
+                this.Frame.Navigate(typeof(LoginPage), ViewModel);
             }
         }
 
         public bool isUsernameExist(string username)
         {
-            var userFactory = new UserFactory();
-            var userBUS = userFactory.CreateBUS();
-
-            var listUser = userBUS.Get(null);
+            var listUser = ViewModel.ListAccount;
 
             foreach (var user in listUser)
             {

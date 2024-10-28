@@ -17,15 +17,15 @@ using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PropertyChanged;
+using Windows.ApplicationModel.Store;
+using Microsoft.UI.Xaml.Controls;
 
 namespace BC_Market.ViewModels 
 {
     [AddINotifyPropertyChangedInterface]
     public class ShopperDashboardViewModel : ObservableObject
     {
-        public ObservableCollection<Product> PagedProducts { get; set; } = new ObservableCollection<Product>();
-        private List<Product> AllProducts;
-        private List<Product> FilterProduct;
+        public ObservableCollection<Product> Products { get; set; } 
         private int PageSize = 15;
         private int currentPage = 1;
         private IFactory<Product> _factory = new ProductFactory();
@@ -51,36 +51,18 @@ namespace BC_Market.ViewModels
             get => _suggestions;
             set => SetProperty(ref _suggestions, value);
         }
-        public ShopperDashboardViewModel()
+        public int Skip
         {
-            _bus = _factory.CreateBUS();
-            LoadProducts();
-            if(CartList !=null)
+            get => (CurrentPage - 1) * PageSize;
+            set
             {
-                ProductInCart = CartList.Count;
+                if (Skip != value)
+                {
+                    Skip = value;
+                    OnPropertyChanged(nameof(Skip));
+                }
             }
-            else
-            {
-                ProductInCart = 0;
-            }
-            PreviousPageCommand = new RelayCommand(GoPreviousPage);
-            NextPageCommand = new RelayCommand(GoNextPage);
-            GetCategoryCommand = new Dictionary<string, ICommand> {
-                     { "All", new RelayCommand(() => GetProductsByCategory("All")) },
-                     { "Vegetable", new RelayCommand(() => GetProductsByCategory("Vet01")) },
-                     { "Meat", new RelayCommand(() => GetProductsByCategory("M01")) },
-                     { "Milk", new RelayCommand(() => GetProductsByCategory("Mk01")) },
-                     { "Seafood", new RelayCommand(() => GetProductsByCategory("SF01")) },
-                     { "BH", new RelayCommand(() => GetProductsByCategory("BH01")) }
-                 };
-            Suggestions = AllProducts.Select(p => p.Name).ToList();
-            TextChangedCommand = new RelayCommand<string>(OnTextChanged);
-            SuggestionChosenCommand = new RelayCommand<string>(OnSuggestionChosen);
-            QuerySubmittedCommand = new RelayCommand<string>(OnQuerySubmitted);
-            AddCartCommand = new RelayCommand<Product>(AddCart);
-            UpdatePaging(FilterProduct);
         }
-
         public int CurrentPage
         {
             get => currentPage;
@@ -91,6 +73,7 @@ namespace BC_Market.ViewModels
                     currentPage = value;
                     OnPropertyChanged(nameof(CurrentPage));
                 }
+
             }
         }
         public int TotalPages
@@ -112,36 +95,88 @@ namespace BC_Market.ViewModels
         public ICommand NextPageCommand { get; }
         public Dictionary<string, ICommand> GetCategoryCommand { set; get; }
 
+        private Dictionary<string, string> _configuration = new Dictionary<string, string>
+            {
+                { "searchKey", "" },
+                { "category", "" },
+                { "skip", "0" },
+                { "take", "15" }
+            };
+
+        public Dictionary<string, string> configuration
+        {
+            get => _configuration;
+            set
+            {
+                if (_configuration != value)
+                {
+                    _configuration = value;
+                    OnPropertyChanged(nameof(configuration));
+                }
+            }
+        }
         //public ICommand LogoutCommand { get; }
         public ICommand TextChangedCommand { get; }
         public ICommand SuggestionChosenCommand { get; }
         public ICommand QuerySubmittedCommand { get; }
 
         public ICommand AddCartCommand { get; }
+        public ShopperDashboardViewModel()
+        {
+            PreviousPageCommand = new RelayCommand(GoPreviousPage);
+            NextPageCommand = new RelayCommand(GoNextPage);
+            _bus = _factory.CreateBUS();
+            LoadProducts();
+            if (CartList !=null)
+            {
+                ProductInCart = CartList.Count;
+            }
+            else
+            {
+                ProductInCart = 0;
+            }
+            GetCategoryCommand = new Dictionary<string, ICommand> {
+                     { "All", new RelayCommand(() => GetProductsByCategory("All")) },
+                     { "Vegetable", new RelayCommand(() => GetProductsByCategory("Vegetable")) },
+                     { "Meat", new RelayCommand(() => GetProductsByCategory("Meat")) },
+                     { "Milk", new RelayCommand(() => GetProductsByCategory("Milk")) },
+                     { "Seafood", new RelayCommand(() => GetProductsByCategory("Seafood")) },
+                     { "BH", new RelayCommand(() => GetProductsByCategory("Beauty & Health")) }
+                 };
+            Suggestions = Products.Select(p => p.Name).ToList();
+            TextChangedCommand = new RelayCommand<string>(OnTextChanged);
+            SuggestionChosenCommand = new RelayCommand<string>(OnSuggestionChosen);
+            QuerySubmittedCommand = new RelayCommand<string>(OnQuerySubmitted);
+            AddCartCommand = new RelayCommand<Product>(AddCart);
+            
+        }
+        
         private void LoadProducts()
         {
-            AllProducts = new List<Product>();
-            AllProducts = _bus.Get(null);
-            TotalPages = (int)Math.Ceiling((double)AllProducts.Count / PageSize);
-            FilterProduct = AllProducts;
+            var configCount = new Dictionary<string, string>(configuration);
+            configCount["take"] = "100000";
+            configCount["skip"] = "0";
+            var count = _bus.Get(configCount);
+            var res = _bus.Get(configuration);
+            Products = new ObservableCollection<Product>(res);
+            TotalPages = (int)Math.Ceiling((double)count / PageSize);
+            ((RelayCommand)PreviousPageCommand).NotifyCanExecuteChanged();
+            ((RelayCommand)NextPageCommand).NotifyCanExecuteChanged();
         }
 
-        private void GetProductsByCategory(string categoryId)
+        private void GetProductsByCategory(string category)
         {
             try
             {
-                // Check null
-                if (AllProducts == null || AllProducts.Count == 0)
-                    throw new InvalidOperationException("Danh sách sản phẩm trống hoặc null.");
-
+               
                 //Filter
-                FilterProduct = categoryId == "All"
-                    ? AllProducts
-                    : AllProducts.Where(p => p.CategoryId == categoryId).ToList();
-
-                TotalPages = (int)Math.Ceiling((double)FilterProduct.Count / PageSize);
                 CurrentPage = 1;
-                UpdatePaging(FilterProduct);
+                if(category != "All")
+                    configuration["category"] = category;
+                else
+                    configuration["category"] = "";
+                configuration["skip"] = Skip.ToString();
+                LoadProducts();
             }
             catch (Exception ex)
             {
@@ -149,45 +184,52 @@ namespace BC_Market.ViewModels
                 Debug.WriteLine($"Error in GetProductsByCategory: {ex.Message}");
             }
         }
-        private void UpdatePaging(List<Product> Filter)
-        {
-            PagedProducts.Clear();
-            var productsOnPage = Filter.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
-            productsOnPage.ForEach(p => PagedProducts.Add(p));
-
-            ((RelayCommand)PreviousPageCommand).NotifyCanExecuteChanged();
-            ((RelayCommand)NextPageCommand).NotifyCanExecuteChanged();
-
-        }
-
         private void OnTextChanged(string text)
         {
-           Suggestions = string.IsNullOrWhiteSpace(text) ? new List<string>() :
-           Suggestions.Where(item => item.StartsWith(text, StringComparison.OrdinalIgnoreCase)).ToList();
-           if(Suggestions.Count == 0)
+            if (string.IsNullOrWhiteSpace(text))
             {
-                Suggestions = AllProducts.Select(p => p.Name).Take(6).ToList();
-            }      
+                Suggestions = new List<string>();
+            }
+            else
+            {
+                var newConfig = new Dictionary<string, string>(configuration);
+                newConfig["skip"] = "0";
+                newConfig["take"] = "6";
+                newConfig["searchKey"] = text;
+                var suggestProduct = _bus.Get(newConfig);
+                Suggestions = ((IEnumerable<Product>)suggestProduct).Select(p => p.Name).ToList();
+            }
         }
-            private void OnSuggestionChosen(string chosenItem)
+        private void OnSuggestionChosen(string chosenItem)
         {
             
             if (chosenItem == null) return;
-            chosenItem = chosenItem.Trim().ToLower();
-            FilterProduct = AllProducts.Where(p => p.Name.ToLower().Contains(chosenItem)).ToList();
-            TotalPages = (int)Math.Ceiling((double)FilterProduct.Count / PageSize);
             CurrentPage = 1;
-            UpdatePaging(FilterProduct);
+            chosenItem = chosenItem.Trim();
+            configuration = new Dictionary<string, string>
+            {
+                { "searchKey", chosenItem },
+                { "category", "" },
+                { "skip", Skip.ToString() },
+                { "take", PageSize.ToString() }
+            };
+            LoadProducts();
         }
 
         private void OnQuerySubmitted(string query)
         {
           if(query == null) return;
-            query = query.Trim().ToLower();
-            FilterProduct = AllProducts.Where(p => p.Name.ToLower().Contains(query)).ToList();
-            TotalPages = (int)Math.Ceiling((double)FilterProduct.Count / PageSize);
             CurrentPage = 1;
-            UpdatePaging(FilterProduct);
+            query = query.Trim();
+            configuration = new Dictionary<string, string>
+                {
+                    { "searchKey", query },
+                    { "category", "" },
+                    { "skip", Skip.ToString() },
+                    { "take", PageSize.ToString() }
+                };
+            LoadProducts();
+            
         }
         private void AddCart(Product product)
         {
@@ -221,7 +263,8 @@ namespace BC_Market.ViewModels
             {
                 CurrentPage = TotalPages;
             }
-            UpdatePaging(FilterProduct);
+            configuration["skip"] = Skip.ToString();
+            LoadProducts();
 
         }
 
@@ -235,7 +278,9 @@ namespace BC_Market.ViewModels
             {
                 CurrentPage = 1;
             }
-            UpdatePaging(FilterProduct);
+            
+            configuration["skip"] = Skip.ToString();
+            LoadProducts();
         }
         
     }

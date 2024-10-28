@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="BC_Market.Views.ManagerProductPage"
+    x:Class="BC_Market.Views.AdminProductPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BC_Market.Views"
@@ -17,7 +17,7 @@
         <viewModel:ManageProductViewModel x:Key="ViewModel"/>
         <local1:IdToColorConverter x:Key="IdToColorConverter"/>
     </Page.Resources>
-    
+
     <Grid Background="#111315">
 
         <Grid.ColumnDefinitions>
@@ -28,7 +28,7 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        
+
         <!-- Row 0 -->
         <Grid Grid.Row="0" 
               Margin="10">
@@ -53,16 +53,16 @@
             <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"
                           Grid.Row="1"
                           >
-                
+
                 <ItemsRepeater x:Name="listCate"
                                VerticalAlignment="Center"
                                ItemsSource="{x:Bind ViewModel.ListCategories}"
                                >
-                    
+
                     <ItemsRepeater.Layout>
                         <StackLayout Orientation="Horizontal"/>
                     </ItemsRepeater.Layout>
-                    
+
                     <ItemsRepeater.ItemTemplate>
                         <DataTemplate x:DataType="category:Category">
                             <Button x:Name="cateButton"
@@ -80,9 +80,9 @@
                                     <Grid.RowDefinitions>
                                         <!-- Picture -->
                                         <RowDefinition Height="2*"/>
-                                        <!-- Name -->          
+                                        <!-- Name -->
                                         <RowDefinition Height="1.3*"/>
-                                        <!-- Quantity -->      
+                                        <!-- Quantity -->
                                         <RowDefinition Height="1.1*"/>
                                     </Grid.RowDefinitions>
 
@@ -109,10 +109,10 @@
                         </DataTemplate>
                     </ItemsRepeater.ItemTemplate>
                 </ItemsRepeater>
-                
+
             </ScrollViewer>
         </Grid>
-        
+
         <!-- Row 1 -->
         <Grid Grid.Row="1"
               Margin="10 0 10 10">

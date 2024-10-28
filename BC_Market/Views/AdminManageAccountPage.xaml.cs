@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using BC_Market.Models;
 using Microsoft.UI;
 using BC_Market.ViewModels;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -36,6 +37,22 @@ namespace BC_Market.Views
             this.DataContext = ViewModel;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter is AdminManageAccountViewModel)
+            {
+                ViewModel = e.Parameter as AdminManageAccountViewModel;
+                return;
+            }
+            if (e.Parameter is ObservableCollection<USER>)
+            {
+                var listUser = e.Parameter as ObservableCollection<USER>;
+                ViewModel.Items = listUser;
+                return;
+            }
+        }
+
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -43,7 +60,7 @@ namespace BC_Market.Views
 
         private void addAccount_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AdminAddAccountPage));
+            this.Frame.Navigate(typeof(AdminAddAccountPage), ViewModel);
         }
 
 
@@ -61,10 +78,20 @@ namespace BC_Market.Views
             var button = sender as Button;
 
             var user = button.DataContext as USER;
+            if (user == null)
+            {
+                return;
+            }
+            Console.WriteLine(button.DataContext);
+            var package = new
+            {
+                user,
+                ViewModel
+            };
 
             if (user != null)
             {
-                this.Frame.Navigate(typeof(AdminEditAccountPage), user);
+                this.Frame.Navigate(typeof(AdminEditAccountPage), package);
             }
         }
 
@@ -73,17 +100,13 @@ namespace BC_Market.Views
             var button = sender as Button;
             var user = button.DataContext as USER;
 
-            var factory = new UserFactory();
-            var bus = factory.CreateBUS();
-            var dao = factory.CreateDAO();
-
-            var listUser = bus.Get(null);
+            var listUser = ViewModel.Items;
 
             foreach (USER item in listUser)
             {
                 if (item.Username == user.Username)
                 {
-                    dao.Delete(item);
+                    ViewModel.DeleteAccount(item);
                     break;
                 }
             }

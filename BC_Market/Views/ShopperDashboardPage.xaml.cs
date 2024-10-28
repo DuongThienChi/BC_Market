@@ -58,7 +58,7 @@ namespace BC_Market.Views
         }
         private void SearchButton_Clicked(object sender, RoutedEventArgs e)
         {
-            ViewModel.QuerySubmittedCommand.Execute(AutoSuggestBox.Text);
+            ViewModel.QuerySubmittedCommand.Execute(suggestBox.Text);
         }
         private void CartButton_Clicked(object sender, RoutedEventArgs e)
         {

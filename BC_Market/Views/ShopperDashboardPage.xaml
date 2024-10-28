@@ -79,7 +79,7 @@
                     <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
                     <Button Content="Beauty &amp; Health" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center"  Command="{x:Bind ViewModel.GetCategoryCommand['BH']}"/>
                     <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
-                   <!-- <Button Content="Logout" Command="{x:Bind ViewModel.LogoutCommand}"/>-->
+                    <!-- <Button Content="Logout" Command="{x:Bind ViewModel.LogoutCommand}"/>-->
                 </StackPanel>
             </Border>
 
@@ -102,19 +102,19 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <Border CornerRadius="25" BorderThickness="1" BorderBrush="Black"  Grid.Column="0"  >
-                                <AutoSuggestBox x:Name="AutoSuggestBox"
+                                <AutoSuggestBox x:Name="suggestBox"
                                                 CornerRadius="25"  PlaceholderText="Search" Height="45" Foreground="Gray" 
                                                 VerticalContentAlignment="Center"
                                                 ItemsSource="{x:Bind ViewModel.Suggestions, Mode=OneWay}"
                                                 QuerySubmitted="AutoSuggestionsBox_QuerySubmitted"
                                                 SuggestionChosen="AutoSuggestionsBox_SuggestionChosen"
-                                                TextChanged="AutoSuggestionsBox_TextChanged" />    
+                                                TextChanged="AutoSuggestionsBox_TextChanged" />
                             </Border>
 
                             <Button PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited" Width="50" Margin="10 0 0 0"
                             BorderThickness="0"  Background="Transparent"  Grid.Column="1"
                             Click="SearchButton_Clicked"
-                            > 
+                            >
                                 <AnimatedIcon x:Name="SearchAnimatedIcon">
                                     <AnimatedIcon.Source>
                                         <animatedvisuals:AnimatedFindVisualSource/>
@@ -171,7 +171,7 @@
                     </Grid>
                     <!--  ItemRepeater Binding de hien thi danh sach san pham -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="80 20 80 10">
-                        <ItemsRepeater ItemsSource="{x:Bind ViewModel.PagedProducts, Mode=OneWay}"  >
+                        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Products, Mode=OneWay}"  >
                             <ItemsRepeater.Layout>
                                 <UniformGridLayout MaximumRowsOrColumns="5" MinItemWidth="120" MinItemHeight="240"
                                     MinRowSpacing="3" MinColumnSpacing="3" ItemsStretch="Fill" Orientation="Horizontal">

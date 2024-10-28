@@ -29,10 +29,7 @@ namespace BC_Market.BUS
 
         public void UpdateUser(object user)
         {
-            var userFactory = new UserFactory();
-            var userBUS = userFactory.CreateBUS();
-
-            var listUser = userBUS.Get(null);
+            var listUser = this.Get(null);
 
             foreach (USER item in listUser)
             {
@@ -46,7 +43,8 @@ namespace BC_Market.BUS
                 }
             }
         }
-        
+
+        IDAO<USER> IBUS<USER>.Dao() => _dao;
     }
 
 }

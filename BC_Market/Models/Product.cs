@@ -17,6 +17,5 @@ namespace BC_Market.Models
         public string ImagePath { get; set; }
         public string Status { get; set; }
         public int OrderQuantity { get; set; }
-
     }
 }

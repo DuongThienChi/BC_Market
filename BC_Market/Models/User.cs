@@ -12,9 +12,9 @@ namespace BC_Market.Models
             public string Username { get; set; }
             public string Password { get; set; }
             public string Email { get; set; }
-            public DateTime CreatedAt { get; set; }
+            public DateTime CreatedAt { get; set; } = new DateTime(2024, 01, 01);
 
-            // Mỗi người dùng có thể có nhiều vai trò
+        // Mỗi người dùng có thể có nhiều vai trò
             public List<Role> Roles { get; set; }
 
             public USER CreateUser (string username, string password , List<Role> roles)

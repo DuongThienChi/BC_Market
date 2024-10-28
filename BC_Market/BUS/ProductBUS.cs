@@ -32,6 +32,11 @@ namespace BC_Market.BUS
             throw new NotImplementedException();
         }
 
+        public IDAO<Product> Dao()
+        {
+            return _dao;
+        }
+
         // Các phương thức khác...
     }
 

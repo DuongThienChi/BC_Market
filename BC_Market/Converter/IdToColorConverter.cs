@@ -18,6 +18,7 @@ namespace BC_Market.Converter
             if (value is string id)
             {
                 int idInt = int.Parse(id);
+
                 if (idInt % 2 == 0)
                 {
                     return "#292C2D";

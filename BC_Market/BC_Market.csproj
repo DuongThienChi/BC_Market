@@ -18,13 +18,23 @@
     <Content Remove="Assets\Images\delete-button.png" />
     <Content Remove="Assets\Images\edit-button.png" />
     <Content Remove="Assets\Images\feature-button.png" />
+    <Content Remove="Assets\Images\fish.jpg" />
     <Content Remove="Assets\Images\icons8-bell-50.png" />
+    <Content Remove="Assets\Images\kemps.jpg" />
     <Content Remove="Assets\Images\logout-button.png" />
+    <Content Remove="Assets\Images\milk.png" />
+    <Content Remove="Assets\Images\MyAvatar.jpg" />
+    <Content Remove="Assets\Images\Red meat.jpg" />
+    <Content Remove="Assets\Images\veget.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Views\AddCateDialog.xaml" />
+    <None Remove="Views\AddProductDialog.xaml" />
     <None Remove="Views\AdminAddAccountPage.xaml" />
     <None Remove="Views\AdminEditAccountPage.xaml" />
     <None Remove="Views\AdminManageAccountPage.xaml" />
+    <None Remove="Views\AdminProductPage.xaml" />
+    <None Remove="Views\EditProductDialog.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +51,7 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
+    <PackageReference Include="Npgsql" Version="8.0.5" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -56,16 +67,38 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Assets\Images\fish.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\kemps.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\milk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\MyAvatar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\Red meat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\veget.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\Images\edit-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\Images\feature-button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Update="Assets\Images\avatar09.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Assets\Images\delete-button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -76,11 +109,20 @@
     <None Update="Assets\Images\logout-button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\AdminProductPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\EditProductDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AddProductDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AddCateDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Update="Assets\Images\edit-button.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Page Update="Views\AdminManageAccountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

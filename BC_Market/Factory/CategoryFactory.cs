@@ -18,7 +18,7 @@ namespace BC_Market.Factory
 
         public IDAO<Category> CreateDAO()
         {
-            return new CategoryMockDAO(); // Tạo và trả về CategoryDAO
+            return new CategoryDatabaseDAO(); // Tạo và trả về CategoryDAO
         }
     }
 }

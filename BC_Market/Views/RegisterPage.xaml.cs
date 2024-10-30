@@ -68,7 +68,8 @@ namespace BC_Market.Views
                     {
                         new Role()
                         {
-                            Name = "Admin"
+                            Id = "R03",
+                            Name = "Shopper"
                         }
                     }
                 };

@@ -14,7 +14,7 @@ namespace BC_Market.DAO
 {
     public class ProductDatabaseDAO : IDAO<Product>
     {
-        private string connectionString ="Host=127.0.0.1;Port=5432;Database=BC_Market;Username=postgres;Password=123123123chi";
+        private string connectionString = "Host=127.0.0.1;Port=5432;Database=BC_Market;Username=postgres;Password=gb04";
         public ProductDatabaseDAO() { }
 
         public void Add(Product obj)
@@ -79,14 +79,14 @@ namespace BC_Market.DAO
             }
             using (var conn = new NpgsqlConnection(connectionString))
             {
-                conn.Open();  
+                conn.Open();
 
-                
+
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     foreach (var param in configuration)
                     {
-                        
+
                         if (sql.Contains("@" + param.Key))
                         {
                             if (param.Key == "skip")

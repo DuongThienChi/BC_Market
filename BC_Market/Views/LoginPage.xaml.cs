@@ -147,15 +147,12 @@ namespace BC_Market.Views
                     }
                     else if (user.Roles[0].Name == "Shopper")
                     {
-                        this.Frame.Navigate(typeof(ShopperDashboardPage), ManageProductViewModel);
+                        this.Frame.Navigate(typeof(ShopperDashboardPage));
                     }
                     return;
                 }
-                else
-                {
-                    notice_box.Text = "Username or password is incorrect!";
-                }
             }
+            notice_box.Text = "Username or password is incorrect!";
         }
 
         private void forgot_text_Tapped(object sender, TappedRoutedEventArgs e)

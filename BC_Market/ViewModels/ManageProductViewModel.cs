@@ -31,7 +31,14 @@ namespace BC_Market.ViewModels
         public void LoadData()
         {
             _productBus = _productFactory.CreateBUS();
-            var products = _productBus.Get(null);
+            var dict = new Dictionary<string, string>()
+            {
+                {"searchKey", ""},
+                {"category", ""},
+                {"skip", "0"},
+                {"take", "100"}
+            };
+            var products = _productBus.Get(dict);
             ListProduct = new ObservableCollection<Product>(products);
             ProductByCategory = new ObservableCollection<Product>(products);
 

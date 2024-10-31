@@ -107,5 +107,7 @@ namespace BC_Market.ViewModels
                 }
             }
         }
+
+        
     }
 }

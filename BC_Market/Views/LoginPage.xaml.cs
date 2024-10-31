@@ -40,30 +40,14 @@ namespace BC_Market.Views
 
             // Load username and password
             var localSettings = ApplicationData.Current.LocalSettings;
-            var localFolder = ApplicationData.Current.LocalFolder;
 
-            var encryptedPasswordBase64 = (string)localSettings.Values["PasswordInBase64"];
-            var entropyInBase64 = (string)localSettings.Values["EntropyInBase64"];
+            var password = (string)localSettings.Values["Password"];
             var username = (string)localSettings.Values["Username"];
 
-            if (encryptedPasswordBase64 != null && entropyInBase64 != null)
+            if(password != null && username != null)
             {
-                var encryptedPasswordInBytes = Convert.FromBase64String(encryptedPasswordBase64);
-                var entropyInBytes = Convert.FromBase64String(entropyInBase64);
-
-                var decryptedPasswordInBytes = ProtectedData.Unprotect(
-                    encryptedPasswordInBytes,
-                    entropyInBytes,
-                    DataProtectionScope.CurrentUser
-                );
-
-                var password = Encoding.UTF8.GetString(decryptedPasswordInBytes);
-
-                if (username != null)
-                {
-                    username_input.Text = username;
-                    password_input.Password = password;
-                }
+                username_input.Text = username;
+                password_input.Password = password;
             }
         }
 
@@ -105,30 +89,13 @@ namespace BC_Market.Views
 
             foreach (var user in listUser)
             {
-                if (user.Username == username && user.Password == password)
+                if (user.Username == username && (BCrypt.Net.BCrypt.Verify(password,user.Password) || password == user.Password))
                 {
                     if (remember_me.IsChecked == true)
                     {
-                        // Save username and password
                         var localSettings = ApplicationData.Current.LocalSettings;
-                        var localFolder = ApplicationData.Current.LocalFolder;
 
-                        var passwordRaw = password;
-                        var passwordInBytes = Encoding.UTF8.GetBytes(passwordRaw);
-                        var entropyInBytes = new byte[20];
-                        using (var rng = RandomNumberGenerator.Create())
-                            rng.GetBytes(entropyInBytes);
-                        var encryptedPasswordInBytes = ProtectedData.Protect(
-                        passwordInBytes,
-                        entropyInBytes,
-                        DataProtectionScope.CurrentUser
-                        );
-
-                        var encryptedPasswordBase64 = Convert.ToBase64String(encryptedPasswordInBytes);
-                        var entropyInBase64 = Convert.ToBase64String(entropyInBytes);
-
-                        localSettings.Values["PasswordInBase64"] = encryptedPasswordBase64;
-                        localSettings.Values["EntropyInBase64"] = entropyInBase64;
+                        localSettings.Values["Password"] = user.Password;
                         localSettings.Values["Username"] = username;
                     }
 

@@ -16,7 +16,10 @@ namespace BC_Market.DAO
         public void Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);
-            var sql = $@"INSERT INTO ""User"" (uniqueid, username, password, roleid) VALUES (@Id, @Username, @Password, @RoleId)";
+            var sql = $@"INSERT INTO ""User"" (uniqueid, username, password, createat, roleid) VALUES (@Id, @Username, @Password, @CreateAt, @RoleId)";
+            obj.CreatedAt = DateTime.Now;
+            var salt = BCrypt.Net.BCrypt.GenerateSalt(12);
+            obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password, salt);
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -25,6 +28,7 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Id", obj.Id);
                     cmd.Parameters.AddWithValue("@Username", obj.Username);
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
+                    cmd.Parameters.AddWithValue("@CreateAt", obj.CreatedAt);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
                     cmd.ExecuteNonQuery();
                 }
@@ -106,12 +110,14 @@ namespace BC_Market.DAO
                             return count;
                         }
                         while (reader.Read())
-                        {
+                        {   
                             var user = new USER()
                             {
                                 Id = reader["uniqueid"] as string,
                                 Username = reader["username"] as string,
                                 Password = reader["password"] as string,
+                                Email = reader["email"] as string,
+                                CreatedAt = reader.GetDateTime(4),
                                 Roles = new List<Role> { new Role { Name = reader["name"] as string } }
                             };
                             response.Add(user);

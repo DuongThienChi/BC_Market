@@ -19,12 +19,40 @@ namespace BC_Market.DAO
 
         public void Add(Product obj)
         {
-            throw new NotImplementedException();
+            var sql = $@"INSERT INTO product (uniqueid, name, description, price, stock, cateid, imagepath, status, orderquantity) VALUES (@uniqueid, @name, @description, @price, @stock, @cateid, @imagepath, @status, @orderquantity)";
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@uniqueid", obj.Id);
+                    cmd.Parameters.AddWithValue("@name", obj.Name);
+                    cmd.Parameters.AddWithValue("@description", obj.Description);
+                    cmd.Parameters.AddWithValue("@price", obj.Price);
+                    cmd.Parameters.AddWithValue("@stock", obj.Stock);
+                    cmd.Parameters.AddWithValue("@cateid", obj.CategoryId);
+                    cmd.Parameters.AddWithValue("@imagepath", obj.ImagePath);
+                    cmd.Parameters.AddWithValue("@status", obj.Status == "Active" ? true : false);
+                    cmd.Parameters.AddWithValue("@orderquantity", obj.OrderQuantity);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
 
         public void Delete(Product obj)
         {
-            throw new NotImplementedException();
+            var sql = $@"DELETE FROM product WHERE uniqueid = @uniqueid";
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@uniqueid", obj.Id);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
 
         /*public int Count(Dictionary<string, string> configuration)
@@ -136,12 +164,29 @@ namespace BC_Market.DAO
                 conn.Close();
                 return response;
             }
-
         }
 
         public void Update(Product obj)
         {
-            throw new NotImplementedException();
+            var sql = $@"UPDATE product SET name = @name, description = @description, price = @price, stock = @stock, cateid = @cateid, imagepath = @imagepath, status = @status, orderquantity = @orderquantity WHERE uniqueid = @uniqueid";
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", obj.Name);
+                    cmd.Parameters.AddWithValue("@description", obj.Description);
+                    cmd.Parameters.AddWithValue("@price", obj.Price);
+                    cmd.Parameters.AddWithValue("@stock", obj.Stock);
+                    cmd.Parameters.AddWithValue("@cateid", obj.CategoryId);
+                    cmd.Parameters.AddWithValue("@imagepath", obj.ImagePath);
+                    cmd.Parameters.AddWithValue("@status", obj.Status == "Active" ? true : false);
+                    cmd.Parameters.AddWithValue("@orderquantity", obj.OrderQuantity);
+                    cmd.Parameters.AddWithValue("@uniqueid", obj.Id);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
     }
 }

@@ -130,7 +130,27 @@
                 </PasswordBox.Header>
             </PasswordBox>
 
-            <ComboBox Grid.Row="5"
+            <TextBox Background="#3D4142"
+                     CornerRadius="10"
+                     Grid.Column="1"
+                     Grid.Row="5"
+                     Margin="0 15 0 0"
+                     PlaceholderText="Enter your email" 
+                     x:Name="email_input"
+                >
+
+                <TextBox.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Foreground="#ffffff" FontSize="10" />
+                    </DataTemplate>
+                </TextBox.HeaderTemplate>
+
+                <TextBox.Header>
+                    Email
+                </TextBox.Header>
+            </TextBox>
+
+            <ComboBox Grid.Row="6"
                       Grid.Column="1"
                       PlaceholderText="Roles"
                       Background="#3D4142"

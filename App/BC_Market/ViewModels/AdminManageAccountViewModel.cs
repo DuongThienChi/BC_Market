@@ -46,6 +46,19 @@ namespace BC_Market.ViewModels
         {
             var dao = _bus.Dao();
             dao.Update(user);
+            foreach(USER item in Items)
+            {
+                if(item.Id == user.Id)
+                {
+                    item.Id = user.Id;
+                    item.Username = user.Username;
+                    item.Password = user.Password;
+                    item.Email = user.Email;
+                    item.CreatedAt = user.CreatedAt;
+                    item.Roles = user.Roles;
+                    break;
+                }
+            }
         }
 
         public void AddAccount(USER user)

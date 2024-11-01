@@ -12,6 +12,6 @@ public static class ConfigurationHelper
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .Build();
         string connectionString = configuration.GetConnectionString(name);
-        return configuration.GetConnectionString(name);
+        return connectionString;
     }
 }

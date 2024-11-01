@@ -35,7 +35,8 @@ namespace BC_Market.Views
         public event EventHandler<Product> ProductEdited;
         private void SaveClick(object sender, RoutedEventArgs e)
         {
-            var product = new Product
+            var button = sender as Button;
+            var editedProduct = new Product
             {
                 Id = Id.Text,
                 Name = Name.Text,
@@ -43,18 +44,19 @@ namespace BC_Market.Views
                 Price = Double.Parse(Price.Text),
                 Stock = Int32.Parse(Stock.Text),
                 CategoryId = CategoryId.Text,
-                Status = Status.Text
+                Status = Status.Text,
+                ImagePath = product.ImagePath
             };
 
-            if (string.IsNullOrEmpty(product.Id) || string.IsNullOrEmpty(product.Name) ||
-                string.IsNullOrEmpty(product.Description) || string.IsNullOrEmpty(product.CategoryId) ||
-                string.IsNullOrEmpty(product.Status))
+            if (string.IsNullOrEmpty(editedProduct.Id) || string.IsNullOrEmpty(editedProduct.Name) ||
+                string.IsNullOrEmpty(editedProduct.Description) || string.IsNullOrEmpty(editedProduct.CategoryId) ||
+                string.IsNullOrEmpty(editedProduct.Status))
             {
                 Notice.Text = "Please fill all fields";
                 return;
             }
 
-            ProductEdited?.Invoke(this, product);
+            ProductEdited?.Invoke(this, editedProduct);
 
             this.Visibility = Visibility.Collapsed;
         }

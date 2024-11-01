@@ -44,6 +44,8 @@ namespace BC_Market.Views
             ViewModel = package.ViewModel;
             username_input.Text = user.Username;
             password_input.Password = user.Password;
+            email_input.Text = user.Email;
+            RolesBox.SelectedItem = RolesBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Content.ToString() == user.Roles[0].Name);
         }
 
         private void Cancel_Tapped(object sender, TappedRoutedEventArgs e)
@@ -55,6 +57,7 @@ namespace BC_Market.Views
         {
             var username = username_input.Text;
             var password = password_input.Password;
+            var email = email_input.Text;
             var selectedRole = RolesBox.SelectedItem as ComboBoxItem;
             var role = selectedRole.Content.ToString();
 
@@ -68,11 +71,24 @@ namespace BC_Market.Views
                 notice_box.Text = "Role cannot be empty!";
                 return;
             }
-
-            var user = new USER()
+            string hashedPassword;
+            if (password != user.Password)
             {
+                // Hash password (bcrypt) if it is different from the current password
+                string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
+                hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+            }
+            else
+            {
+                hashedPassword = password;
+            }
+
+            var editedUser = new USER()
+            {
+                Id = user.Id,
                 Username = username,
-                Password = password,
+                Password = hashedPassword,
+                Email = email,
                 Roles = new List<Role>()
                 {
                     new Role()
@@ -82,7 +98,7 @@ namespace BC_Market.Views
                 }
             };
 
-            ViewModel.Update(user);
+            ViewModel.Update(editedUser);
             this.Frame.Navigate(typeof(AdminManageAccountPage),ViewModel);
         }
     }

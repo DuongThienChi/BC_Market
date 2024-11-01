@@ -85,5 +85,9 @@ namespace BC_Market.Views
                 }
             }
         }
+        private void logout_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LoginPage), ViewModel);
+        }
     }
 }

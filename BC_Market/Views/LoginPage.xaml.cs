@@ -86,6 +86,10 @@ namespace BC_Market.Views
                 ManageProductViewModel = e.Parameter as ManageProductViewModel;
                 return;
             }
+            if (e.Parameter is ShopperDashboardViewModel)
+            {
+                return;
+            }
             var package = e.Parameter as dynamic;
             if (package != null)
             {

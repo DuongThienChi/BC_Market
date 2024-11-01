@@ -14,17 +14,45 @@ namespace BC_Market.DAO
 {
     public class ProductDatabaseDAO : IDAO<Product>
     {
-        private string connectionString = "Host=127.0.0.1;Port=5432;Database=BC_Market;Username=postgres;Password=gb04";
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
         public ProductDatabaseDAO() { }
 
         public void Add(Product obj)
         {
-            throw new NotImplementedException();
+            var sql = $@"INSERT INTO product (uniqueid, name, description, price, stock, cateid, imagepath, status, orderquantity) VALUES (@Id, @Name, @Description, @Price, @Stock, @CategoryId, @ImagePath, @Status, @OrderQuantity)";
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", obj.Id);
+                    cmd.Parameters.AddWithValue("@Name", obj.Name);
+                    cmd.Parameters.AddWithValue("@Description", obj.Description);
+                    cmd.Parameters.AddWithValue("@Price", obj.Price);
+                    cmd.Parameters.AddWithValue("@Stock", obj.Stock);
+                    cmd.Parameters.AddWithValue("@CategoryId", obj.CategoryId);
+                    cmd.Parameters.AddWithValue("@ImagePath", obj.ImagePath);
+                    cmd.Parameters.AddWithValue("@Status", obj.Status);
+                    cmd.Parameters.AddWithValue("@OrderQuantity", obj.OrderQuantity);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
 
         public void Delete(Product obj)
         {
-            throw new NotImplementedException();
+            var sql = $@"DELETE FROM product WHERE uniqueid = @Id";
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", obj.Id);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
         }
 
         /*public int Count(Dictionary<string, string> configuration)
@@ -60,7 +88,7 @@ namespace BC_Market.DAO
         public dynamic Get(Dictionary<string, string> configuration)
         {
             List<Product> response = new List<Product>();
-            Boolean isCount = false;
+            bool isCount = false;
             var sql = $@"
                 SELECT * 
                 FROM product JOIN category 
@@ -127,7 +155,7 @@ namespace BC_Market.DAO
                             product.Stock = (int)reader["stock"];
                             product.CategoryId = (string)reader["cateid"];
                             product.ImagePath = (string)reader["imagepath"];
-                            product.Status = (Boolean)reader["status"] == true ? "Active" : "Inactive";
+                            product.Status = (bool)reader["status"] == true ? "Active" : "Inactive";
                             product.OrderQuantity = (int)reader["orderquantity"];
                             response.Add(product);
                         }

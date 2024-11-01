@@ -53,21 +53,6 @@
                     Account Management
                 </TextBlock>
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        
-                        >
-                <Image Source="../Assets\Images\icons8-bell-50.png" 
-                       Width="50"
-                       Margin="0 0 10 0 "
-                       />
-
-                <Image Source="../Assets\Images\avatar09.png"
-                       />
-
-            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1"

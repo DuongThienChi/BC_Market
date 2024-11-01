@@ -115,7 +115,6 @@ namespace BC_Market.ViewModels
                 }
             }
         }
-        //public ICommand LogoutCommand { get; }
         public ICommand TextChangedCommand { get; }
         public ICommand SuggestionChosenCommand { get; }
         public ICommand QuerySubmittedCommand { get; }
@@ -245,13 +244,6 @@ namespace BC_Market.ViewModels
 
             OnPropertyChanged(nameof(ProductInCart));
         }
-        private void Logout()
-        {
-            //TODO: Implement Logout
-
-
-        }
-
         private void GoPreviousPage()
         {
 

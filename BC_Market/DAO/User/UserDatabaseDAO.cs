@@ -11,7 +11,7 @@ namespace BC_Market.DAO
 {
     public class UserDatabaseDAO : IDAO<USER>
     {
-        private string connectionString = "Host=127.0.0.1;Port=5432;Database=BC_Market;Username=postgres;Password=gb04";
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
 
         public void Add(USER obj)
         {
@@ -51,7 +51,7 @@ namespace BC_Market.DAO
         public dynamic Get(Dictionary<string, string> configuration)
         {
             List<USER> response = new List<USER>();
-            Boolean isCount = false;
+            bool isCount = false;
             var sql = $@"
                 SELECT * 
                 FROM ""User"" us Join Role r on us.roleid = r.uniqueid";

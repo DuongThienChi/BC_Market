@@ -10,7 +10,7 @@ namespace BC_Market.DAO
 {
     class CategoryDatabaseDAO : IDAO<Category>
     {
-        private string connectionString = "Host=127.0.0.1;Port=5432;Database=BC_Market;Username=postgres;Password=gb04";
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
         public void Add(Category obj)
         {
             var sql = $@"INSERT INTO category (uniqueid, name, description) VALUES (@Id, @Name, @Description)";
@@ -46,7 +46,7 @@ namespace BC_Market.DAO
         public dynamic Get(Dictionary<string, string> configuration)
         {
             List<Category> response = new List<Category>();
-            Boolean isCount = false;
+            bool isCount = false;
             var sql = $@"
                 SELECT * FROM category";
             //if (configuration["take"] == "100000")

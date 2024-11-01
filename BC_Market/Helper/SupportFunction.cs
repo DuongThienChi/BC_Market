@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BC_Market
+namespace BC_Market.Helper
 {
     public static class SupportFunction
     {

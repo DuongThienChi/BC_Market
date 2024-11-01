@@ -16,7 +16,17 @@ namespace BC_Market.DAO
             throw new NotImplementedException();
         }
 
+        public void Delete(USER obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public  dynamic Get(Dictionary<string, string> configuration) {
+            throw new NotImplementedException();
+        }
+
+        public void Update(USER obj)
+        {
             throw new NotImplementedException();
         }
     }

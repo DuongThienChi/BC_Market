@@ -27,6 +27,16 @@ namespace BC_Market.BUS
             return _dao.Get(configuration);
         }
 
+        public void UpdateUser(object user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDAO<Category> Dao()
+        {
+            return _dao;
+        }
+
         // Các phương thức khác...
     }
 

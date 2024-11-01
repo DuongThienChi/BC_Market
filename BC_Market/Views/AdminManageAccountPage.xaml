@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:local1="using:BC_Market.Converter"
+    xmlns:local2="using:BC_Market.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -95,10 +96,10 @@
               
               >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
-            
+
             <!-- ScrollView's header -->
             <Grid Padding="0 10"
                   Margin="20 0"
@@ -111,6 +112,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -141,96 +143,89 @@
                            Foreground="White"
                            />
             </Grid>
-            
+
             <!-- Scroll view -->
             <ScrollView Grid.Row="1">
-                <ItemsRepeater x:Name="accountList" 
+                <ItemsRepeater x:Name="accountList"
                                HorizontalAlignment="Stretch" 
-                               ItemsSource="{Binding Items}"
+                               ItemsSource="{x:Bind ViewModel.Items}"
                                >
                     <ItemsRepeater.Layout>
                         <StackLayout Orientation="Vertical"/>
                     </ItemsRepeater.Layout>
                     <ItemsRepeater.ItemTemplate>
-                        <DataTemplate>
-                        <Grid Padding="0 10"
-                              Margin="20 0"
-                              Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                        <DataTemplate x:DataType="local2:USER">
+                            <Grid CornerRadius="4"
+                                  Padding="0 10"
+                                  Margin="20 0"
+                                  Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
                               >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="{Binding Id}" 
+                                <TextBlock Text="{Binding Id}" 
                                        Grid.Column="0"
                                        Foreground="White" 
                                        Padding="5 0"
                                        />
-                            <TextBlock Text="{Binding Username}" 
+                                <TextBlock Text="{Binding Username}" 
                                        Grid.Column="1"
                                        Foreground="White"
                                        />
-                            <TextBlock Text="{Binding Password}" 
+                                <TextBlock Text="{Binding Password}" 
                                        Grid.Column="2"
                                        Foreground="White"
                                        />
-                            <TextBlock Text="{Binding Email}" 
+                                <TextBlock Text="{Binding Email}" 
                                        Grid.Column="3"
                                        Foreground="White"
                                        />
-                            <TextBlock Text="{Binding CreateAt}" 
+                                <TextBlock Text="{Binding CreatedAt}" 
                                        Grid.Column="4"
                                        Foreground="White"
                                        />
-                            <TextBlock Text="{Binding Roles[0].Name}" 
+                                <TextBlock Text="{Binding Roles[0].Name}" 
                                        Grid.Column="5"
                                        Foreground="White"
                                        />
-                        </Grid>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Column="6"
+                                            >
+                                    <Button x:Name="edit_btn"
+                                            Click="edit_btn_Click"
+                                            Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                                            >
+                                        <Image Source="../Assets\Images\edit-button.png"
+                                               Width="20"
+                                               Height="20"
+                                                />
+                                    </Button>
+                                    <Button x:Name="delete_btn"
+                                            Click="delete_btn_Click"
+                                            Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                                            >
+                                        <Image Source="../Assets\Images\delete-button.png"
+                                               Width="20"
+                                               Height="20"
+                                                />
+                                    </Button>
+                                </StackPanel>
+
+                            </Grid>
                         </DataTemplate>
                     </ItemsRepeater.ItemTemplate>
                 </ItemsRepeater>
             </ScrollView>
 
         </Grid>
-
-        <!-- Content Dialog -->
-        <ContentDialog x:Name="addAccountDialog"
-                        Title="Add Account"
-                        PrimaryButtonText="Add"
-                        CloseButtonText="Cancel"
-                        PrimaryButtonClick="addAccountDialog_PrimaryButtonClick"
-                        CloseButtonClick="addAccountDialog_CloseButtonClick"
-                        >
-            <StackPanel Orientation="Vertical">
-                <TextBox x:Name="id"
-                         PlaceholderText="ID"
-                         Margin="10 0 10 0"
-                         />
-
-                <TextBox x:Name="username"
-                         PlaceholderText="Username"
-                         Margin="10 0 10 0"
-                         />
-                <TextBox x:Name="password"
-                         PlaceholderText="Password"
-                         Margin="10 0 10 0"
-                         />
-                <TextBox x:Name="email"
-                         PlaceholderText="Email"
-                         Margin="10 0 10 0"
-                         />
-                <ComboBox x:Name="role"
-                          PlaceholderText="Role"
-                          Margin="10 0 10 0"
-                          />
-            </StackPanel>
-        </ContentDialog>
 
     </Grid>
 </Page>

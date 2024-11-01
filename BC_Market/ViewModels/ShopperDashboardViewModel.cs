@@ -20,12 +20,12 @@ using PropertyChanged;
 using Windows.ApplicationModel.Store;
 using Microsoft.UI.Xaml.Controls;
 
-namespace BC_Market.ViewModels 
+namespace BC_Market.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
     public class ShopperDashboardViewModel : ObservableObject
     {
-        public ObservableCollection<Product> Products { get; set; } 
+        public ObservableCollection<Product> Products { get; set; }
         private int PageSize = 15;
         private int currentPage = 1;
         private IFactory<Product> _factory = new ProductFactory();
@@ -127,7 +127,7 @@ namespace BC_Market.ViewModels
             NextPageCommand = new RelayCommand(GoNextPage);
             _bus = _factory.CreateBUS();
             LoadProducts();
-            if (CartList !=null)
+            if (CartList != null)
             {
                 ProductInCart = CartList.Count;
             }
@@ -148,9 +148,9 @@ namespace BC_Market.ViewModels
             SuggestionChosenCommand = new RelayCommand<string>(OnSuggestionChosen);
             QuerySubmittedCommand = new RelayCommand<string>(OnQuerySubmitted);
             AddCartCommand = new RelayCommand<Product>(AddCart);
-            
+
         }
-        
+
         private void LoadProducts()
         {
             var configCount = new Dictionary<string, string>(configuration);
@@ -168,10 +168,10 @@ namespace BC_Market.ViewModels
         {
             try
             {
-               
+
                 //Filter
                 CurrentPage = 1;
-                if(category != "All")
+                if (category != "All")
                     configuration["category"] = category;
                 else
                     configuration["category"] = "";
@@ -202,7 +202,7 @@ namespace BC_Market.ViewModels
         }
         private void OnSuggestionChosen(string chosenItem)
         {
-            
+
             if (chosenItem == null) return;
             CurrentPage = 1;
             chosenItem = chosenItem.Trim();
@@ -218,7 +218,7 @@ namespace BC_Market.ViewModels
 
         private void OnQuerySubmitted(string query)
         {
-          if(query == null) return;
+            if (query == null) return;
             CurrentPage = 1;
             query = query.Trim();
             configuration = new Dictionary<string, string>
@@ -229,12 +229,12 @@ namespace BC_Market.ViewModels
                     { "take", PageSize.ToString() }
                 };
             LoadProducts();
-            
+
         }
         private void AddCart(Product product)
         {
             ProductInCart++;
-            if(CartList.ContainsKey(product))
+            if (CartList.ContainsKey(product))
             {
                 CartList[product]++;
             }
@@ -245,13 +245,13 @@ namespace BC_Market.ViewModels
 
             OnPropertyChanged(nameof(ProductInCart));
         }
-            private void Logout()
+        private void Logout()
         {
             //TODO: Implement Logout
-           
+
 
         }
-        
+
         private void GoPreviousPage()
         {
 
@@ -278,10 +278,10 @@ namespace BC_Market.ViewModels
             {
                 CurrentPage = 1;
             }
-            
+
             configuration["skip"] = Skip.ToString();
             LoadProducts();
         }
-        
+
     }
 }

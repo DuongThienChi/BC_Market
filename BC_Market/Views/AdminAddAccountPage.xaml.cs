@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using BC_Market.Factory;
+using BC_Market.Models;
+using BC_Market.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -12,9 +8,13 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using BC_Market.Factory;
-using BC_Market.Models;
-using BC_Market.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -24,21 +24,27 @@ namespace BC_Market.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RegisterPage : Page
+    public sealed partial class AdminAddAccountPage : Page
     {
-        private LoginPageViewModel ViewModel = new LoginPageViewModel();
-        public RegisterPage()
+        private AdminManageAccountViewModel ViewModel;
+        public AdminAddAccountPage()
         {
             this.InitializeComponent();
+            RolesBox.SelectedIndex = 0;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel = e.Parameter as LoginPageViewModel;
+            ViewModel = e.Parameter as AdminManageAccountViewModel;
         }
 
-        private void register_button_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AdminManageAccountPage));
+        }
+
+        private void addAccount_btn_Click(object sender, RoutedEventArgs e)
         {
             var username = username_input.Text;
             var password = password_input.Password;
@@ -52,54 +58,34 @@ namespace BC_Market.Views
             {
                 notice_box.Text = "Please fill in all fields!";
             }
-            else if (isUsernameExist(username))
+            else if (username.isUsernameExist())
             {
                 notice_box.Text = "Username already exists!";
             }
             else
             {
+                var role = RolesBox.SelectedItem as ComboBoxItem;
 
                 var user = new USER()
                 {
-                    Id = (ViewModel.ListAccount.Count + 1).ToString(),
+                    Id = (ViewModel.Items.Count + 1).ToString(),
                     Username = username,
                     Password = password,
                     Roles = new List<Role>()
                     {
                         new Role()
                         {
-                            Id = "R03",
-                            Name = "Shopper"
+                            Name = role.Content.ToString()
                         }
                     }
                 };
 
                 ViewModel.AddAccount(user);
 
-                notice_box.Text = "Register successfully!";
+                notice_box.Text = "Add successfully!";
 
-                this.Frame.Navigate(typeof(LoginPage), ViewModel);
+                this.Frame.Navigate(typeof(AdminManageAccountPage), ViewModel);
             }
-        }
-
-        public bool isUsernameExist(string username)
-        {
-            var listUser = ViewModel.ListAccount;
-
-            foreach (var user in listUser)
-            {
-                if (user.Username == username)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private void BackToLogin_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(LoginPage));
         }
     }
 }

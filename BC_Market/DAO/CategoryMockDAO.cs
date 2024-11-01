@@ -7,22 +7,20 @@ using BC_Market.Models;
 using BC_Market.BUS;
 using BC_Market.Factory;
 using Windows.System;
+using System.Collections.ObjectModel;
 
 namespace BC_Market.DAO
 {
     public class CategoryMockDAO : IDAO<Category>
     {
-        public CategoryMockDAO() { }
 
-        public void Add(Category obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public dynamic Get(Dictionary<string, string> configuration)
-        {
-            var categories = new List<Category>
+        private ObservableCollection<Category> categories = new ObservableCollection<Category>
             {
+                new Category {
+                    Id = "All",
+                    Name = "All",
+                    Description = "All",
+                },
                 new Category {
                     Id = "M01",
                     Name = "Meat",
@@ -48,6 +46,20 @@ namespace BC_Market.DAO
                     Name = "Beauty & Health",
                     Description = "Beauty & Health", }
             };
+        public CategoryMockDAO() { }
+
+        public void Add(Category obj)
+        {
+            categories.Add(obj);
+        }
+
+        public void Delete(Category obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public dynamic Get(Dictionary<string, string> configuration)
+        {
             if (configuration != null)
             {
                 string id;
@@ -58,6 +70,11 @@ namespace BC_Market.DAO
                 else return categories;
             }
             else return categories;
+        }
+
+        public void Update(Category obj)
+        {
+            throw new NotImplementedException();
         }
         //public PRODUCT GetByID(string id)
         //{

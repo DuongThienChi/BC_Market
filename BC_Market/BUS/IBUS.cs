@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace BC_Market.BUS
 {
-    public interface IBUS<T> { 
+    public interface IBUS<T> {
+
+        public IDAO<T> Dao(); 
         IBUS<T> CreateNew(IDAO<T> dao);
-        public  dynamic Get(Dictionary<string, string> configuration);    
+        public dynamic Get(Dictionary<string, string> configuration);
+        void UpdateUser(object user);
     }
 }

@@ -12,5 +12,9 @@ namespace BC_Market.DAO
         public dynamic Get(Dictionary<string, string> configuration);
 
         public void Add(T obj);
+
+        public void Update(T obj);
+
+        public void Delete(T obj);
     }
 }

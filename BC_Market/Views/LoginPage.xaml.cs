@@ -16,6 +16,9 @@ using BC_Market.Factory;
 using System.Security.Cryptography;
 using System.Text;
 using Windows.Storage;
+using BC_Market.ViewModels;
+using System.Collections.ObjectModel;
+using BC_Market.Models;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,11 +30,13 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        public delegate void SendMessageDelegate(string message);
-        public event SendMessageDelegate SendMessageEvent;
+        private LoginPageViewModel ViewModel;
+        private ManageProductViewModel ManageProductViewModel;
         public LoginPage()
         {
             this.InitializeComponent();
+            ViewModel = new LoginPageViewModel();
+            ManageProductViewModel = new ManageProductViewModel();
 
             // Load username and password
             var localSettings = ApplicationData.Current.LocalSettings;
@@ -60,7 +65,35 @@ namespace BC_Market.Views
                     password_input.Password = password;
                 }
             }
+        }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter is LoginPageViewModel)
+            {
+                ViewModel = e.Parameter as LoginPageViewModel;
+                return;
+            }
+            if (e.Parameter is ObservableCollection<USER>)
+            {
+                var listUser = e.Parameter as ObservableCollection<USER>;
+                ViewModel.ListAccount = listUser;
+                return;
+            }
+            if (e.Parameter is ManageProductViewModel)
+            {
+                ManageProductViewModel = e.Parameter as ManageProductViewModel;
+                return;
+            }
+            var package = e.Parameter as dynamic;
+            if (package != null)
+            {
+                if (package.ListAccount != null)
+                    ViewModel.ListAccount = package.ListAccount;
+                if (package.ManageProductViewModel != null)
+                    ManageProductViewModel = package.ManageProductViewModel;
+            }
         }
 
         private void login_button_Click(object sender, RoutedEventArgs e)
@@ -68,31 +101,12 @@ namespace BC_Market.Views
             var username = username_input.Text;
             var password = password_input.Password;
 
-            var userFactory = new UserFactory();
-            var userBUS = userFactory.CreateBUS();
-
-            var listUser = userBUS.Get(null);
+            var listUser = ViewModel.ListAccount;
 
             foreach (var user in listUser)
             {
                 if (user.Username == username && user.Password == password)
                 {
-                    if (user.Roles[0].Name == "Admin")
-                    {
-                        login_button.Tag = typeof(AdminPage);
-                    }
-                    else if (user.Roles[0].Name == "Manager")
-                    {
-                        login_button.Tag = typeof(ManagerPage);
-                    }
-                    else if (user.Roles[0].Name == "Shopper")
-                    {
-                        login_button.Tag = typeof(ShopperDashboardPage);
-                    }
-
-                    var button = sender as Button;
-                    var type = button.Tag as Type;
-
                     if (remember_me.IsChecked == true)
                     {
                         // Save username and password
@@ -118,25 +132,37 @@ namespace BC_Market.Views
                         localSettings.Values["Username"] = username;
                     }
 
-                    this.Frame.Navigate(type);
-                    
+                    if (user.Roles[0].Name == "Admin")
+                    {
+                        var package = new
+                        {
+                            ViewModel.ListAccount,
+                            ManageProductViewModel
+                        };
+                        this.Frame.Navigate(typeof(AdminPage), package);
+                    }
+                    else if (user.Roles[0].Name == "Manager")
+                    {
+                        this.Frame.Navigate(typeof(ManagerPage), ManageProductViewModel);
+                    }
+                    else if (user.Roles[0].Name == "Shopper")
+                    {
+                        this.Frame.Navigate(typeof(ShopperDashboardPage));
+                    }
                     return;
                 }
-                else
-                {
-                    notice_box.Text = "Username or password is incorrect!";
-                }
             }
+            notice_box.Text = "Username or password is incorrect!";
         }
 
         private void forgot_text_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ForgotPage));
+            this.Frame.Navigate(typeof(ForgotPage), ViewModel);
         }
 
         private void register_button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(RegisterPage));
+            this.Frame.Navigate(typeof(RegisterPage), ViewModel);
         }
     }
 }

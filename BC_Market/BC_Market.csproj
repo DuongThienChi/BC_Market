@@ -14,48 +14,27 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <Content Remove="Assets\Color\color.xml" />
-    <Content Remove="Assets\Fonts\Poppins-Black.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-BlackItalic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-Bold.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-BoldItalic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-ExtraBold.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-ExtraBoldItalic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-ExtraLight.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-ExtraLightItalic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-Italic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-Light.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-LightItalic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-Medium.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-MediumItalic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-Regular.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-SemiBold.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-SemiBoldItalic.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-Thin.ttf" />
-    <Content Remove="Assets\Fonts\Poppins-ThinItalic.ttf" />
-    <Content Remove="Assets\Icons\cart 1.png" />
-    <Content Remove="Assets\Icons\location.png" />
-    <Content Remove="Assets\Icons\notify.png" />
-    <Content Remove="Assets\Icons\shopping-cart.png" />
+    <Content Remove="Assets\Images\avatar09.png" />
+    <Content Remove="Assets\Images\delete-button.png" />
+    <Content Remove="Assets\Images\edit-button.png" />
+    <Content Remove="Assets\Images\feature-button.png" />
     <Content Remove="Assets\Images\fish.jpg" />
+    <Content Remove="Assets\Images\icons8-bell-50.png" />
     <Content Remove="Assets\Images\kemps.jpg" />
+    <Content Remove="Assets\Images\logout-button.png" />
     <Content Remove="Assets\Images\milk.png" />
     <Content Remove="Assets\Images\MyAvatar.jpg" />
     <Content Remove="Assets\Images\Red meat.jpg" />
     <Content Remove="Assets\Images\veget.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="ForgotWindow.xaml" />
+    <None Remove="Views\AddCateDialog.xaml" />
+    <None Remove="Views\AddProductDialog.xaml" />
+    <None Remove="Views\AdminAddAccountPage.xaml" />
+    <None Remove="Views\AdminEditAccountPage.xaml" />
     <None Remove="Views\AdminManageAccountPage.xaml" />
-    <None Remove="Views\AdminPage.xaml" />
-    <None Remove="Views\ForgotPage.xaml" />
-    <None Remove="Views\HomeWindow.xaml" />
-    <None Remove="Views\LoginPage.xaml" />
-    <None Remove="Views\ManagerDashboardPage.xaml" />
-    <None Remove="Views\ManagerPage.xaml" />
-    <None Remove="Views\RegisterPage.xaml" />
-    <None Remove="Views\ShopperDashboardPage.xaml" />
-    <None Remove="Views\ShopperOrderPage.xaml" />
+    <None Remove="Views\AdminProductPage.xaml" />
+    <None Remove="Views\EditProductDialog.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,38 +66,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Fonts\Poppins-Black.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-BlackItalic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-Bold.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-BoldItalic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-ExtraBold.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-ExtraBoldItalic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-ExtraLight.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-ExtraLightItalic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-Italic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-Light.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-LightItalic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-Medium.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-MediumItalic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-Regular.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-SemiBold.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-SemiBoldItalic.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-Thin.ttf" />
-    <Resource Include="Assets\Fonts\Poppins-ThinItalic.ttf" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Assets\Icons\cart 1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\Icons\location.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\Icons\notify.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\Icons\shopping-cart.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="Assets\Images\fish.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -137,7 +87,38 @@
     <None Update="Assets\Images\veget.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Page Update="Views\ShopperOrderPage.xaml">
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\Images\edit-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\feature-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\Images\avatar09.png">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\delete-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\icons8-bell-50.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\logout-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Page Update="Views\AdminProductPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\EditProductDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AddProductDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AddCateDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -147,47 +128,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\ManagerPage.xaml">
+    <Page Update="Views\AdminEditAccountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\AdminPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\RegisterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\ForgotPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\LoginPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\HomeWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\ShopperDashboardPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\ManagerDashboardPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="ForgotWindow.xaml">
+    <Page Update="Views\AdminAddAccountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

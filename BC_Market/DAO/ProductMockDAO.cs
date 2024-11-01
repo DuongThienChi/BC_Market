@@ -242,6 +242,94 @@ namespace BC_Market.DAO
                     Stock = 100,
                     Status = "Available",
                     OrderQuantity = 0
+                },
+                new Product {
+                    Id = "21",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
+                },
+                new Product {
+                    Id = "22",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
+                },
+                new Product {
+                    Id = "20",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
+                },
+                new Product {
+                    Id = "23",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
+                },
+                new Product {
+                    Id = "24",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
+                },
+                new Product {
+                    Id = "25",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
+                },
+                new Product {
+                    Id = "26",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
+                },
+                new Product {
+                    Id = "27",
+                    Name = "Salmon Roe",
+                    Description = "100g Fresh Salmon Roe",
+                    Price = 30,
+                    ImagePath = "/Assets/Images/fish.jpg",
+                    CategoryId = "SF01", // SeaFood
+                    Stock = 100,
+                    Status = "Available",
+                    OrderQuantity = 0
                 }
             };
             if (configuration != null)

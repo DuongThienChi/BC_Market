@@ -8,7 +8,7 @@ exports.seed = async function (knex) {
     {
       uniqueid: "U01",
       username: "admin",
-      password: "1234",
+      password: "$2a$12$K/YSU9DTi6jYq6/lC4ZQA.Es32amADS/iOuK2SsuYMOglJPuHxzwS",
       email: "admin@example.com",
       createat: knex.fn.now(),
       roleid: "R01",
@@ -16,7 +16,7 @@ exports.seed = async function (knex) {
     {
       uniqueid: "U02",
       username: "manager",
-      password: "1234",
+      password: "$2a$12$.UayA9XXhZkSsc.ZOGEgy.Em6n0NwFrqmgCyFZLF19fLLgTW0oXpq",
       email: "manager@example.com",
       createat: knex.fn.now(),
       roleid: "R02",
@@ -24,7 +24,7 @@ exports.seed = async function (knex) {
     {
       uniqueid: "U03",
       username: "cashier",
-      password: "1234",
+      password: "$2a$12$dwwfYlVKdGyXJrOSu/ePmuZtbMuCGCKsgd/wOqh./GaxUiMcTMJWW",
       email: "cashier@example.com",
       createat: knex.fn.now(),
       roleid: "R04",
@@ -32,25 +32,171 @@ exports.seed = async function (knex) {
     {
       uniqueid: "U04",
       username: "shopper",
-      password: "1234",
+      password: "$2a$12$6D8Eo2BKifh.nPG//yQi5.5nLsYv3dTCwlQFcjYKAn57JZ9gCYPd2",
       email: "shopper@example.com",
       createat: knex.fn.now(),
       roleid: "R03",
     }, // Shopper
-  ]);
-
-  // Chèn 20 người dùng mới
-  const usersToInsert = [];
-  for (let i = 1; i <= 20; i++) {
-    usersToInsert.push({
-      uniqueid: "U" + (i + 4).toString().padStart(2, "0"), // uniqueid từ U05 đến U23
-      username: "shopper" + i,
-      password: "1234",
-      email: "shopper_" + i + "@example.com",
+    {
+      uniqueid: "U05",
+      username: "user1",
+      password: "$2a$12$Tu5LJk1nvm0uczKHpkv.Eu8EyArXZLI/sf.sLc8o0tzzo4waGKSaG",
+      email: "user1@example.com",
       createat: knex.fn.now(),
-      roleid: "R03", // Role là Shopper
-    });
-  }
-
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U06",
+      username: "user2",
+      password: "$2a$12$WYL4cf/ricSBFUUPGyQOReGfF0rjUp43Rgcl3CSaQ.PcbB6QSc9Em",
+      email: "user2@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U07",
+      username: "user3",
+      password: "$2a$12$wTdhOUQeP8qMSJnWBNG72OjH/Ug/KG7HYjkXU2v0eJPUrr1p94QLi",
+      email: "user3@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U08",
+      username: "user4",
+      password: "$2a$12$cLwFgdaJTD9Zr.YPW7Ws3.IB5D4rQ6sMYJoD7FqRz49MElJV35MUC",
+      email: "user4@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U09",
+      username: "user5",
+      password: "$2a$12$NTLvRuiJOIWIiXoGUy0Rje7/1HWQhdDCBdaNCZMvQgp.EXq7CpxsS",
+      email: "user5@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U10",
+      username: "user6",
+      password: "$2a$12$H0nuSZ3t/1XgzQfXr.4hpOku0h9BqBvKNPnNmmitFoP6v1MQPFSVi",
+      email: "user6@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U11",
+      username: "user7",
+      password: "$2a$12$G130jVhmSGt1ZKqhYpDvauOelaKkds9kOTQrQiTG2pp/DLkfb87bu",
+      email: "user7@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U12",
+      username: "user8",
+      password: "$2a$12$7JjU4/glPjwuPyQqlNJTyOiU6jQz516nrcyBOVjqE6.yT.LBf2Scy",
+      email: "user8@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U13",
+      username: "user9",
+      password: "$2a$12$cWjUWUgDUoXNtDfNT/mobOY7NFhyxJr1MOXkOnyHL5FWLDfoJlyqK",
+      email: "user9@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U14",
+      username: "user10",
+      password: "$2a$12$MUe2aybu43u7EFMAzg0HNOdNgvhYPA1e8GaIu1uAJJUKCDeyUSzSe",
+      email: "user10@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U15",
+      username: "user11",
+      password: "$2a$12$Zm2jf4w2VtuJpCicYERt8eZP.rH9P3AHR2N9wzs6yM3Q5radrtQ3e",
+      email: "user11@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U16",
+      username: "user12",
+      password: "$2a$12$DTnlKhUSxbLWJpSKQR8hPOl2/U75hLJkB2t3A.KxA1I/hwj1Z7/iq",
+      email: "user12@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U17",
+      username: "user13",
+      password: "$2a$12$mUPE.Oc./7zeOVQXBxxazu7tfY21Hd8cAL4GT8Y7kYg/oEBJ1B2RC",
+      email: "user13@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U18",
+      username: "user14",
+      password: "$2a$12$u2pC/3xc1qEGr768jHRhsOECuqQ29BzeGP86X0ENHYb43FrzgGAay",
+      email: "user14@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U19",
+      username: "user15",
+      password: "$2a$12$yaYUuBDLY7/0FKl5izMiwu3nzPHdqv6AZSF9TbUKMzb2ZdQ7D1t1u",
+      email: "user15@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U20",
+      username: "user16",
+      password: "$2a$12$VB04yU7Xt/PhSPzGm33wl.0Fw44bYObNrIiXKyLfiJBSRTKrME1jm",
+      email: "user16@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U21",
+      username: "user17",
+      password: "$2a$12$8v5UjFbBT3s0whWdtgixpegOqSDxWKcIzErG4PqZgVYQuMSE0HKNu",
+      email: "user17@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U22",
+      username: "user18",
+      password: "$2a$12$LxSQFoZ5S9gzb83p9KKuqeaFpcUMaK.4q9zPZx9X2av6HzR.sSW6i",
+      email: "user18@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U23",
+      username: "user19",
+      password: "$2a$12$FBGZNfB/tpzecknF5E9yNeX5opE6fzev6PdMAKAVZ3p9vj7W5lflm",
+      email: "user19@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+    {
+      uniqueid: "U24",
+      username: "user20",
+      password: "$2a$12$Eai9HFPAAogMKfKfhnQVqugT6eeQDTqboCMHrfFRNBbhdrmfueYLy",
+      email: "user20@example.com",
+      createat: knex.fn.now(),
+      roleid: "R03",
+    },
+  ]);
   await knex("User").insert(usersToInsert);
 };

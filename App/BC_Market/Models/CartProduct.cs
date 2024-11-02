@@ -20,6 +20,12 @@ namespace BC_Market.Models
                 return Product.Price * Quantity;
             }
         }
+        private bool _isSelected = false;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
+        }
 
     }
 }

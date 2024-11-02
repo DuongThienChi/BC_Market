@@ -25,28 +25,33 @@ namespace BC_Market.ViewModels
                 if (SetProperty(ref _carts, value))
                 {
                     CartItems = new ObservableCollection<CartProduct>(
-                       CartList.Select(x => new CartProduct { Product = x.Key, Quantity = x.Value })
+                       CartList.Select(x => new CartProduct { Product = x.Key, Quantity = x.Value})
                    );
                 }
             }
         }
+        public List<Product> selectedProducts { get; set; } = new List<Product>();
+        private double _total;
         public ShopperOrderViewModel()
         {
             DeleteItemCommand = new RelayCommand<CartProduct>(DeleteItem);
+            DeleteAllCommand = new RelayCommand(DeleteAll);
         }
         public ICommand DeleteItemCommand { get; }
+        public ICommand DeleteAllCommand { get; }
         public ObservableCollection<CartProduct> CartItems { get; set; }
-        public double TotalPrice
+        public double Total
         {
             get
             {
-                double total = 0;
+                _total = 0;
                 foreach (var item in CartList)
                 {
-                    total += item.Key.Price * item.Value;
+                    _total += item.Key.Price * item.Value;
                 }
-                return total;
+                return _total;
             }
+                set => SetProperty(ref _total, value);
         }
         private void DeleteItem(CartProduct product)
         {
@@ -62,12 +67,25 @@ namespace BC_Market.ViewModels
                 CartList.Remove(item);
                 CartItems.Remove(product);
             }
-            OnPropertyChanged(nameof(TotalPrice));
             OnPropertyChanged(nameof(CartItems));
             OnPropertyChanged(nameof(CartList));
+            OnPropertyChanged(nameof(Total));
+        }
+        private void DeleteAll()
+        {
+            var itemsToRemove = CartItems.Where(item => item.IsSelected).ToList();
 
+            foreach (var item in itemsToRemove)
+            {
+                var product = CartList.FirstOrDefault(x => x.Key.Id == item.Product.Id);
+                CartList.Remove(product);
+                CartItems.Remove(item);
+            }
+
+            OnPropertyChanged(nameof(CartItems));
+            OnPropertyChanged(nameof(CartList));
+            OnPropertyChanged(nameof(Total));
         }
 
-        
     }
 }

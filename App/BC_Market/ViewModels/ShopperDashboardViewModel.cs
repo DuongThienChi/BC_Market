@@ -233,14 +233,15 @@ namespace BC_Market.ViewModels
         private void AddCart(Product product)
         {
             ProductInCart++;
-            if (CartList.ContainsKey(product))
+            foreach (var item in CartList)
             {
-                CartList[product]++;
+                if (item.Key.Id == product.Id)
+                {
+                    CartList[item.Key] += 1;
+                    return;
+                }
             }
-            else
-            {
-                CartList.Add(product, 1);
-            }
+            CartList.Add(product, 1);
 
             OnPropertyChanged(nameof(ProductInCart));
         }

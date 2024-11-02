@@ -27,12 +27,14 @@ namespace BC_Market.Views
     public sealed partial class ShopperOrderPage : Page
     {
         public ShopperOrderViewModel ViewModel { get; set; }
+        private List<CheckBox> CheckBoxs { get; set; }
         public ShopperOrderPage()
         {
             this.InitializeComponent();
             ViewModel = new ShopperOrderViewModel();
             this.DataContext = ViewModel;
-        
+            this.CheckBoxs = new List<CheckBox>();
+
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -60,14 +62,23 @@ namespace BC_Market.Views
             this.Frame.Navigate(typeof(ShopperDashboardPage), Params);
         }
 
-        private void allCheckBox_Checked(object sender, RoutedEventArgs e)
+        private void itemCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            bool allSelected = ViewModel.CartItems.All(item => item.IsSelected);
+            allCheckBox.IsChecked = allSelected;
         }
 
-        private void allCheckBox_Unchecked(object sender, RoutedEventArgs e)
+
+
+        private void allCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            bool isChecked = allCheckBox.IsChecked ?? false;
+            foreach (var item in ViewModel.CartItems)
+            {
+                item.IsSelected = isChecked;
+            }
         }
+
+
     }
 }

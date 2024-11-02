@@ -19,11 +19,10 @@ Việc sử dụng kết hợp giữa Factory Design Pattern, Three Layers và M
 ### Advanceed Topics:
 ### Teamwork - Git flow:
 #### Meeting:
-- Nhóm chúng em trung bình khoảng 1 tuần sẽ họp 1 lần để phân công công việc cũng như báo cáo tiến độ làm việc và review code của nhau.
+- Trong quá trình làm việc nhóm sẽ trao đổi thông tin, báo cáo tiến độ qua nhóm chat.
 - Chi tiết biên bản họp nhóm ở link sau:
-+ Lần 1:
-+ Lần 2:
-+ Lần 3:
++ Lần 1: https://docs.google.com/document/d/1jukkav0Mdove9GiL-h8xHUe2Gqvqrya3gDNOAjmQETE/edit?usp=sharing
++ Lần 2: https://docs.google.com/document/d/15kw1f-y4ToJVGdCeA8kOGc6K1QZZOYwOT-CVQdTNzbE/edit?usp=sharing
 #### Git flow:
 - Tổ chức và làm việc với repo bằng mô hình Git Flow đơn giản: nhánh master là nhánh chính, develop là nhánh trong quá trình phát triển và các nhánh feature tạo từ develop để code các chức năng khác nhau.
 - Khi một tính năng được hoàn thành và kiểm tra lỗi sẽ đươc gộp nhánh develop.

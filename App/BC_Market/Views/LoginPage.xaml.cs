@@ -54,26 +54,31 @@ namespace BC_Market.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            // Get only LoginPageView from previous page
             if (e.Parameter is LoginPageViewModel)
             {
                 ViewModel = e.Parameter as LoginPageViewModel;
                 return;
             }
+            // Get only ListAccount from previous page
             if (e.Parameter is ObservableCollection<USER>)
             {
                 var listUser = e.Parameter as ObservableCollection<USER>;
                 ViewModel.ListAccount = listUser;
                 return;
             }
+            // Get only ManageProductViewModel from previous page
             if (e.Parameter is ManageProductViewModel)
             {
                 ManageProductViewModel = e.Parameter as ManageProductViewModel;
                 return;
             }
+            // Get only ShopperDashboardViewModel from previous page
             if (e.Parameter is ShopperDashboardViewModel)
             {
                 return;
             }
+            // Get ListAccount and ManageProductViewModel from previous page
             var package = e.Parameter as dynamic;
             if (package != null)
             {
@@ -86,6 +91,7 @@ namespace BC_Market.Views
 
         private void login_button_Click(object sender, RoutedEventArgs e)
         {
+            // get current username and password
             var username = username_input.Text;
             var password = password_input.Password;
 
@@ -93,8 +99,10 @@ namespace BC_Market.Views
 
             foreach (var user in listUser)
             {
+                // check username and password
                 if (user.Username == username && (BCrypt.Net.BCrypt.Verify(password,user.Password) || password == user.Password))
                 {
+                    // store username and password if remember_me.IsChecked
                     if (remember_me.IsChecked == true)
                     {
                         var localSettings = ApplicationData.Current.LocalSettings;
@@ -103,6 +111,7 @@ namespace BC_Market.Views
                         localSettings.Values["Username"] = username;
                     }
 
+                    // navigate to proper Frame and send data
                     if (user.Roles[0].Name == "Admin")
                     {
                         var package = new

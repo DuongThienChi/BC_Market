@@ -35,6 +35,7 @@ namespace BC_Market.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            // get LoginPageViewModel to get ListAccount
             ViewModel = e.Parameter as LoginPageViewModel;
         }
 
@@ -44,6 +45,7 @@ namespace BC_Market.Views
             var password = password_input.Password;
             var reenterPassword = reenter_password_input.Password;
 
+            // Confirm that all field are filled
             if (password != reenterPassword)
             {
                 notice_box.Text = "Password and re-enter password are not the same!";
@@ -58,7 +60,7 @@ namespace BC_Market.Views
             }
             else
             {
-
+                // if information are proper, add new account to ListAccount
                 var user = new USER()
                 {
                     Id = (ViewModel.ListAccount.Count + 1).ToString(),
@@ -69,6 +71,7 @@ namespace BC_Market.Views
                         new Role()
                         {
                             Id = "R03",
+                            // only Shopper Role can be created, Manager and Admin Role will be created by Admin account
                             Name = "Shopper"
                         }
                     }
@@ -82,6 +85,7 @@ namespace BC_Market.Views
             }
         }
 
+        // check isExist Account
         public bool isUsernameExist(string username)
         {
             var listUser = ViewModel.ListAccount;

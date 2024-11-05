@@ -27,6 +27,7 @@ namespace BC_Market.Views
     {
         private ManageProductViewModel ViewModel;
 
+        // all functions are similar to AdminProductPage
         public ManagerProductPage()
         {
             this.InitializeComponent();

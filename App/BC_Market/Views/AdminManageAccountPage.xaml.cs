@@ -40,11 +40,13 @@ namespace BC_Market.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            // receive AdminManageAccountViewModel
             if (e.Parameter is AdminManageAccountViewModel)
             {
                 ViewModel = e.Parameter as AdminManageAccountViewModel;
                 return;
             }
+            // receive ListAccount
             if (e.Parameter is ObservableCollection<USER>)
             {
                 var listUser = e.Parameter as ObservableCollection<USER>;
@@ -73,6 +75,7 @@ namespace BC_Market.Views
             }
         }
 
+        // edit chosen Account
         private void edit_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -82,7 +85,6 @@ namespace BC_Market.Views
             {
                 return;
             }
-            Console.WriteLine(button.DataContext);
             var package = new
             {
                 user,
@@ -95,6 +97,7 @@ namespace BC_Market.Views
             }
         }
 
+        // delete chosen Account
         private void delete_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

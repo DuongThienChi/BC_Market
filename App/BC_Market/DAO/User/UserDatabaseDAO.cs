@@ -13,6 +13,7 @@ namespace BC_Market.DAO
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
 
+        // add account into database
         public void Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);
@@ -36,7 +37,7 @@ namespace BC_Market.DAO
             }
         }
 
-
+        // remove account from dataase
         public void Delete(USER obj)
         {
             var sql = $@"DELETE FROM ""User"" WHERE username = @Username";
@@ -52,6 +53,7 @@ namespace BC_Market.DAO
             }
         }
 
+        // get all accounts from database
         public dynamic Get(Dictionary<string, string> configuration)
         {
             List<USER> response = new List<USER>();
@@ -129,6 +131,7 @@ namespace BC_Market.DAO
             }
         }
 
+        // edit an account in database
         public void Update(USER obj)
         {
             var role = getRole(obj.Roles[0].Name);
@@ -148,6 +151,7 @@ namespace BC_Market.DAO
             }
         }
 
+        // get Role by name - used in Add and Update method to get RoleId
         public Role getRole(string name)
         {
             Role role = new Role();

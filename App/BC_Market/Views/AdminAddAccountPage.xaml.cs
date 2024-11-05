@@ -45,6 +45,7 @@ namespace BC_Market.Views
             this.Frame.Navigate(typeof(AdminManageAccountPage));
         }
 
+        // similar with RegisterPage
         private void addAccount_btn_Click(object sender, RoutedEventArgs e)
         {
             var username = username_input.Text;

@@ -34,6 +34,7 @@ namespace BC_Market.Views
         public event EventHandler<Category> CategoryAdded;
         private void SaveCate(object sender, RoutedEventArgs e)
         {
+            // create new Category from entered information
             var cate = new Category
             {
                 Id = Id.Text,

@@ -35,6 +35,7 @@ namespace BC_Market.Views
         public event EventHandler<Product> ProductEdited;
         private void SaveClick(object sender, RoutedEventArgs e)
         {
+            // create new product from entered information
             var button = sender as Button;
             var editedProduct = new Product
             {
@@ -48,6 +49,7 @@ namespace BC_Market.Views
                 ImagePath = product.ImagePath
             };
 
+            // check to confirm all fields are filled
             if (string.IsNullOrEmpty(editedProduct.Id) || string.IsNullOrEmpty(editedProduct.Name) ||
                 string.IsNullOrEmpty(editedProduct.Description) || string.IsNullOrEmpty(editedProduct.CategoryId) ||
                 string.IsNullOrEmpty(editedProduct.Status))

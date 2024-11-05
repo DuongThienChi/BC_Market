@@ -17,6 +17,7 @@ namespace BC_Market.DAO
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
         public ProductDatabaseDAO() { }
 
+        // Add a new product to the database
         public void Add(Product obj)
         {
             var sql = $@"INSERT INTO product (uniqueid, name, description, price, stock, cateid, imagepath, status, orderquantity) VALUES (@Id, @Name, @Description, @Price, @Stock, @CategoryId, @ImagePath, @Status, @OrderQuantity)";
@@ -40,6 +41,7 @@ namespace BC_Market.DAO
             }
         }
 
+        // Remove a product from the database
         public void Delete(Product obj)
         {
             var sql = $@"DELETE FROM product WHERE uniqueid = @Id";
@@ -85,6 +87,7 @@ namespace BC_Market.DAO
                 }
             }
         }*/
+        // Get all products from the database
         public dynamic Get(Dictionary<string, string> configuration)
         {
             List<Product> response = new List<Product>();
@@ -166,6 +169,7 @@ namespace BC_Market.DAO
             }
         }
 
+        // Update a product in the database
         public void Update(Product obj)
         {
             var sql = $@"UPDATE product SET name = @name, description = @description, price = @price, stock = @stock, cateid = @cateid, imagepath = @imagepath, status = @status, orderquantity = @orderquantity WHERE uniqueid = @uniqueid";

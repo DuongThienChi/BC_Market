@@ -39,6 +39,7 @@ namespace BC_Market.Views
             }
         }
 
+        // set list product by chosen category
         private void cateButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -94,12 +95,14 @@ namespace BC_Market.Views
             AddProductDialog.Visibility = Visibility.Visible;
         }
 
+        // handle AddProduct event from AddProductDialog
         private void AddProductDialog_ProductAdded(object sender, Models.Product newProduct)
         {
             ViewModel.AddProduct(newProduct);
             this.Frame.Navigate(typeof(AdminProductPage), ViewModel);
         }
 
+        // handle EditedProduct event from EditProductDialog
         private void EditProductDialog_ProductEdited(object sender, Product newProduct)
         {
             ViewModel.UpdateProduct(newProduct);

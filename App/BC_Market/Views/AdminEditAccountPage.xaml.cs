@@ -39,12 +39,14 @@ namespace BC_Market.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            // unpack package and set default data for TextBoxs
             var package = e.Parameter as dynamic;
             user = package.user;
             ViewModel = package.ViewModel;
             username_input.Text = user.Username;
             password_input.Password = user.Password;
             email_input.Text = user.Email;
+            // set SeletedItem of ComboBox by current Role
             RolesBox.SelectedItem = RolesBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Content.ToString() == user.Roles[0].Name);
         }
 
@@ -55,6 +57,7 @@ namespace BC_Market.Views
 
         private void submitEdit_btn_Click(object sender, RoutedEventArgs e)
         {
+            // get all information of edited account
             var username = username_input.Text;
             var password = password_input.Password;
             var email = email_input.Text;
@@ -71,6 +74,7 @@ namespace BC_Market.Views
                 notice_box.Text = "Role cannot be empty!";
                 return;
             }
+
             string hashedPassword;
             if (password != user.Password)
             {
@@ -83,6 +87,7 @@ namespace BC_Market.Views
                 hashedPassword = password;
             }
 
+            // create new account and update to ListAccount
             var editedUser = new USER()
             {
                 Id = user.Id,

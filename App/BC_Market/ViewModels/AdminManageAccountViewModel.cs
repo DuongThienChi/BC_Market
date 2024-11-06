@@ -15,34 +15,34 @@ namespace BC_Market.ViewModels
 {
     public class AdminManageAccountViewModel : ObservableObject
     {
-        public ObservableCollection<USER> Items { get; set; }
-        private IFactory<USER> _factory = new UserFactory();
-        private IBUS<USER> _bus;
+        public ObservableCollection<USER> Items { get; set; } // Define the Items property
+        private IFactory<USER> _factory = new UserFactory(); // Define the _factory field
+        private IBUS<USER> _bus; // Define the _bus field
         public IdToColorConverter IdToColorConverter { get; set; } = new IdToColorConverter();
 
         public AdminManageAccountViewModel()
         {
-            LoadData();
+            LoadData(); 
         }
 
-        public void LoadData()
+        public void LoadData() // Define the LoadData method
         {
 
             _bus = _factory.CreateBUS();
 
-            var users = _bus.Get(null);
+            var users = _bus.Get(null); // Get all users
 
             Items = new ObservableCollection<USER>(users);
         }
 
-        public void DeleteAccount(USER user)
+        public void DeleteAccount(USER user) // Delete an account
         {
             var dao = _bus.Dao();
             dao.Delete(user);
             Items.Remove(user);
         }
 
-        public void Update(USER user)
+        public void Update(USER user) // Update an account
         {
             var dao = _bus.Dao();
             dao.Update(user);
@@ -61,7 +61,7 @@ namespace BC_Market.ViewModels
             }
         }
 
-        public void AddAccount(USER user)
+        public void AddAccount(USER user) // Add an account
         {
             var dao = _bus.Dao();
             dao.Add(user);

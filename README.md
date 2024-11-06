@@ -7,6 +7,29 @@
 
 ## Chi tiết milestone 01:
 
+### Các chức năng đã hoàn thành:
+
+- Tài khoản:
+  - admin - 1234
+  - manager - 1234
+  - shopper - 1234
+- Trang xem sản phẩm của người mua hàng (shopper)
+  - Hiển thị danh sách sản phẩm
+  - Tìm kiếm sản phẩm theo tên (dùng AutoSuggestionBox để hiển thị danh sách đề xuất)
+  - Lọc sản phẩm theo loại hàng
+- Trang hiển thị giỏ hàng (shopper)
+  - Thêm xóa sản phẩm trong giỏ hàng
+  - Tự động cập nhật khoản tiền thanh toán
+- Trang dashboard của cửa hàng và admin (2 trang)
+  - Thêm xóa sửa sản phẩm và cập nhật lên database.
+  - Hiển thị các sản phẩm dựa theo category.
+  - Thêm category và cập nhật lên database.
+- Trang quản lý các tài khoản (admin)
+  - Thêm xóa sửa các tài khoản và cập nhật lên database.
+  - Trang đăng nhập/quên mật khẩu/ đăng ký (3 trang)
+- Đăng nhập: dùng Bcrypt để mã hóa mật khẩu và xác thực mật khẩu, có sử dụng checkbox remember me để lưu trữ tài khoản trước đó
+- Đăng ký: tạo tài khoản mới và lưu vào database, mật khẩu mã hóa bằng Bcrypt
+
 ### Database:
 
 #### Thiết kế:
@@ -47,6 +70,9 @@ Việc sử dụng kết hợp giữa Factory Design Pattern, Three Layers và M
 - Sử dụng AutoSuggestionBox để hỗ trợ tìm kiếm sản phẩm, khi người dùng nhập chữ sẽ tự động đề xuất và hiển thị danh sách.
 - Sử dụng lớp ICommand để có thể binding command từ View sang ViewModel.
 - Dùng Extension Configuration và Configuration.Json để đọc file appsettings.json.
+- Dùng UserControl để tạo dialog trên Page
+- Dùng Bcrypt để mã hóa mật khẩu
+- Dùng Invoke trong UserControll để tới dữ liệu qua Page
 
 ### Teamwork - Git flow:
 
@@ -70,7 +96,11 @@ Việc sử dụng kết hợp giữa Factory Design Pattern, Three Layers và M
 
 - Các chức năng sẽ được thành viên thực hiện test thủ công rồi báo cáo cho nhóm để đưa vào nhánh chính.
 - Sau khi đưa vào nhánh chính nếu có xung đột với chức năng khác thì sẽ được chỉnh sửa rồi gộp lại
-- Các điều trên được thể hiện qua git graph
+- Các điều trên được thể hiện qua git graph:
+
+![Git Graph 1](assets/graph1.png)
+
+![Git Graph 1](assets/graph2.png)
 
 ## Set up:
 
@@ -103,3 +133,5 @@ PG_DATABASE=DatabaseName
   }
  }
 ```
+
+#### Demo link:

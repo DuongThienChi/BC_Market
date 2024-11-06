@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BC_Market.Converter
 {
-    public class IdToColorConverter : IValueConverter
+    public class IdToColorConverter : IValueConverter // Convert the id of item to color
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

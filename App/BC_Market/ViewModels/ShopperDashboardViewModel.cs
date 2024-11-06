@@ -23,15 +23,15 @@ using Microsoft.UI.Xaml.Controls;
 namespace BC_Market.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
-    public class ShopperDashboardViewModel : ObservableObject
+    public class ShopperDashboardViewModel : ObservableObject // Define the ShopperDashboardViewModel class
     {
-        public ObservableCollection<Product> Products { get; set; }
-        private int PageSize = 15;
-        private int currentPage = 1;
+        public ObservableCollection<Product> Products { get; set; } // Products property
+        private int PageSize = 15; // Define the PageSize field
+        private int currentPage = 1; // Define the currentPage field
         private IFactory<Product> _factory = new ProductFactory();
         private IBUS<Product> _bus;
-        private int totalPages;
-        private Dictionary<Product, int> Carts = new Dictionary<Product, int>();
+        private int totalPages; // Define the totalPages field
+        private Dictionary<Product, int> Carts = new Dictionary<Product, int>(); 
         public Dictionary<Product, int> CartList
         {
             get => Carts;
@@ -44,14 +44,14 @@ namespace BC_Market.ViewModels
                 }
             }
         }
-        public int ProductInCart;
-        private List<string> _suggestions;
+        public int ProductInCart; // Number of products in the cart
+        private List<string> _suggestions; 
         public List<string> Suggestions
         {
             get => _suggestions;
             set => SetProperty(ref _suggestions, value);
         }
-        public int Skip
+        public int Skip // Skip pagee
         {
             get => (CurrentPage - 1) * PageSize;
             set
@@ -63,7 +63,7 @@ namespace BC_Market.ViewModels
                 }
             }
         }
-        public int CurrentPage
+        public int CurrentPage //Current page
         {
             get => currentPage;
             set
@@ -76,7 +76,7 @@ namespace BC_Market.ViewModels
 
             }
         }
-        public int TotalPages
+        public int TotalPages // Total pages
         {
             get => totalPages;
             set
@@ -84,13 +84,13 @@ namespace BC_Market.ViewModels
                 if (totalPages != value)
                 {
                     totalPages = value;
-                    OnPropertyChanged(nameof(TotalPages));
+                    OnPropertyChanged(nameof(TotalPages));  // Notify the TotalPages property has changed => Update the UI
                 }
             }
         }
 
-        public bool CanGoPrevious => CurrentPage > 1;
-        public bool CanGoNext => CurrentPage < TotalPages;
+        public bool CanGoPrevious => CurrentPage > 1; // Check if can go to the previous page
+        public bool CanGoNext => CurrentPage < TotalPages; // Check if can go to the next page
         public ICommand PreviousPageCommand { get; }
         public ICommand NextPageCommand { get; }
         public Dictionary<string, ICommand> GetCategoryCommand { set; get; }
@@ -103,7 +103,7 @@ namespace BC_Market.ViewModels
                 { "take", "15" }
             };
 
-        public Dictionary<string, string> configuration
+        public Dictionary<string, string> configuration // Configuration property
         {
             get => _configuration;
             set
@@ -125,7 +125,7 @@ namespace BC_Market.ViewModels
             PreviousPageCommand = new RelayCommand(GoPreviousPage);
             NextPageCommand = new RelayCommand(GoNextPage);
             _bus = _factory.CreateBUS();
-            LoadProducts();
+            LoadProducts(); // Load products
             if (CartList != null)
             {
                 ProductInCart = CartList.Count;
@@ -134,6 +134,7 @@ namespace BC_Market.ViewModels
             {
                 ProductInCart = 0;
             }
+            // Define the Commands for UI
             GetCategoryCommand = new Dictionary<string, ICommand> {
                      { "All", new RelayCommand(() => GetProductsByCategory("All")) },
                      { "Vegetable", new RelayCommand(() => GetProductsByCategory("Vegetable")) },
@@ -150,13 +151,13 @@ namespace BC_Market.ViewModels
 
         }
 
-        private void LoadProducts()
+        private void LoadProducts()  // Load products
         {
             var configCount = new Dictionary<string, string>(configuration);
             configCount["take"] = "100000";
             configCount["skip"] = "0";
-            var count = _bus.Get(configCount);
-            var res = _bus.Get(configuration);
+            var count = _bus.Get(configCount); // Get the count of products
+            var res = _bus.Get(configuration); // Get the products
             Products = new ObservableCollection<Product>(res);
             TotalPages = (int)Math.Ceiling((double)count / PageSize);
             ((RelayCommand)PreviousPageCommand).NotifyCanExecuteChanged();
@@ -183,7 +184,7 @@ namespace BC_Market.ViewModels
                 Debug.WriteLine($"Error in GetProductsByCategory: {ex.Message}");
             }
         }
-        private void OnTextChanged(string text)
+        private void OnTextChanged(string text) // OnTextChanged method for AutoSuggestBox
         {
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -195,11 +196,11 @@ namespace BC_Market.ViewModels
                 newConfig["skip"] = "0";
                 newConfig["take"] = "6";
                 newConfig["searchKey"] = text;
-                var suggestProduct = _bus.Get(newConfig);
+                var suggestProduct = _bus.Get(newConfig); // Get the suggested products
                 Suggestions = ((IEnumerable<Product>)suggestProduct).Select(p => p.Name).ToList();
             }
         }
-        private void OnSuggestionChosen(string chosenItem)
+        private void OnSuggestionChosen(string chosenItem) // OnSuggestionChosen method for AutoSuggestBox
         {
 
             if (chosenItem == null) return;
@@ -215,7 +216,7 @@ namespace BC_Market.ViewModels
             LoadProducts();
         }
 
-        private void OnQuerySubmitted(string query)
+        private void OnQuerySubmitted(string query) // OnQuerySubmitted method for AutoSuggestBox
         {
             if (query == null) return;
             CurrentPage = 1;
@@ -230,22 +231,23 @@ namespace BC_Market.ViewModels
             LoadProducts();
 
         }
-        private void AddCart(Product product)
+        private void AddCart(Product product) // Add a product to the cart
         {
             ProductInCart++;
             foreach (var item in CartList)
             {
-                if (item.Key.Id == product.Id)
+                if (item.Key.Id == product.Id) // Check if the product is already in the cart
                 {
                     CartList[item.Key] += 1;
+                    OnPropertyChanged(nameof(ProductInCart));
                     return;
                 }
             }
-            CartList.Add(product, 1);
+            CartList.Add(product, 1); // Add the product to the cart
 
-            OnPropertyChanged(nameof(ProductInCart));
+            OnPropertyChanged(nameof(ProductInCart)); 
         }
-        private void GoPreviousPage()
+        private void GoPreviousPage() // Go to the previous page
         {
 
             if (CanGoPrevious)
@@ -261,7 +263,7 @@ namespace BC_Market.ViewModels
 
         }
 
-        private void GoNextPage()
+        private void GoNextPage() // Go to the next page
         {
             if (CanGoNext)
             {

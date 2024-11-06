@@ -198,5 +198,4 @@ exports.seed = async function (knex) {
       roleid: "R03",
     },
   ]);
-  await knex("User").insert(usersToInsert);
 };

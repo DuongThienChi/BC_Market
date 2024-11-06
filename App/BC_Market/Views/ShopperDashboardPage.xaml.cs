@@ -35,6 +35,7 @@ namespace BC_Market.Views
             ViewModel = new ShopperDashboardViewModel();
             this.DataContext = ViewModel;
         }
+        // Animation for search icon
         private void Button_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             AnimatedIcon.SetState(this.SearchAnimatedIcon, "PointerOver");
@@ -44,6 +45,7 @@ namespace BC_Market.Views
         {
             AnimatedIcon.SetState(this.SearchAnimatedIcon, "Normal");
         }
+        // AutoSuggestBox
         private void AutoSuggestionsBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             ViewModel.QuerySubmittedCommand.Execute(args.QueryText);
@@ -66,11 +68,12 @@ namespace BC_Market.Views
             cartPage.ViewModel.CartList = new ObservableCollection<KeyValuePair<Product, int>>(ViewModel.CartList);
             this.Frame.Navigate(typeof(ShopperOrderPage), cartPage.ViewModel.CartList);
         }
+        // Get data from previous page and set to ViewModel
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            var parameters = e.Parameter as dynamic;
+            var parameters = e.Parameter as dynamic; // dynamic type to get multiple parameters
             if (parameters != null)
             {
                 ViewModel.ProductInCart = parameters.ProductInCart;

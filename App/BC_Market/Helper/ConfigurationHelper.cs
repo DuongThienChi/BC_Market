@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.IO;
 
-public static class ConfigurationHelper
+public static class ConfigurationHelper // Get connection string from appsettings.json
 {
-    public static string GetConnectionString(string name)
+    public static string GetConnectionString(string name) 
     {
         var configuration = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)

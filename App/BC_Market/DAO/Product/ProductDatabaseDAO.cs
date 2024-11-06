@@ -12,9 +12,9 @@ using System.Collections.ObjectModel;
 
 namespace BC_Market.DAO
 {
-    public class ProductDatabaseDAO : IDAO<Product>
+    public class ProductDatabaseDAO : IDAO<Product> // Implement interface IDAO with model Product
     {
-        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection"); // Get connection string from appsettings.json
         public ProductDatabaseDAO() { }
 
         // Add a new product to the database
@@ -98,7 +98,7 @@ namespace BC_Market.DAO
                 ON product.cateid = category.uniqueid
                 WHERE product.name ILIKE '%' || @searchKey || '%' AND category.name ILIKE '%' || @category || '%'
                 OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY";
-            if (configuration["take"] == "100000")
+            if (configuration["take"] == "100000") // If take is 100000, get the count of products
             {
                 isCount = true;
                 sql = $@"
@@ -141,13 +141,13 @@ namespace BC_Market.DAO
                     }
                     using (var reader = cmd.ExecuteReader())
                     {
-                        if (isCount)
+                        if (isCount) // If isCount is true, get the count of products
                         {
                             reader.Read();
                             var count = reader.GetInt32(0);
                             conn.Close();
                             return count;
-                        }
+                        } // If isCount is false, get the products
                         while (reader.Read())
                         {
                             var product = new Product();

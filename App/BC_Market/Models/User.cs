@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BC_Market.Models
 {
-    public class USER
+    public class USER // Define the USER class
     {
             public string Id { get; set; }
             public string Username { get; set; }

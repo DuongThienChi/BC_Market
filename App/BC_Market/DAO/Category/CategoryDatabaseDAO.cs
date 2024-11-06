@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BC_Market.DAO
 {
-    class CategoryDatabaseDAO : IDAO<Category>
+    class CategoryDatabaseDAO : IDAO<Category> // Implement interface IDAO
     {
-        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
-        public void Add(Category obj)
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  //Get connection string from appsettings.json
+        public void Add(Category obj) // Add a new category to the database
         {
             var sql = $@"INSERT INTO category (uniqueid, name, description) VALUES (@Id, @Name, @Description)";
             using (var conn = new NpgsqlConnection(connectionString))
@@ -28,7 +28,7 @@ namespace BC_Market.DAO
             }
         }
 
-        public void Delete(Category obj)
+        public void Delete(Category obj) // Remove a category from the database
         {
             var sql = $@"DELETE FROM category WHERE uniqueid = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
@@ -43,7 +43,7 @@ namespace BC_Market.DAO
             }
         }
 
-        public dynamic Get(Dictionary<string, string> configuration)
+        public dynamic Get(Dictionary<string, string> configuration) // Get categories from the database
         {
             List<Category> response = new List<Category>();
             bool isCount = false;
@@ -116,7 +116,7 @@ namespace BC_Market.DAO
             }
         }
 
-        public void Update(Category obj)
+        public void Update(Category obj) // Update a category in the database
         {
             var sql = $@"UPDATE category SET name = @Name, description = @Description WHERE uniqueid = @Id";
             using (var conn = new NpgsqlConnection(connectionString))

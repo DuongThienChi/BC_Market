@@ -23,16 +23,16 @@ namespace BC_Market.ViewModels
             LoadData();
         }
 
-        public void LoadData()
+        public void LoadData() // Define the LoadData method
         {
             _bus = _factory.CreateBUS();
 
-            var users = _bus.Get(null);
+            var users = _bus.Get(null); // Get all users
 
             ListAccount = new ObservableCollection<USER>(users);
         }
 
-        public void AddAccount(USER user)
+        public void AddAccount(USER user) // Add an account
         {
             var dao = _bus.Dao();
             dao.Add(user);

@@ -36,6 +36,7 @@ namespace BC_Market.Views
             this.CheckBoxs = new List<CheckBox>();
 
         }
+        // Receive CartList from ShopperDashboardPage
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -44,6 +45,7 @@ namespace BC_Market.Views
                 ViewModel.CartList = cartList;
             }
         }
+        // Remove item from cart
         private void AddProduct_Clicked(object sender, RoutedEventArgs e)
         {
             var shopPage = new ShopperDashboardPage();
@@ -62,6 +64,7 @@ namespace BC_Market.Views
             this.Frame.Navigate(typeof(ShopperDashboardPage), Params);
         }
 
+        // Remove item from cart
         private void itemCheckBox_Click(object sender, RoutedEventArgs e)
         {
             bool allSelected = ViewModel.CartItems.All(item => item.IsSelected);
@@ -69,7 +72,7 @@ namespace BC_Market.Views
         }
 
 
-
+        // Select all items
         private void allCheckBox_Click(object sender, RoutedEventArgs e)
         {
             bool isChecked = allCheckBox.IsChecked ?? false;

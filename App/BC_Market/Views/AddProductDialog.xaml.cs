@@ -41,6 +41,7 @@ namespace BC_Market.Views
                 Description = Descript.Text,
                 Price = Double.Parse(Price.Text),
                 Stock = Int32.Parse(Stock.Text),
+                ImagePath = Img.Text,
                 CategoryId = CategoryId.Text,
                 Status = Status.Text
             };

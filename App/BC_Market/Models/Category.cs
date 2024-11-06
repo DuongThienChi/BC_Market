@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BC_Market.Models
 {
-    public class Category
+    public class Category // Define the Category class
     {
         public string Id { get; set; }
         public string Name { get; set; }

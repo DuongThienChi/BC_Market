@@ -9,9 +9,9 @@ using Windows.System;
 
 namespace BC_Market.DAO
 {
-    public class UserDatabaseDAO : IDAO<USER>
+    public class UserDatabaseDAO : IDAO<USER> // implement IDAO interface
     {
-        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection"); // get connection string from appsettings.json
 
         // add account into database
         public void Add(USER obj)
@@ -37,7 +37,7 @@ namespace BC_Market.DAO
             }
         }
 
-        // remove account from dataase
+        // remove account from database
         public void Delete(USER obj)
         {
             var sql = $@"DELETE FROM ""User"" WHERE username = @Username";

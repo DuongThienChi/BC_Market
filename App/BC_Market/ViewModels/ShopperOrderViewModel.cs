@@ -15,9 +15,9 @@ namespace BC_Market.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class ShopperOrderViewModel : ObservableObject
     {
-        private ObservableCollection<KeyValuePair<Product, int>> _carts;
+        private ObservableCollection<KeyValuePair<Product, int>> _carts; // Define the _carts field
 
-        public ObservableCollection<KeyValuePair<Product, int>> CartList
+        public ObservableCollection<KeyValuePair<Product, int>> CartList 
         {
             get => _carts;
             set
@@ -25,12 +25,12 @@ namespace BC_Market.ViewModels
                 if (SetProperty(ref _carts, value))
                 {
                     CartItems = new ObservableCollection<CartProduct>(
-                       CartList.Select(x => new CartProduct { Product = x.Key, Quantity = x.Value})
+                       CartList.Select(x => new CartProduct { Product = x.Key, Quantity = x.Value})  // Convert the CartList to CartItems
                    );
                 }
             }
         }
-        public List<Product> selectedProducts { get; set; } = new List<Product>();
+        public List<Product> selectedProducts { get; set; } = new List<Product>(); // Define the selectedProducts for the selected products
         private double _total;
         public ShopperOrderViewModel()
         {
@@ -40,7 +40,7 @@ namespace BC_Market.ViewModels
         public ICommand DeleteItemCommand { get; }
         public ICommand DeleteAllCommand { get; }
         public ObservableCollection<CartProduct> CartItems { get; set; }
-        public double Total
+        public double Total // Price for all products in the cart
         {
             get
             {
@@ -53,10 +53,10 @@ namespace BC_Market.ViewModels
             }
                 set => SetProperty(ref _total, value);
         }
-        private void DeleteItem(CartProduct product)
+        private void DeleteItem(CartProduct product) // Delete a product from the cart
         {
             var item = CartList.FirstOrDefault(x => x.Key.Id == product.Product.Id);
-            if (item.Value > 1)
+            if (item.Value > 1) // If the quantity of the product is greater than 1
             {
                 int index = CartList.IndexOf(item);
                 CartList[index] = new KeyValuePair<Product, int>(item.Key, item.Value - 1);
@@ -71,7 +71,7 @@ namespace BC_Market.ViewModels
             OnPropertyChanged(nameof(CartList));
             OnPropertyChanged(nameof(Total));
         }
-        private void DeleteAll()
+        private void DeleteAll() // Delete all products from the cart
         {
             var itemsToRemove = CartItems.Where(item => item.IsSelected).ToList();
 

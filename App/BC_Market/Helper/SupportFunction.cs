@@ -9,7 +9,7 @@ namespace BC_Market.Helper
 {
     public static class SupportFunction
     {
-        public static bool isUsernameExist(this string username)
+        public static bool isUsernameExist(this string username) // Check if username is exist
         {
             var userFactory = new UserFactory();
             var userBUS = userFactory.CreateBUS();

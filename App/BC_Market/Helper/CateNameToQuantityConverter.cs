@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BC_Market.Converter
 {
-    internal class CateNameToQuantityConverter : IValueConverter
+    internal class CateNameToQuantityConverter : IValueConverter // Convert the name of category to quantity of product
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

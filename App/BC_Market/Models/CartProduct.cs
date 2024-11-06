@@ -8,7 +8,7 @@ using BC_Market.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 namespace BC_Market.Models
 {
-    public class CartProduct : ObservableObject
+    public class CartProduct : ObservableObject // Define the CartProduct class
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }

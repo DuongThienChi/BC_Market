@@ -108,7 +108,8 @@ Việc sử dụng kết hợp giữa Factory Design Pattern, Three Layers và M
 
 - Nhóm dùng PostgreSQL 13.16 \
    `docker run -e POSTGRES_USER=USER -e POSTGRES_PASSWORD=PASSWORD -e POSTGRES_DB=BCMarket -p PORT:5432 --name NAME -d postgres:13.16`
-- Chạy migration để tạo database: \
+- Chạy migration để tạo database:
+- Các thư viện cần dùng knex, dotenv, pg \
   `npm install`
 - Cần tạo file .env trong thư mục migration gồm:
 

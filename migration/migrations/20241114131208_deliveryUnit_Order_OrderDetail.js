@@ -9,7 +9,7 @@ exports.up = async function(knex) {
       CREATE TABLE DeliveryUnit (
       Id SERIAL PRIMARY KEY,
       Name VARCHAR(255) NOT NULL,
-      Price DECIMAL(10, 2) NOT NULL
+      Price DOUBLE PRECISION NOT NULL
       );
 
       CREATE TABLE "Order" (
@@ -17,7 +17,7 @@ exports.up = async function(knex) {
       userId VARCHAR(10),
       shipId INT,
       createAt TIMESTAMP,
-      totalPrice DECIMAL(10, 2) ,
+      totalPrice DOUBLE PRECISION ,
       address VARCHAR(255),
       paymentMethod VARCHAR(50) NOT NULL,
       isPaid BOOLEAN NOT NULL

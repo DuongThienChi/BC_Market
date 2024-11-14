@@ -16,7 +16,7 @@ namespace BC_Market.DAO
         public void Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);
-            var sql = $@"INSERT INTO ""User"" (uniqueid, username, password, roleid) VALUES (@Id, @Username, @Password, @RoleId)";
+            var sql = $@"INSERT INTO ""User"" (uniqueid, username, password, roleid, rankid, curpoint) VALUES (@Id, @Username, @Password, @RoleId, @RankId, @CurPoint)";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -26,6 +26,8 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Username", obj.Username);
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
+                    cmd.Parameters.AddWithValue("@RankId", obj.Rank);
+                    cmd.Parameters.AddWithValue("@CurPoint", obj.Point);
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
@@ -107,12 +109,15 @@ namespace BC_Market.DAO
                         }
                         while (reader.Read())
                         {
+                            Console.WriteLine(reader["rankid"]);
                             var user = new USER()
                             {
                                 Id = reader["uniqueid"] as string,
                                 Username = reader["username"] as string,
                                 Password = reader["password"] as string,
-                                Roles = new List<Role> { new Role { Name = reader["name"] as string } }
+                                Roles = new List<Role> { new Role { Name = reader["name"] as string } },
+                                Rank = reader["rankid"] == null ? "" : reader["rankid"] as string,
+                                Point = reader["curpoint"] == null ? 0 : int.Parse(reader["curpoint"].ToString())
                             };
                             response.Add(user);
                         }
@@ -126,7 +131,7 @@ namespace BC_Market.DAO
         public void Update(USER obj)
         {
             var role = getRole(obj.Roles[0].Name);
-            var sql = $@"UPDATE ""User"" SET username = @Username, password = @Password, roleid = @RoleId WHERE uniqueid = @Id";
+            var sql = $@"UPDATE ""User"" SET username = @Username, password = @Password, roleid = @RoleId, rankid=@RankId, curpoint=@CurPoint WHERE uniqueid = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -136,6 +141,8 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
                     cmd.Parameters.AddWithValue("@Id", obj.Id);
+                    cmd.Parameters.AddWithValue("@RankId", obj.Rank);
+                    cmd.Parameters.AddWithValue("@CurPoint", obj.Point);
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();

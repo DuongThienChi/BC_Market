@@ -13,7 +13,8 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
-  <ItemGroup>
+
+	<ItemGroup>
     <Content Remove="Assets\Images\avatar09.png" />
     <Content Remove="Assets\Images\delete-button.png" />
     <Content Remove="Assets\Images\edit-button.png" />

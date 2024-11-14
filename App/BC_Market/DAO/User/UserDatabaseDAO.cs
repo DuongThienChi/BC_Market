@@ -9,18 +9,14 @@ using Windows.System;
 
 namespace BC_Market.DAO
 {
-    public class UserDatabaseDAO : IDAO<USER> // implement IDAO interface
+    public class UserDatabaseDAO : IDAO<USER>
     {
-        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection"); // get connection string from appsettings.json
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
 
-        // add account into database
         public void Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);
-            var sql = $@"INSERT INTO ""User"" (uniqueid, username, password, createat, roleid) VALUES (@Id, @Username, @Password, @CreateAt, @RoleId)";
-            obj.CreatedAt = DateTime.Now;
-            var salt = BCrypt.Net.BCrypt.GenerateSalt(12);
-            obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password, salt);
+            var sql = $@"INSERT INTO ""User"" (uniqueid, username, password, roleid, rankid, curpoint) VALUES (@Id, @Username, @Password, @RoleId, @RankId, @CurPoint)";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -29,15 +25,16 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Id", obj.Id);
                     cmd.Parameters.AddWithValue("@Username", obj.Username);
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
-                    cmd.Parameters.AddWithValue("@CreateAt", obj.CreatedAt);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
+                    cmd.Parameters.AddWithValue("@RankId", obj.Rank);
+                    cmd.Parameters.AddWithValue("@CurPoint", obj.Point);
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
             }
         }
 
-        // remove account from database
+
         public void Delete(USER obj)
         {
             var sql = $@"DELETE FROM ""User"" WHERE username = @Username";
@@ -53,7 +50,6 @@ namespace BC_Market.DAO
             }
         }
 
-        // get all accounts from database
         public dynamic Get(Dictionary<string, string> configuration)
         {
             List<USER> response = new List<USER>();
@@ -112,15 +108,17 @@ namespace BC_Market.DAO
                             return count;
                         }
                         while (reader.Read())
-                        {   
+                        {
+                            Console.WriteLine(reader["rankid"]);
                             var user = new USER()
                             {
                                 Id = reader["uniqueid"] as string,
                                 Username = reader["username"] as string,
                                 Password = reader["password"] as string,
                                 Email = reader["email"] as string,
-                                CreatedAt = reader.GetDateTime(4),
-                                Roles = new List<Role> { new Role { Name = reader["name"] as string } }
+                                Roles = new List<Role> { new Role { Name = reader["name"] as string } },
+                                Rank = reader["rankid"] == null ? "" : reader["rankid"] as string,
+                                Point = reader["curpoint"] == null ? 0 : int.Parse(reader["curpoint"].ToString())
                             };
                             response.Add(user);
                         }
@@ -131,11 +129,10 @@ namespace BC_Market.DAO
             }
         }
 
-        // edit an account in database
         public void Update(USER obj)
         {
             var role = getRole(obj.Roles[0].Name);
-            var sql = $@"UPDATE ""User"" SET username = @Username, password = @Password, roleid = @RoleId WHERE uniqueid = @Id";
+            var sql = $@"UPDATE ""User"" SET username = @Username, password = @Password, roleid = @RoleId, rankid=@RankId, curpoint=@CurPoint WHERE uniqueid = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -145,13 +142,14 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
                     cmd.Parameters.AddWithValue("@Id", obj.Id);
+                    cmd.Parameters.AddWithValue("@RankId", obj.Rank);
+                    cmd.Parameters.AddWithValue("@CurPoint", obj.Point);
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
             }
         }
 
-        // get Role by name - used in Add and Update method to get RoleId
         public Role getRole(string name)
         {
             Role role = new Role();

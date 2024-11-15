@@ -114,16 +114,19 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="8*"/>
                                 <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Border CornerRadius="25" BorderThickness="1" BorderBrush="Black"  Grid.Column="0"  >
-                                <AutoSuggestBox x:Name="suggestBox"
-                                                CornerRadius="25"  PlaceholderText="Search" Height="45" Foreground="Gray" 
+                            <AutoSuggestBox x:Name="suggestBox"
+                                                PlaceholderText="Search" 
+                                                Height="35" 
+                                                Foreground="Gray" 
                                                 VerticalContentAlignment="Center"
+                                                
                                                 ItemsSource="{x:Bind ViewModel.Suggestions, Mode=OneWay}"
                                                 QuerySubmitted="AutoSuggestionsBox_QuerySubmitted"
                                                 SuggestionChosen="AutoSuggestionsBox_SuggestionChosen"
+                                                CornerRadius="5" BorderThickness="1" BorderBrush="Black" Grid.Column="0"
                                                 TextChanged="AutoSuggestionsBox_TextChanged" />
-                            </Border>
 
                             <Button PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited" Width="50" Margin="10 0 0 0"
                             BorderThickness="0"  Background="Transparent"  Grid.Column="1"
@@ -138,6 +141,23 @@
                                     </AnimatedIcon.FallbackIconSource>
                                 </AnimatedIcon>
                             </Button>
+                            <DropDownButton MinWidth="150" Margin="0 0 0 0" Grid.Column="2" Background="Transparent">
+                                <!-- Nội dung của DropDownButton hiển thị trên nút -->
+                                <DropDownButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Sort" Width="20" Height="20" Margin="0,0,5,0"/>
+                                        <TextBlock x:Name="typeSort"  Text="Sort by" VerticalAlignment="Center" Foreground="Gray" FontSize="14"/>
+                                    </StackPanel>
+                                </DropDownButton.Content>
+
+                                <!-- Danh sách lựa chọn hiển thị khi nhấn vào DropDownButton -->
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout Placement="BottomEdgeAlignedLeft">
+                                        <MenuFlyoutItem Text="Price Ascending" Click="SortPriceAscending_Clicked"/>
+                                        <MenuFlyoutItem Text="Price Descending" Click="SortPriceDescending_Clicked"/>
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
                         </Grid>
                         <!-- My Cart -->
                         <Grid Grid.Column="1" Height="40" Margin="0 5 60 0">
@@ -174,27 +194,24 @@
                                             />
                                 </Border>
                             </Canvas>
-                            <!--<TextBlock Text="My Cart" FontSize="15" Foreground="Black"  
-                                    HorizontalAlignment="Left" 
-                                    VerticalAlignment="Center"  Grid.Column="1"
-                                     Grid.Row="0"
-                                    
-                                     /> -->
-
                         </Grid>
                     </Grid>
                     <!--  ItemRepeater Binding de hien thi danh sach san pham -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="80 20 80 10">
-                        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Products, Mode=OneWay}"  >
+                        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Products, Mode=OneWay}">
                             <ItemsRepeater.Layout>
                                 <UniformGridLayout MaximumRowsOrColumns="5" MinItemWidth="120" MinItemHeight="240"
-                                    MinRowSpacing="3" MinColumnSpacing="3" ItemsStretch="Fill" Orientation="Horizontal">
+                               MinRowSpacing="5" MinColumnSpacing="5" ItemsStretch="Fill" Orientation="Horizontal">
                                 </UniformGridLayout>
                             </ItemsRepeater.Layout>
 
                             <ItemsRepeater.ItemTemplate>
                                 <DataTemplate x:DataType="local1:Product">
-                                    <Grid BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                                    <Grid BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
+                                            PointerEntered="OnPointerEntered" PointerExited="OnPointerExited" Background="White">
+                                        <Grid.RenderTransform>
+                                            <CompositeTransform/>
+                                        </Grid.RenderTransform>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="5*"/>
                                             <RowDefinition Height="*"/>
@@ -202,7 +219,9 @@
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="2*"/>
                                         </Grid.RowDefinitions>
-                                        <Image Source="{x:Bind ImagePath}" Grid.Row="0"/>
+                                        <Border x:Name="ItemBorder" Background="White" CornerRadius="5" RenderTransformOrigin="0.5,0.5">
+                                            <Image Source="{x:Bind ImagePath}" Grid.Row="0" Margin="5"/>
+                                        </Border>
                                         <TextBlock Text="{x:Bind CategoryId}" FontSize="14" FontStyle="Italic" Grid.Row="1" Margin="10 5 0 0"/>
                                         <TextBlock Text="{x:Bind Name}" FontWeight="Bold" FontSize="16" Grid.Row="2" Margin="10 0 0 0"/>
                                         <TextBlock Text="{x:Bind Description}" FontSize="14" Grid.Row="3" Margin="10 0 0 0"/>
@@ -212,16 +231,17 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <!-- Giá (Price) -->
+                                            <!-- Price -->
                                             <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock FontSize="18" FontWeight="Bold" Foreground="#3BB77E">
-                                                    <Run Text="$"/>
-                                                    <Run Text="{x:Bind Price, Mode=OneWay}"/>
+                                                <Run Text="$"/>
+                                                <Run Text="{x:Bind Price, Mode=OneWay}"/>   
                                                 </TextBlock>
                                             </StackPanel>
 
-                                            <!-- Nút Add -->
-                                            <Button Background="#DEF9EC" Grid.Column="1" HorizontalAlignment="Right" Padding="10,5" Command="{Binding DataContext.AddCartCommand, ElementName=ThisPage}" CommandParameter="{x:Bind}">
+                                            <!-- Add Button -->
+                                            <Button Background="#DEF9EC" Grid.Column="1" HorizontalAlignment="Right" Padding="10,5"
+                                                Command="{Binding DataContext.AddCartCommand, ElementName=ThisPage}" CommandParameter="{x:Bind}">
                                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                     <Image Source="/Assets/Icons/shopping-cart.png" Width="20" Height="20" Margin="0,0,5,0"/>
                                                     <TextBlock Foreground="#3BB77E" Text="Add" FontSize="16" VerticalAlignment="Center"/>
@@ -231,7 +251,6 @@
                                     </Grid>
                                 </DataTemplate>
                             </ItemsRepeater.ItemTemplate>
-
                         </ItemsRepeater>
                     </ScrollViewer>
                     <!-- Chuyen trang -->

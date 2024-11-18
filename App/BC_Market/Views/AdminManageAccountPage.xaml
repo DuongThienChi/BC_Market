@@ -33,7 +33,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
                         >
-                <Button Background="#292C2D"
+                <!--<Button Background="#292C2D"
                         Foreground="white"
                         Margin="10 0 0 0"
                         CornerRadius="100"
@@ -42,7 +42,7 @@
                         Click="backButton_Click"
                         >
                     &lt;
-                </Button>
+                </Button>-->
 
                 <TextBlock Foreground="White"
                            VerticalAlignment="Center"

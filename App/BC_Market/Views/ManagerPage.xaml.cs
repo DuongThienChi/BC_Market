@@ -50,5 +50,10 @@ namespace BC_Market.Views
         {
             mainFrame.Navigate(typeof(ManagerProductPage), ViewModel);
         }
+
+        private void voucher_btn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(typeof(ManagerVoucherPage), ViewModel);
+        }
     }
 }

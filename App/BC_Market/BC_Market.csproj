@@ -30,11 +30,15 @@
   <ItemGroup>
     <None Remove="Views\AddCateDialog.xaml" />
     <None Remove="Views\AddProductDialog.xaml" />
+    <None Remove="Views\AddVoucherDialog.xaml" />
     <None Remove="Views\AdminAddAccountPage.xaml" />
     <None Remove="Views\AdminEditAccountPage.xaml" />
     <None Remove="Views\AdminManageAccountPage.xaml" />
     <None Remove="Views\AdminProductPage.xaml" />
+    <None Remove="Views\AdminVoucherPage.xaml" />
     <None Remove="Views\EditProductDialog.xaml" />
+    <None Remove="Views\EditVoucherDialog.xaml" />
+    <None Remove="Views\ManagerVoucherPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,9 +71,6 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
@@ -115,6 +116,18 @@
     <None Update="Assets\Images\logout-button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\ManagerVoucherPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\EditVoucherDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AddVoucherDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AdminVoucherPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\AdminProductPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

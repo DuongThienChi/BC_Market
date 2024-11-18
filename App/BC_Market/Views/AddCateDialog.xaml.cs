@@ -34,6 +34,13 @@ namespace BC_Market.Views
         public event EventHandler<Category> CategoryAdded;
         private void SaveCate(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Name.Text) ||
+                string.IsNullOrEmpty(Descript.Text))
+            {
+                Notice.Text = "Please fill all fields";
+                return;
+            }
+
             // create new Category from entered information
             var cate = new Category
             {
@@ -41,12 +48,6 @@ namespace BC_Market.Views
                 Name = Name.Text,
                 Description = Descript.Text
             };
-
-            if(string.IsNullOrEmpty(cate.Id) || string.IsNullOrEmpty(cate.Name) || string.IsNullOrEmpty(cate.Description))
-            {
-                Notice.Text = "Please fill all fields";
-                return;
-            }
 
             CategoryAdded?.Invoke(this, cate);
 

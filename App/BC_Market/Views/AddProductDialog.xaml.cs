@@ -33,6 +33,15 @@ namespace BC_Market.Views
         public event EventHandler<Product> ProductAdded;
         private void SaveCate(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Name.Text) ||
+                string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Price.Text) ||
+                string.IsNullOrEmpty(Stock.Text) || string.IsNullOrEmpty(Img.Text) ||
+                string.IsNullOrEmpty(CategoryId.Text) || string.IsNullOrEmpty(Status.Text))
+            {
+                Notice.Text = "Please fill all fields";
+                return;
+            }
+
             // create new Product from entered information
             var product = new Product
             {
@@ -45,15 +54,6 @@ namespace BC_Market.Views
                 CategoryId = CategoryId.Text,
                 Status = Status.Text
             };
-
-            // check to confirm all fields are filled
-            if (string.IsNullOrEmpty(product.Id) || string.IsNullOrEmpty(product.Name) || 
-                string.IsNullOrEmpty(product.Description) || string.IsNullOrEmpty(product.CategoryId) || 
-                string.IsNullOrEmpty(product.Status))
-            {
-                Notice.Text = "Please fill all fields";
-                return;
-            }
 
             ProductAdded?.Invoke(this, product);
 

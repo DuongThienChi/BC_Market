@@ -35,8 +35,16 @@ namespace BC_Market.Views
         public event EventHandler<Product> ProductEdited;
         private void SaveClick(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Name.Text) ||
+                string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Price.Text) ||
+                string.IsNullOrEmpty(Stock.Text) || string.IsNullOrEmpty(CategoryId.Text) ||
+                string.IsNullOrEmpty(Status.Text))
+            {
+                Notice.Text = "Please fill all fields";
+                return;
+            }
+
             // create new product from entered information
-            var button = sender as Button;
             var editedProduct = new Product
             {
                 Id = Id.Text,
@@ -48,15 +56,6 @@ namespace BC_Market.Views
                 Status = Status.Text,
                 ImagePath = product.ImagePath
             };
-
-            // check to confirm all fields are filled
-            if (string.IsNullOrEmpty(editedProduct.Id) || string.IsNullOrEmpty(editedProduct.Name) ||
-                string.IsNullOrEmpty(editedProduct.Description) || string.IsNullOrEmpty(editedProduct.CategoryId) ||
-                string.IsNullOrEmpty(editedProduct.Status))
-            {
-                Notice.Text = "Please fill all fields";
-                return;
-            }
 
             ProductEdited?.Invoke(this, editedProduct);
 

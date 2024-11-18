@@ -39,7 +39,7 @@ namespace BC_Market.Views
             var package = e.Parameter as dynamic;
             ListAccount = package.ListAccount;
             ViewModel = package.ManageProductViewModel;
-            // navigat to AdminManageAccountPage - default page
+            // navigate to AdminManageAccountPage - default page
             mainFrame.Navigate(typeof(AdminManageAccountPage), ListAccount);
         }
         // back to LoginPage
@@ -57,6 +57,11 @@ namespace BC_Market.Views
         private void productManagement_button_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(typeof(AdminProductPage), ViewModel);
+        }
+
+        private void voucherManagement_button_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(typeof(AdminVoucherPage));
         }
     }
 }

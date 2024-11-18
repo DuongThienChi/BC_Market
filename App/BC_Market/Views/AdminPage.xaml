@@ -80,6 +80,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Button HorizontalAlignment="Center"
@@ -106,6 +110,28 @@
 
                 <Button HorizontalAlignment="Center"
                         Grid.Row="1"
+                        x:Name="voucherManagement_button"
+                        Click="voucherManagement_button_Click"
+                        Background="#3D4142"
+                        VerticalAlignment="Top"
+                        >
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="../Assets\Images\feature-button.png"
+                           Width="20"
+                        >
+
+                        </Image>
+                        <TextBlock Foreground="#FAC1D9"
+                                   FontSize="15"
+                                   TextWrapping="WrapWholeWords"
+                                   >
+                            Voucher
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button HorizontalAlignment="Center"
+                        Grid.Row="2"
                         x:Name="productManagement_button"
                         Click="productManagement_button_Click"
                         Background="#3D4142"

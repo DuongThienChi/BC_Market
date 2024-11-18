@@ -12,7 +12,6 @@ namespace BC_Market.DAO
     public class UserDatabaseDAO : IDAO<USER>
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
-
         public void Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);

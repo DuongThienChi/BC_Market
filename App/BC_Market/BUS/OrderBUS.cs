@@ -9,15 +9,15 @@ using BC_Market.Models;
 using Windows.System;
 namespace BC_Market.BUS
 {
-    public class CartBUS : IBUS<Cart>
+    public class OrderBUS : IBUS<Order>
     {
-        public readonly IDAO<Cart> _dao;
+        public readonly IDAO<Order> _dao;
 
-        public IBUS<Cart> CreateNew(IDAO<Cart> dao)
+        public IBUS<Order> CreateNew(IDAO<Order> dao)
         {
-            return new CartBUS(dao);
+            return new OrderBUS(dao);
         }
-        public CartBUS(IDAO<Cart> dao)
+        public OrderBUS(IDAO<Order> dao)
         {
             _dao = dao;
         }
@@ -32,7 +32,7 @@ namespace BC_Market.BUS
             throw new NotImplementedException();
         }
 
-        public IDAO<Cart> Dao()
+        public IDAO<Order> Dao()
         {
             return _dao;
         }

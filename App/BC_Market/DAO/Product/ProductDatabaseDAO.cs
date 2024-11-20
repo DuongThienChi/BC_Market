@@ -185,7 +185,6 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@imagepath", obj.ImagePath);
                     cmd.Parameters.AddWithValue("@status", obj.Status == "Active" ? true : false);
                     cmd.Parameters.AddWithValue("@orderquantity", obj.OrderQuantity);
-                    cmd.Parameters.AddWithValue("@uniqueid", obj.Id);
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();

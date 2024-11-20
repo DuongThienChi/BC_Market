@@ -14,15 +14,14 @@ namespace BC_Market.DAO
         public void Add(Voucher obj)
         {
 
-            var sql = $@"INSERT INTO voucher (uniqueid, name, description, percent, amount, condition, stock, validate, rankid) 
-                        VALUES (@Id, @Name, @Description, @Percent, @Amount, @Condition, @Stock, @Validate, @RankId)";
+            var sql = $@"INSERT INTO voucher (name, description, percent, amount, condition, stock, validate, rankid) 
+                        VALUES (@Name, @Description, @Percent, @Amount, @Condition, @Stock, @Validate, @RankId)";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Id", obj.VoucherId);
                     cmd.Parameters.AddWithValue("@Name", obj.Name);
                     cmd.Parameters.AddWithValue("@Description", obj.Description);
                     cmd.Parameters.AddWithValue("@Percent", obj.Percent);
@@ -111,7 +110,6 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Stock", obj.Stock);
                     cmd.Parameters.AddWithValue("@Validate", obj.Validate);
                     cmd.Parameters.AddWithValue("@RankId", obj.RankId);
-                    cmd.Parameters.AddWithValue("@Id", obj.VoucherId);
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();

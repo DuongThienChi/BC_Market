@@ -139,7 +139,6 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Username", obj.Username);
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
-                    cmd.Parameters.AddWithValue("@Id", obj.Id);
                     cmd.Parameters.AddWithValue("@RankId", obj.Rank);
                     cmd.Parameters.AddWithValue("@CurPoint", obj.Point);
                     cmd.ExecuteNonQuery();

@@ -97,7 +97,7 @@
                         Grid.Row="1">
                     <StackPanel Orientation="Vertical">
                         <Image Source="../Assets\Images\feature-button.png" Width="20"/>
-                        <TextBlock Text="Product" Foreground="#FAC1D9"/>
+                        <TextBlock Text="Voucher" Foreground="#FAC1D9"/>
                     </StackPanel>
 
                 </Button>

@@ -16,7 +16,7 @@ namespace BC_Market.Converter
             {
                 return null;
             }
-            if (value is string id)
+            if (value is int id)
             {
                 if (parameter is ManageProductViewModel)
                 {

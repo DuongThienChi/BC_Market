@@ -16,6 +16,8 @@ using Windows.UI.ApplicationSettings;
 using BC_Market.ViewModels;
 using BC_Market.Models;
 using System.Collections.ObjectModel;
+using Microsoft.UI;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -58,6 +60,23 @@ namespace BC_Market.Views
         {
             ViewModel.TextChangedCommand.Execute(sender.Text);
         }
+        private void OnPointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            if (sender is Grid grid)
+            {
+                grid.Background = new SolidColorBrush(Color.FromArgb(255, 240, 240, 245));
+                ((CompositeTransform)grid.RenderTransform).TranslateY = -5;
+            }
+        }
+
+        private void OnPointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            if (sender is Grid grid)
+            {
+                grid.Background = new SolidColorBrush(Colors.White);
+                ((CompositeTransform)grid.RenderTransform).TranslateY = 0;
+            }
+        }
         private void SearchButton_Clicked(object sender, RoutedEventArgs e)
         {
             ViewModel.QuerySubmittedCommand.Execute(suggestBox.Text);
@@ -68,6 +87,18 @@ namespace BC_Market.Views
             cartPage.ViewModel.CartList = new ObservableCollection<KeyValuePair<Product, int>>(ViewModel.CartList);
             this.Frame.Navigate(typeof(ShopperOrderPage), cartPage.ViewModel.CartList);
         }
+        private void SortPriceAscending_Clicked(object sender, RoutedEventArgs e)
+        {
+            //ViewModel.SortProductsByPriceAscending();
+            typeSort.Text = "Price Ascending";
+        }
+
+        private void SortPriceDescending_Clicked(object sender, RoutedEventArgs e)
+        {
+            typeSort.Text = "Price Descending";
+            // ViewModel.SortProductsByPriceDescending();
+        }
+
         // Get data from previous page and set to ViewModel
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

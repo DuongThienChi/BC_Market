@@ -11,23 +11,23 @@
     xmlns:local1="using:BC_Market.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="90" />
-            <!-- Hàng cho header -->
-            <RowDefinition Height="Auto" />
-            <!--Icon, Add Product-->
-            <RowDefinition Height="60"/>
-            <!-- Header Table -->
-            <RowDefinition Height="4*"/>
-            <!--List Products-->
-            <RowDefinition Height="Auto"/>
-            <!--Select All, Delete, Total Price-->
-            <RowDefinition Height="Auto"/>
-            <!--Address - Order button-->
-        </Grid.RowDefinitions>
-
-        <!-- Header nằm trên cùng -->
+    <ScrollView>
+    <Grid Background="#f5f5f5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" />
+                <!-- Hàng cho header -->
+                <RowDefinition Height="Auto" />
+                <!--Icon, Add Product-->
+                <RowDefinition Height="60"/>
+                <!-- Header Table -->
+                <RowDefinition Height="4*"/>
+                <!--List Products-->
+                <RowDefinition Height="Auto"/>
+                <!--Select All, Delete, Total Price-->
+                <RowDefinition Height="Auto"/>
+                <!--Address - Order button-->
+            </Grid.RowDefinitions>
+            <!-- Header nằm trên cùng -->
         <Grid Grid.Row="0" Background="#292C2D">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -78,12 +78,11 @@
             <StackPanel Grid.Column="1" Grid.Row="1">
                 <Button Content="Add Product" Click="AddProduct_Clicked"  CornerRadius="5"  Height="40"  Background="#E0E0E0" HorizontalAlignment="Right"/>
             </StackPanel>
-           
+
         </Grid>
 
-
         <!--Header Table-->
-        <Grid Grid.Row="2" Margin="80 10 80 10" >
+        <Grid Grid.Row="2" Margin="80 10 80 10" Background="White" CornerRadius="1" Padding="15 0 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*" />
@@ -101,15 +100,15 @@
             <TextBlock Text="Total" FontSize="16" FontWeight="Bold" Grid.Column="5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
         <!--ItemRepeater Binding de hien thi danh sach san pham -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="80 5 80 10" >
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="80 5 80 10" Background="White" CornerRadius="1" Padding="15">
             <ItemsRepeater ItemsSource="{x:Bind ViewModel.CartItems, Mode=OneWay}"  >
                 <ItemsRepeater.Layout>
-                    <StackLayout  Orientation="Vertical" Spacing="0">
+                    <StackLayout  Orientation="Vertical" Spacing="5">
                     </StackLayout>
                 </ItemsRepeater.Layout>
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate x:DataType="local1:CartProduct">
-                        <Grid Background= "#E0E0E0" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" MaxHeight="100" >
+                        <Grid  BorderBrush="LightGray" BorderThickness="1" MaxHeight="100" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*" />
@@ -128,13 +127,13 @@
                             </StackPanel>
                             <TextBlock Text="{x:Bind Quantity, Mode=OneWay}" FontSize="16" FontWeight="Bold"  Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
                             <StackPanel Orientation="Horizontal"  Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">
+                                <TextBlock FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">
                                     <Run Text="$"/>
                                     <Run Text="{x:Bind Product.Price, Mode=OneWay}"/>
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock FontSize="18" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">
+                                <TextBlock FontSize="16" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">
                                     <Run Text="$"/>
                                     <Run Text="{x:Bind TotalPrice, Mode=OneWay}"/>
                                 </TextBlock>
@@ -148,7 +147,7 @@
 
             </ItemsRepeater>
         </ScrollViewer>
-        <Grid Grid.Row="4" Margin="80 5 80 10" >
+        <Grid Grid.Row="4" Margin="80 5 80 10" Background="White" CornerRadius="1" Padding="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*" />
@@ -158,13 +157,44 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
-            <Button Content="Delete All" Command="{x:Bind ViewModel.DeleteAllCommand}" Height="30" Foreground="White" Background="#FF2F33" CornerRadius="5" Grid.Column="0" Grid.ColumnSpan="2"/>
-            <TextBlock  FontSize="18" FontWeight="Bold" Margin="20 0 0 0" Grid.Column="5" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button Content="Delete All" FontSize="14" Command="{x:Bind ViewModel.DeleteAllCommand}" Height="30" BorderThickness="0" Foreground="White" Background="#FF2F33" CornerRadius="5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Click="DeliveryButton_Click" Background="Transparent" Padding="10"  VerticalAlignment="Center" Margin="0,0,20,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Delivery: " FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <StackPanel x:Name="DeliveryStackPanel" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="SelectedDeliveryTextBlock" Text="Select a delivery" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout>
+                                <ListView  SelectionChanged="DeliverySelectionChanged"/>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Click="VoucherButton_Click" Background="Transparent" Padding="10" VerticalAlignment="Center" Margin="0,0,20,0">
+                <StackPanel  Orientation="Horizontal">
+                    <TextBlock Text="Voucher: " FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <StackPanel x:Name="VoucherStackPanel" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="SelectedVoucherTextBlock" Text="Select a voucher" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout>
+                                <ListView  SelectionChanged="VoucherSelectionChanged"/>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+            <TextBlock  FontSize="14" FontWeight="Bold" Margin="0 0 0 0" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center">
                 <Run Text="Total: $" />
                 <Run Text="{x:Bind ViewModel.Total, Mode=OneWay}"/>
             </TextBlock>
         </Grid>
-        <Grid Grid.Row="5" Margin="80 20 80 10" >
+
+        <Grid Grid.Row="5" Margin="80 20 80 10" Background="White" CornerRadius="1" Padding="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -176,15 +206,17 @@
                 </StackPanel>
                 <TextBox PlaceholderText="Enter your address" HorizontalAlignment="Left" Width="300"  BorderBrush="Black" BorderThickness="3" CornerRadius="5"/>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
                 <ComboBox PlaceholderText="Payment Method" Background="#E0E0E0" Width="200" Height="40" CornerRadius="5" VerticalAlignment="Center">
                     <ComboBoxItem Content="Cash" />
                     <ComboBoxItem Content="Credit Card" />
                     <ComboBoxItem Content="Banking" />
                 </ComboBox>
-                <Button Content="Order" Foreground="White" Width="60" Height="40" Background="#FF2F33" CornerRadius="5" Margin="20 0 0 0"/>
+                <Button Content="Order" Foreground="White" Width="60" Height="40" Background="#ee4d2d" CornerRadius="5" Margin="20 0 0 0"/>
             </StackPanel>
         </Grid>
+   
     </Grid>
+    </ScrollView>
 </Page>

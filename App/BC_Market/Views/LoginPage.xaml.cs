@@ -129,6 +129,7 @@ namespace BC_Market.Views
                     {
                         this.Frame.Navigate(typeof(ShopperDashboardPage));
                     }
+                    SessionManager.Set("User", user);
                     return;
                 }
             }

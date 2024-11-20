@@ -70,7 +70,6 @@ namespace BC_Market.Views
 
                 var user = new USER()
                 {
-                    Id = (ViewModel.Items.Count + 1).ToString(),
                     Username = username,
                     Password = password,
                     Roles = new List<Role>()

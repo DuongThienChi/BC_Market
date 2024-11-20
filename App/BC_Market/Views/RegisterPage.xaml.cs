@@ -63,7 +63,6 @@ namespace BC_Market.Views
                 // if information are proper, add new account to ListAccount
                 var user = new USER()
                 {
-                    Id = (ViewModel.ListAccount.Count + 1).ToString(),
                     Username = username,
                     Password = password,
                     Roles = new List<Role>()

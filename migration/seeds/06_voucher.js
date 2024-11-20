@@ -7,7 +7,6 @@ exports.seed = async function (knex) {
   await knex("voucher").del();
   await knex("voucher").insert([
     {
-      uniqueid: "VCHR001",
       name: "Discount 10%",
       description: "10% off on all items",
       percent: "10",
@@ -18,7 +17,6 @@ exports.seed = async function (knex) {
       rankid: "R01",
     },
     {
-      uniqueid: "VCHR002",
       name: "Discount 20%",
       description: "20% off on selected items",
       percent: "20",
@@ -29,7 +27,6 @@ exports.seed = async function (knex) {
       rankid: "R02",
     },
     {
-      uniqueid: "VCHR003",
       name: "New Year Special",
       description: "Special voucher for New Year",
       percent: "15",
@@ -40,7 +37,6 @@ exports.seed = async function (knex) {
       rankid: "R01",
     },
     {
-      uniqueid: "VCHR004",
       name: "Cashback $10",
       description: "Get $10 cashback",
       percent: null,
@@ -51,7 +47,6 @@ exports.seed = async function (knex) {
       rankid: "R03",
     },
     {
-      uniqueid: "VCHR005",
       name: "VIP Discount 25%",
       description: "25% off for VIP members",
       percent: "25",
@@ -62,7 +57,6 @@ exports.seed = async function (knex) {
       rankid: "R04",
     },
     {
-      uniqueid: "VCHR006",
       name: "Free Shipping",
       description: "Free shipping on orders above $50",
       percent: null,
@@ -73,7 +67,6 @@ exports.seed = async function (knex) {
       rankid: "R01",
     },
     {
-      uniqueid: "VCHR007",
       name: "Buy 1 Get 1",
       description: "Buy one, get one free",
       percent: null,
@@ -84,7 +77,6 @@ exports.seed = async function (knex) {
       rankid: "R05",
     },
     {
-      uniqueid: "VCHR008",
       name: "Flash Sale",
       description: "Limited time flash sale",
       percent: "30",
@@ -95,7 +87,6 @@ exports.seed = async function (knex) {
       rankid: "R02",
     },
     {
-      uniqueid: "VCHR009",
       name: "Exclusive 5%",
       description: "5% off for exclusive members",
       percent: "5",
@@ -106,7 +97,6 @@ exports.seed = async function (knex) {
       rankid: "R03",
     },
     {
-      uniqueid: "VCHR010",
       name: "Holiday Special",
       description: "Special discount for holidays",
       percent: null,

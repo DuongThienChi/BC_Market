@@ -7,7 +7,6 @@ exports.seed = async function (knex) {
 
   await knex("product").insert([
     {
-      uniqueid: "1",
       name: "Fresh Pork",
       description: "1kg Fresh Pork",
       price: 10,
@@ -18,7 +17,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "2",
       name: "Chicken Breast",
       description: "500g Chicken Breast",
       price: 7,
@@ -29,7 +27,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "3",
       name: "Salmon Fillet",
       description: "500g Fresh Salmon",
       price: 15,
@@ -40,7 +37,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "4",
       name: "Shrimps",
       description: "1kg Shrimps",
       price: 12,
@@ -51,7 +47,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "5",
       name: "Whole Milk",
       description: "1L Fresh Whole Milk",
       price: 3,
@@ -62,7 +57,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "6",
       name: "Skimmed Milk",
       description: "1L Skimmed Milk",
       price: 2.5,
@@ -73,7 +67,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "7",
       name: "Broccoli",
       description: "500g Fresh Broccoli",
       price: 4,
@@ -84,7 +77,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "8",
       name: "Carrots",
       description: "1kg Fresh Carrots",
       price: 3,
@@ -95,7 +87,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "9",
       name: "Spinach",
       description: "500g Fresh Spinach",
       price: 5,
@@ -106,7 +97,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "10",
       name: "Tomatoes",
       description: "1kg Fresh Tomatoes",
       price: 4,
@@ -117,7 +107,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "11",
       name: "Ground Beef",
       description: "500g Ground Beef",
       price: 9,
@@ -128,7 +117,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "12",
       name: "Yogurt",
       description: "500g Yogurt",
       price: 6,
@@ -139,7 +127,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "13",
       name: "Shrimp Paste",
       description: "500g Shrimp Paste",
       price: 10,
@@ -150,7 +137,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "14",
       name: "Cucumber",
       description: "1kg Fresh Cucumber",
       price: 3,
@@ -161,7 +147,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "15",
       name: "Tofu",
       description: "500g Fresh Tofu",
       price: 4,
@@ -172,7 +157,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "16",
       name: "Cod Fillet",
       description: "500g Cod Fillet",
       price: 13,
@@ -183,7 +167,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "17",
       name: "Face Cream",
       description: "50ml Face Cream",
       price: 20,
@@ -194,7 +177,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "18",
       name: "Shampoo",
       description: "500ml Hair Shampoo",
       price: 8,
@@ -205,7 +187,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "19",
       name: "Body Lotion",
       description: "500ml Body Lotion",
       price: 10,
@@ -216,7 +197,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "20",
       name: "Salmon Roe",
       description: "100g Fresh Salmon Roe",
       price: 30,
@@ -227,7 +207,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "21",
       name: "Grilled Chicken Breast",
       description: "1kg Grilled Chicken Breast",
       price: 20,
@@ -238,7 +217,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "22",
       name: "Beef Tenderloin",
       description: "500g Beef Tenderloin",
       price: 12,
@@ -249,7 +227,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "23",
       name: "Pork Chops",
       description: "2kg Pork Chops",
       price: 32,
@@ -260,7 +237,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "24",
       name: "Ground Turkey",
       description: "300g Ground Turkey",
       price: 10,
@@ -271,7 +247,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "25",
       name: "Lamb Shanks",
       description: "1kg Lamb Shanks",
       price: 18,
@@ -281,8 +256,7 @@ exports.seed = async function (knex) {
       status: true,
       orderquantity: 0,
     },
-    {
-      uniqueid: "26",
+        {
       name: "Salmon Fillet",
       description: "2kg Fresh Salmon Fillet",
       price: 30,
@@ -293,7 +267,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "27",
       name: "Shrimp Scampi",
       description: "400g Fresh Shrimp Scampi",
       price: 20,
@@ -304,7 +277,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "28",
       name: "Mahi-Mahi",
       description: "1kg Mahi-Mahi",
       price: 21,
@@ -315,7 +287,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "29",
       name: "Tuna Steak",
       description: "800g Tuna Steak",
       price: 10,
@@ -326,7 +297,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "30",
       name: "Crab Cakes",
       description: "1kg Crab Cakes",
       price: 6,
@@ -337,7 +307,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "31",
       name: "Organic Spinach",
       description: "500g Organic Spinach",
       price: 5,
@@ -348,7 +317,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "32",
       name: "Sweet Potatoes",
       description: "700g Sweet Potatoes",
       price: 12,
@@ -359,7 +327,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "33",
       name: "Bell Peppers",
       description: "500g Bell Peppers",
       price: 8,
@@ -370,7 +337,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "34",
       name: "Zucchini",
       description: "200g Zucchini",
       price: 4,
@@ -381,7 +347,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "35",
       name: "Durian",
       description: "4kg Durian",
       price: 17,
@@ -392,7 +357,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "36",
       name: "Soy Milk",
       description: "300ml Soy Milk",
       price: 6,
@@ -403,7 +367,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "37",
       name: "Skim Milk",
       description: "2000ml Skim Milk",
       price: 16,
@@ -414,7 +377,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "38",
       name: "Coconut Milk",
       description: "500ml Coconut Milk",
       price: 4,
@@ -425,7 +387,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "39",
       name: "Oat Milk",
       description: "500ml Oat Milk",
       price: 13,
@@ -436,7 +397,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "40",
       name: "Almond Milk",
       description: "400ml Almond Milk",
       price: 8,
@@ -447,7 +407,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "41",
       name: "Moisturizing Facial Cream",
       description: "A nourishing cream that hydrates and softens the skin.",
       price: 10,
@@ -458,7 +417,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "42",
       name: "Coconut Oil",
       description: "500ml Coconut Oil",
       price: 10,
@@ -469,7 +427,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "43",
       name: "Organic Green Tea",
       description: "Rich in antioxidants, this herbal tea promotes health ",
       price: 18,
@@ -480,7 +437,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "44",
       name: "Herbal Hair Shampoo",
       description: "Gentle shampoo that cleanses and nourishes the hair",
       price: 12,
@@ -491,7 +447,6 @@ exports.seed = async function (knex) {
       orderquantity: 0,
     },
     {
-      uniqueid: "45",
       name: "Vitamin C Serum",
       description: "A brightening serum",
       price: 6,
@@ -500,6 +455,6 @@ exports.seed = async function (knex) {
       stock: 100,
       status: true,
       orderquantity: 0,
-    },
+    }
   ]);
 };

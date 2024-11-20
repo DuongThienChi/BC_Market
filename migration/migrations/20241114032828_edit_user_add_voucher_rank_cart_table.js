@@ -10,7 +10,7 @@ exports.up = async function (knex) {
         );
         ALTER TABLE "User" ADD FOREIGN KEY (rankID) REFERENCES Rank(UniqueID);
         CREATE TABLE Voucher (
-            UniqueID VARCHAR(10) PRIMARY KEY,
+            UniqueID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
             Name VARCHAR(50) NOT NULL,
             Description VARCHAR(100),
             Percent VARCHAR(5),
@@ -22,25 +22,17 @@ exports.up = async function (knex) {
             FOREIGN KEY (rankID) REFERENCES Rank(UniqueID)
         );
         CREATE TABLE Cart (
-            UniqueID VARCHAR(10) PRIMARY KEY,
-            UserID VARCHAR(10),
+            UniqueID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+            UserID INT,
             FOREIGN KEY (UserID) REFERENCES "User"(UniqueID)
         );
         CREATE TABLE CartDetail (
-            UniqueID VARCHAR(10) PRIMARY KEY,
-            CartID VARCHAR(10),
-            ProductID VARCHAR(10),
+            UniqueID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+            CartID INT,
+            ProductID INT,
             Amount INT,
             FOREIGN KEY (ProductID) REFERENCES Product(UniqueID),
             FOREIGN KEY (CartID) REFERENCES Cart(UniqueID)
-        );
-
-        ALTER TABLE "User" ADD CONSTRAINT chk_curPoint CHECK (
-            (rankID = 'R01' AND curPoint >= 0 AND curPoint < 100) OR
-            (rankID = 'R02' AND curPoint >= 100 AND curPoint < 200) OR
-            (rankID = 'R03' AND curPoint >= 200 AND curPoint <300) OR
-            (rankID = 'R04' AND curPoint >= 300 AND curPoint < 400) OR
-            (rankID = 'R05' AND curPoint >= 400)
         );
 
     `

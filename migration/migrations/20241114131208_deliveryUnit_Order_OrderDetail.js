@@ -14,7 +14,7 @@ exports.up = async function(knex) {
 
       CREATE TABLE "Order" (
       Id SERIAL PRIMARY KEY,
-      userId VARCHAR(10),
+      userId INT,
       shipId INT,
       createAt TIMESTAMP,
       totalPrice DOUBLE PRECISION ,
@@ -25,7 +25,7 @@ exports.up = async function(knex) {
 
       CREATE TABLE OrderDetail (
       OrderId INT,
-      productId VARCHAR(10),
+      productId INT,
       amount INT 
       );
 

@@ -7,84 +7,64 @@ exports.seed = async function (knex) {
   await knex("cart").del();
   await knex("cart").insert([
     {
-      uniqueid: "CART001",
-      userid: "U05",
+      userid: 5,
     },
     {
-      uniqueid: "CART002",
-      userid: "U06",
+      userid: 6,
     },
     {
-      uniqueid: "CART003",
-      userid: "U07",
+      userid: 7,
     },
     {
-      uniqueid: "CART004",
-      userid: "U08",
+      userid: 8,
     },
     {
-      uniqueid: "CART005",
-      userid: "U09",
+      userid: 9,
     },
     {
-      uniqueid: "CART006",
-      userid: "U10",
+      userid: 10,
     },
     {
-      uniqueid: "CART007",
-      userid: "U11",
+      userid: 11,
     },
     {
-      uniqueid: "CART008",
-      userid: "U12",
+      userid: 12,
     },
     {
-      uniqueid: "CART009",
-      userid: "U13",
+      userid: 13,
     },
     {
-      uniqueid: "CART010",
-      userid: "U14",
+      userid: 14,
     },
     {
-      uniqueid: "CART011",
-      userid: "U15",
+      userid: 15,
     },
     {
-      uniqueid: "CART012",
-      userid: "U16",
+      userid: 16,
     },
     {
-      uniqueid: "CART013",
-      userid: "U17",
+      userid: 17,
     },
     {
-      uniqueid: "CART014",
-      userid: "U18",
+      userid: 18,
     },
     {
-      uniqueid: "CART015",
-      userid: "U19",
+      userid: 19,
     },
     {
-      uniqueid: "CART016",
-      userid: "U20",
+      userid: 20,
     },
     {
-      uniqueid: "CART017",
-      userid: "U21",
+      userid: 21,
     },
     {
-      uniqueid: "CART018",
-      userid: "U22",
+      userid: 22,
     },
     {
-      uniqueid: "CART019",
-      userid: "U23",
+      userid: 23,
     },
     {
-      uniqueid: "CART020",
-      userid: "U24",
+      userid: 24,
     },
   ]);
 };

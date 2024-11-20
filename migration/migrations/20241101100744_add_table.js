@@ -16,7 +16,7 @@ exports.up = async function (knex) {
   
       -- Bảng User    
       CREATE TABLE "User" (
-      UniqueID VARCHAR(10) PRIMARY KEY,
+      UniqueID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
       Username VARCHAR(50) NOT NULL,
       Password VARCHAR(1000) NOT NULL,
       Email VARCHAR(100),
@@ -27,7 +27,7 @@ exports.up = async function (knex) {
   
       -- Bảng Product
       CREATE TABLE product (
-      UniqueID VARCHAR(10) PRIMARY KEY,
+      UniqueID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
       Name VARCHAR(100) NOT NULL,
       Description VARCHAR(150),
       Price Double precision NOT NULL,

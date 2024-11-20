@@ -39,7 +39,7 @@ namespace BC_Market.Views
             var button = sender as Button;
             var editedProduct = new Product
             {
-                Id = Id.Text,
+                Id = Int32.Parse(Id.Text),
                 Name = Name.Text,
                 Description = Descript.Text,
                 Price = Double.Parse(Price.Text),
@@ -50,7 +50,7 @@ namespace BC_Market.Views
             };
 
             // check to confirm all fields are filled
-            if (string.IsNullOrEmpty(editedProduct.Id) || string.IsNullOrEmpty(editedProduct.Name) ||
+            if (string.IsNullOrEmpty(editedProduct.Name) ||
                 string.IsNullOrEmpty(editedProduct.Description) || string.IsNullOrEmpty(editedProduct.CategoryId) ||
                 string.IsNullOrEmpty(editedProduct.Status))
             {

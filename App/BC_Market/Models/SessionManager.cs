@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public static class SessionManager
 {
     private static Dictionary<string, object> sessionData = new Dictionary<string, object>();

@@ -72,6 +72,7 @@ namespace BC_Market.Views
         }
 
 
+
         // Select all items
         private void allCheckBox_Click(object sender, RoutedEventArgs e)
         {
@@ -80,6 +81,36 @@ namespace BC_Market.Views
             {
                 item.IsSelected = isChecked;
             }
+        }
+        private void VoucherButton_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+        private void VoucherSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (e.AddedItems.Count > 0)
+            //{
+            //    var selectedVoucher = (Voucher)e.AddedItems[0];
+            //    SelectedVoucherTextBlock.Text = selectedVoucher.Name;
+            //    // Close the flyout after selection
+            //    FlyoutBase.GetAttachedFlyout(VoucherStackPanel).Hide();
+            //}
+        }
+        private void DeliveryButton_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+        private void DeliverySelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (e.AddedItems.Count > 0)
+            //{
+            //    var selectedVoucher = (Voucher)e.AddedItems[0];
+            //    SelectedVoucherTextBlock.Text = selectedVoucher.Name;
+            //    // Close the flyout after selection
+            //    FlyoutBase.GetAttachedFlyout(VoucherStackPanel).Hide();
+            //}
         }
 
 

@@ -12,6 +12,6 @@ namespace BC_Market.Models
         public int Id { get; set; }
         public ObservableCollection<CartProduct> CartProducts { get; set; }
 
-        public string customerId { get; set; }
+        public int customerId { get; set; }
     }
 }

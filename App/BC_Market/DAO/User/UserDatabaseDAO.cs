@@ -16,13 +16,12 @@ namespace BC_Market.DAO
         public void Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);
-            var sql = $@"INSERT INTO ""User"" (uniqueid, username, password, roleid, rankid, curpoint) VALUES (@Id, @Username, @Password, @RoleId, @RankId, @CurPoint)";
+            var sql = $@"INSERT INTO ""User"" (username, password, roleid, rankid, curpoint) VALUES (@Username, @Password, @RoleId, @RankId, @CurPoint)";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Id", obj.Id);
                     cmd.Parameters.AddWithValue("@Username", obj.Username);
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
@@ -112,13 +111,13 @@ namespace BC_Market.DAO
                             Console.WriteLine(reader["rankid"]);
                             var user = new USER()
                             {
-                                Id = reader["uniqueid"] as string,
+                                Id = (int)reader["uniqueid"],
                                 Username = reader["username"] as string,
                                 Password = reader["password"] as string,
                                 Email = reader["email"] as string,
                                 Roles = new List<Role> { new Role { Name = reader["name"] as string } },
-                                Rank = reader["rankid"] == null ? "" : reader["rankid"] as string,
-                                Point = reader["curpoint"] == null ? 0 : int.Parse(reader["curpoint"].ToString())
+                                Rank = reader["rankid"] != DBNull.Value ? reader["rankid"] as string : "R01",   
+                                Point = reader["curpoint"] != DBNull.Value ? (int)reader["curpoint"] : 0
                             };
                             response.Add(user);
                         }

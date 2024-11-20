@@ -27,5 +27,6 @@ namespace BC_Market.Models
             set => SetProperty(ref _isSelected, value);
         }
 
+        // Constructor for CartProduct
     }
 }

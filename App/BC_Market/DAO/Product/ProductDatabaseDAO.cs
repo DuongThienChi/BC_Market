@@ -20,13 +20,12 @@ namespace BC_Market.DAO
         // Add a new product to the database
         public void Add(Product obj)
         {
-            var sql = $@"INSERT INTO product (uniqueid, name, description, price, stock, cateid, imagepath, status, orderquantity) VALUES (@Id, @Name, @Description, @Price, @Stock, @CategoryId, @ImagePath, @Status, @OrderQuantity)";
+            var sql = $@"INSERT INTO product (name, description, price, stock, cateid, imagepath, status, orderquantity) VALUES (@Name, @Description, @Price, @Stock, @CategoryId, @ImagePath, @Status, @OrderQuantity)";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Id", obj.Id);
                     cmd.Parameters.AddWithValue("@Name", obj.Name);
                     cmd.Parameters.AddWithValue("@Description", obj.Description);
                     cmd.Parameters.AddWithValue("@Price", obj.Price);
@@ -151,7 +150,7 @@ namespace BC_Market.DAO
                         while (reader.Read())
                         {
                             var product = new Product();
-                            product.Id = (string)reader["uniqueid"];
+                            product.Id = (int)reader["uniqueid"];
                             product.Name = (string)reader["name"];
                             product.Description = (string)reader["description"];
                             product.Price = (double)reader["price"];

@@ -36,7 +36,6 @@ namespace BC_Market.Views
             // create new Product from entered information
             var product = new Product
             {
-                Id = Id.Text,
                 Name = Name.Text,
                 Description = Descript.Text,
                 Price = Double.Parse(Price.Text),
@@ -47,7 +46,7 @@ namespace BC_Market.Views
             };
 
             // check to confirm all fields are filled
-            if (string.IsNullOrEmpty(product.Id) || string.IsNullOrEmpty(product.Name) || 
+            if ( string.IsNullOrEmpty(product.Name) || 
                 string.IsNullOrEmpty(product.Description) || string.IsNullOrEmpty(product.CategoryId) || 
                 string.IsNullOrEmpty(product.Status))
             {

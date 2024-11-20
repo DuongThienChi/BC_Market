@@ -11,6 +11,8 @@ exports.seed = async function (knex) {
       email: "admin@example.com",
       createat: knex.fn.now(),
       roleid: "R01",
+      rankid: "R01",
+      curpoint: 0,
     }, // Admin
     {
       username: "manager",
@@ -18,6 +20,8 @@ exports.seed = async function (knex) {
       email: "manager@example.com",
       createat: knex.fn.now(),
       roleid: "R02",
+      rankid: "R01",
+      curpoint: 0,
     }, // Manager
     {
       username: "cashier",
@@ -25,6 +29,8 @@ exports.seed = async function (knex) {
       email: "cashier@example.com",
       createat: knex.fn.now(),
       roleid: "R04",
+      rankid: "R01",
+      curpoint: 0,
     }, // Cashier
     {
       username: "shopper",

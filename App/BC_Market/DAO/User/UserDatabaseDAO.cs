@@ -136,6 +136,7 @@ namespace BC_Market.DAO
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
+                    cmd.Parameters.AddWithValue("@Id", obj.Id);
                     cmd.Parameters.AddWithValue("@Username", obj.Username);
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);

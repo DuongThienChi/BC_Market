@@ -177,6 +177,7 @@ namespace BC_Market.DAO
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
+                    cmd.Parameters.AddWithValue("@uniqueid", obj.Id);
                     cmd.Parameters.AddWithValue("@name", obj.Name);
                     cmd.Parameters.AddWithValue("@description", obj.Description);
                     cmd.Parameters.AddWithValue("@price", obj.Price);

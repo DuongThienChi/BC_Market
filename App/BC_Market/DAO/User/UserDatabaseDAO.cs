@@ -115,7 +115,7 @@ namespace BC_Market.DAO
                                 Password = reader["password"] as string,
                                 Email = reader["email"] as string,
                                 Roles = new List<Role> { new Role { Name = reader["name"] as string } },
-                                Rank = reader["rankid"] != DBNull.Value ? reader["rankid"] as string : "R01",   
+                                Rank = reader["rankid"] != DBNull.Value ? reader["rankid"] as string : "R01",  
                                 Point = reader["curpoint"] != DBNull.Value ? (int)reader["curpoint"] : 0
                             };
                             response.Add(user);

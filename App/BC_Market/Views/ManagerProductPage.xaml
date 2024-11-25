@@ -208,9 +208,12 @@
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate x:DataType="category:Product">
                                 <Grid CornerRadius="4"
-                                  Padding="0 10"
-                                  Margin="20 0"
-                                  Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                                      Padding="0 10"
+                                      Margin="20 0"
+                                      Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                                      BorderBrush="Black"
+                                      BorderThickness="1"
+                                      
                               >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.5*"/>
@@ -224,50 +227,58 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding Id}" 
-                                       Grid.Column="0"
-                                       Foreground="White" 
-                                       Padding="5 0"
+                                               Grid.Column="0"
+                                               Foreground="White" 
+                                               Padding="5 0"
+                                               VerticalAlignment="Center"
                                        />
                                     <TextBlock Text="{Binding Name}" 
-                                       Grid.Column="1"
-                                       Foreground="White"
-                                       />
+                                               Grid.Column="1"
+                                               Foreground="White"
+                                               VerticalAlignment="Center"
+                                           />   
                                     <TextBlock Text="{Binding Description}" 
-                                       Grid.Column="2"
-                                       Foreground="White"
+                                               Grid.Column="2"
+                                               Foreground="White"
+                                               VerticalAlignment="Center"
                                        />
                                     <TextBlock Text="{Binding Price}" 
-                                       Grid.Column="3"
-                                       Foreground="White"
+                                               Grid.Column="3"
+                                               Foreground="White"
+                                               VerticalAlignment="Center"
                                        />
                                     <TextBlock Text="{Binding Stock}" 
-                                       Grid.Column="4"
-                                       Foreground="White"
+                                               Grid.Column="4"
+                                               Foreground="White"
+                                               VerticalAlignment="Center"
                                        />
                                     <TextBlock Text="{Binding Status}" 
-                                       Grid.Column="5"
-                                       Foreground="White"
+                                               Grid.Column="5"
+                                               Foreground="White"
+                                               VerticalAlignment="Center"
                                        />
 
                                     <StackPanel Orientation="Horizontal"
-                                            Grid.Column="6"
+                                                Grid.Column="6"
+                                                VerticalAlignment="Center"
                                             >
                                         <Button x:Name="edit_btn"
-                                            Click="edit_btn_Click"
-                                            Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                                                Click="edit_btn_Click"
+                                                Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                                                
                                             >
                                             <Image Source="../Assets\Images\edit-button.png"
-                                               Width="20"
-                                               Height="20"
+                                                   Width="20"
+                                                   Height="20"
                                                 />
                                         </Button>
                                         <Button x:Name="delete_btn"
-                                            Click="delete_btn_Click"
-                                            Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
+                                                Click="delete_btn_Click"
+                                                Background="{Binding Id, Converter={StaticResource IdToColorConverter}}"
                                             >
                                             <Image Source="../Assets\Images\delete-button.png"
-                                               Width="20"
-                                               Height="20"
+                                                   Width="20"
+                                                   Height="20"
                                                 />
                                         </Button>
                                     </StackPanel>

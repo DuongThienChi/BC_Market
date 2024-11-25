@@ -105,39 +105,43 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="VoucherId" 
-                       Grid.Column="0"
-                       Foreground="White"
-                       Padding="5 0"
+                           Grid.Column="0"
+                           Foreground="White"
+                           Padding="5 0"
                        />
                 <TextBlock Text="Name" 
-                       Grid.Column="1"
-                       Foreground="White"
+                           Grid.Column="1"
+                           Foreground="White"
                            Padding="5 0"
                        />
                 <TextBlock Text="Description" 
-                       Grid.Column="2"
-                       Foreground="White"
+                           Grid.Column="2"
+                           Foreground="White"
                            Padding="5 0"
                        />
                 <TextBlock Text="Percent" 
-                       Grid.Column="3"
-                       Foreground="White"
+                           Grid.Column="3"
+                           Foreground="White"
                            Padding="5 0"
+                           HorizontalAlignment="Center"
                        />
                 <TextBlock Text="Amount" 
-                       Grid.Column="4"
-                       Foreground="White"
+                           Grid.Column="4"
+                           Foreground="White"
                            Padding="5 0"
+                           HorizontalAlignment="Center"
                        />
                 <TextBlock Text="Condition" 
-                       Grid.Column="5"
-                       Foreground="White"
+                           Grid.Column="5"
+                           Foreground="White"
                            Padding="5 0"
+                           HorizontalAlignment="Center"
                        />
                 <TextBlock Text="Stock" 
-                       Grid.Column="6"
-                       Foreground="White"
+                           Grid.Column="6"
+                           Foreground="White"
                            Padding="5 0"
+                           HorizontalAlignment="Center"
                        />
             </Grid>
 
@@ -153,9 +157,11 @@
                     <ItemsRepeater.ItemTemplate>
                         <DataTemplate x:DataType="models:Voucher">
                             <Grid CornerRadius="4"
-                              Padding="0 10"
-                              Margin="20 0"
-                              Background="{Binding VoucherId, Converter={StaticResource IdToColorConverter}}"
+                                    Padding="0 10"
+                                    Margin="20 0"
+                                    Background="{Binding VoucherId, Converter={StaticResource IdToColorConverter}}"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
                           >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -169,62 +175,74 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Text="{Binding VoucherId}" 
-                                   Grid.Column="0"
-                                   Foreground="White" 
-                                   Padding="5 0"
+                                           Grid.Column="0"
+                                           Foreground="White" 
+                                           Padding="5 0"
+                                           VerticalAlignment="Center"
                                    />
                                 <TextBlock Text="{Binding Name}" 
-                                   Grid.Column="1"
-                                   Foreground="White"
+                                           Grid.Column="1"
+                                           Foreground="White"
                                            Padding="5 0"
+                                           VerticalAlignment="Center"
                                    />
                                 <TextBlock Text="{Binding Description}" 
                                            Grid.Column="2"
                                            Foreground="White"
                                            TextWrapping="Wrap"
                                            Padding="5 0"
+                                           VerticalAlignment="Center"
                                    />
                                 <TextBlock Text="{Binding Percent}" 
-                                   Grid.Column="3"
-                                   Foreground="White"
+                                           Grid.Column="3"
+                                           Foreground="White"
                                            Padding="5 0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
                                    />
                                 <TextBlock Text="{Binding Amount}" 
-                                   Grid.Column="4"
-                                   Foreground="White"
+                                           Grid.Column="4"
+                                           Foreground="White"
                                            Padding="5 0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
                                    />
                                 <TextBlock Text="{Binding Condition}" 
-                                   Grid.Column="5"
-                                   Foreground="White"
+                                           Grid.Column="5"
+                                           Foreground="White"
                                            Padding="5 0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
                                    />
                                 <TextBlock Text="{Binding Stock}" 
-                                   Grid.Column="6"
-                                   Foreground="White"
+                                           Grid.Column="6"
+                                           Foreground="White"
                                            Padding="5 0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
                                    />
 
 
                                 <StackPanel Orientation="Horizontal"
-                                        Grid.Column="7"
+                                            Grid.Column="7"
+                                            VerticalAlignment="Center"
                                         >
                                     <Button x:Name="edit_btn"
-                                        Click="edit_btn_Click"
-                                        Background="{Binding VoucherId, Converter={StaticResource IdToColorConverter}}"
+                                            Click="edit_btn_Click"
+                                            Background="{Binding VoucherId, Converter={StaticResource IdToColorConverter}}"
                                         >
                                         <Image Source="../Assets\Images\edit-button.png"
-                                           Width="20"
-                                           Height="20"
+                                               Width="20"
+                                               Height="20"
                                             />
                                     </Button>
                                     <Button x:Name="delete_btn"
-                                        Click="delete_btn_Click"
-                                        Background="{Binding VoucherId, Converter={StaticResource IdToColorConverter}}"
+                                            Click="delete_btn_Click"
+                                            Background="{Binding VoucherId, Converter={StaticResource IdToColorConverter}}"
                                         >
                                         <Image Source="../Assets\Images\delete-button.png"
-                                           Width="20"
-                                           Height="20"
+                                               Width="20"
+                                               Height="20"
                                             />
                                     </Button>
                                 </StackPanel>

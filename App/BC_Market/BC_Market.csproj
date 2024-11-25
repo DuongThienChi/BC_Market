@@ -36,9 +36,11 @@
     <None Remove="Views\AdminManageAccountPage.xaml" />
     <None Remove="Views\AdminProductPage.xaml" />
     <None Remove="Views\AdminVoucherPage.xaml" />
+    <None Remove="Views\CashierPage.xaml" />
     <None Remove="Views\EditProductDialog.xaml" />
     <None Remove="Views\EditVoucherDialog.xaml" />
     <None Remove="Views\ManagerVoucherPage.xaml" />
+    <None Remove="Views\OrderPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -116,6 +118,12 @@
     <None Update="Assets\Images\logout-button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\OrderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\CashierPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\ManagerVoucherPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

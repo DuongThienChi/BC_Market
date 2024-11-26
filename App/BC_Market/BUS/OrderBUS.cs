@@ -21,6 +21,10 @@ namespace BC_Market.BUS
         {
             _dao = dao;
         }
+        public dynamic Add(Order order)
+        {
+            return _dao.Add(order);
+        }
 
         public dynamic Get(Dictionary<string, string> configuration)
         {
@@ -31,10 +35,15 @@ namespace BC_Market.BUS
         {
             throw new NotImplementedException();
         }
-
+        
         public IDAO<Order> Dao()
         {
             return _dao;
+        }
+
+        public dynamic Update(Order obj)
+        {
+            return _dao.Update(obj);
         }
 
         // Các phương thức khác...

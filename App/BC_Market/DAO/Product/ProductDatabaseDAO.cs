@@ -18,7 +18,7 @@ namespace BC_Market.DAO
         public ProductDatabaseDAO() { }
 
         // Add a new product to the database
-        public void Add(Product obj)
+        public dynamic Add(Product obj)
         {
             var sql = $@"INSERT INTO product (name, description, price, stock, cateid, imagepath, status, orderquantity) VALUES (@Name, @Description, @Price, @Stock, @CategoryId, @ImagePath, @Status, @OrderQuantity)";
             using (var conn = new NpgsqlConnection(connectionString))
@@ -37,7 +37,9 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
             }
+            return false;
         }
 
         // Remove a product from the database
@@ -95,7 +97,7 @@ namespace BC_Market.DAO
                 SELECT * 
                 FROM product JOIN category 
                 ON product.cateid = category.uniqueid
-                WHERE product.name ILIKE '%' || @searchKey || '%' AND category.name ILIKE '%' || @category || '%'
+                WHERE (product.name ILIKE '%' || @searchKey || '%' AND category.name ILIKE '%' || @category || '%') and product.stock > 0 and product.status = true
                 OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY";
             if (configuration["take"] == "100000") // If take is 100000, get the count of products
             {
@@ -104,7 +106,7 @@ namespace BC_Market.DAO
                 SELECT count(*)
                 FROM product JOIN category 
                 ON product.cateid = category.uniqueid
-                WHERE product.name ILIKE '%' || @searchKey || '%' AND category.name ILIKE '%' || @category || '%'
+                WHERE (product.name ILIKE '%' || @searchKey || '%' AND category.name ILIKE '%' || @category || '%') and product.stock > 0 and product.status = true
                 OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY";
             }
             using (var conn = new NpgsqlConnection(connectionString))
@@ -169,9 +171,10 @@ namespace BC_Market.DAO
         }
 
         // Update a product in the database
-        public void Update(Product obj)
+        public dynamic Update(Product obj)
         {
-            var sql = $@"UPDATE product SET name = @name, description = @description, price = @price, stock = @stock, cateid = @cateid, imagepath = @imagepath, status = @status, orderquantity = @orderquantity WHERE uniqueid = @uniqueid";
+            var sql = $@"UPDATE product SET name = @name, description = @description, price = @price, stock = @stock, cateid = @cateid, imagepath = @imagepath, status = @status, orderquantity = @orderquantity 
+                    WHERE uniqueid = @uniqueid";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -189,7 +192,9 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
             }
+            return false;
         }
     }
 }

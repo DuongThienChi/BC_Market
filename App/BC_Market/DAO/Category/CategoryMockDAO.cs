@@ -48,9 +48,10 @@ namespace BC_Market.DAO
             };
         public CategoryMockDAO() { }
 
-        public void Add(Category obj)
+        public dynamic Add(Category obj)
         {
             categories.Add(obj);
+            return obj;
         }
 
         public void Delete(Category obj)
@@ -73,6 +74,11 @@ namespace BC_Market.DAO
         }
 
         public void Update(Category obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        dynamic IDAO<Category>.Update(Category obj)
         {
             throw new NotImplementedException();
         }

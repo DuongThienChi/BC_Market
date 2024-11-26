@@ -1,4 +1,5 @@
 ﻿using BC_Market.DAO;
+using BC_Market.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace BC_Market.BUS
         public IDAO<T> Dao(); 
         IBUS<T> CreateNew(IDAO<T> dao);
         public dynamic Get(Dictionary<string, string> configuration);
-        void UpdateUser(object user);
+        public dynamic Add(T obj);
+        public dynamic Update(T obj);
     }
 }

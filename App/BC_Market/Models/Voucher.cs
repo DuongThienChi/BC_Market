@@ -11,17 +11,17 @@ namespace BC_Market.Models
 {
     public class Voucher
     {
-        public string VoucherId { get; set; }
+        public int VoucherId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Percent { get; set; }
+        public int Percent { get; set; }
         public int Amount { get; set; }
         public double Condition { get; set; }
         public int Stock { get; set; }
         public DateTime Validate { get; set; }
         public string RankId { get; set; }
 
-        public Voucher CreateVoucher(string name, string description, string percent, int amount, double condition, int stock, DateTime validate, string rankId)
+        public Voucher CreateVoucher(string name, string description, int percent, int amount, double condition, int stock, DateTime validate, string rankId)
         {
             return new Voucher
             {
@@ -34,6 +34,10 @@ namespace BC_Market.Models
                 Validate = validate,
                 RankId = rankId
             };
+        }
+        public bool isCondition(double total)
+        {
+            return total >= Condition;
         }
     }
 }

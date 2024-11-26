@@ -1,4 +1,5 @@
-﻿using BC_Market.Views;
+﻿using BC_Market.Services;
+using BC_Market.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -34,6 +35,7 @@ namespace BC_Market
         public App()
         {
             this.InitializeComponent();
+            
         }
 
         /// <summary>
@@ -43,6 +45,8 @@ namespace BC_Market
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new HomeWindow();
+            Frame rootFrame = m_window.Content as Frame;
+            NavigationService.Initialize(rootFrame);
             m_window.Activate();
         }
 

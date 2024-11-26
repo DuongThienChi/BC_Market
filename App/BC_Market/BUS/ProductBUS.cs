@@ -37,6 +37,16 @@ namespace BC_Market.BUS
             return _dao;
         }
 
+        public dynamic Add(Product obj)
+        {
+             return _dao.Add(obj);
+        }
+
+        public dynamic Update(Product obj)
+        {
+            return _dao.Update(obj);
+        }
+
         // Các phương thức khác...
     }
 

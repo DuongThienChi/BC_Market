@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using BC_Market.Models;
@@ -10,8 +11,9 @@ namespace BC_Market.DAO
 {
     public class VoucherDatabaseDAO : IDAO<Voucher>
     {
+        private DateOnly curdate = DateOnly.FromDateTime(DateTime.Now);
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
-        public void Add(Voucher obj)
+        public dynamic Add(Voucher obj)
         {
 
             var sql = $@"INSERT INTO voucher (uniqueid, name, description, percent, amount, condition, stock, validate, rankid) 
@@ -34,7 +36,9 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
             }
+            return false;
         }
 
         public void Delete(Voucher obj)
@@ -51,26 +55,41 @@ namespace BC_Market.DAO
                 conn.Close();
             }
         }
-
-        public dynamic Get(Dictionary<string, string> configuration)
+        public dynamic Get (Dictionary<string, string> configuration)
         {
-            var sql = $@"SELECT * FROM voucher";
+            if (configuration == null)
+            {
+                return GetAll();
+            }
+            else if (configuration.Keys.Contains("rankid"))
+            {
+                return GetVoucherbyRankid(configuration["rankid"]);
+            }
+            return null;
+
+        }
+
+        private dynamic GetVoucherbyRankid(string rankid)
+        {
+            var sql = $@"SELECT * FROM voucher WHERE rankid = @RankId AND validate > @CurDate";
             List<Voucher> response = new List<Voucher>();
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
+                    cmd.Parameters.AddWithValue("@RankId", rankid);
+                    cmd.Parameters.AddWithValue("@CurDate", curdate);
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             Voucher voucher = new Voucher
                             {
-                                VoucherId = reader["uniqueid"].ToString(),
+                                VoucherId = Convert.ToInt32(reader["uniqueid"]),
                                 Name = reader["name"].ToString(),
                                 Description = reader["description"].ToString(),
-                                Percent = reader["percent"].ToString(),
+                                Percent = reader["percent"] == DBNull.Value ? 0 : Convert.ToInt32(reader["percent"]),
                                 Amount = reader["amount"] == DBNull.Value ? 0 : Convert.ToInt32(reader["amount"]),
                                 Condition = reader["condition"] == DBNull.Value ? 0 : Convert.ToDouble(reader["condition"]),
                                 Stock = reader["stock"] == DBNull.Value ? 0 : Convert.ToInt32(reader["stock"]),
@@ -86,7 +105,42 @@ namespace BC_Market.DAO
             return response;
         }
 
-        public void Update(Voucher obj)
+        public dynamic GetAll()
+        {
+            var sql = $@"SELECT * FROM voucher";
+            List<Voucher> response = new List<Voucher>();
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Voucher voucher = new Voucher
+                            {
+                                VoucherId = Convert.ToInt32(reader["uniqueid"]),
+                                Name = reader["name"].ToString(),
+                                Description = reader["description"].ToString(),
+                                Percent = reader["percent"] == DBNull.Value ? 0 : Convert.ToInt32(reader["percent"]),
+                                Amount = reader["amount"] == DBNull.Value ? 0 : Convert.ToInt32(reader["amount"]),
+                                Condition = reader["condition"] == DBNull.Value ? 0 : Convert.ToDouble(reader["condition"]),
+                                Stock = reader["stock"] == DBNull.Value ? 0 : Convert.ToInt32(reader["stock"]),
+                                Validate = reader["validate"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["validate"]),
+                                RankId = reader["rankid"].ToString()
+                            };
+                            response.Add(voucher);
+                        }
+                    }
+                }
+                conn.Close();
+            }
+            return response;
+        }
+
+
+        public dynamic Update(Voucher obj)
         {
             var sql = $@"UPDATE voucher SET name = @Name, 
                                 description = @Description, 
@@ -115,7 +169,9 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
             }
+            return false;
         }
     }
 }

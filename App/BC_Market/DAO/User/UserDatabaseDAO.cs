@@ -12,7 +12,7 @@ namespace BC_Market.DAO
     public class UserDatabaseDAO : IDAO<USER>
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
-        public void Add(USER obj)
+        public dynamic Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);
             var sql = $@"INSERT INTO ""User"" (username, password, roleid, rankid, curpoint) VALUES (@Username, @Password, @RoleId, @RankId, @CurPoint)";
@@ -29,7 +29,9 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
             }
+            return false;
         }
 
 
@@ -127,7 +129,7 @@ namespace BC_Market.DAO
             }
         }
 
-        public void Update(USER obj)
+        public dynamic Update(USER obj)
         {
             var role = getRole(obj.Roles[0].Name);
             var sql = $@"UPDATE ""User"" SET username = @Username, password = @Password, roleid = @RoleId, rankid=@RankId, curpoint=@CurPoint WHERE uniqueid = @Id";
@@ -145,7 +147,9 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
             }
+            return false;
         }
 
         public Role getRole(string name)

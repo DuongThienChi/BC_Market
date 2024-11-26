@@ -31,19 +31,7 @@ namespace BC_Market.ViewModels
         private IFactory<Product> _factory = new ProductFactory();
         private IBUS<Product> _bus;
         private int totalPages; // Define the totalPages field
-        private Dictionary<Product, int> Carts = new Dictionary<Product, int>(); 
-        public Dictionary<Product, int> CartList
-        {
-            get => Carts;
-            set
-            {
-                if (SetProperty(ref Carts, value))
-                {
-                    //CartList = Carts;
-                    OnPropertyChanged(nameof(CartList));
-                }
-            }
-        }
+        public Cart cart { get; set; } // Define the cart field
         public int ProductInCart; // Number of products in the cart
         private List<string> _suggestions; 
         public List<string> Suggestions
@@ -124,16 +112,10 @@ namespace BC_Market.ViewModels
         {
             PreviousPageCommand = new RelayCommand(GoPreviousPage);
             NextPageCommand = new RelayCommand(GoNextPage);
+            cart = SessionManager.Get("Cart") as Cart;
             _bus = _factory.CreateBUS();
             LoadProducts(); // Load products
-            if (CartList != null)
-            {
-                ProductInCart = CartList.Count;
-            }
-            else
-            {
-                ProductInCart = 0;
-            }
+            ProductInCart = cart.count;
             // Define the Commands for UI
             GetCategoryCommand = new Dictionary<string, ICommand> {
                      { "All", new RelayCommand(() => GetProductsByCategory("All")) },
@@ -147,7 +129,7 @@ namespace BC_Market.ViewModels
             TextChangedCommand = new RelayCommand<string>(OnTextChanged);
             SuggestionChosenCommand = new RelayCommand<string>(OnSuggestionChosen);
             QuerySubmittedCommand = new RelayCommand<string>(OnQuerySubmitted);
-            AddCartCommand = new RelayCommand<Product>(AddCart);
+            AddCartCommand = new RelayCommand<Product>(AddCart, CanAddToCart);
 
         }
 
@@ -233,19 +215,34 @@ namespace BC_Market.ViewModels
         }
         private void AddCart(Product product) // Add a product to the cart
         {
-            ProductInCart++;
-            foreach (var item in CartList)
+            foreach (var item in cart.CartProducts)
             {
-                if (item.Key.Id == product.Id) // Check if the product is already in the cart
+                if (item.Product.Id == product.Id) // Check if the product is already in the cart
                 {
-                    CartList[item.Key] += 1;
+                    if (item.Quantity >= product.Stock) // Check if the quantity exceeds the stock
+                    {
+                        ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
+                        return;
+                    }
+
+                    item.Quantity += 1;
                     OnPropertyChanged(nameof(ProductInCart));
+                    ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
                     return;
                 }
             }
-            CartList.Add(product, 1); // Add the product to the cart
 
-            OnPropertyChanged(nameof(ProductInCart)); 
+            if (product.Stock > 0) // Check if the product is in stock
+            {
+                cart.CartProducts.Add(new CartProduct { Product = product, Quantity = 1 });
+                ProductInCart++;
+                OnPropertyChanged(nameof(ProductInCart));
+                ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
+            }
+            else
+            {
+                ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
+            }
         }
         private void GoPreviousPage() // Go to the previous page
         {
@@ -276,6 +273,15 @@ namespace BC_Market.ViewModels
 
             configuration["skip"] = Skip.ToString();
             LoadProducts();
+        }
+        private bool CanAddToCart(Product product)
+        {
+            var cartProduct = cart.CartProducts.FirstOrDefault(item => item.Product.Id == product.Id);
+            if (cartProduct == null)
+            {
+                return product.Stock > 0;
+            }
+            return cartProduct.Quantity < product.Stock;
         }
 
     }

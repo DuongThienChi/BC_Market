@@ -11,7 +11,7 @@ namespace BC_Market.DAO
     class CategoryDatabaseDAO : IDAO<Category> // Implement interface IDAO
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  //Get connection string from appsettings.json
-        public void Add(Category obj) // Add a new category to the database
+        public dynamic Add(Category obj) // Add a new category to the database
         {
             var sql = $@"INSERT INTO category (uniqueid, name, description) VALUES (@Id, @Name, @Description)";
             using (var conn = new NpgsqlConnection(connectionString))
@@ -25,7 +25,10 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
+                
             }
+            return false;
         }
 
         public void Delete(Category obj) // Remove a category from the database
@@ -116,9 +119,10 @@ namespace BC_Market.DAO
             }
         }
 
-        public void Update(Category obj) // Update a category in the database
+        public dynamic Update(Category obj) // Update a category in the database
         {
-            var sql = $@"UPDATE category SET name = @Name, description = @Description WHERE uniqueid = @Id";
+            var sql = $@"UPDATE category SET name = @Name, description = @Description 
+                        WHERE uniqueid = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -130,7 +134,9 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+                return true;
             }
+            return false;
         }
     }
 }

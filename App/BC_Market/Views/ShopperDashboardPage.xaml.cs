@@ -84,8 +84,8 @@ namespace BC_Market.Views
         private void CartButton_Clicked(object sender, RoutedEventArgs e)
         {
             var cartPage = new ShopperOrderPage();
-            cartPage.ViewModel.CartList = new ObservableCollection<KeyValuePair<Product, int>>(ViewModel.CartList);
-            this.Frame.Navigate(typeof(ShopperOrderPage), cartPage.ViewModel.CartList);
+            //SessionManager.Set("Cart", ViewModel.cart);
+            this.Frame.Navigate(typeof(ShopperOrderPage));
         }
         private void SortPriceAscending_Clicked(object sender, RoutedEventArgs e)
         {
@@ -103,21 +103,6 @@ namespace BC_Market.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            var parameters = e.Parameter as dynamic; // dynamic type to get multiple parameters
-            if (parameters != null)
-            {
-                ViewModel.ProductInCart = parameters.ProductInCart;
-                var cartList = parameters.CartList as ObservableCollection<KeyValuePair<Product, int>>;
-                if (cartList != null)
-                {
-                    ViewModel.CartList = cartList.ToDictionary(item => item.Key, item => item.Value);
-                }
-                else
-                {
-                    ViewModel.CartList = new Dictionary<Product, int>();
-                }
-            }
         }
         private void logout_button_Click(object sender, RoutedEventArgs e)
         {

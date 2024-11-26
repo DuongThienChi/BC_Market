@@ -12,7 +12,7 @@ namespace BC_Market.DAO
     public class OrderDatabaseDAO : IDAO<Order>
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  //Get connection string from appsettings.json
-        public void Add(Order obj)
+        public dynamic Add(Order obj)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -24,12 +24,12 @@ namespace BC_Market.DAO
                         // Insert the order into the Order table
                         string orderSql = @"INSERT INTO ""Order"" (userid, shipid, totalprice, address, paymentmethod, ispaid, createat) 
                                             VALUES (@UserId, @ShipId, @TotalPrice, @Address, @PaymentMethod, @IsPaid, @CreateAt) 
-                                            RETURNING uniqueid";
+                                            RETURNING id";
                         using (var command = new NpgsqlCommand(orderSql, connection))
                         {
                             command.Parameters.AddWithValue("@UserId", obj.customerId);
                             command.Parameters.AddWithValue("@ShipId", obj.deliveryId);
-                            command.Parameters.AddWithValue("@TotalPrice", obj.totalPrice);
+                            command.Parameters.AddWithValue("@TotalPrice", Math.Round(obj.totalPrice, 2));
                             command.Parameters.AddWithValue("@Address", obj.address);
                             command.Parameters.AddWithValue("@PaymentMethod", obj.paymentMethod);
                             command.Parameters.AddWithValue("@IsPaid", obj.isPaid);
@@ -40,7 +40,7 @@ namespace BC_Market.DAO
                         }
 
                         // Insert the order details into the OrderDetail table
-                        string orderDetailSql = @"INSERT INTO ""OrderDetail"" (OrderId, ProductId, amount) 
+                        string orderDetailSql = @"INSERT INTO orderdetail (OrderId, ProductId, amount) 
                                                   VALUES (@OrderId, @ProductId, @Amount)";
                         foreach (var product in obj.Products)
                         {
@@ -55,11 +55,12 @@ namespace BC_Market.DAO
 
                         // Commit the transaction
                         transaction.Commit();
+                        return true;
                     }
                     catch (Exception)
                     {
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
                 }
             }
@@ -75,7 +76,7 @@ namespace BC_Market.DAO
                     try
                     {
                         // Delete the order details from the OrderDetail table
-                        string orderDetailSql = @"DELETE FROM ""OrderDetail"" WHERE ""OrderId"" = @OrderId";
+                        string orderDetailSql = @"DELETE FROM ""OrderDetail"" WHERE orderid = @OrderId";
                         using (var command = new NpgsqlCommand(orderDetailSql, connection))
                         {
                             command.Parameters.AddWithValue("@OrderId", obj.Id);
@@ -83,7 +84,7 @@ namespace BC_Market.DAO
                         }
 
                         // Delete the order from the Order table
-                        string orderSql = @"DELETE FROM ""Order"" WHERE ""uniqueid"" = @OrderId";
+                        string orderSql = @"DELETE FROM ""Order"" WHERE id = @OrderId";
                         using (var command = new NpgsqlCommand(orderSql, connection))
                         {
                             command.Parameters.AddWithValue("@OrderId", obj.Id);
@@ -128,7 +129,7 @@ namespace BC_Market.DAO
                     Product.status,Product.orderquantity, Product.cateid
                     FROM Order Join OrdertDetail on Order.uniqueid = OrderDetail.OrderId 
                     Join Product on OrderDetail.ProductId = Product.uniqueid
-                    WHERE Order.uniqueid = @OrderId";
+                    WHERE Order.id = @OrderId";
                 using (var command = new NpgsqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@OrderId", id);
@@ -177,7 +178,7 @@ namespace BC_Market.DAO
                         {
                             Order order = new Order
                             {
-                                Id = (int)reader["uniqueid"],
+                                Id = (int)reader["id"],
                                 customerId = (int)reader["userid"],
                                 deliveryId = (int)reader["shipid"],
                                 totalPrice = (float)reader["totalprice"],
@@ -193,7 +194,7 @@ namespace BC_Market.DAO
             }
             return orders;
         }
-        public void Update(Order obj)
+        public dynamic Update(Order obj)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -206,7 +207,7 @@ namespace BC_Market.DAO
                         string orderSql = @"UPDATE ""Order"" 
                                             SET userid = @UserId, shipid = @ShipId, totalprice = @TotalPrice, 
                                                 address = @Address, paymentmethod = @PaymentMethod, ispaid = @IsPaid, createat = @CreateAt 
-                                            WHERE uniqueid = @OrderId";
+                                            WHERE id = @OrderId";
                         using (var command = new NpgsqlCommand(orderSql, connection))
                         {
                             command.Parameters.AddWithValue("@OrderId", obj.Id);
@@ -244,12 +245,13 @@ namespace BC_Market.DAO
 
                         // Commit the transaction
                         transaction.Commit();
+                        return true;
                     }
                     catch (Exception)
                     {
                         // Rollback the transaction in case of an error
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
                 }
             }

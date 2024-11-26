@@ -47,10 +47,10 @@ namespace BC_Market.Views
 
             var voucher = new Voucher
             {
-                VoucherId = Id.Text,
+                VoucherId = Int32.Parse(Id.Text),
                 Name = Name.Text,
                 Description = Descript.Text,
-                Percent = Percent.Text,
+                Percent = Int32.Parse(Percent.Text),
                 Amount = Int32.Parse(Amount.Text),
                 Condition = Double.Parse(Condition.Text),
                 Stock = Int32.Parse(Stock.Text),

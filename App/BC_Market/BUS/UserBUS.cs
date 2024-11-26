@@ -45,6 +45,16 @@ namespace BC_Market.BUS
         }
 
         IDAO<USER> IBUS<USER>.Dao() => _dao;
+
+        public dynamic Add(USER obj)
+        {
+            return _dao.Add(obj);
+        }
+
+        public dynamic Update(USER obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

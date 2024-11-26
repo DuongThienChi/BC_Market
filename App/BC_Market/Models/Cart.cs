@@ -13,5 +13,18 @@ namespace BC_Market.Models
         public ObservableCollection<CartProduct> CartProducts { get; set; }
 
         public int customerId { get; set; }
+        public int count
+        {
+            get
+            {
+                int count = 0;
+                foreach (var cartProduct in CartProducts)
+                {
+                    count += cartProduct.Quantity;
+                }
+                return count;
+            }
+            set { }
+        }
     }
 }

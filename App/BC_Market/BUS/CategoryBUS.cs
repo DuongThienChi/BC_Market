@@ -37,6 +37,16 @@ namespace BC_Market.BUS
             return _dao;
         }
 
+        public dynamic Add(Category obj)
+        {
+            return _dao.Add(obj);
+        }
+
+        public dynamic Update(Category obj)
+        {
+            throw new NotImplementedException();
+        }
+
         // Các phương thức khác...
     }
 

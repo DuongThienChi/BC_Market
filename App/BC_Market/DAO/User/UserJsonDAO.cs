@@ -10,7 +10,7 @@ namespace BC_Market.DAO
 {
     public class UserJsonDAO : IDAO<USER>
     {
-        public void Add(USER obj)
+        public dynamic Add(USER obj)
         {
             throw new NotImplementedException();
         }
@@ -26,6 +26,11 @@ namespace BC_Market.DAO
         }
 
         public void Update(USER obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        dynamic IDAO<USER>.Update(USER obj)
         {
             throw new NotImplementedException();
         }

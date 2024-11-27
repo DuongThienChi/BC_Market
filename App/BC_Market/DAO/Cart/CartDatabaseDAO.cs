@@ -13,7 +13,7 @@ namespace BC_Market.DAO
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  //Get connection string from appsettings.json
 
-        public void Add(Cart cart)
+        public dynamic Add(Cart cart)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -50,13 +50,15 @@ namespace BC_Market.DAO
 
                         // Commit the transaction
                         transaction.Commit();
+                        return true;
                     }
                     catch (Exception)
                     {
                         // Rollback the transaction in case of an error
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
+                   
                 }
             }
         }
@@ -70,18 +72,19 @@ namespace BC_Market.DAO
         {
             Cart cart = new Cart();
             ObservableCollection<CartProduct> carts = new ObservableCollection<CartProduct>();
+            int userid = int.Parse(configuration["userId"]);
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
                 String getCartId = @"SELECT uniqueid FROM Cart WHERE userId = @userId";
                 using (var command = new NpgsqlCommand(getCartId, connection))
                 {
-                    command.Parameters.AddWithValue("@userId", configuration["userId"]);
+                    command.Parameters.AddWithValue("@userId", userid);
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            cart.Id = reader.GetInt32(0);
+                            cart.Id = (int)reader["uniqueid"];
                         }
                     }
                 }
@@ -93,8 +96,8 @@ namespace BC_Market.DAO
                                 WHERE Cart.userId = @CustomerId";
                 using (var command = new NpgsqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@userId", configuration["userId"]);
-                    cart.customerId = int.Parse(configuration["userId"]);
+                    command.Parameters.AddWithValue("@CustomerId", userid);
+                    cart.customerId = userid;
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -125,7 +128,7 @@ namespace BC_Market.DAO
             return cart;
         }
 
-        public void Update(Cart cart)
+        public dynamic Update(Cart cart)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -162,11 +165,12 @@ namespace BC_Market.DAO
                         }
 
                         transaction.Commit();
+                        return true;
                     }
                     catch (Exception)
                     {
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
                 }
             }

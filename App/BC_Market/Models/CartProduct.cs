@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using BC_Market.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Windows.Security.Cryptography.Core;
 namespace BC_Market.Models
 {
     public class CartProduct : ObservableObject // Define the CartProduct class
     {
         public Product Product { get; set; }
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 0;
 
         public double TotalPrice
         {
@@ -26,7 +27,6 @@ namespace BC_Market.Models
             get => _isSelected;
             set => SetProperty(ref _isSelected, value);
         }
-
         // Constructor for CartProduct
     }
 }

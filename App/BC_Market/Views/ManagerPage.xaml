@@ -71,12 +71,9 @@
             </Grid.RowDefinitions>
 
 
-            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" RowSpacing="30">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -85,21 +82,28 @@
                 </Grid.RowDefinitions>
 
                 <Button x:Name="product_btn" Click="product_btn_Click" Background="#3D4142"
-                        Grid.Row="0">
+                        Grid.Row="0" HorizontalAlignment="Center" Width="100">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="../Assets\Images\feature-button.png" Width="20"/>
-                        <TextBlock Text="Product" Foreground="#FAC1D9"/>
+                        <Image Source="../Assets\Images\feature-button.png" Width="25"/>
+                        <TextBlock Text="Product" FontWeight="Bold" Foreground="#FAC1D9"/>
                     </StackPanel>
                     
                 </Button>
 
                 <Button x:Name="voucher_btn" Click="voucher_btn_Click" Background="#3D4142"
-                        Grid.Row="1">
+                        Grid.Row="1" HorizontalAlignment="Center" Width="100">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="../Assets\Images\feature-button.png" Width="20"/>
-                        <TextBlock Text="Voucher" Foreground="#FAC1D9"/>
+                        <Image Source="../Assets\Images\feature-button.png" Width="25"/>
+                        <TextBlock Text="Voucher" FontWeight="Bold" Foreground="#FAC1D9"/>
                     </StackPanel>
 
+                </Button>
+                <Button x:Name="order_btn" Click="order_btn_Click" Background="#3D4142" 
+                        Grid.Row="2" HorizontalAlignment="Center" Width="100">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="../Assets\Images\feature-button.png" Width="25"/>
+                        <TextBlock Text="Order" FontWeight="Bold"  Foreground="#FAC1D9"/>
+                    </StackPanel>
                 </Button>
 
             </Grid>

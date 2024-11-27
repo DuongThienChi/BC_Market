@@ -1,53 +1,49 @@
 ﻿using BC_Market.DAO;
-using BC_Market.Factory;
+using BC_Market.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BC_Market.Models;
-using Windows.System;
+
 namespace BC_Market.BUS
 {
-    public class CartBUS : IBUS<Cart>
+    public class DeliveryBUS : IBUS<Delivery>
     {
-        public readonly IDAO<Cart> _dao;
+        public readonly IDAO<Delivery> _dao;
 
-        public IBUS<Cart> CreateNew(IDAO<Cart> dao)
-        {
-            return new CartBUS(dao);
-        }
-        public CartBUS(IDAO<Cart> dao)
+        public DeliveryBUS(IDAO<Delivery> dao)
         {
             _dao = dao;
         }
-
         public dynamic Get(Dictionary<string, string> configuration)
         {
             return _dao.Get(configuration);
         }
 
-        public void UpdateUser(object user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDAO<Cart> Dao()
+        public IDAO<Delivery> Dao()
         {
             return _dao;
         }
 
-        public dynamic Add(Cart obj)
+        public IBUS<Delivery> CreateNew(IDAO<Delivery> dao)
+        {
+            throw new NotImplementedException();
+        }
+
+        public dynamic Add(Delivery obj)
         {
             return _dao.Add(obj);
         }
 
-        public dynamic Update(Cart obj)
+        public dynamic Update(Delivery obj)
         {
             return _dao.Update(obj);
         }
+
 
         // Các phương thức khác...
     }
 
 }
+

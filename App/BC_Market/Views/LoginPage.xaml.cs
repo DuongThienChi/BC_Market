@@ -127,6 +127,8 @@ namespace BC_Market.Views
                     }
                     else if (user.Roles[0].Name == "Shopper")
                     {
+                        SessionManager.Set("curCustomer", user);
+                        ViewModel.LoadCart(user.Id);
                         this.Frame.Navigate(typeof(ShopperDashboardPage));
                     }
                     else if (user.Roles[0].Name == "Cashier")

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Name="ThisPage"
+    x:Class="BC_Market.Views.ManagerOrderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Market.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local1="using:BC_Market.Converter"
+    xmlns:local2="using:BC_Market.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <local1:DeliveryIdToNameConverter x:Key="DeliveryConverter"/>
+    </Page.Resources>
+    <!-- Main layout -->
+    <Grid Background="#111315">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              >
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        >
+                <TextBlock Foreground="White"
+                           VerticalAlignment="Center"
+                           Margin="10 0 0 0 "
+                           FontSize="20"
+                           FontWeight="Bold"
+                           >
+                    Order Management
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              >
+            <TextBlock Text="Order"
+                       Foreground="White"
+                       FontSize="20"
+                       Margin="10 0 0 0"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Left"
+                       />
+            <DatePicker x:Name="orderDatePicker"
+            Margin="20 0 0 10"
+            DateChanged="OrderDatePicker_DateChanged"
+            HorizontalAlignment="Right"/>
+           <!-- <Button HorizontalAlignment="Right"
+                    Background="#FAC1D9"
+                    Content="Add Account"
+                    x:Name="addAccount"
+                    Click="addAccount_Click"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Margin="0 0 10 0"
+                    >
+            </Button> -->
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+
+            <!-- ScrollView's header -->
+            <Grid Padding="0 10"
+                  Margin="20 0"
+                  CornerRadius="10"
+                  Grid.Row="0"
+                  Background="#111315">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.75*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="ID" 
+                           Grid.Column="0"
+                           Foreground="White"
+                           Padding="5 0"/>
+                <TextBlock Text="User ID" 
+                           Grid.Column="1"
+                           Foreground="White"/>
+                <TextBlock Text="Delivery" 
+                           Grid.Column="2"
+                           Foreground="White"/>
+                <TextBlock Text="Address" 
+                           Grid.Column="3"
+                           Foreground="White"/>
+                <TextBlock Text="Total Price" 
+                           Grid.Column="4"
+                           Foreground="White"/>
+                <TextBlock Text="Payment" 
+                           Grid.Column="5"
+                           Foreground="White"/>
+                <TextBlock Text="Create At" 
+                           Grid.Column="6"
+                           Foreground="White"/>
+            </Grid>
+
+            <!-- Scroll view -->
+            <ScrollView Grid.Row="1">
+                <ItemsRepeater x:Name="orderList"
+                               HorizontalAlignment="Stretch"
+                               ItemsSource="{x:Bind ViewModel.Orders}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Orientation="Vertical"/>
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate x:DataType="local2:Order">
+                            <Grid CornerRadius="4"
+                                  Padding="0 10"
+                                  Margin="20 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.75*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{x:Bind Id}" 
+                                           Grid.Column="0"
+                                           Foreground="White" 
+                                           Padding="5 0"/>
+                                <TextBlock Text="{x:Bind customerId}" 
+                                           Grid.Column="1"
+                                           Foreground="White"/>
+                                <TextBlock Text="{Binding deliveryId, Converter={StaticResource DeliveryConverter}}"
+                                           Grid.Column="2"
+                                           Foreground="White"/>
+                                <TextBlock Text="{x:Bind address}" 
+                                           Grid.Column="3"
+                                           Foreground="White"/>
+                                <TextBlock Text="{x:Bind totalPrice}" 
+                                           Grid.Column="4"
+                                           Foreground="White"/>
+                                <TextBlock Text="{x:Bind isPaid}" 
+                                           Grid.Column="5"
+                                           Foreground="White"/>
+                                <TextBlock Text="{x:Bind createAt}" 
+                                           Grid.Column="6"
+                                           Foreground="White"/>
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Column="7">
+                                    <Button x:Name="view_btn"
+                                        Command="{Binding ViewModel.ViewDetailOrderCommand , ElementName=ThisPage}" CommandParameter="{x:Bind}"
+                                        >
+                                        <Image Source="../Assets\Images\icons8-view-100.png"
+                                       Width="25"
+                                       Height="25"/>    
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </ScrollView>
+        </Grid>
+
+    </Grid>
+</Page>

@@ -37,5 +37,14 @@ namespace BC_Market.BUS
         {
             throw new NotImplementedException();
         }
+
+        public dynamic Add(Voucher obj)
+        {
+            return _dao.Add(obj);
+        }
+        public dynamic Update(Voucher obj)
+        {
+            return _dao.Update(obj);
+        }
     }
 }

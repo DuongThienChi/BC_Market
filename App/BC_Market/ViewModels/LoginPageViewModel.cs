@@ -16,6 +16,8 @@ namespace BC_Market.ViewModels
     {
         private IFactory<USER> _factory = new UserFactory();
         private IBUS<USER> _bus;
+        private IFactory<Cart> _cartFactory = new CartFactory();
+        private IBUS<Cart> _cartBus;
         public ObservableCollection<USER> ListAccount { get; set; }
 
         public LoginPageViewModel()
@@ -38,6 +40,15 @@ namespace BC_Market.ViewModels
             dao.Add(user);
             ListAccount.Add(user);
         }
+
+        public void LoadCart(int customerID) // Load the cart
+        {
+            _cartBus = _cartFactory.CreateBUS();
+            Dictionary<string, string> config = new Dictionary<string, string>();
+            config.Add("userId", customerID.ToString());
+            var carts = _cartBus.Get(config);
+            SessionManager.Set("Cart", carts);
+        }   
 
     }
 }

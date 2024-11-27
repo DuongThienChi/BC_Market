@@ -19,7 +19,7 @@ namespace BC_Market.Models
         public float totalPrice { get; set; }
         public string address { get; set; }
 
-        public string paymentMethod { get; set; }
+        public int paymentMethod { get; set; }
 
         public Boolean isPaid { get; set; }
         public DateTime createAt { get; set; }

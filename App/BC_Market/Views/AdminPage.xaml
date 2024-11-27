@@ -75,7 +75,7 @@
                 <!-- logout -->
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1"
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" RowSpacing="30"
                   >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -149,6 +149,13 @@
                                    >
                             Product
                         </TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="order_btn" Click="order_btn_Click" Background="#3D4142" 
+                      Grid.Row="3" HorizontalAlignment="Center" Width="100">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="../Assets\Images\feature-button.png" Width="25"/>
+                        <TextBlock Text="Order" FontWeight="Bold"  Foreground="#FAC1D9"/>
                     </StackPanel>
                 </Button>
 

@@ -14,6 +14,8 @@
 		<EnableMsixTooling>true</EnableMsixTooling>
 	</PropertyGroup>
 	<ItemGroup>
+		<Content Remove="Assets\Icons\icons8-view-100.png" />
+		<Content Remove="Assets\Icons\view-details.png" />
 		<Content Remove="Assets\Images\avatar09.png" />
 		<Content Remove="Assets\Images\delete-button.png" />
 		<Content Remove="Assets\Images\edit-button.png" />
@@ -38,8 +40,10 @@
 		<None Remove="Views\AdminVoucherPage.xaml" />
 		<None Remove="Views\EditProductDialog.xaml" />
 		<None Remove="Views\EditVoucherDialog.xaml" />
+		<None Remove="Views\ManagerOrderPage.xaml" />
 		<None Remove="Views\ManagerVoucherPage.xaml" />
 		<None Remove="Views\OrderSuccessPage.xaml" />
+		<None Remove="Views\ViewDetailOrderPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,6 +80,9 @@
 	<ItemGroup>
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Assets\Icons\view-details.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="Assets\Images\fish.jpg">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -117,6 +124,12 @@
 		<None Update="Assets\Images\logout-button.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<Page Update="Views\ViewDetailOrderPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\ManagerOrderPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\OrderSuccessPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</Page>

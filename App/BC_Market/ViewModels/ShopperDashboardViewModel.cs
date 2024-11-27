@@ -145,7 +145,6 @@ namespace BC_Market.ViewModels
             ((RelayCommand)PreviousPageCommand).NotifyCanExecuteChanged();
             ((RelayCommand)NextPageCommand).NotifyCanExecuteChanged();
         }
-
         private void GetProductsByCategory(string category)
         {
             try
@@ -197,7 +196,6 @@ namespace BC_Market.ViewModels
             };
             LoadProducts();
         }
-
         private void OnQuerySubmitted(string query) // OnQuerySubmitted method for AutoSuggestBox
         {
             if (query == null) return;
@@ -259,7 +257,6 @@ namespace BC_Market.ViewModels
             LoadProducts();
 
         }
-
         private void GoNextPage() // Go to the next page
         {
             if (CanGoNext)
@@ -283,6 +280,5 @@ namespace BC_Market.ViewModels
             }
             return cartProduct.Quantity < product.Stock;
         }
-
     }
 }

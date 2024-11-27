@@ -52,6 +52,32 @@ namespace BC_Market.DAO
                 }
                 return deliveries;
             }
+            if (configuration.ContainsKey("deliveryId"))
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    String sql = @"SELECT * FROM deliveryunit WHERE id = @deliveryId";
+                    using (var command = new NpgsqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@deliveryId", Int32.Parse(configuration["deliveryId"]));
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Delivery delivery = new Delivery
+                                {
+                                    ID = (int)reader["id"],
+                                    Name = (string)reader["name"],
+                                    Price = (float)(double)reader["price"]
+                                };
+                                return delivery;
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+            }
             return null;
         }
 

@@ -34,6 +34,8 @@ namespace BC_Market.ViewModels
         private Delivery _selectedDelivery;
         private IFactory<Product> _productFactory = new ProductFactory();
         private IBUS<Product> _productBus;
+        private IFactory<USER> _userFactory = new UserFactory();
+        private IBUS<USER> _userBus;
         public Delivery selectedDelivery
         {
             get => _selectedDelivery;
@@ -69,6 +71,7 @@ namespace BC_Market.ViewModels
                 }
             };
             _productBus = _productFactory.CreateBUS();
+            _userBus = _userFactory.CreateBUS();
         }
         public ObservableCollection<string> PaymentMethods { get; } = new ObservableCollection<string>
              {
@@ -77,8 +80,8 @@ namespace BC_Market.ViewModels
                     "Banking"
              };
 
-        private string _selectedPaymentMethod;
-        public string SelectedPaymentMethod
+        private int _selectedPaymentMethod;
+        public int SelectedPaymentMethod
         {
             get => _selectedPaymentMethod;
             set => SetProperty(ref _selectedPaymentMethod, value);
@@ -246,7 +249,7 @@ namespace BC_Market.ViewModels
 
         private bool CanOrder()
         {
-            return cart.CartProducts.Count > 0 && !string.IsNullOrEmpty(Address) && selectedDelivery != null && !string.IsNullOrEmpty(SelectedPaymentMethod);
+            return cart.CartProducts.Count > 0 && !string.IsNullOrEmpty(Address) && selectedDelivery != null;
         }
 
         // Inside the Order method
@@ -282,6 +285,8 @@ namespace BC_Market.ViewModels
                 item.Product.Stock -= item.Quantity;
                 _productBus.Update(item.Product);
             }
+            _curUser.Point = (int)(_curUser.Point + (_finalTotal / 5));
+            _userBus.Update(_curUser);
             //await ShowDialogAsync("Order placed successfully!", "Order Success");
             var param = new
             {

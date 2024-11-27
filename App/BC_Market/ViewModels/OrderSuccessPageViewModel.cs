@@ -9,7 +9,6 @@ namespace BC_Market.ViewModels
         public Delivery Delivery { get; set; }
         public double DiscountAmount { get; set; }
         public double Total { get; set; }
-
         public OrderSuccessPageViewModel()
         {
 

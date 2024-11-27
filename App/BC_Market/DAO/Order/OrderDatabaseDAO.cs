@@ -114,28 +114,73 @@ namespace BC_Market.DAO
             {
                 return GetOrderDetailById(configuration["OrderId"]);
             }
+            if (configuration.ContainsKey("date"))
+            {
+                return GetOrderbyDate(configuration["date"]);
+            }
             return null;
+        }
+
+        private dynamic GetOrderbyDate(string date)
+        {
+            List<Order> orders = new List<Order>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = @"SELECT * FROM ""Order"" WHERE DATE(createat) = @Date";
+                using (var command = new NpgsqlCommand(sql, connection))
+                {
+                    if (DateTime.TryParse(date, out DateTime parsedDate))
+                    {
+                        command.Parameters.AddWithValue("@Date", parsedDate.Date);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Invalid date format");
+                    }
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Order order = new Order
+                            {
+                                Id = (int)reader["id"],
+                                customerId = (int)reader["userid"],
+                                deliveryId = (int)reader["shipid"],
+                                totalPrice = (float)(double)reader["totalprice"],
+                                address = (string)reader["address"],
+                                paymentMethod = (int)reader["paymentmethod"],
+                                isPaid = (Boolean)reader["ispaid"],
+                                createAt = (DateTime)reader["createat"]
+                            };
+                            orders.Add(order);
+                        }
+                    }
+                }
+            }
+            return orders;
         }
 
         private dynamic GetOrderDetailById(dynamic id)
         {
-            // Implementation of GetOrderDetailById methodOrder order = new Order();
             ObservableCollection<CartProduct> orderDetail = new ObservableCollection<CartProduct>();
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
                 String sql = @"SELECT Product.uniqueid as productid, Product.stock, OrderDetail.amount,
-                    Product.name, Product.price, Product.description, Product.imagepath, 
-                    Product.status,Product.orderquantity, Product.cateid
-                    FROM Order Join OrdertDetail on Order.uniqueid = OrderDetail.OrderId 
-                    Join Product on OrderDetail.ProductId = Product.uniqueid
-                    WHERE Order.id = @OrderId";
+                                Product.name, Product.price, Product.description, Product.imagepath, 
+                                Product.status, Product.orderquantity, Product.cateid
+                                FROM ""Order"" 
+                                JOIN OrderDetail on ""Order"".id = OrderDetail.OrderId 
+                                JOIN Product on OrderDetail.ProductId = Product.uniqueid
+                                WHERE ""Order"".id = @OrderId";
                 using (var command = new NpgsqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@OrderId", id);
+                    command.Parameters.AddWithValue("@OrderId", Int32.Parse(id));
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
                             Product product = new Product();
                             product.Id = (int)reader["productid"];
@@ -157,12 +202,12 @@ namespace BC_Market.DAO
                             orderDetail.Add(cartProduct);
                         }
                     }
-                   
                 }
             }
             return orderDetail;
         }
 
+        
         public dynamic GetAll()
         {
             // Implementation of GetAll method
@@ -181,9 +226,9 @@ namespace BC_Market.DAO
                                 Id = (int)reader["id"],
                                 customerId = (int)reader["userid"],
                                 deliveryId = (int)reader["shipid"],
-                                totalPrice = (float)reader["totalprice"],
+                                totalPrice = (float)(double)reader["totalprice"],
                                 address = (string)reader["address"],
-                                paymentMethod = (string)reader["paymentmethod"],
+                                paymentMethod = (int)reader["paymentmethod"],
                                 isPaid =  (Boolean)reader["ispaid"],
                                 createAt = (DateTime)reader["createat"]
                             };

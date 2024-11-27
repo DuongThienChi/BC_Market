@@ -31,7 +31,7 @@ namespace BC_Market.DAO
                             command.Parameters.AddWithValue("@ShipId", obj.deliveryId);
                             command.Parameters.AddWithValue("@TotalPrice", obj.totalPrice);
                             command.Parameters.AddWithValue("@Address", obj.address);
-                            command.Parameters.AddWithValue("@PaymentMethod",int.Parse(obj.paymentMethod));
+                            command.Parameters.AddWithValue("@PaymentMethod",obj.paymentMethod);
                             command.Parameters.AddWithValue("@IsPaid", obj.isPaid);
                             command.Parameters.AddWithValue("@CreateAt", obj.createAt);
 
@@ -182,7 +182,7 @@ namespace BC_Market.DAO
                                 deliveryId = (int)reader["shipid"],
                                 totalPrice = (float)reader["totalprice"],
                                 address = (string)reader["address"],
-                                paymentMethod = (string)reader["paymentmethod"],
+                                paymentMethod = (int)reader["paymentmethod"],
                                 isPaid = (Boolean)reader["ispaid"],
                                 createAt = (DateTime)reader["createat"]
                             };

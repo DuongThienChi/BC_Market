@@ -142,7 +142,7 @@ namespace BC_Market.ViewModels
             {
                 createAt = DateTime.Now,
                 totalPrice = sumTotal,
-                paymentMethod = paymentID.ToString(),
+                paymentMethod = paymentID,
                 address = "At shop",
                 isPaid = true,
                 customerId = 3,

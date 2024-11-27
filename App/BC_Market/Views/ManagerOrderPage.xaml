@@ -136,32 +136,32 @@
                                     <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="{x:Bind Id}" 
+                                <TextBlock Text="{Binding Id}" 
                                            Grid.Column="0"
                                            Foreground="White" 
                                            Padding="5 0"/>
-                                <TextBlock Text="{x:Bind customerId}" 
+                                <TextBlock Text="{Binding customerId}" 
                                            Grid.Column="1"
                                            Foreground="White"/>
                                 <TextBlock Text="{Binding deliveryId, Converter={StaticResource DeliveryConverter}}"
                                            Grid.Column="2"
                                            Foreground="White"/>
-                                <TextBlock Text="{x:Bind address}" 
+                                <TextBlock Text="{Binding address}" 
                                            Grid.Column="3"
                                            Foreground="White"/>
-                                <TextBlock Text="{x:Bind totalPrice}" 
+                                <TextBlock Text="{Binding totalPrice}" 
                                            Grid.Column="4"
                                            Foreground="White"/>
-                                <TextBlock Text="{x:Bind isPaid}" 
+                                <TextBlock Text="{Binding isPaid}" 
                                            Grid.Column="5"
                                            Foreground="White"/>
-                                <TextBlock Text="{x:Bind createAt}" 
+                                <TextBlock Text="{Binding createAt}" 
                                            Grid.Column="6"
                                            Foreground="White"/>
                                 <StackPanel Orientation="Horizontal"
                                             Grid.Column="7">
                                     <Button x:Name="view_btn"
-                                        Command="{Binding ViewModel.ViewDetailOrderCommand , ElementName=ThisPage}" CommandParameter="{x:Bind}"
+                                        Click="view_btn_Click"
                                         >
                                         <Image Source="../Assets\Images\icons8-view-100.png"
                                        Width="25"

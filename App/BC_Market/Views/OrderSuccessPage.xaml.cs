@@ -36,7 +36,7 @@ namespace BC_Market.Views
 
         private void BackToShopping_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ShopperOrderPage));
+            Frame.Navigate(typeof(ShopperDashboardPage));
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

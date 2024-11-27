@@ -53,7 +53,7 @@ namespace BC_Market.BUS
 
         public dynamic Update(USER obj)
         {
-            throw new NotImplementedException();
+            return _dao.Update(obj);
         }
     }
 

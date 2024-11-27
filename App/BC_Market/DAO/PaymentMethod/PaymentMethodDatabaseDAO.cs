@@ -11,7 +11,7 @@ namespace BC_Market.DAO
     public class PaymentMethodDatabaseDAO : IDAO<PaymentMethod>
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
-        public void Add(PaymentMethod obj)
+        public dynamic Add(PaymentMethod obj)
         {
             throw new NotImplementedException();
         }
@@ -45,9 +45,8 @@ namespace BC_Market.DAO
             }
             return paymentMethods;
         }
-        
 
-        public void Update(PaymentMethod obj)
+        public dynamic Update(PaymentMethod obj)
         {
             throw new NotImplementedException();
         }

@@ -42,11 +42,6 @@ namespace BC_Market.BUS
         {
             throw new NotImplementedException();
         }
-        
-        public IDAO<Order> Dao()
-        {
-            return _dao;
-        }
 
         public dynamic Update(Order obj)
         {

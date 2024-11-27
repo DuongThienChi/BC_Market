@@ -12,7 +12,7 @@ namespace BC_Market.DAO
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
 
-        public void Add(DeliveryUnit obj)
+        public dynamic Add(DeliveryUnit obj)
         {
             var sql = $@"INSERT INTO deliveryunit (name, price) VALUES (@Name, @Price)";
 
@@ -27,6 +27,7 @@ namespace BC_Market.DAO
                 }
                 conn.Close();
             }
+            return true;
         }
 
         public void Delete(DeliveryUnit obj)
@@ -71,7 +72,7 @@ namespace BC_Market.DAO
             return response;
         }
 
-        public void Update(DeliveryUnit obj)
+        public dynamic Update(DeliveryUnit obj)
         {
             var sql = $@"UPDATE deliveryunit SET name = @Name, price = @Price WHERE id = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
@@ -86,6 +87,8 @@ namespace BC_Market.DAO
                 }
                 conn.Close();
             }
+
+            return true;
         }
     }
 }

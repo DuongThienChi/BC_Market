@@ -278,8 +278,9 @@ namespace BC_Market.ViewModels
             if (selectedVoucher != null && selectedVoucher.isCondition(Total) )
             {
                 selectedVoucher.Stock--;
+                _voucherBus.Update(selectedVoucher);
             }
-            _voucherBus.Update(selectedVoucher);
+
             foreach (var item in cart.CartProducts)
             {
                 item.Product.Stock -= item.Quantity;

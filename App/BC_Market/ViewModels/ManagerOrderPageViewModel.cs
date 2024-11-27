@@ -21,27 +21,27 @@ namespace BC_Market.ViewModels
     public class ManagerOrderPageViewModel : ObservableObject
     {
         private IFactory<Order> _orderFactory = new OrderFactory();
-        private IBUS<Order> _orderBus;
+        public IBUS<Order> _orderBus;
         public ObservableCollection<Order> Orders { get; set; }
 
 
         public ManagerOrderPageViewModel()
         {
             FilterOrdersByDateCommand = new RelayCommand<DateTimeOffset>(FilterOrdersByDate);
-            ViewDetailOrderCommand = new RelayCommand<Order>(ViewDetailOrder);
+            //ViewDetailOrderCommand = new RelayCommand<Order>(ViewDetailOrder);
             LoadData();
             
         }
 
-        private void ViewDetailOrder(Order order)
-        {
-            Dictionary<string, string> configuration = new Dictionary<string, string>
-            {
-                { "OrderId", order.Id.ToString() }
-            };
-            order.Products = _orderBus.Get(configuration);
-            NavigationService.Navigate(typeof(ViewDetailOrderPage), order);
-        }
+        //private void ViewDetailOrder(Order order)
+        //{
+        //    Dictionary<string, string> configuration = new Dictionary<string, string>
+        //    {
+        //        { "OrderId", order.Id.ToString() }
+        //    };
+        //    order.Products = _orderBus.Get(configuration);
+        //    NavigationService.Navigate(typeof(ViewDetailOrderPage), order);
+        //}
 
         private void LoadData() {
             _orderBus = _orderFactory.CreateBUS();

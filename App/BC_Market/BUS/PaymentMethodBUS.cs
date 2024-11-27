@@ -35,7 +35,12 @@ namespace BC_Market.BUS
             return _dao.Get(configuration);
         }
 
-        public void UpdateUser(object user)
+        public dynamic Add(PaymentMethod obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public dynamic Update(PaymentMethod obj)
         {
             throw new NotImplementedException();
         }

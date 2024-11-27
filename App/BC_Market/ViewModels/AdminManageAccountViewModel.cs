@@ -56,6 +56,7 @@ namespace BC_Market.ViewModels
                     item.Email = user.Email;
                     item.CreatedAt = user.CreatedAt;
                     item.Roles = user.Roles;
+                    item.Point = user.Point;
                     break;
                 }
             }

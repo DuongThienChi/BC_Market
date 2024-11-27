@@ -25,22 +25,23 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class ManagerProductPage : Page
     {
-        private ManageProductViewModel ViewModel;
+        private ManageProductViewModel ViewModel = new ManageProductViewModel();
 
         // all functions are similar to AdminProductPage
         public ManagerProductPage()
         {
             this.InitializeComponent();
+            this.DataContext = ViewModel;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            if (e.Parameter is ManageProductViewModel)
-            {
-                ViewModel = e.Parameter as ManageProductViewModel;
-            }
-        }
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
+        //    base.OnNavigatedTo(e);
+        //    if (e.Parameter is ManageProductViewModel)
+        //    {
+        //        ViewModel = e.Parameter as ManageProductViewModel;
+        //    }
+        //}
 
         private void cateButton_Click(object sender, RoutedEventArgs e)
         {

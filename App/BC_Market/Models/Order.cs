@@ -14,12 +14,12 @@ namespace BC_Market.Models
         public ObservableCollection<CartProduct> Products { get; set; }
 
         public int customerId { get; set; }
-        
+
         public int deliveryId { get; set; }
         public float totalPrice { get; set; }
         public string address { get; set; }
 
-        public string paymentMethod { get; set; }
+        public int paymentMethod { get; set; }
 
         public Boolean isPaid { get; set; }
         public DateTime createAt { get; set; }

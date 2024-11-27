@@ -24,14 +24,14 @@ namespace BC_Market.DAO
                         // Insert the order into the Order table
                         string orderSql = @"INSERT INTO ""Order"" (userid, shipid, totalprice, address, paymentmethod, ispaid, createat) 
                                             VALUES (@UserId, @ShipId, @TotalPrice, @Address, @PaymentMethod, @IsPaid, @CreateAt) 
-                                            RETURNING uniqueid";
+                                            RETURNING id";
                         using (var command = new NpgsqlCommand(orderSql, connection))
                         {
                             command.Parameters.AddWithValue("@UserId", obj.customerId);
                             command.Parameters.AddWithValue("@ShipId", obj.deliveryId);
                             command.Parameters.AddWithValue("@TotalPrice", obj.totalPrice);
                             command.Parameters.AddWithValue("@Address", obj.address);
-                            command.Parameters.AddWithValue("@PaymentMethod", obj.paymentMethod);
+                            command.Parameters.AddWithValue("@PaymentMethod",int.Parse(obj.paymentMethod));
                             command.Parameters.AddWithValue("@IsPaid", obj.isPaid);
                             command.Parameters.AddWithValue("@CreateAt", obj.createAt);
 
@@ -40,7 +40,7 @@ namespace BC_Market.DAO
                         }
 
                         // Insert the order details into the OrderDetail table
-                        string orderDetailSql = @"INSERT INTO ""OrderDetail"" (OrderId, ProductId, amount) 
+                        string orderDetailSql = @"INSERT INTO orderdetail (OrderId, ProductId, amount) 
                                                   VALUES (@OrderId, @ProductId, @Amount)";
                         foreach (var product in obj.Products)
                         {
@@ -156,7 +156,7 @@ namespace BC_Market.DAO
                             orderDetail.Add(cartProduct);
                         }
                     }
-                   
+
                 }
             }
             return orderDetail;
@@ -183,7 +183,7 @@ namespace BC_Market.DAO
                                 totalPrice = (float)reader["totalprice"],
                                 address = (string)reader["address"],
                                 paymentMethod = (string)reader["paymentmethod"],
-                                isPaid =  (Boolean)reader["ispaid"],
+                                isPaid = (Boolean)reader["ispaid"],
                                 createAt = (DateTime)reader["createat"]
                             };
                             orders.Add(order);

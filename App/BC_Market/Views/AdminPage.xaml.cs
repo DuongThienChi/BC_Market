@@ -56,7 +56,7 @@ namespace BC_Market.Views
 
         private void productManagement_button_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(typeof(AdminProductPage), ViewModel);
+            mainFrame.Navigate(typeof(ManagerProductPage));
         }
 
         private void voucherManagement_button_Click(object sender, RoutedEventArgs e)

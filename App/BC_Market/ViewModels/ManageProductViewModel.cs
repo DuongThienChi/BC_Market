@@ -1,4 +1,5 @@
 ﻿using BC_Market.BUS;
+using BC_Market.DAO;
 using BC_Market.Factory;
 using BC_Market.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -23,9 +24,21 @@ namespace BC_Market.ViewModels
 
         public ObservableCollection<Product> ProductByCategory { get; set; }
 
+        public ObservableCollection<Product> ChosenProduct { get; set; } = new ObservableCollection<Product>();
+
+        public float sumTotal = 0;
+
         public ManageProductViewModel()
         {
             LoadData();
+            foreach (Product p in ListProduct)
+            {
+                if(p.OrderQuantity > 0)
+                {
+                    ChosenProduct.Add(p);
+                    sumTotal += float.Parse(p.Total());
+                }
+            }
         }
 
         public void LoadData() // Define the LoadData method
@@ -108,6 +121,61 @@ namespace BC_Market.ViewModels
             }
         }
 
-        
+        public void SetChosenProduct() // Choose a product
+        {
+            float res = 0;
+            this.ChosenProduct = new ObservableCollection<Product>();
+            foreach (Product p in ListProduct)
+            {
+                if (p.OrderQuantity > 0)
+                {
+                    this.ChosenProduct.Add(p);
+                    res += float.Parse(p.Total());
+                }
+            }
+            sumTotal = res;
+        }
+
+        public void CreateOrder(int paymentID, int userID)
+        {
+            Order order = new Order
+            {
+                createAt = DateTime.Now,
+                totalPrice = sumTotal,
+                paymentMethod = paymentID.ToString(),
+                address = "At shop",
+                isPaid = true,
+                customerId = 3,
+                deliveryId = 1,
+                Products = new ObservableCollection<CartProduct>(),
+            };
+
+            foreach (Product p in ChosenProduct)
+            {
+                order.Products.Add(new CartProduct
+                {
+                    Product = p,
+                    Quantity = p.OrderQuantity
+                });
+            }
+
+            IFactory<Order> factory = new OrderFactory();
+            IBUS<Order> bus = factory.CreateBUS();
+
+            bus.Dao().Add(order);
+            ChangeInfoBeforeAdd(_productBus.Dao());
+        }
+
+        private void ChangeInfoBeforeAdd(IDAO<Product> dao)
+        {
+            foreach(Product p in ChosenProduct)
+            {
+                p.Stock -= p.OrderQuantity;
+                p.OrderQuantity = 0;
+                dao.Update(p);
+            }
+            ChosenProduct.Clear();
+            sumTotal = 0;
+        }
     }
 }

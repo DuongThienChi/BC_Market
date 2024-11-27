@@ -1,30 +1,31 @@
-﻿using BC_Market.DAO;
-using BC_Market.Factory;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BC_Market.Models;
-using Windows.System;
+using BC_Market.DAO;
+using BC_Market.Factory;
+using BC_Market.ViewModels;
+
 namespace BC_Market.BUS
 {
-    public class OrderBUS : IBUS<Order>
+    public class PaymentMethodBUS : IBUS<PaymentMethod>
     {
-        public readonly IDAO<Order> _dao;
+        public readonly IDAO<PaymentMethod> _dao;
 
-        public IBUS<Order> CreateNew(IDAO<Order> dao)
+        public IBUS<PaymentMethod> CreateNew(IDAO<PaymentMethod> dao)
         {
-            return new OrderBUS(dao);
+            return new PaymentMethodBUS(dao);
         }
 
-        public OrderBUS(IDAO<Order> dao)
+        public PaymentMethodBUS(IDAO<PaymentMethod> dao)
         {
             _dao = dao;
         }
 
 
-        public IDAO<Order> Dao()
+        public IDAO<PaymentMethod> Dao()
         {
             return _dao;
         }
@@ -38,10 +39,5 @@ namespace BC_Market.BUS
         {
             throw new NotImplementedException();
         }
-
-
-
-        // Các phương thức khác...
     }
-
 }

@@ -37,7 +37,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Add New Product" FontSize="20" FontWeight="Bold" Grid.Row="0"/>
                         <!-- Nội dung của dialog -->
-                        <TextBox Grid.Row="1" Header="Product Id" PlaceholderText="Enter product ID" x:Name="Id" Margin="0,10,0,0"/>
+                        <!--<TextBox Grid.Row="1" Header="Product Id" PlaceholderText="Enter product ID" x:Name="Id" Margin="0,10,0,0"/>-->
                         <TextBox Grid.Row="2" Header="Product Name" PlaceholderText="Enter product name" x:Name="Name" Margin="0,10,0,0"/>
                         <TextBox Grid.Row="3" Header="Description" PlaceholderText="Write description" x:Name="Descript" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="0,10,0,0"/>
                         <TextBox Grid.Row="4" Header="Product Price" PlaceholderText="Enter product price" x:Name="Price" Margin="0,10,0,0"/>

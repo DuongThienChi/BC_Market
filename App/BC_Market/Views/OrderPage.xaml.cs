@@ -31,15 +31,31 @@ namespace BC_Market.Views
     public sealed partial class OrderPage : Page
     {
         private ManageProductViewModel ViewModel { get; set; }
+        private PaymentMethodViewModel paymentMethodViewModel { get; set; } = new PaymentMethodViewModel();
+        private AdminManageAccountViewModel AccountViewModel { get; set; } = new AdminManageAccountViewModel();
+        float Total = 0;
         public OrderPage()
         {
             this.InitializeComponent();
+            var items = paymentMethodViewModel.listMethod;
+
+            var _string = new ObservableCollection<string>();
+
+            foreach (var item in items)
+            {
+                _string.Add(item.Name);
+            }
+
+            paymentMethodList.ItemsSource = _string;
+            paymentMethodList.SelectedIndex = 0;
             this.DataContext = ViewModel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ViewModel = e.Parameter as ManageProductViewModel;
+            SumTotal.Text = ViewModel.sumTotal.ToString();
+            Total = ViewModel.sumTotal;
         }
 
         private void cateButton_Click(object sender, RoutedEventArgs e)
@@ -59,6 +75,7 @@ namespace BC_Market.Views
             {
                 product.OrderQuantity--;
                 ViewModel.UpdateProduct(product);
+                ViewModel.SetChosenProduct();
             }
             this.Frame.Navigate(typeof(OrderPage), ViewModel);
         }
@@ -72,7 +89,69 @@ namespace BC_Market.Views
             {
                 product.OrderQuantity++;
                 ViewModel.UpdateProduct(product);
+                ViewModel.SetChosenProduct();
             }
+            this.Frame.Navigate(typeof(OrderPage), ViewModel);
+        }
+
+        private void isNewCus_Checked(object sender, RoutedEventArgs e)
+        {
+            userEmail.Visibility = Visibility.Collapsed;
+        }
+
+        private void isNewCus_Unchecked(object sender, RoutedEventArgs e)
+        {
+            userEmail.Visibility = Visibility.Visible;
+        }
+
+        private async void Order_Click(object sender, RoutedEventArgs e)
+        {
+            if(ViewModel.ChosenProduct.Count == 0)
+            {
+                var dialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "No product chosen",
+                    CloseButtonText = "Ok",
+                    XamlRoot = this.Content.XamlRoot
+                };
+                await dialog.ShowAsync();
+                return;
+            }
+
+            if (isNewCus.IsChecked == false)
+            {
+                var users = AccountViewModel.Items;
+                var user = users.FirstOrDefault(u => u.Email == userEmail.Text);
+                if (user == null)
+                {
+                    var dialog1 = new ContentDialog
+                    {
+                        Title = "Error",
+                        Content = "User not found",
+                        CloseButtonText = "Ok",
+                        XamlRoot = this.Content.XamlRoot
+                    };
+                    await dialog1.ShowAsync();
+                    return;
+                }
+                ViewModel.CreateOrder(paymentID: paymentMethodList.SelectedIndex, userID: user.Id);
+                user.Point += (int)Total/5;
+                AccountViewModel.Update(user);
+            }
+            else
+            {
+                ViewModel.CreateOrder(paymentID: paymentMethodList.SelectedIndex, userID: 3);
+            }
+
+            var dialog2 = new ContentDialog
+            {
+                Title = "Success",
+                Content = "Order success",
+                CloseButtonText = "Ok",
+                XamlRoot = this.Content.XamlRoot
+            };
+            await dialog2.ShowAsync();
             this.Frame.Navigate(typeof(OrderPage), ViewModel);
         }
     }

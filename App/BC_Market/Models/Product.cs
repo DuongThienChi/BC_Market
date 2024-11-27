@@ -18,5 +18,15 @@ namespace BC_Market.Models
         public string Status { get; set; }
         public int OrderQuantity { get; set; }
 
+        public override string ToString()
+        {
+            return this.Name + " x " + this.OrderQuantity;
+        }
+
+        public string Total()
+        {
+            return (this.Price * this.OrderQuantity).ToString();
+        }
+
     }
 }

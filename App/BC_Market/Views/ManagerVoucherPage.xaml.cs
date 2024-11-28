@@ -23,7 +23,6 @@ namespace BC_Market.Views
     public sealed partial class ManagerVoucherPage : Page
     {
         private VoucherViewModel viewModel { get; set; }
-
         public ManagerVoucherPage()
         {
             this.InitializeComponent();
@@ -40,12 +39,10 @@ namespace BC_Market.Views
                 return;
             }
         }
-
         private void addVoucher_Click(object sender, RoutedEventArgs e)
         {
             AddVoucherDialog.Visibility = Visibility.Visible;
         }
-
         private void edit_btn_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -54,7 +51,6 @@ namespace BC_Market.Views
             EditVoucherDialog.Visibility = Visibility.Visible;
             EditVoucherDialog.voucher = voucher;
         }
-
         private void delete_btn_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -62,7 +58,6 @@ namespace BC_Market.Views
 
             viewModel.DeleteVoucher(voucher);
         }
-
         private void AddVoucherDialog_VoucherAdded(object sender, Models.Voucher e)
         {
             viewModel.AddVoucher(e);

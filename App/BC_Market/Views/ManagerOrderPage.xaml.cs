@@ -34,15 +34,11 @@ namespace BC_Market.Views
             ViewModel = new ManagerOrderPageViewModel();
             this.DataContext = ViewModel;
         }
-
-
-
         private void OrderDatePicker_DateChanged(object sender, DatePickerValueChangedEventArgs e)
         {
             var selectedDate = new DateTimeOffset(e.NewDate.Date);
             ViewModel.FilterOrdersByDateCommand.Execute(selectedDate);
         }
-
         private void view_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

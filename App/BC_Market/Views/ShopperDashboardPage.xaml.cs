@@ -30,7 +30,6 @@ namespace BC_Market.Views
     public sealed partial class ShopperDashboardPage : Page
     {
         public ShopperDashboardViewModel ViewModel { get; set; }
-
         public ShopperDashboardPage()
         {
             this.InitializeComponent();
@@ -42,7 +41,6 @@ namespace BC_Market.Views
         {
             AnimatedIcon.SetState(this.SearchAnimatedIcon, "PointerOver");
         }
-
         private void Button_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             AnimatedIcon.SetState(this.SearchAnimatedIcon, "Normal");
@@ -68,7 +66,6 @@ namespace BC_Market.Views
                 ((CompositeTransform)grid.RenderTransform).TranslateY = -5;
             }
         }
-
         private void OnPointerExited(object sender, PointerRoutedEventArgs e)
         {
             if (sender is Grid grid)
@@ -92,13 +89,11 @@ namespace BC_Market.Views
             //ViewModel.SortProductsByPriceAscending();
             typeSort.Text = "Price Ascending";
         }
-
         private void SortPriceDescending_Clicked(object sender, RoutedEventArgs e)
         {
             typeSort.Text = "Price Descending";
             // ViewModel.SortProductsByPriceDescending();
         }
-
         // Get data from previous page and set to ViewModel
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

@@ -33,16 +33,14 @@ namespace BC_Market.Views
             this.InitializeComponent();
             this.DataContext = ViewModel;
         }
-
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    base.OnNavigatedTo(e);
-        //    if (e.Parameter is ManageProductViewModel)
-        //    {
-        //        ViewModel = e.Parameter as ManageProductViewModel;
-        //    }
-        //}
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter is ManageProductViewModel)
+            {
+                ViewModel = e.Parameter as ManageProductViewModel;
+            }
+        }
         private void cateButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -50,7 +48,6 @@ namespace BC_Market.Views
             ViewModel.SetProductByCategory(cate);
             this.Frame.Navigate(typeof(ManagerProductPage), ViewModel);
         }
-
         private void AddCateButton_Click(object sender, RoutedEventArgs e)
         {
             AddCateDialog.Visibility = Visibility.Visible;
@@ -60,7 +57,6 @@ namespace BC_Market.Views
         {
             ViewModel.AddCategory(newCate);
         }
-
         private void edit_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -75,7 +71,6 @@ namespace BC_Market.Views
             EditProductDialog.product = curProduct;
             
         }
-
         private void delete_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -92,18 +87,15 @@ namespace BC_Market.Views
                 }
             }
         }
-
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             AddProductDialog.Visibility = Visibility.Visible;
         }
-
         private void AddProductDialog_ProductAdded(object sender, Models.Product newProduct)
         {
             ViewModel.AddProduct(newProduct);
             this.Frame.Navigate(typeof(ManagerProductPage), ViewModel);
         }
-
         private void EditProductDialog_ProductEdited(object sender, Product newProduct)
         {
             ViewModel.UpdateProduct(newProduct);

@@ -76,7 +76,6 @@ namespace BC_Market.ViewModels
                 }
             }
         }
-
         public bool CanGoPrevious => CurrentPage > 1; // Check if can go to the previous page
         public bool CanGoNext => CurrentPage < TotalPages; // Check if can go to the next page
         public ICommand PreviousPageCommand { get; }
@@ -106,7 +105,6 @@ namespace BC_Market.ViewModels
         public ICommand TextChangedCommand { get; }
         public ICommand SuggestionChosenCommand { get; }
         public ICommand QuerySubmittedCommand { get; }
-
         public ICommand AddCartCommand { get; }
         public ShopperDashboardViewModel()
         {
@@ -130,7 +128,6 @@ namespace BC_Market.ViewModels
             SuggestionChosenCommand = new RelayCommand<string>(OnSuggestionChosen);
             QuerySubmittedCommand = new RelayCommand<string>(OnQuerySubmitted);
             AddCartCommand = new RelayCommand<Product>(AddCart, CanAddToCart);
-
         }
 
         private void LoadProducts()  // Load products
@@ -149,7 +146,6 @@ namespace BC_Market.ViewModels
         {
             try
             {
-
                 //Filter
                 CurrentPage = 1;
                 if (category != "All")
@@ -222,7 +218,6 @@ namespace BC_Market.ViewModels
                         ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
                         return;
                     }
-
                     item.Quantity += 1;
                     OnPropertyChanged(nameof(ProductInCart));
                     ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
@@ -267,7 +262,6 @@ namespace BC_Market.ViewModels
             {
                 CurrentPage = 1;
             }
-
             configuration["skip"] = Skip.ToString();
             LoadProducts();
         }

@@ -100,10 +100,10 @@ namespace BC_Market.Views
         }
 
         // Get data from previous page and set to ViewModel
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-        }
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
+        //    base.OnNavigatedTo(e);
+        //}
         private void logout_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LoginPage), ViewModel);

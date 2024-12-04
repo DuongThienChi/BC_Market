@@ -13,6 +13,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
         <local1:DeliveryIdToNameConverter x:Key="DeliveryConverter"/>
+        <local1:CustomerIdToUsernameConverter x:Key="CustomerConverter"/>
+        <local1:ShortenIdConverter x:Key="ShortenIdConverter"/>
     </Page.Resources>
     <!-- Main layout -->
     <Grid Background="#111315">
@@ -136,11 +138,11 @@
                                     <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="{Binding Id}" 
+                                <TextBlock Text="{Binding Id, Converter={StaticResource ShortenIdConverter}}" 
                                            Grid.Column="0"
                                            Foreground="White" 
                                            Padding="5 0"/>
-                                <TextBlock Text="{Binding customerId}" 
+                                <TextBlock Text="{Binding customerId,Converter ={StaticResource CustomerConverter}}" 
                                            Grid.Column="1"
                                            Foreground="White"/>
                                 <TextBlock Text="{Binding deliveryId, Converter={StaticResource DeliveryConverter}}"

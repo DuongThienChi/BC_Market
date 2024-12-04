@@ -5,8 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BC_Market.Views"
     xmlns:model="using:BC_Market.Models"
+    xmlns:local1="using:BC_Market.Converter"
     xmlns:vm="using:BC_Market.ViewModels">
-
+    <Page.Resources>
+        <local1:PaymentMethodIdToNameConverter x:Key="PaymentConverter"/>
+    </Page.Resources>
     <ScrollView>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
             <Grid.RowDefinitions>
@@ -26,7 +29,7 @@
                     </TextBlock>
                     <TextBlock FontSize="16" Margin="0,0,0,5" >
                         <Run Text="Payment: "/>
-                        <Run  Text="{x:Bind ViewModel.Order.paymentMethod}" />
+                        <Run  Text="{x:Bind ViewModel.Order.paymentMethod, Mode=OneWay, Converter={StaticResource PaymentConverter}}" />
                     </TextBlock>
 
                     <TextBlock FontSize="16" Margin="0,0,0,5">

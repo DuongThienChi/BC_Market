@@ -10,7 +10,7 @@ namespace BC_Market.Models
 {
     public class Order
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public ObservableCollection<CartProduct> Products { get; set; }
 
         public int customerId { get; set; }

@@ -36,7 +36,7 @@ namespace BC_Market.DAO
                             command.Parameters.AddWithValue("@CreateAt", obj.createAt);
 
                             // Execute the command and get the inserted order ID
-                            obj.Id = (int)command.ExecuteScalar();
+                            obj.Id = command.ExecuteScalar().ToString();
                         }
 
                         // Insert the order details into the OrderDetail table
@@ -76,7 +76,7 @@ namespace BC_Market.DAO
                     try
                     {
                         // Delete the order details from the OrderDetail table
-                        string orderDetailSql = @"DELETE FROM ""OrderDetail"" WHERE orderid = @OrderId";
+                        string orderDetailSql = @"DELETE FROM ""OrderDetail"" WHERE orderid = @OrderId::uuid";
                         using (var command = new NpgsqlCommand(orderDetailSql, connection))
                         {
                             command.Parameters.AddWithValue("@OrderId", obj.Id);
@@ -84,7 +84,7 @@ namespace BC_Market.DAO
                         }
 
                         // Delete the order from the Order table
-                        string orderSql = @"DELETE FROM ""Order"" WHERE id = @OrderId";
+                        string orderSql = @"DELETE FROM ""Order"" WHERE id = @OrderId::uuid";
                         using (var command = new NpgsqlCommand(orderSql, connection))
                         {
                             command.Parameters.AddWithValue("@OrderId", obj.Id);
@@ -145,7 +145,7 @@ namespace BC_Market.DAO
                         {
                             Order order = new Order
                             {
-                                Id = (int)reader["id"],
+                                Id = reader["id"].ToString(),
                                 customerId = (int)reader["userid"],
                                 deliveryId = (int)reader["shipid"],
                                 totalPrice = (float)(double)reader["totalprice"],
@@ -174,10 +174,10 @@ namespace BC_Market.DAO
                                 FROM ""Order"" 
                                 JOIN OrderDetail on ""Order"".id = OrderDetail.OrderId 
                                 JOIN Product on OrderDetail.ProductId = Product.uniqueid
-                                WHERE ""Order"".id = @OrderId";
+                                WHERE ""Order"".id = @OrderId::uuid";
                 using (var command = new NpgsqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@OrderId", Int32.Parse(id));
+                    command.Parameters.AddWithValue("@OrderId", id);
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -223,13 +223,13 @@ namespace BC_Market.DAO
                         {
                             Order order = new Order
                             {
-                                Id = (int)reader["id"],
+                                Id = reader["id"].ToString(),
                                 customerId = (int)reader["userid"],
                                 deliveryId = (int)reader["shipid"],
                                 totalPrice = (float)(double)reader["totalprice"],
                                 address = (string)reader["address"],
                                 paymentMethod = (int)reader["paymentmethod"],
-                                isPaid =  (Boolean)reader["ispaid"],
+                                isPaid = (Boolean)reader["ispaid"],
                                 createAt = (DateTime)reader["createat"]
                             };
                             orders.Add(order);
@@ -252,7 +252,7 @@ namespace BC_Market.DAO
                         string orderSql = @"UPDATE ""Order"" 
                                             SET userid = @UserId, shipid = @ShipId, totalprice = @TotalPrice, 
                                                 address = @Address, paymentmethod = @PaymentMethod, ispaid = @IsPaid, createat = @CreateAt 
-                                            WHERE id = @OrderId";
+                                            WHERE id = @OrderId::uuid";
                         using (var command = new NpgsqlCommand(orderSql, connection))
                         {
                             command.Parameters.AddWithValue("@OrderId", obj.Id);
@@ -267,7 +267,7 @@ namespace BC_Market.DAO
                         }
 
                         // Delete existing order details from the OrderDetail table
-                        string deleteOrderDetailSql = @"DELETE FROM ""OrderDetail"" WHERE ""OrderId"" = @OrderId";
+                        string deleteOrderDetailSql = @"DELETE FROM ""OrderDetail"" WHERE ""OrderId"" = @OrderId::uuid";
                         using (var command = new NpgsqlCommand(deleteOrderDetailSql, connection))
                         {
                             command.Parameters.AddWithValue("@OrderId", obj.Id);

@@ -30,9 +30,12 @@ namespace BC_Market.ViewModels
         private int currentPage = 1; // Define the currentPage field
         private IFactory<Product> _factory = new ProductFactory();
         private IBUS<Product> _bus;
+        private IFactory<Category> _categoryFactory = new CategoryFactory();
+        private IBUS<Category> _categoryBUS;
         private int totalPages; // Define the totalPages field
         public Cart cart { get; set; } // Define the cart field
         public int ProductInCart; // Number of products in the cart
+        public List<Category> Categories { get; set; }
         private List<string> _suggestions; 
         public List<string> Suggestions
         {
@@ -80,7 +83,6 @@ namespace BC_Market.ViewModels
         public bool CanGoNext => CurrentPage < TotalPages; // Check if can go to the next page
         public ICommand PreviousPageCommand { get; }
         public ICommand NextPageCommand { get; }
-        public Dictionary<string, ICommand> GetCategoryCommand { set; get; }
 
         private Dictionary<string, string> _configuration = new Dictionary<string, string>
             {
@@ -106,6 +108,7 @@ namespace BC_Market.ViewModels
         public ICommand SuggestionChosenCommand { get; }
         public ICommand QuerySubmittedCommand { get; }
         public ICommand AddCartCommand { get; }
+        public ICommand GetCategoryCommand { get; }
         public ShopperDashboardViewModel()
         {
             PreviousPageCommand = new RelayCommand(GoPreviousPage);
@@ -113,16 +116,9 @@ namespace BC_Market.ViewModels
             cart = SessionManager.Get("Cart") as Cart;
             _bus = _factory.CreateBUS();
             LoadProducts(); // Load products
+            LoadCategory(); // Load category
             ProductInCart = cart.count;
-            // Define the Commands for UI
-            GetCategoryCommand = new Dictionary<string, ICommand> {
-                     { "All", new RelayCommand(() => GetProductsByCategory("All")) },
-                     { "Vegetable", new RelayCommand(() => GetProductsByCategory("Vegetable")) },
-                     { "Meat", new RelayCommand(() => GetProductsByCategory("Meat")) },
-                     { "Milk", new RelayCommand(() => GetProductsByCategory("Milk")) },
-                     { "Seafood", new RelayCommand(() => GetProductsByCategory("Seafood")) },
-                     { "BH", new RelayCommand(() => GetProductsByCategory("Beauty & Health")) }
-                 };
+            GetCategoryCommand = new RelayCommand<Category>(GetProductsByCategory);
             Suggestions = Products.Select(p => p.Name).ToList();
             TextChangedCommand = new RelayCommand<string>(OnTextChanged);
             SuggestionChosenCommand = new RelayCommand<string>(OnSuggestionChosen);
@@ -130,6 +126,11 @@ namespace BC_Market.ViewModels
             AddCartCommand = new RelayCommand<Product>(AddCart, CanAddToCart);
         }
 
+        public void LoadCategory() // Load category
+        {
+            _categoryBUS = _categoryFactory.CreateBUS();
+            Categories = new List<Category>(_categoryBUS.Get(null));
+        }
         private void LoadProducts()  // Load products
         {
             var configCount = new Dictionary<string, string>(configuration);
@@ -142,14 +143,14 @@ namespace BC_Market.ViewModels
             ((RelayCommand)PreviousPageCommand).NotifyCanExecuteChanged();
             ((RelayCommand)NextPageCommand).NotifyCanExecuteChanged();
         }
-        private void GetProductsByCategory(string category)
+        private void GetProductsByCategory(Category category)
         {
             try
             {
                 //Filter
                 CurrentPage = 1;
-                if (category != "All")
-                    configuration["category"] = category;
+                if (category != null)
+                    configuration["category"] = category.Name;
                 else
                     configuration["category"] = "";
                 configuration["skip"] = Skip.ToString();

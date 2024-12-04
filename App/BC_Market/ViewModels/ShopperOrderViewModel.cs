@@ -36,6 +36,8 @@ namespace BC_Market.ViewModels
         private IBUS<Product> _productBus;
         private IFactory<USER> _userFactory = new UserFactory();
         private IBUS<USER> _userBus;
+        private IFactory<PaymentMethod> _paymentMethodFactory = new PaymentMethodFactory();
+        private IBUS<PaymentMethod> _paymentMethodBus;
         public Delivery selectedDelivery
         {
             get => _selectedDelivery;
@@ -59,6 +61,7 @@ namespace BC_Market.ViewModels
             OrderCommand = new RelayCommand(Order, CanOrder);
             LoadDelivery();
             LoadVoucher();
+            LoadPaymentMethod();
             _orderBus = _orderFactory.CreateBUS();
             PropertyChanged += (sender, args) =>
             {
@@ -73,15 +76,10 @@ namespace BC_Market.ViewModels
             _productBus = _productFactory.CreateBUS();
             _userBus = _userFactory.CreateBUS();
         }
-        public ObservableCollection<string> PaymentMethods { get; } = new ObservableCollection<string>
-             {
-                    "Cash",
-                    "Credit Card",
-                    "Banking"
-             };
+        public ObservableCollection<PaymentMethod> PaymentMethods { get; set; }
 
-        private int _selectedPaymentMethod;
-        public int SelectedPaymentMethod
+        private PaymentMethod _selectedPaymentMethod;
+        public PaymentMethod SelectedPaymentMethod
         {
             get => _selectedPaymentMethod;
             set => SetProperty(ref _selectedPaymentMethod, value);
@@ -102,6 +100,14 @@ namespace BC_Market.ViewModels
             Dictionary<String, String> config = new Dictionary<String, String>();
             config.Add("rankid", _curUser.Rank);
             Vouchers = _voucherBus.Get(config);
+        }
+
+        //Payment Method
+        public void LoadPaymentMethod()
+        {
+            _paymentMethodBus = _paymentMethodFactory.CreateBUS();
+            PaymentMethods = new ObservableCollection<PaymentMethod>(_paymentMethodBus.Get(null));
+   
         }
         public List<Product> selectedProducts { get; set; } = new List<Product>(); // Define the selectedProducts for the selected products
         private double _total;
@@ -249,7 +255,7 @@ namespace BC_Market.ViewModels
 
         private bool CanOrder()
         {
-            return cart.CartProducts.Count > 0 && !string.IsNullOrEmpty(Address) && selectedDelivery != null;
+            return cart.CartProducts.Count > 0 && !string.IsNullOrEmpty(Address) && selectedDelivery != null && SelectedPaymentMethod != null;
         }
 
         // Inside the Order method
@@ -268,7 +274,7 @@ namespace BC_Market.ViewModels
                 deliveryId = selectedDelivery.ID,
                 totalPrice = (float)Math.Round(_finalTotal, 2),
                 address = Address,
-                paymentMethod = SelectedPaymentMethod,
+                paymentMethod = SelectedPaymentMethod.Id,
                 isPaid = false,
                 createAt = DateTime.Now
             };

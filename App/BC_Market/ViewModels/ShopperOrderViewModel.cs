@@ -326,27 +326,33 @@ namespace BC_Market.ViewModels
         {
             try
             {
-                _orderBus.Add(order);
-                if (selectedVoucher != null && selectedVoucher.isCondition(Total))
+                if (_orderBus.Add(order))
                 {
-                    selectedVoucher.Stock--;
-                    _voucherBus.Update(selectedVoucher);
-                }
+                    if (selectedVoucher != null && selectedVoucher.isCondition(Total))
+                    {
+                        selectedVoucher.Stock--;
+                        _voucherBus.Update(selectedVoucher);
+                    }
 
-                foreach (var item in cart.CartProducts)
-                {
-                    item.Product.Stock -= item.Quantity;
-                    _productBus.Update(item.Product);
+                    foreach (var item in cart.CartProducts)
+                    {
+                        item.Product.Stock -= item.Quantity;
+                        _productBus.Update(item.Product);
+                    }
+                    _curUser.Point = (int)(_curUser.Point + (_finalTotal / 5));
+                    _userBus.Update(_curUser);
+                    NavigationService.Navigate(typeof(OrderSuccessPage), param);
+                    cart.CartProducts.Clear();
+                    // Clear the cart after successful order
+                    OnPropertyChanged(nameof(Total));
+                    OnPropertyChanged(nameof(FinalTotal));
+                    OnPropertyChanged(nameof(DiscountAmount));
+                    OnPropertyChanged(nameof(DeliveryCost));
                 }
-                _curUser.Point = (int)(_curUser.Point + (_finalTotal / 5));
-                _userBus.Update(_curUser);
-                NavigationService.Navigate(typeof(OrderSuccessPage), param);
-                cart.CartProducts.Clear();
-                // Clear the cart after successful order
-                OnPropertyChanged(nameof(Total));
-                OnPropertyChanged(nameof(FinalTotal));
-                OnPropertyChanged(nameof(DiscountAmount));
-                OnPropertyChanged(nameof(DeliveryCost));
+                else
+                {
+                    // await ShowDialogAsync("Order failed. Please try again.", "Order Error");
+                }
             }
             catch (Exception e)
             {

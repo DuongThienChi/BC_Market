@@ -18,6 +18,7 @@ using System.Net.WebSockets;
 using Microsoft.UI.Dispatching;
 using BC_Market.Views;
 using BC_Market.Services;
+using System.Diagnostics;
 
 namespace BC_Market.ViewModels
 {
@@ -38,6 +39,7 @@ namespace BC_Market.ViewModels
         private IBUS<USER> _userBus;
         private IFactory<PaymentMethod> _paymentMethodFactory = new PaymentMethodFactory();
         private IBUS<PaymentMethod> _paymentMethodBus;
+        private IMomoService momoService;
         public Delivery selectedDelivery
         {
             get => _selectedDelivery;
@@ -55,6 +57,7 @@ namespace BC_Market.ViewModels
 
         public ShopperOrderViewModel()
         {
+            momoService = App.GetService<IMomoService>();
             cart = SessionManager.Get("Cart") as Cart;
             DeleteItemCommand = new RelayCommand<CartProduct>(DeleteItem);
             DeleteAllCommand = new RelayCommand(DeleteAll);
@@ -259,11 +262,11 @@ namespace BC_Market.ViewModels
         }
 
         // Inside the Order method
-        private void Order()
+        private async void Order()
         {
             if (!CanOrder())
             {
-               // await ShowDialogAsync("Please ensure you have products in the cart, entered an address, and selected a delivery method.", "Order Error");
+                // await ShowDialogAsync("Please ensure you have products in the cart, entered an address, and selected a delivery method.", "Order Error");
                 return;
             }
 
@@ -278,38 +281,92 @@ namespace BC_Market.ViewModels
                 isPaid = false,
                 createAt = DateTime.Now
             };
-
-          
-            _orderBus.Add(order);
-            if (selectedVoucher != null && selectedVoucher.isCondition(Total) )
-            {
-                selectedVoucher.Stock--;
-                _voucherBus.Update(selectedVoucher);
-            }
-
-            foreach (var item in cart.CartProducts)
-            {
-                item.Product.Stock -= item.Quantity;
-                _productBus.Update(item.Product);
-            }
-            _curUser.Point = (int)(_curUser.Point + (_finalTotal / 5));
-            _userBus.Update(_curUser);
-            //await ShowDialogAsync("Order placed successfully!", "Order Success");
             var param = new
             {
                 Order = order,
                 SelectedDelivery = selectedDelivery,
                 DiscountAmount = DiscountAmount,
-                Total = Total
+                Total = Total,
+                PaymentStatus = true,
+                Message = "Order created successfully"
             };
-            NavigationService.Navigate(typeof(OrderSuccessPage),param);
-            cart.CartProducts.Clear();
-            // Clear the cart after successful order
-            OnPropertyChanged(nameof(Total));
-            OnPropertyChanged(nameof(FinalTotal));
-            OnPropertyChanged(nameof(DiscountAmount));
-            OnPropertyChanged(nameof(DeliveryCost));
+            if (SelectedPaymentMethod.Name == "Momo")
+            {
+                PaymentService.Initialize(momoService);
+                bool isCreateOrder = await PaymentService.CreatePaymentAsync(order);
+                if (isCreateOrder)
+                {
+                    Tuple<bool, string> res = await PaymentService.StartPollingAsync();
+                    var newParam = new
+                    {
+                        Order = order,
+                        SelectedDelivery = selectedDelivery,
+                        DiscountAmount = DiscountAmount,
+                        Total = Total,
+                        PaymentStatus = res.Item1,
+                        Message = res.Item2
+                    };
+                    NavigationService.Navigate(typeof(OrderSuccessPage), newParam);
+                    if (res.Item1)
+                    {
+                        ProcessOrder(order, param);
+                    }
+                }
+                else
+                {
+                    await ShowDialogAsync("Payment failed. Please try again.", "Payment Error");
+                }
+            }
+            else
+            {
+                ProcessOrder(order, param);
+            }
         }
+        private void ProcessOrder(Order order, object param)
+        {
+            try
+            {
+                _orderBus.Add(order);
+                if (selectedVoucher != null && selectedVoucher.isCondition(Total))
+                {
+                    selectedVoucher.Stock--;
+                    _voucherBus.Update(selectedVoucher);
+                }
+
+                foreach (var item in cart.CartProducts)
+                {
+                    item.Product.Stock -= item.Quantity;
+                    _productBus.Update(item.Product);
+                }
+                _curUser.Point = (int)(_curUser.Point + (_finalTotal / 5));
+                _userBus.Update(_curUser);
+                NavigationService.Navigate(typeof(OrderSuccessPage), param);
+                cart.CartProducts.Clear();
+                // Clear the cart after successful order
+                OnPropertyChanged(nameof(Total));
+                OnPropertyChanged(nameof(FinalTotal));
+                OnPropertyChanged(nameof(DiscountAmount));
+                OnPropertyChanged(nameof(DeliveryCost));
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+        }
+
+        private async Task ShowDialogAsync(string message, string title)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = title,
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = this.xamlRoot 
+            };
+
+            await dialog.ShowAsync();
+        }
+
         public void NotifyPropertyChanged(string propertyName)
         {
             OnPropertyChanged(propertyName);

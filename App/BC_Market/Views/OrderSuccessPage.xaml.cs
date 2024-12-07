@@ -48,6 +48,8 @@ namespace BC_Market.Views
                 ViewModel.Delivery = param.SelectedDelivery;
                 ViewModel.Total = param.Total;
                 ViewModel.DiscountAmount = param.DiscountAmount;
+                ViewModel.PaymentStatus = param.PaymentStatus;
+                ViewModel.Message = param.Message;
             }
         }
     }

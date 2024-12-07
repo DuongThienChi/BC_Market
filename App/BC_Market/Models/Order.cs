@@ -23,5 +23,14 @@ namespace BC_Market.Models
 
         public Boolean isPaid { get; set; }
         public DateTime createAt { get; set; }
+        public string GetOrderInfo()
+        {
+            StringBuilder orderInfo = new StringBuilder();
+            foreach (var product in Products)
+            {
+                orderInfo.AppendLine($"Product: {product.Product.Name}, Quantity: {product.Quantity}");
+            }
+            return orderInfo.ToString();
+        }
     }
 }

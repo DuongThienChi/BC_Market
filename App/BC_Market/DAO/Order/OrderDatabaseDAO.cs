@@ -24,7 +24,7 @@ namespace BC_Market.DAO
                         // Insert the order into the Order table
                         string orderSql = @"INSERT INTO ""Order"" (userid, shipid, totalprice, address, paymentmethod, ispaid, createat) 
                                             VALUES (@UserId, @ShipId, @TotalPrice, @Address, @PaymentMethod, @IsPaid, @CreateAt) 
-                                            RETURNING id";
+                                             RETURNING id";
                         using (var command = new NpgsqlCommand(orderSql, connection))
                         {
                             command.Parameters.AddWithValue("@UserId", obj.customerId);

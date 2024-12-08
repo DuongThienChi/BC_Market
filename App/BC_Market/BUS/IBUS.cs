@@ -15,5 +15,6 @@ namespace BC_Market.BUS
         public dynamic Get(Dictionary<string, string> configuration);
         public dynamic Add(T obj);
         public dynamic Update(T obj);
+        public dynamic Delete(T obj);
     }
 }

@@ -19,7 +19,7 @@ namespace BC_Market.DAO
             throw new NotImplementedException();
         }
 
-        public void Delete(Delivery obj)
+        public dynamic Delete(Delivery obj)
         {
             throw new NotImplementedException();
         }

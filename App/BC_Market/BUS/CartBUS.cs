@@ -47,6 +47,11 @@ namespace BC_Market.BUS
             return _dao.Update(obj);
         }
 
+        public dynamic Delete(Cart obj)
+        {
+            throw new NotImplementedException();
+        }
+
         // Các phương thức khác...
     }
 

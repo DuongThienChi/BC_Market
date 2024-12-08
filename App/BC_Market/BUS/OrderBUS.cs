@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BC_Market.Models;
 using Windows.System;
+using Windows.Devices.Bluetooth.Advertisement;
 namespace BC_Market.BUS
 {
     public class OrderBUS : IBUS<Order>
@@ -47,7 +48,10 @@ namespace BC_Market.BUS
         {
             return _dao.Update(obj);
         }
-
+        public dynamic Delete(Order obj)
+        {
+            return _dao.Delete(obj);
+        }
         // Các phương thức khác...
     }
 

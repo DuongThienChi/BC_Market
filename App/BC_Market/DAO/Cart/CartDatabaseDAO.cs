@@ -63,7 +63,7 @@ namespace BC_Market.DAO
             }
         }
 
-        public void Delete(Cart obj)
+        public dynamic Delete(Cart obj)
         {
             throw new NotImplementedException();
         }

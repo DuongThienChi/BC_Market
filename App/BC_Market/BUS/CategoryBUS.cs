@@ -47,6 +47,11 @@ namespace BC_Market.BUS
             throw new NotImplementedException();
         }
 
+        public dynamic Delete(Category obj)
+        {
+            return (_dao.Delete(obj));
+        }
+
         // Các phương thức khác...
     }
 

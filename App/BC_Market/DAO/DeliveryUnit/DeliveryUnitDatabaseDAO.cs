@@ -30,8 +30,9 @@ namespace BC_Market.DAO
             return true;
         }
 
-        public void Delete(DeliveryUnit obj)
+        public dynamic Delete(DeliveryUnit obj)
         {
+            try { 
             var sql = $@"DELETE FROM deliveryunit WHERE id = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -42,6 +43,13 @@ namespace BC_Market.DAO
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
+
+            }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
 

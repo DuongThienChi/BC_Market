@@ -40,19 +40,28 @@ namespace BC_Market.DAO
             return false;
         }
 
-        public void Delete(Voucher obj)
+        public dynamic Delete(Voucher obj)
         {
-            var sql = $@"DELETE FROM voucher WHERE uniqueid = @Id";
-            using (var conn = new NpgsqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(sql, conn))
+                var sql = $@"DELETE FROM voucher WHERE uniqueid = @Id";
+                using (var conn = new NpgsqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@Id", obj.VoucherId);
-                    cmd.ExecuteNonQuery();
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", obj.VoucherId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                return true;
             }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
         public dynamic Get (Dictionary<string, string> configuration)
         {

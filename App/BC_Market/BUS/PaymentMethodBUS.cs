@@ -44,5 +44,10 @@ namespace BC_Market.BUS
         {
             throw new NotImplementedException();
         }
+
+        public dynamic Delete(PaymentMethod obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

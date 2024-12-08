@@ -41,6 +41,11 @@ namespace BC_Market.BUS
             return _dao.Update(obj);
         }
 
+        public dynamic Delete(Delivery obj)
+        {
+            return (_dao.Delete(obj));
+        }
+
 
         // Các phương thức khác...
     }

@@ -55,6 +55,11 @@ namespace BC_Market.BUS
         {
             return _dao.Update(obj);
         }
+
+        public dynamic Delete(USER obj)
+        {
+            return (_dao.Delete(obj));
+        }
     }
 
 }

@@ -15,7 +15,7 @@ namespace BC_Market.DAO
             throw new NotImplementedException();
         }
 
-        public void Delete(USER obj)
+        public dynamic Delete(USER obj)
         {
             throw new NotImplementedException();
         }

@@ -31,18 +31,26 @@ namespace BC_Market.DAO
             return false;
         }
 
-        public void Delete(Category obj) // Remove a category from the database
+        public dynamic Delete(Category obj) // Remove a category from the database
         {
-            var sql = $@"DELETE FROM category WHERE uniqueid = @Id";
-            using (var conn = new NpgsqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(sql, conn))
+                var sql = $@"DELETE FROM category WHERE uniqueid = @Id";
+                using (var conn = new NpgsqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@Id", obj.Id);
-                    cmd.ExecuteNonQuery();
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", obj.Id);
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
 

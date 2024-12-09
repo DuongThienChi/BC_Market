@@ -42,7 +42,13 @@
                         <TextBox Grid.Row="3" Header="Description" PlaceholderText="Write description" x:Name="Descript" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="0,10,0,0"/>
                         <TextBox Grid.Row="4" Header="Product Price" PlaceholderText="Enter product price" x:Name="Price" Margin="0,10,0,0"/>
                         <TextBox Grid.Row="5" Header="Product Stock" PlaceholderText="Enter product stock" x:Name="Stock" Margin="0,10,0,0"/>
-                        <TextBox Grid.Row="6" Header="Product Image" PlaceholderText="Enter image link" x:Name="Img" Margin="0,10,0,0"/>
+                        <StackPanel Grid.Row="6" 
+                                    Orientation="Horizontal" 
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                    Margin="0,10,0,0">
+                            <Button Content="Upload Image" x:Name="UploadImageButton" Click="UploadImage_Click"/>
+                            <Image x:Name="ProductImage" Width="100" Height="100" Margin="10,0,0,0"/>
+                        </StackPanel>
                         <TextBox Grid.Row="7" Header="Product CategoryId" PlaceholderText="Enter product categoryId" x:Name="CategoryId" Margin="0,10,0,0"/>
                         <TextBox Grid.Row="8" Header="Product Status" PlaceholderText="Enter product tatus" x:Name="Status" Margin="0,10,0,0"/>
                         <TextBlock Grid.Row="9" x:Name="Notice" Foreground="red"/>

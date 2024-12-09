@@ -31,7 +31,6 @@ namespace BC_Market.DAO
                 conn.Close();
                 return true;
             }
-            return false;
         }
 
 
@@ -149,7 +148,6 @@ namespace BC_Market.DAO
                 conn.Close();
                 return true;
             }
-            return false;
         }
 
         public Role getRole(string name)

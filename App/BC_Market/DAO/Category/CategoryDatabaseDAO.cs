@@ -28,7 +28,6 @@ namespace BC_Market.DAO
                 return true;
                 
             }
-            return false;
         }
 
         public void Delete(Category obj) // Remove a category from the database
@@ -136,7 +135,6 @@ namespace BC_Market.DAO
                 conn.Close();
                 return true;
             }
-            return false;
         }
     }
 }

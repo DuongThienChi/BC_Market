@@ -37,7 +37,6 @@ namespace BC_Market.DAO
                 conn.Close();
                 return true;
             }
-            return false;
         }
 
         public void Delete(Voucher obj)
@@ -170,7 +169,6 @@ namespace BC_Market.DAO
                 conn.Close();
                 return true;
             }
-            return false;
         }
     }
 }

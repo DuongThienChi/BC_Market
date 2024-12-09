@@ -53,40 +53,40 @@ namespace BC_Market.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            // Get only LoginPageView from previous page
-            if (e.Parameter is LoginPageViewModel)
-            {
-                ViewModel = e.Parameter as LoginPageViewModel;
-                return;
-            }
-            // Get only ListAccount from previous page
-            if (e.Parameter is ObservableCollection<USER>)
-            {
-                var listUser = e.Parameter as ObservableCollection<USER>;
-                ViewModel.ListAccount = listUser;
-                return;
-            }
-            // Get only ManageProductViewModel from previous page
-            if (e.Parameter is ManageProductViewModel)
-            {
-                ManageProductViewModel = e.Parameter as ManageProductViewModel;
-                return;
-            }
-            // Get only ShopperDashboardViewModel from previous page
-            if (e.Parameter is ShopperDashboardViewModel)
-            {
-                return;
-            }
-            // Get ListAccount and ManageProductViewModel from previous page
-            var package = e.Parameter as dynamic;
-            if (package != null)
-            {
-                if (package.ListAccount != null)
-                    ViewModel.ListAccount = package.ListAccount;
-                if (package.ManageProductViewModel != null)
-                    ManageProductViewModel = package.ManageProductViewModel;
-            }
+            //base.OnNavigatedTo(e);
+            //// Get only LoginPageView from previous page
+            //if (e.Parameter is LoginPageViewModel)
+            //{
+            //    ViewModel = e.Parameter as LoginPageViewModel;
+            //    return;
+            //}
+            //// Get only ListAccount from previous page
+            //if (e.Parameter is ObservableCollection<USER>)
+            //{
+            //    var listUser = e.Parameter as ObservableCollection<USER>;
+            //    ViewModel.ListAccount = listUser;
+            //    return;
+            //}
+            //// Get only ManageProductViewModel from previous page
+            //if (e.Parameter is ManageProductViewModel)
+            //{
+            //    ManageProductViewModel = e.Parameter as ManageProductViewModel;
+            //    return;
+            //}
+            //// Get only ShopperDashboardViewModel from previous page
+            //if (e.Parameter is ShopperDashboardViewModel)
+            //{
+            //    return;
+            //}
+            //// Get ListAccount and ManageProductViewModel from previous page
+            //var package = e.Parameter as dynamic;
+            //if (package != null)
+            //{
+            //    if (package.ListAccount != null)
+            //        ViewModel.ListAccount = package.ListAccount;
+            //    if (package.ManageProductViewModel != null)
+            //        ManageProductViewModel = package.ManageProductViewModel;
+            //}
         }
 
         private void login_button_Click(object sender, RoutedEventArgs e)
@@ -119,11 +119,11 @@ namespace BC_Market.Views
                             ViewModel.ListAccount,
                             ManageProductViewModel
                         };
-                        this.Frame.Navigate(typeof(AdminPage), package);
+                        this.Frame.Navigate(typeof(AdminPage));
                     }
                     else if (user.Roles[0].Name == "Manager")
                     {
-                        this.Frame.Navigate(typeof(ManagerPage), ManageProductViewModel);
+                        this.Frame.Navigate(typeof(ManagerPage));
                     }
                     else if (user.Roles[0].Name == "Shopper")
                     {
@@ -133,7 +133,7 @@ namespace BC_Market.Views
                     }
                     else if (user.Roles[0].Name == "Cashier")
                     {
-                        this.Frame.Navigate(typeof(CashierPage), ManageProductViewModel);
+                        this.Frame.Navigate(typeof(CashierPage));
                     }
                     SessionManager.Set("User", user);
                     return;

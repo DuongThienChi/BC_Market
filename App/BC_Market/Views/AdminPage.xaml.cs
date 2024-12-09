@@ -35,10 +35,6 @@ namespace BC_Market.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            var package = e.Parameter as dynamic;
-            ListAccount = package.ListAccount;
-            ViewModel = package.ManageProductViewModel;
             // navigate to AdminManageAccountPage - default page
             mainFrame.Navigate(typeof(AdminManageAccountPage), ListAccount);
         }
@@ -61,7 +57,7 @@ namespace BC_Market.Views
 
         private void voucherManagement_button_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(typeof(AdminVoucherPage));
+            mainFrame.Navigate(typeof(ManagerVoucherPage));
         }
         private void order_btn_Click(object sender, RoutedEventArgs e)
         {

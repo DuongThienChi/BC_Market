@@ -78,12 +78,12 @@
             <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" RowSpacing="30"
                   >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <Button HorizontalAlignment="Center"

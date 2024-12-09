@@ -53,7 +53,14 @@ namespace BC_Market.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel = e.Parameter as ManageProductViewModel;
+            if(e.Parameter is ManageProductViewModel)
+            {
+                ViewModel = e.Parameter as ManageProductViewModel;
+            }
+            else
+            {
+                ViewModel = new ManageProductViewModel();
+            }
             SumTotal.Text = ViewModel.sumTotal.ToString();
             Total = ViewModel.sumTotal;
         }

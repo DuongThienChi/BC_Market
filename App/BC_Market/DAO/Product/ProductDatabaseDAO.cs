@@ -39,7 +39,6 @@ namespace BC_Market.DAO
                 conn.Close();
                 return true;
             }
-            return false;
         }
 
         // Remove a product from the database
@@ -194,7 +193,6 @@ namespace BC_Market.DAO
                 conn.Close();
                 return true;
             }
-            return false;
         }
     }
 }

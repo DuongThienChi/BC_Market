@@ -39,32 +39,13 @@ namespace BC_Market.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            // receive AdminManageAccountViewModel
-            if (e.Parameter is AdminManageAccountViewModel)
-            {
-                ViewModel = e.Parameter as AdminManageAccountViewModel;
-                return;
-            }
-            // receive ListAccount
-            if (e.Parameter is ObservableCollection<USER>)
-            {
-                var listUser = e.Parameter as ObservableCollection<USER>;
-                ViewModel.Items = listUser;
-                return;
-            }
-        }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            ViewModel = new AdminManageAccountViewModel();
         }
 
         private void addAccount_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AdminAddAccountPage), ViewModel);
         }
-
 
         private void accountList_Loaded(object sender, RoutedEventArgs e)
         {

@@ -51,82 +51,82 @@ namespace BC_Market.DAO
 
         public dynamic Get(Dictionary<string, string> configuration)
         {
-            List<USER> response = new List<USER>();
-            bool isCount = false;
-            var sql = $@"
-                SELECT * 
-                FROM ""User"" us Join Role r on us.roleid = r.uniqueid";
-            //if (configuration["take"] == "100000")
-            //{
-            //    isCount = true;
-            //    sql = $@"
-            //    SELECT count(*)
-            //    FROM product JOIN category 
-            //    ON product.cateid = category.uniqueid
-            //    WHERE product.name ILIKE '%' || @searchKey || '%' AND category.name ILIKE '%' || @category || '%'
-            //    OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY";
-            //}
-            using (var conn = new NpgsqlConnection(connectionString))
-            {
-                conn.Open();
-
-
-                using (var cmd = new NpgsqlCommand(sql, conn))
+            if (configuration == null) {
+                List<USER> response = new List<USER>();
+                bool isCount = false;
+                var sql = $@"
+                    SELECT * 
+                    FROM ""User"" us Join Role r on us.roleid = r.uniqueid";
+                using (var conn = new NpgsqlConnection(connectionString))
                 {
-                    //foreach (var param in configuration)
-                    //{
-
-                    //    if (sql.Contains("@" + param.Key))
-                    //    {
-                    //        if (param.Key == "skip")
-                    //            cmd.Parameters.AddWithValue("@skip", int.Parse(param.Value));
-                    //        else if (param.Key == "take")
-                    //            cmd.Parameters.AddWithValue("@take", int.Parse(param.Value));
-                    //        else
-                    //            try
-                    //            {
-                    //                cmd.Parameters.AddWithValue("@" + param.Key, param.Value);
-                    //            }
-                    //            catch (Exception e)
-                    //            {
-                    //                Console.WriteLine(e.Message);
-                    //            }
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine($"Tham số @{param.Key} không có trong câu SQL.");
-                    //    }
-                    //}
-                    using (var reader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(sql, conn))
                     {
-                        if (isCount)
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            reader.Read();
-                            var count = reader.GetInt32(0);
-                            conn.Close();
-                            return count;
-                        }
-                        while (reader.Read())
-                        {
-                            Console.WriteLine(reader["rankid"]);
-                            var user = new USER()
+                            if (isCount)
                             {
-                                Id = (int)reader["uniqueid"],
-                                Username = reader["username"] as string,
-                                Password = reader["password"] as string,
-                                Email = reader["email"] as string,
-                                Roles = new List<Role> { new Role { Name = reader["name"] as string } },
-                                Rank = reader["rankid"] != DBNull.Value ? reader["rankid"] as string : "R01",  
-                                Point = reader["curpoint"] != DBNull.Value ? (int)reader["curpoint"] : 0
-                            };
-                            response.Add(user);
+                                reader.Read();
+                                var count = reader.GetInt32(0);
+                                conn.Close();
+                                return count;
+                            }
+                            while (reader.Read())
+                            {
+                                Console.WriteLine(reader["rankid"]);
+                                var user = new USER()
+                                {
+                                    Id = (int)reader["uniqueid"],
+                                    Username = reader["username"] as string,
+                                    Password = reader["password"] as string,
+                                    Email = reader["email"] as string,
+                                    Roles = new List<Role> { new Role { Name = reader["name"] as string } },
+                                    Rank = reader["rankid"] != DBNull.Value ? reader["rankid"] as string : "R01",
+                                    Point = reader["curpoint"] != DBNull.Value ? (int)reader["curpoint"] : 0
+                                };
+                                response.Add(user);
+                            }
                         }
                     }
+                    conn.Close();
+                    return response;
                 }
-                conn.Close();
-                return response;
             }
-        }
+            else
+            {
+                if (configuration.ContainsKey("customerId")) { 
+                    USER response = new USER();
+                    var sql = $@"
+                        SELECT * 
+                        FROM ""User"" us Join Role r on us.roleid = r.uniqueid
+                        WHERE us.uniqueid = @Id";
+                    using (var conn = new NpgsqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        using (var cmd = new NpgsqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@Id", Int32.Parse(configuration["customerId"]));
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    response.Id = (int)reader["uniqueid"];
+                                    response.Username = reader["username"] as string;
+                                    response.Password = reader["password"] as string;
+                                    response.Email = reader["email"] as string;
+                                    response.Roles = new List<Role> { new Role { Name = reader["name"] as string } };
+                                    response.Rank = reader["rankid"] != DBNull.Value ? reader["rankid"] as string : "R01";
+                                    response.Point = reader["curpoint"] != DBNull.Value ? (int)reader["curpoint"] : 0;
+                                }
+                            }
+                        }
+                        conn.Close();
+                        return response;
+                    }
+                }
+            }
+                return null;
+            }
 
         public dynamic Update(USER obj)
         {

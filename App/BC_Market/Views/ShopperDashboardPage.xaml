@@ -67,19 +67,21 @@
             <Border Grid.Column="0" Background="#CCCCCC">
                 <Grid VerticalAlignment="Stretch">
                     <StackPanel VerticalAlignment="Top">
-                        <!-- Navigation items -->
-                        <Button Content="All" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand['All']}"/>
+                        <!-- Static "All" button -->
+                        <Button Content="All" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand}"/>
                         <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
-                        <Button Content="Vegetable" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand['Vegetable']}"/>
-                        <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
-                        <Button Content="Meat" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand['Meat']}"/>
-                        <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
-                        <Button Content="Milk" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand['Milk']}"/>
-                        <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
-                        <Button Content="Seafood" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand['Seafood']}"/>
-                        <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
-                        <Button Content="Beauty &amp; Health" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{x:Bind ViewModel.GetCategoryCommand['BH']}"/>
-                        <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+
+                        <!-- Dynamic category buttons -->
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="local1:Category">
+                                    <StackPanel>
+                                        <Button Content="{x:Bind Name}" FontSize="14" Foreground="Black" Background="Transparent" BorderThickness="0" Padding="10" HorizontalAlignment="Center" Command="{Binding DataContext.GetCategoryCommand, ElementName=ThisPage}" CommandParameter="{x:Bind}"/>
+                                        <Line Stroke="Black" X1="0" Y1="0" X2="60" Y2="0" StrokeThickness="1" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
 
                     <!-- Logout button at the bottom -->

@@ -16,7 +16,7 @@ using BC_Market.ViewModels;
 using BC_Market.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-
+using BC_Market.Services;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -35,6 +35,7 @@ namespace BC_Market.Views
             ViewModel = new ShopperOrderViewModel();
             this.DataContext = ViewModel;
             this.CheckBoxs = new List<CheckBox>();
+
 
         }
         // Receive CartList from ShopperDashboardPage

@@ -18,6 +18,7 @@ using System.Net.WebSockets;
 using Microsoft.UI.Dispatching;
 using BC_Market.Views;
 using BC_Market.Services;
+using System.Diagnostics;
 
 namespace BC_Market.ViewModels
 {
@@ -36,6 +37,9 @@ namespace BC_Market.ViewModels
         private IBUS<Product> _productBus;
         private IFactory<USER> _userFactory = new UserFactory();
         private IBUS<USER> _userBus;
+        private IFactory<PaymentMethod> _paymentMethodFactory = new PaymentMethodFactory();
+        private IBUS<PaymentMethod> _paymentMethodBus;
+        private IMomoService momoService;
         public Delivery selectedDelivery
         {
             get => _selectedDelivery;
@@ -53,12 +57,14 @@ namespace BC_Market.ViewModels
 
         public ShopperOrderViewModel()
         {
+            momoService = App.GetService<IMomoService>();
             cart = SessionManager.Get("Cart") as Cart;
             DeleteItemCommand = new RelayCommand<CartProduct>(DeleteItem);
             DeleteAllCommand = new RelayCommand(DeleteAll);
             OrderCommand = new RelayCommand(Order, CanOrder);
             LoadDelivery();
             LoadVoucher();
+            LoadPaymentMethod();
             _orderBus = _orderFactory.CreateBUS();
             PropertyChanged += (sender, args) =>
             {
@@ -73,15 +79,10 @@ namespace BC_Market.ViewModels
             _productBus = _productFactory.CreateBUS();
             _userBus = _userFactory.CreateBUS();
         }
-        public ObservableCollection<string> PaymentMethods { get; } = new ObservableCollection<string>
-             {
-                    "Cash",
-                    "Credit Card",
-                    "Banking"
-             };
+        public ObservableCollection<PaymentMethod> PaymentMethods { get; set; }
 
-        private int _selectedPaymentMethod;
-        public int SelectedPaymentMethod
+        private PaymentMethod _selectedPaymentMethod;
+        public PaymentMethod SelectedPaymentMethod
         {
             get => _selectedPaymentMethod;
             set => SetProperty(ref _selectedPaymentMethod, value);
@@ -102,6 +103,14 @@ namespace BC_Market.ViewModels
             Dictionary<String, String> config = new Dictionary<String, String>();
             config.Add("rankid", _curUser.Rank);
             Vouchers = _voucherBus.Get(config);
+        }
+
+        //Payment Method
+        public void LoadPaymentMethod()
+        {
+            _paymentMethodBus = _paymentMethodFactory.CreateBUS();
+            PaymentMethods = new ObservableCollection<PaymentMethod>(_paymentMethodBus.Get(null));
+   
         }
         public List<Product> selectedProducts { get; set; } = new List<Product>(); // Define the selectedProducts for the selected products
         private double _total;
@@ -249,15 +258,15 @@ namespace BC_Market.ViewModels
 
         private bool CanOrder()
         {
-            return cart.CartProducts.Count > 0 && !string.IsNullOrEmpty(Address) && selectedDelivery != null;
+            return cart.CartProducts.Count > 0 && !string.IsNullOrEmpty(Address) && selectedDelivery != null && SelectedPaymentMethod != null;
         }
 
         // Inside the Order method
-        private void Order()
+        private async void Order()
         {
             if (!CanOrder())
             {
-               // await ShowDialogAsync("Please ensure you have products in the cart, entered an address, and selected a delivery method.", "Order Error");
+                // await ShowDialogAsync("Please ensure you have products in the cart, entered an address, and selected a delivery method.", "Order Error");
                 return;
             }
 
@@ -268,42 +277,102 @@ namespace BC_Market.ViewModels
                 deliveryId = selectedDelivery.ID,
                 totalPrice = (float)Math.Round(_finalTotal, 2),
                 address = Address,
-                paymentMethod = SelectedPaymentMethod,
+                paymentMethod = SelectedPaymentMethod.Id,
                 isPaid = false,
                 createAt = DateTime.Now
             };
-
-          
-            _orderBus.Add(order);
-            if (selectedVoucher != null && selectedVoucher.isCondition(Total) )
-            {
-                selectedVoucher.Stock--;
-                _voucherBus.Update(selectedVoucher);
-            }
-
-            foreach (var item in cart.CartProducts)
-            {
-                item.Product.Stock -= item.Quantity;
-                _productBus.Update(item.Product);
-            }
-            _curUser.Point = (int)(_curUser.Point + (_finalTotal / 5));
-            _userBus.Update(_curUser);
-            //await ShowDialogAsync("Order placed successfully!", "Order Success");
             var param = new
             {
                 Order = order,
                 SelectedDelivery = selectedDelivery,
                 DiscountAmount = DiscountAmount,
-                Total = Total
+                Total = Total,
+                PaymentStatus = true,
+                Message = "Order created successfully"
             };
-            NavigationService.Navigate(typeof(OrderSuccessPage),param);
-            cart.CartProducts.Clear();
-            // Clear the cart after successful order
-            OnPropertyChanged(nameof(Total));
-            OnPropertyChanged(nameof(FinalTotal));
-            OnPropertyChanged(nameof(DiscountAmount));
-            OnPropertyChanged(nameof(DeliveryCost));
+            if (SelectedPaymentMethod.Name == "Momo")
+            {
+                PaymentService.Initialize(momoService);
+                bool isCreateOrder = await PaymentService.CreatePaymentAsync(order);
+                if (isCreateOrder)
+                {
+                    Tuple<bool, string> res = await PaymentService.StartPollingAsync();
+                    var newParam = new
+                    {
+                        Order = order,
+                        SelectedDelivery = selectedDelivery,
+                        DiscountAmount = DiscountAmount,
+                        Total = Total,
+                        PaymentStatus = res.Item1,
+                        Message = res.Item2
+                    };
+                    NavigationService.Navigate(typeof(OrderSuccessPage), newParam);
+                    if (res.Item1)
+                    {
+                        ProcessOrder(order, param);
+                    }
+                }
+                else
+                {
+                    await ShowDialogAsync("Payment failed. Please try again.", "Payment Error");
+                }
+            }
+            else
+            {
+                ProcessOrder(order, param);
+            }
         }
+        private void ProcessOrder(Order order, object param)
+        {
+            try
+            {
+                if (_orderBus.Add(order))
+                {
+                    if (selectedVoucher != null && selectedVoucher.isCondition(Total))
+                    {
+                        selectedVoucher.Stock--;
+                        _voucherBus.Update(selectedVoucher);
+                    }
+
+                    foreach (var item in cart.CartProducts)
+                    {
+                        item.Product.Stock -= item.Quantity;
+                        _productBus.Update(item.Product);
+                    }
+                    _curUser.Point = (int)(_curUser.Point + (_finalTotal / 5));
+                    _userBus.Update(_curUser);
+                    NavigationService.Navigate(typeof(OrderSuccessPage), param);
+                    cart.CartProducts.Clear();
+                    // Clear the cart after successful order
+                    OnPropertyChanged(nameof(Total));
+                    OnPropertyChanged(nameof(FinalTotal));
+                    OnPropertyChanged(nameof(DiscountAmount));
+                    OnPropertyChanged(nameof(DeliveryCost));
+                }
+                else
+                {
+                    // await ShowDialogAsync("Order failed. Please try again.", "Order Error");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+        }
+
+        private async Task ShowDialogAsync(string message, string title)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = title,
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = this.xamlRoot 
+            };
+
+            await dialog.ShowAsync();
+        }
+
         public void NotifyPropertyChanged(string propertyName)
         {
             OnPropertyChanged(propertyName);

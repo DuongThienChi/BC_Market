@@ -19,6 +19,7 @@
 		<Content Remove="Assets\Images\avatar09.png" />
 		<Content Remove="Assets\Images\delete-button.png" />
 		<Content Remove="Assets\Images\edit-button.png" />
+		<Content Remove="Assets\Images\fail.png" />
 		<Content Remove="Assets\Images\feature-button.png" />
 		<Content Remove="Assets\Images\fish.jpg" />
 		<Content Remove="Assets\Images\icons8-bell-50.png" />
@@ -27,6 +28,7 @@
 		<Content Remove="Assets\Images\milk.png" />
 		<Content Remove="Assets\Images\MyAvatar.jpg" />
 		<Content Remove="Assets\Images\Red meat.jpg" />
+		<Content Remove="Assets\Images\success.png" />
 		<Content Remove="Assets\Images\veget.png" />
 	</ItemGroup>
 	<ItemGroup>
@@ -61,16 +63,20 @@
 	<ItemGroup>
 		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
 		<PackageReference Include="dotenv.net" Version="3.2.1" />
 		<PackageReference Include="DotNetEnv" Version="3.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="9.0.0" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Npgsql" Version="8.0.5" />
-		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
-		<PackageReference Include="Supabase" Version="1.1.1" />
-		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />		<PackageReference Include="Supabase" Version="1.1.1" />		<PackageReference Include="RestSharp" Version="112.1.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.27.0" />		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
@@ -81,6 +87,14 @@
   -->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Assets\Images\fail.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Assets\Images\success.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="appsettings.json">

@@ -42,18 +42,25 @@ namespace BC_Market.DAO
         }
 
         // Remove a product from the database
-        public void Delete(Product obj)
+        public dynamic Delete(Product obj)
         {
-            var sql = $@"DELETE FROM product WHERE uniqueid = @Id";
-            using (var conn = new NpgsqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(sql, conn))
+                var sql = $@"DELETE FROM product WHERE uniqueid = @Id";
+                using (var conn = new NpgsqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@Id", obj.Id);
-                    cmd.ExecuteNonQuery();
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", obj.Id);
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                return true;
+            }
+            catch (Exception ex) {
+                return false;
             }
         }
 

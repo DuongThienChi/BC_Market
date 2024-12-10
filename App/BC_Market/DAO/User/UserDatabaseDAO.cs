@@ -34,18 +34,25 @@ namespace BC_Market.DAO
         }
 
 
-        public void Delete(USER obj)
+        public dynamic Delete(USER obj)
         {
-            var sql = $@"DELETE FROM ""User"" WHERE username = @Username";
-            using (var conn = new NpgsqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(sql, conn))
+                var sql = $@"DELETE FROM ""User"" WHERE username = @Username";
+                using (var conn = new NpgsqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@Username", obj.Username);
-                    cmd.ExecuteNonQuery();
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", obj.Username);
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                return true;
+            }
+            catch (Exception ex) {
+                return false;
             }
         }
 

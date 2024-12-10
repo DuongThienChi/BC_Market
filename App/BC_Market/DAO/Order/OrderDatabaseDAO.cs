@@ -14,59 +14,63 @@ namespace BC_Market.DAO
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  //Get connection string from appsettings.json
         public dynamic Add(Order obj)
         {
-            using (var connection = new NpgsqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
+                using (var connection = new NpgsqlConnection(connectionString))
                 {
-                    try
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
                     {
-                        // Insert the order into the Order table
-                        string orderSql = @"INSERT INTO ""Order"" (userid, shipid, totalprice, address, paymentmethod, ispaid, createat) 
-                                            VALUES (@UserId, @ShipId, @TotalPrice, @Address, @PaymentMethod, @IsPaid, @CreateAt) 
-                                             RETURNING id";
-                        using (var command = new NpgsqlCommand(orderSql, connection))
-                        {
-                            command.Parameters.AddWithValue("@UserId", obj.customerId);
-                            command.Parameters.AddWithValue("@ShipId", obj.deliveryId);
-                            command.Parameters.AddWithValue("@TotalPrice", Math.Round(obj.totalPrice, 2));
-                            command.Parameters.AddWithValue("@Address", obj.address);
-                            command.Parameters.AddWithValue("@PaymentMethod", obj.paymentMethod);
-                            command.Parameters.AddWithValue("@IsPaid", obj.isPaid);
-                            command.Parameters.AddWithValue("@CreateAt", obj.createAt);
+                        try {                            // Insert the order into the Order table
+                            string orderSql = @"INSERT INTO ""Order"" (userid, shipid, totalprice, address, paymentmethod, ispaid, createat) 
+                                                VALUES (@UserId, @ShipId, @TotalPrice, @Address, @PaymentMethod, @IsPaid, @CreateAt) 
+                                                RETURNING id";
+                                using (var command = new NpgsqlCommand(orderSql, connection))
+                                {
+                                    command.Parameters.AddWithValue("@UserId", obj.customerId);
+                                    command.Parameters.AddWithValue("@ShipId", obj.deliveryId);
+                                    command.Parameters.AddWithValue("@TotalPrice", Math.Round(obj.totalPrice, 2));
+                                    command.Parameters.AddWithValue("@Address", obj.address);
+                                    command.Parameters.AddWithValue("@PaymentMethod", obj.paymentMethod);
+                                    command.Parameters.AddWithValue("@IsPaid", obj.isPaid);
+                                    command.Parameters.AddWithValue("@CreateAt", obj.createAt);
 
-                            // Execute the command and get the inserted order ID
-                            obj.Id = command.ExecuteScalar().ToString();
-                        }
-
-                        // Insert the order details into the OrderDetail table
-                        string orderDetailSql = @"INSERT INTO orderdetail (OrderId, ProductId, amount) 
-                                                  VALUES (@OrderId, @ProductId, @Amount)";
-                        foreach (var product in obj.Products)
-                        {
-                            using (var command = new NpgsqlCommand(orderDetailSql, connection))
+                                    // Execute the command and get the inserted order ID
+                                    obj.Id = command.ExecuteScalar().ToString();
+                                }
+                            // Insert the order details into the OrderDetail table
+                            string orderDetailSql = @"INSERT INTO orderdetail (OrderId, ProductId, amount) 
+                                                      VALUES (@OrderId, @ProductId, @Amount)";
+                            foreach (var product in obj.Products)
                             {
-                                command.Parameters.AddWithValue("@OrderId", Guid.Parse(obj.Id));
-                                command.Parameters.AddWithValue("@ProductId", product.Product.Id);
-                                command.Parameters.AddWithValue("@Amount", product.Quantity);
-                                command.ExecuteNonQuery();
+                                using (var command = new NpgsqlCommand(orderDetailSql, connection))
+                                {
+                                    command.Parameters.AddWithValue("@OrderId", Guid.Parse(obj.Id));
+                                    command.Parameters.AddWithValue("@ProductId", product.Product.Id);
+                                    command.Parameters.AddWithValue("@Amount", product.Quantity);
+                                    command.ExecuteNonQuery();
+                                }
                             }
-                        }
 
-                        // Commit the transaction
-                        transaction.Commit();
-                        return true;
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        return false;
+                            // Commit the transaction
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            return false;
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void Delete(Order obj)
+        public dynamic Delete(Order obj)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -93,12 +97,13 @@ namespace BC_Market.DAO
 
                         // Commit the transaction
                         transaction.Commit();
+                        return true;
                     }
                     catch (Exception)
                     {
                         // Rollback the transaction in case of an error
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
                 }
             }

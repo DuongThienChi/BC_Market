@@ -16,7 +16,7 @@ namespace BC_Market.DAO
             throw new NotImplementedException();
         }
 
-        public void Delete(PaymentMethod obj)
+        public dynamic Delete(PaymentMethod obj)
         {
             throw new NotImplementedException();
         }

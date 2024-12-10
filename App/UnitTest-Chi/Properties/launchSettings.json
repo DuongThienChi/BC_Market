@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "UnitTest-Chi (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "UnitTest-Chi (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

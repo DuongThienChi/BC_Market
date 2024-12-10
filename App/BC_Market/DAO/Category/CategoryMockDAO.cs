@@ -54,7 +54,7 @@ namespace BC_Market.DAO
             return obj;
         }
 
-        public void Delete(Category obj)
+        public dynamic Delete(Category obj)
         {
             throw new NotImplementedException();
         }

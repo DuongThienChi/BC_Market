@@ -9,15 +9,15 @@ using BC_Market.Models;
 
 namespace BC_Market.Factory
 {
-    public class DeliveryFactory : IFactory<Delivery>
+    public class DeliveryFactory : IFactory<DeliveryUnit>
     {
-        public IBUS<Delivery> CreateBUS()
+        public IBUS<DeliveryUnit> CreateBUS()
         {
             return new DeliveryBUS(CreateDAO());
         }
-        public IDAO<Delivery> CreateDAO()
+        public IDAO<DeliveryUnit> CreateDAO()
         {
-            return new DeliveryDatabaseDAO();
+            return new DeliveryUnitDatabaseDAO();
         }
 
     }

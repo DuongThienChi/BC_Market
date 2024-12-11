@@ -6,14 +6,15 @@ using BC_Market.BUS;
 using BC_Market.Factory;
 using Microsoft.UI.Xaml.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BC_Market.Converter
 {
     
     public class DeliveryIdToNameConverter : IValueConverter
     {
-        private IFactory<Delivery> deliveryFactory = new DeliveryFactory();
-        private IBUS<Delivery> deliveryBus;
+        private IFactory<DeliveryUnit> deliveryFactory = new DeliveryFactory();
+        private IBUS<DeliveryUnit> deliveryBus;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             int deliveryId = (int)value;
@@ -36,8 +37,8 @@ namespace BC_Market.Converter
             Dictionary<string, string> config = new Dictionary<string, string>();
             config.Add("deliveryId", deliveryId.ToString());
             deliveryBus = deliveryFactory.CreateBUS();
-            var delivery = deliveryBus.Get(config);
-            return delivery.Name;
+            List<DeliveryUnit> DeliveryUnit = deliveryBus.Get(config);
+            return DeliveryUnit.First().Name;
         }
     }
 }

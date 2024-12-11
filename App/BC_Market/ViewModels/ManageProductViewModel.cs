@@ -92,7 +92,7 @@ namespace BC_Market.ViewModels
             var dao = _productBus.Dao();
             dao.Delete(product);
             ListProduct.Remove(product);
-            ProductByCategory.Remove(product);
+            //ProductByCategory.Remove(product);
         }
 
         public void DeleteCategory(Category category) // Delete a category

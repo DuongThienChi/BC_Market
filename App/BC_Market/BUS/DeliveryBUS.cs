@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BC_Market.BUS
 {
-    public class DeliveryBUS : IBUS<Delivery>
+    public class DeliveryBUS : IBUS<DeliveryUnit>
     {
-        public readonly IDAO<Delivery> _dao;
+        public readonly IDAO<DeliveryUnit> _dao;
 
-        public DeliveryBUS(IDAO<Delivery> dao)
+        public DeliveryBUS(IDAO<DeliveryUnit> dao)
         {
             _dao = dao;
         }
@@ -21,27 +21,27 @@ namespace BC_Market.BUS
             return _dao.Get(configuration);
         }
 
-        public IDAO<Delivery> Dao()
+        public IDAO<DeliveryUnit> Dao()
         {
             return _dao;
         }
 
-        public IBUS<Delivery> CreateNew(IDAO<Delivery> dao)
+        public IBUS<DeliveryUnit> CreateNew(IDAO<DeliveryUnit> dao)
         {
             throw new NotImplementedException();
         }
 
-        public dynamic Add(Delivery obj)
+        public dynamic Add(DeliveryUnit obj)
         {
             return _dao.Add(obj);
         }
 
-        public dynamic Update(Delivery obj)
+        public dynamic Update(DeliveryUnit obj)
         {
             return _dao.Update(obj);
         }
 
-        public dynamic Delete(Delivery obj)
+        public dynamic Delete(DeliveryUnit obj)
         {
             return (_dao.Delete(obj));
         }

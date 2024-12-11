@@ -168,7 +168,7 @@
                 <ComboBoxItem Content="Admin"/>
                 <ComboBoxItem Content="Manager"/>
                 <ComboBoxItem Content="Shopper"/>
-
+                <ComboBoxItem Content="Cashier"/>
             </ComboBox>
 
             <TextBlock x:Name="notice_box"

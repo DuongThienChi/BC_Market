@@ -138,7 +138,7 @@ namespace BC_Market.DAO
         public dynamic Update(USER obj)
         {
             var role = getRole(obj.Roles[0].Name);
-            var sql = $@"UPDATE ""User"" SET username = @Username, password = @Password, roleid = @RoleId, rankid=@RankId, curpoint=@CurPoint WHERE username = @Username";
+            var sql = $@"UPDATE ""User"" SET username = @Username, password = @Password, roleid = @RoleId, rankid=@RankId, curpoint=@CurPoint, email=@Email WHERE username = @Username";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
@@ -147,6 +147,7 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Id", obj.Id);
                     cmd.Parameters.AddWithValue("@Username", obj.Username);
                     cmd.Parameters.AddWithValue("@Password", obj.Password);
+                    cmd.Parameters.AddWithValue("@Email", obj.Email);
                     cmd.Parameters.AddWithValue("@RoleId", role.Id);
                     cmd.Parameters.AddWithValue("@RankId", obj.Rank);
                     cmd.Parameters.AddWithValue("@CurPoint", obj.Point);

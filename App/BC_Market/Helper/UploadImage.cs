@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,15 +22,17 @@ namespace BC_Market.Helper
             {
                 string bucketName = "images";
                 string fileName = Path.GetFileName(path);
-                byte[] fileContent = await File.ReadAllBytesAsync(path);
+                byte[] fileContent = File.ReadAllBytes(path);
+               
+                /* byte[] fileContent = await File.ReadAllBytesAsync(path);*/
                 string uniqueFileName = $"{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}_{fileName}";
 
-                var response = await client.Storage
+                var response = client.Storage
                     .From(bucketName)
                     .Upload(fileContent, uniqueFileName);
 
 
-                return response;
+                return response.ToString();
             }
             return path;
         }

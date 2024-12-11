@@ -20,6 +20,7 @@ namespace BC_Market.DAO
         // Add a new product to the database
         public dynamic Add(Product obj)
         {
+            bool status = obj.Status == "Active" ? true : false;
             var sql = $@"INSERT INTO product (name, description, price, stock, cateid, imagepath, status, orderquantity) VALUES (@Name, @Description, @Price, @Stock, @CategoryId, @ImagePath, @Status, @OrderQuantity)";
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -32,7 +33,7 @@ namespace BC_Market.DAO
                     cmd.Parameters.AddWithValue("@Stock", obj.Stock);
                     cmd.Parameters.AddWithValue("@CategoryId", obj.CategoryId);
                     cmd.Parameters.AddWithValue("@ImagePath", obj.ImagePath);
-                    cmd.Parameters.AddWithValue("@Status", obj.Status);
+                    cmd.Parameters.AddWithValue("@Status",status);
                     cmd.Parameters.AddWithValue("@OrderQuantity", obj.OrderQuantity);
                     cmd.ExecuteNonQuery();
                 }

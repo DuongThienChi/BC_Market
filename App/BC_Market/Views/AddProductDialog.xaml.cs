@@ -45,7 +45,7 @@ namespace BC_Market.Views
                 return;
             }
 
-            //string imagePathServer = UploadImage.UploadImagePath(imagePath).Result;
+            string imagePathServer = UploadImage.UploadImagePath(imagePath).Result;
 
             if( string.IsNullOrEmpty(Name.Text) ||
                 string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Price.Text) ||

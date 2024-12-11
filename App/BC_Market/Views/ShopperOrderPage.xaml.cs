@@ -126,7 +126,7 @@ namespace BC_Market.Views
         {
             if (e.AddedItems.Count > 0)
             {
-                var selectedDelivery = (Delivery)e.AddedItems[0];
+                var selectedDelivery = (DeliveryUnit)e.AddedItems[0];
                 SelectedDeliveryTextBlock.Text = selectedDelivery.Name;
                 ViewModel.selectedDelivery = selectedDelivery;
 

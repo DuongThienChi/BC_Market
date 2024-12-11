@@ -26,13 +26,13 @@ namespace BC_Market.ViewModels
     public class ShopperOrderViewModel : ObservableObject
     {
         public XamlRoot xamlRoot;
-        private IFactory<Delivery> _deliveryFactory = new DeliveryFactory();
-        private IBUS<Delivery> _deliveryBus;
+        private IFactory<DeliveryUnit> _deliveryFactory = new DeliveryFactory();
+        private IBUS<DeliveryUnit> _deliveryBus;
         private IFactory<Voucher> _voucherFactory = new VoucherFactory();
         private IBUS<Voucher> _voucherBus;
         private IFactory<Order> _orderFactory = new OrderFactory();
         private IBUS<Order> _orderBus;
-        private Delivery _selectedDelivery;
+        private DeliveryUnit _selectedDelivery;
         private IFactory<Product> _productFactory = new ProductFactory();
         private IBUS<Product> _productBus;
         private IFactory<USER> _userFactory = new UserFactory();
@@ -40,7 +40,7 @@ namespace BC_Market.ViewModels
         private IFactory<PaymentMethod> _paymentMethodFactory = new PaymentMethodFactory();
         private IBUS<PaymentMethod> _paymentMethodBus;
         private IMomoService momoService;
-        public Delivery selectedDelivery
+        public DeliveryUnit selectedDelivery
         {
             get => _selectedDelivery;
             set => SetProperty(ref _selectedDelivery, value);
@@ -87,8 +87,8 @@ namespace BC_Market.ViewModels
             get => _selectedPaymentMethod;
             set => SetProperty(ref _selectedPaymentMethod, value);
         }
-        // Delivery
-        public List<Delivery> deliveries { get; set; } = new List<Delivery>();
+        // DeliveryUnit
+        public List<DeliveryUnit> deliveries { get; set; } = new List<DeliveryUnit>();
         public void LoadDelivery()
         {
             _deliveryBus = _deliveryFactory.CreateBUS();
@@ -132,7 +132,7 @@ namespace BC_Market.ViewModels
             set => SetProperty(ref _total, value);
         }
         private double deliveryCost = 0;
-        public double DeliveryCost // Delivery cost
+        public double DeliveryCost // DeliveryUnit cost
         {
             get
             {
@@ -266,7 +266,7 @@ namespace BC_Market.ViewModels
         {
             if (!CanOrder())
             {
-                // await ShowDialogAsync("Please ensure you have products in the cart, entered an address, and selected a delivery method.", "Order Error");
+                // await ShowDialogAsync("Please ensure you have products in the cart, entered an address, and selected a DeliveryUnit method.", "Order Error");
                 return;
             }
 
@@ -274,7 +274,7 @@ namespace BC_Market.ViewModels
             {
                 Products = new ObservableCollection<CartProduct>(cart.CartProducts),
                 customerId = _curUser.Id,
-                deliveryId = selectedDelivery.ID,
+                deliveryId = selectedDelivery.Id,
                 totalPrice = (float)Math.Round(_finalTotal, 2),
                 address = Address,
                 paymentMethod = SelectedPaymentMethod.Id,

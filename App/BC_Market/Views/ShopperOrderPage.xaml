@@ -190,7 +190,7 @@
                                         <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="200">
                                             <ListView ItemsSource="{x:Bind ViewModel.deliveries}" SelectionChanged="DeliverySelectionChanged">
                                                 <ListView.ItemTemplate>
-                                                    <DataTemplate x:DataType="local1:Delivery">
+                                                    <DataTemplate x:DataType="local1:DeliveryUnit">
                                                         <StackPanel Orientation="Horizontal" Padding="10">
                                                             <TextBlock Text="{x:Bind Name}" FontSize="14" FontWeight="Bold" Margin="0,0,10,0"/>
                                                             <TextBlock FontSize="14" Foreground="Gray">

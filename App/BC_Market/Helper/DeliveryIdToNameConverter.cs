@@ -6,6 +6,7 @@ using BC_Market.BUS;
 using BC_Market.Factory;
 using Microsoft.UI.Xaml.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BC_Market.Converter
 {
@@ -36,8 +37,8 @@ namespace BC_Market.Converter
             Dictionary<string, string> config = new Dictionary<string, string>();
             config.Add("deliveryId", deliveryId.ToString());
             deliveryBus = deliveryFactory.CreateBUS();
-            var DeliveryUnit = deliveryBus.Get(config);
-            return DeliveryUnit.Name;
+            List<DeliveryUnit> DeliveryUnit = deliveryBus.Get(config);
+            return DeliveryUnit.First().Name;
         }
     }
 }

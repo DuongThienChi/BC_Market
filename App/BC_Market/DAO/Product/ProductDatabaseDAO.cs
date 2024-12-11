@@ -47,6 +47,7 @@ namespace BC_Market.DAO
         {
             try
             {
+                obj = getProductByInformation(obj);
                 var sql = $@"DELETE FROM product WHERE uniqueid = @Id";
                 using (var conn = new NpgsqlConnection(connectionString))
                 {
@@ -177,9 +178,49 @@ namespace BC_Market.DAO
             }
         }
 
+        public dynamic getProductByInformation(Product cur_product)
+        {
+            var sql = $@"SELECT * FROM product WHERE name = @name AND description = @description AND price = @price AND stock = @stock AND cateid = @cateid AND imagepath = @imagepath AND status = @status AND orderquantity = @orderquantity";
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", cur_product.Name);
+                    cmd.Parameters.AddWithValue("@description", cur_product.Description);
+                    cmd.Parameters.AddWithValue("@price", cur_product.Price);
+                    cmd.Parameters.AddWithValue("@stock", cur_product.Stock);
+                    cmd.Parameters.AddWithValue("@cateid", cur_product.CategoryId);
+                    cmd.Parameters.AddWithValue("@imagepath", cur_product.ImagePath);
+                    cmd.Parameters.AddWithValue("@status", cur_product.Status == "Active" ? true : false);
+                    cmd.Parameters.AddWithValue("@orderquantity", cur_product.OrderQuantity);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var product = new Product();
+                            product.Id = (int)reader["uniqueid"];
+                            product.Name = (string)reader["name"];
+                            product.Description = (string)reader["description"];
+                            product.Price = (double)reader["price"];
+                            product.Stock = (int)reader["stock"];
+                            product.CategoryId = (string)reader["cateid"];
+                            product.ImagePath = (string)reader["imagepath"];
+                            product.Status = (bool)reader["status"] == true ? "Active" : "Inactive";
+                            product.OrderQuantity = (int)reader["orderquantity"];
+                            return product;
+                        }
+                    }
+                }
+                conn.Close();
+                return null;
+            }
+        }
+
         // Update a product in the database
         public dynamic Update(Product obj)
         {
+            obj = getProductByInformation(obj);
             var sql = $@"UPDATE product SET name = @name, description = @description, price = @price, stock = @stock, cateid = @cateid, imagepath = @imagepath, status = @status, orderquantity = @orderquantity 
                     WHERE uniqueid = @uniqueid";
             using (var conn = new NpgsqlConnection(connectionString))

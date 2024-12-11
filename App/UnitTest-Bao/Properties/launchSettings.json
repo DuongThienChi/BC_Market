@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "UnitTest (Package)": {
+    "UnitTest-Bao (Package)": {
       "commandName": "MsixPackage"
     },
-    "UnitTest (Unpackaged)": {
+    "UnitTest-Bao (Unpackaged)": {
       "commandName": "Project"
     }
   }

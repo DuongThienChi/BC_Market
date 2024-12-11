@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="5566181f-f18b-43db-aca4-7a8657ba1140"
-    Publisher="CN=ADMIN"
+    Name="d54ed775-c42a-4560-ac9f-eac5661aa177"
+    Publisher="CN=phanm"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="5566181f-f18b-43db-aca4-7a8657ba1140" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="d54ed775-c42a-4560-ac9f-eac5661aa177" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>UnitTest</DisplayName>
-    <PublisherDisplayName>ADMIN</PublisherDisplayName>
+    <DisplayName>UnitTest-Bao</DisplayName>
+    <PublisherDisplayName>phanm</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -34,8 +34,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="UnitTest"
-        Description="UnitTest"
+        DisplayName="UnitTest-Bao"
+        Description="UnitTest-Bao"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">

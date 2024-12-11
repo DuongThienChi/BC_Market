@@ -212,7 +212,6 @@ namespace BC_Market.DAO
             return orderDetail;
         }
 
-
         public dynamic GetAll()
         {
             // Implementation of GetAll method

@@ -100,7 +100,7 @@ namespace BC_Market.Views
             foreach (var user in listUser)
             {
                 // check username and password
-                if (user.Username == username && (BCrypt.Net.BCrypt.Verify(password,user.Password) || password == user.Password))
+                if (user.Username == username && (BCrypt.Net.BCrypt.Verify(password, user.Password) || password == user.Password))
                 {
                     // store username and password if remember_me.IsChecked
                     if (remember_me.IsChecked == true)

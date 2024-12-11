@@ -31,8 +31,11 @@ namespace BC_Market.Helper
                     .From(bucketName)
                     .Upload(fileContent, uniqueFileName);
 
+                var url = client.Storage
+                    .From(bucketName)
+                    .GetPublicUrl(uniqueFileName);
 
-                return response.ToString();
+                return url;
             }
             return path;
         }

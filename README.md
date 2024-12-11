@@ -102,37 +102,120 @@ Việc sử dụng kết hợp giữa Factory Design Pattern, Three Layers và M
 
 ![Git Graph 1](assets/graph2.png)
 
-## Set up:
+## Chi tiết milestone 02:
+
+### Các chức năng đã hoàn thành:
+
+Ngoài các chức năng đã hoàn thành ở milestone 01, thì nhóm đã có hoàn thành thêm các chức năng sau:
+
+- Mở rộng database để quản lý đơn vị giao hàng, đơn hàng, khuyến mãi, giỏ hàng, phương thức thanh toán, Rank (xếp hạng tài khoản khách hàng).
+- Cập nhật UI của người dùng trang đặt hàng để chọn được đơn vị giao hàng, khuyến mãi,phương thức thanh toán nhập địa chỉ và hiển thị giá.
+- Quản lý voucher khuyến mãi cho admin và manager.
+- Tạo đơn hàng dành cho Cashier (đối với khách hàng mua offline).
+- Hiển thị danh sách, xem chi tiết Orders dành cho admin và manager.
+- Bổ sung thanh toán bằng QR MOMO.
+- Bổ sung OrderID bằng UUID.
+- Bổ sung upload ảnh từ máy lên cloud.
+- Bổ sung trigger ở database để tự động nâng cấp rank của khách hàng khi đủ điểm.
+- Cấu trúc lại chương trình xóa bỏ các view bị trùng chức năng.
+
+**Tổng quát**: Nhóm đã thực hiện được theo như proposal
+
+- Đặt hàng và quản lý đặt hàng
+- Chương trình khuyến mãi
+- Thanh toán
+- Mã hóa đơn bằng UUID
+- Các tính năng bổ sung, hỗ trợ.
 
 ### Database:
 
-- Nhóm dùng PostgreSQL 13.16 \
-   `docker run -e POSTGRES_USER=USER -e POSTGRES_PASSWORD=PASSWORD -e POSTGRES_DB=BCMarket -p PORT:5432 --name NAME -d postgres:13.16`
-- Chạy migration để tạo database:
-- Các thư viện cần dùng knex, dotenv, pg \
-  `npm install`
-- Cần tạo file .env trong thư mục migration gồm:
+#### Ở milestone 02, nhóm đã chuyển từ dùng database local thành dùng cloud của supabase.
 
-```dotenv
-NODE_ENV=development
-PG_HOST=localhost
-PG_PORT=Port
-PG_USER=Username
-PG_PASSWORD=Password
-PG_DATABASE=DatabaseName
-```
+![Ảnh database](assets/db2.png)
 
-- Tạo bảng và nhập dữ liệu: \
-  `knex migrate:latest`\
-  `knex seed:run`
+#### Supabase hỗ trợ tốt trong migration cũng như cộng tác giữa các thành viên.
+
+### UI/UX:
+
+- Do milestone 01 nhóm còn thiếu sót nên đã có cập nhật và cải thiện thêm. Chi tiết sẽ thể hiện ở Demo.
+
+#### Về UI:
+
+- Nhóm vẫn giữ nguyên khuôn mẫu của milestone 01 nhưng đã có cập nhật một số view và tương tác khác.
+
+#### Về UX:
+
+- Nhóm có cải thiện UX bằng một số animation cơ bản, bắt lỗi cho các trường hợp người dùng tương tác đã đầy đủ hơn.
+- Giao diện hỗ trợ tốt cho fullscreen laptop [1920x1080]
+
+### Design Patterns - Architecture
+
+- Nhóm vẫn giữ nguyên như milestone 01 nhưng đã có thêm vài DI cho các service cho việc navigation và paymentService
+
+#### Factory Design Pattern:
+
+- Chúng em dùng Factory Design Pattern để khởi tạo đối tượng các lớp DAO và BUS hỗ trợ cho mô hình Three Layers. Điều này giúp việc thay đổi luồng dữ liệu đầu vào một cách nhanh chóng, giúp quá trình test cũng như mở rộng hệ thống dễ dàng hơn.
+
+#### Architecture:
+
+- Sử dụng Three Layers Architecture để tách biệt phần xử lí GUI, Logic và Data; giúp hệ thống dễ bảo trì, mở rộng, tách biệt code giúp quá trình làm việc tường minh hơn.
+- Nhóm chúng em dùng MVVM cho phần GUI giúp tách biệt phần xử lí dữ liệu và hiển thị dữ liệu ra riêng biệt, hỗ trợ việc kiểm tra unit test vì phần xử lí đã tách riêng ra phần hiển thị dữ liệu (View), và dễ dàng chỉnh sửa lại giao diện nếu có thay đổi.
+
+### Advanceed Topics:
+
+Ngoài các Advenced Topics ở milestone 01 thì nhóm đã có bổ sung thêm:
+
+- Thanh toán thông qua Momo bằng Momo API ở môi trường test [Document MomoAPI](https://developers.momo.vn/v3/docs/payment/guides/home) và tham khảo từ kênh [Youtube](https://www.youtube.com/@hieutancodeproject)
+- Dùng NagivationService để có thể chuyển frame từ ViewModel.
+- Dùng thư viện hỗ trợ của supabase để upload ảnh lên Storage.
+
+### Teamwork - Git flow:
+
+Phân công công việc sẽ nằm trong phần biên bản họp nhóm của từng buổi Meeting.
+
+#### Meeting:
+
+- Trong quá trình làm việc nhóm sẽ trao đổi thông tin, báo cáo tiến độ qua nhóm chat.
+- Chi tiết biên bản họp nhóm ở link sau:
+
+* Lần 3: https://docs.google.com/document/d/1DIFWppGFLUr29eYNqDLA6I9aNWPjPiI5QEyDqrR2mQc/edit?usp=sharing
+* Lần 4: https://docs.google.com/document/d/1JMT2xk-5ZQwdpWXM_bOaItpwmWyAulEXE25WnHM7HD4/edit?usp=sharing
+* Lần 5: https://docs.google.com/document/d/1SKZsRAvlXjmwk0xLN0y30C23pjqZXweAZr3pjmKK5E4/edit?usp=sharing
+
+#### Git flow:
+
+- Tổ chức Git Flow vẫn như milestone 01.
+
+### Quality Assurance
+
+- Nhóm ở milestone này đã bổ sung thêm unit test cho một số hàm. Kết hợp với test thủ công thì với mỗi chức năng thành công sẽ chạy lại unit test và test thủ công.
+- Chỉ có một người trong nhóm được tạo pull request, với mỗi pull create được tạo sẽ cần sự cộng tác giữa các thành viên để hỗ trợ sửa conflict cũng như test lại chương trình.
+- Các điều trên được thể hiện qua git graph:
+
+![Git Graph 1](assets/graph-milestone2.png)
+
+![Git Graph 1](assets/graph-milestone2.png)
+
+## Set up:
+
 - Tạo file appsettings.json trong thư mục BC_Market:
+- Cần để appsettings.json là Copy If Newer nếu chương trình không đọc được dữ liệu.
 
 ```bash
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=port;Database=DatabaseName;Username=username;Password=Password"
+    "DefaultConnection": "Host=aws-0-ap-southeast-1.pooler.supabase.com;Port=5432;Database=postgres;Username=postgres.xlxwqmipwlkgvqfbihhi;Password=Postgres@123;SslMode=Require;Trust Server Certificate=true"
+  },
+  "MomoAPI": {
+    "MomoApiUrl": "https://test-payment.momo.vn/gw_payment/transactionProcessor",
+    "SecretKey": "K951B6PE1waDMi640xX08PD3vg6EkVlz",
+    "AccessKey": "F8BBA842ECF85",
+    "ReturnUrl": "http://localhost/dummy",
+    "NotifyUrl": "http://localhost/dummy",
+    "PartnerCode": "MOMO",
+    "RequestType": "captureMoMoWallet"
   }
- }
+}
 ```
 
 #### Demo link: https://www.youtube.com/watch?v=Jiwp1fG-qcs

@@ -34,7 +34,7 @@ namespace BC_Market.DAO
         {
             try
             {
-                obj = getDeliveryUnitByInformation(obj);
+                //obj = getDeliveryUnitByInformation(obj);
                 var sql = $@"DELETE FROM deliveryunit WHERE id = @Id";
                 using (var conn = new NpgsqlConnection(connectionString))
                 {
@@ -113,7 +113,7 @@ namespace BC_Market.DAO
 
         public dynamic Update(DeliveryUnit obj)
         {
-            obj = getDeliveryUnitByInformation(obj);
+            //obj = getDeliveryUnitByInformation(obj);
             var sql = $@"UPDATE deliveryunit SET name = @Name, price = @Price WHERE id = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
             {

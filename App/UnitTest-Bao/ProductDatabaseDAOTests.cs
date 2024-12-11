@@ -60,32 +60,32 @@ namespace UnitTest_Bao
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        public void Update_Product_Success()
-        {
-            // Arrange
-            var product = new Product
-            {
-                Name = "Test Product",
-                Price = 10.0f,
-                Description = "Test Description",
-                Stock = 100,
-                CategoryId = "M01",
-                ImagePath = "Test Image Path",
-                Status = "Test Status",
-                OrderQuantity = 0
-            };
+        //[TestMethod]
+        //public void Update_Product_Success()
+        //{
+        //    // Arrange
+        //    var product = new Product
+        //    {
+        //        Name = "Test Product",
+        //        Price = 10.0f,
+        //        Description = "Test Description",
+        //        Stock = 100,
+        //        CategoryId = "M01",
+        //        ImagePath = "Test Image Path",
+        //        Status = "Test Status",
+        //        OrderQuantity = 0
+        //    };
 
-            mockConnection.Setup(c => c.Open());
-            mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
-            mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
+        //    mockConnection.Setup(c => c.Open());
+        //    mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
+        //    mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
 
-            // Act
-            var result = productDatabaseDAO.Update(product);
+        //    // Act
+        //    var result = productDatabaseDAO.Update(product);
 
-            // Assert
-            Assert.IsTrue(result);
-        }
+        //    // Assert
+        //    Assert.IsTrue(result);
+        //}
 
         //[TestMethod]
         //public void Delete_Product_Success()

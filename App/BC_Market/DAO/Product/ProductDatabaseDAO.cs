@@ -47,7 +47,7 @@ namespace BC_Market.DAO
         {
             try
             {
-                obj = getProductByInformation(obj);
+                //obj = getProductByInformation(obj);
                 var sql = $@"DELETE FROM product WHERE uniqueid = @Id";
                 using (var conn = new NpgsqlConnection(connectionString))
                 {
@@ -220,7 +220,7 @@ namespace BC_Market.DAO
         // Update a product in the database
         public dynamic Update(Product obj)
         {
-            obj = getProductByInformation(obj);
+            //obj = getProductByInformation(obj);
             var sql = $@"UPDATE product SET name = @name, description = @description, price = @price, stock = @stock, cateid = @cateid, imagepath = @imagepath, status = @status, orderquantity = @orderquantity 
                     WHERE uniqueid = @uniqueid";
             using (var conn = new NpgsqlConnection(connectionString))

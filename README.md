@@ -192,9 +192,9 @@ Phân công công việc sẽ nằm trong phần biên bản họp nhóm của t
 - Chỉ có một người trong nhóm được tạo pull request, với mỗi pull create được tạo sẽ cần sự cộng tác giữa các thành viên để hỗ trợ sửa conflict cũng như test lại chương trình.
 - Các điều trên được thể hiện qua git graph:
 
-![Git Graph 1](assets/graph-milestone2.png)
+![Git Graph 1](assets/graph-milestone2-1.png)
 
-![Git Graph 1](assets/graph-milestone2.png)
+![Git Graph 1](assets/graph-milestone2-2.png)
 
 ## Set up:
 
@@ -218,4 +218,4 @@ Phân công công việc sẽ nằm trong phần biên bản họp nhóm của t
 }
 ```
 
-#### Demo link: https://www.youtube.com/watch?v=Jiwp1fG-qcs
+#### Demo link: https://www.youtube.com/watch?v=Rk-GIqta89Q

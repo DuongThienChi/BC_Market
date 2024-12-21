@@ -46,6 +46,7 @@
 		<None Remove="Views\ManagerOrderPage.xaml" />
 		<None Remove="Views\ManagerVoucherPage.xaml" />
 		<None Remove="Views\OrderSuccessPage.xaml" />
+		<None Remove="Views\ReportOrderPage.xaml" />
 		<None Remove="Views\ViewDetailOrderPage.xaml" />
 		<None Remove="Views\OrderPage.xaml" />
 	</ItemGroup>
@@ -63,6 +64,8 @@
 	<ItemGroup>
 		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="EPPlus" Version="7.5.2" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-rc4.5" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
 		<PackageReference Include="dotenv.net" Version="3.2.1" />
 		<PackageReference Include="DotNetEnv" Version="3.1.1" />
@@ -144,6 +147,9 @@
 		<None Update="Assets\Images\logout-button.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<Page Update="Views\ReportOrderPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\ViewDetailOrderPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</Page>

@@ -158,6 +158,13 @@
                         <TextBlock Text="Order" FontWeight="Bold"  Foreground="#FAC1D9"/>
                     </StackPanel>
                 </Button>
+                <Button x:Name="report_btn" Click="report_btn_Click" Background="#3D4142" 
+                      Grid.Row="4" HorizontalAlignment="Center" Width="100">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="../Assets\Images\feature-button.png" Width="25"/>
+                        <TextBlock Text="Report" FontWeight="Bold"  Foreground="#FAC1D9"/>
+                    </StackPanel>
+                </Button>
 
 
             </Grid>

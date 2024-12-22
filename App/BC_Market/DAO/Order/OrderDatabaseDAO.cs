@@ -123,7 +123,158 @@ namespace BC_Market.DAO
             {
                 return GetOrderbyDate(configuration["date"]);
             }
+            if (configuration.ContainsKey("latest"))
+            {
+                return GetLatestOrder();
+            }
+            if(configuration.ContainsKey("reportProduct"))
+            {
+                return GetReportProduct(configuration["start"], configuration["end"]);
+            }
+            if (configuration.ContainsKey("reportCate"))
+            {
+                return GetReportCate(configuration["start"], configuration["end"]);
+            }
+            if (configuration.ContainsKey("reportCateSale"))
+            {
+                return GetReportCateSale(configuration["start"], configuration["end"]);
+            }
             return null;
+        }
+
+        private dynamic GetReportCateSale(string startDate, string endDate)
+        {
+            ObservableCollection<KeyValuePair<string, long>> cate_sale = new ObservableCollection<KeyValuePair<string, long>>();
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = @"SELECT Category.Name as Name, SUM(Product.price*OrderDetail.amount) as total FROM OrderDetail 
+                        JOIN ""Order"" on OrderDetail.OrderId = ""Order"".id
+                        JOIN Product on OrderDetail.ProductId = Product.uniqueid
+                        JOIN Category on Product.cateid = Category.uniqueid
+                        WHERE DATE(""Order"".createat) >= @StartDate AND DATE(""Order"".createat) <= @EndDate
+                        GROUP BY Product.cateid, Category.Name
+                        ORDER BY total DESC";
+                using (var command = new NpgsqlCommand(sql, connection))
+                {
+                    if (!DateTime.TryParse(startDate, out DateTime parsedStartDate) || !DateTime.TryParse(endDate, out DateTime parsedEndDate))
+                    {
+                        throw new ArgumentException("Invalid date format");
+                    }
+                    command.Parameters.AddWithValue("@StartDate", parsedStartDate.Date);
+                    command.Parameters.AddWithValue("@EndDate", parsedEndDate.Date);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cate_sale.Add(new KeyValuePair<string, long>((string)reader["Name"], Convert.ToInt64(reader["total"])));
+                        }
+                    }
+                    return cate_sale;
+                }
+            }
+        }
+
+        private dynamic GetReportCate(string startDate, string endDate)
+        {
+            ObservableCollection<KeyValuePair<string, int>> cate_quantity = new ObservableCollection<KeyValuePair<string, int>>();
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = @"SELECT Category.Name as Name, SUM(amount) as total FROM OrderDetail 
+                        JOIN ""Order"" on OrderDetail.OrderId = ""Order"".id
+                        JOIN Product on OrderDetail.ProductId = Product.uniqueid
+                        JOIN Category on Product.cateid = Category.uniqueid
+                        WHERE DATE(""Order"".createat) >= @StartDate AND DATE(""Order"".createat) <= @EndDate
+                        GROUP BY Product.cateid, Category.Name
+                        ORDER BY total DESC";
+                using (var command = new NpgsqlCommand(sql, connection))
+                {
+                    if (!DateTime.TryParse(startDate, out DateTime parsedStartDate) || !DateTime.TryParse(endDate, out DateTime parsedEndDate))
+                    {
+                        throw new ArgumentException("Invalid date format");
+                    }
+                    command.Parameters.AddWithValue("@StartDate", parsedStartDate.Date);
+                    command.Parameters.AddWithValue("@EndDate", parsedEndDate.Date);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cate_quantity.Add(new KeyValuePair<string, int>((string)reader["Name"], Convert.ToInt32(reader["total"])));
+                        }
+                    }
+                    return cate_quantity;
+                }
+            }
+        }
+
+        private dynamic GetReportProduct(string startDate, string endDate)
+        {
+            ObservableCollection<KeyValuePair<string, int>> product_quantity = new ObservableCollection<KeyValuePair<string, int>>();
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = @"SELECT Product.Name as Name, SUM(amount) as total FROM OrderDetail 
+                        JOIN ""Order"" on OrderDetail.OrderId = ""Order"".id
+                        JOIN Product on OrderDetail.ProductId = Product.uniqueid
+                        WHERE DATE(""Order"".createat) >= @StartDate AND DATE(""Order"".createat) <= @EndDate
+                        GROUP BY OrderDetail.ProductId, Product.Name
+                        ORDER BY total DESC";
+                using (var command = new NpgsqlCommand(sql, connection))
+                {
+                    if(!DateTime.TryParse(startDate, out DateTime parsedStartDate) || !DateTime.TryParse(endDate, out DateTime parsedEndDate))
+                    {
+                        throw new ArgumentException("Invalid date format");
+                    }
+                    command.Parameters.AddWithValue("@StartDate", parsedStartDate.Date);
+                    command.Parameters.AddWithValue("@EndDate", parsedEndDate.Date);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            product_quantity.Add(new KeyValuePair<string, int>((string)reader["Name"], Convert.ToInt32(reader["total"])));
+                        }
+                    }
+                    return product_quantity;
+                }
+            }
+        }
+
+        private dynamic GetLatestOrder()
+        {
+            var sql = @"SELECT * FROM ""Order"" ORDER BY createat DESC LIMIT 1";
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand(sql, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Order order = new Order
+                            {
+                                Id = reader["id"].ToString(),
+                                customerId = (int)reader["userid"],
+                                deliveryId = (int)reader["shipid"],
+                                totalPrice = (float)(double)reader["totalprice"],
+                                address = (string)reader["address"],
+                                paymentMethod = (int)reader["paymentmethod"],
+                                isPaid = (Boolean)reader["ispaid"],
+                                createAt = (DateTime)reader["createat"]
+                            };
+                            return order;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         private dynamic GetOrderbyDate(string date)

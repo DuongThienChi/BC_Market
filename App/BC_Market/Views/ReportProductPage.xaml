@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BC_Market.Views.ReportProductPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Market.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
+    xmlns:vms="using:ViewModelsSamples.General.TemplatedTooltips"
+    mc:Ignorable="d"
+    Background="#040404">
+
+    <Grid
+    >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                BorderThickness="1"
+                Margin="0 5 20 0"
+                >
+
+            <TextBlock Foreground="White"
+                       VerticalAlignment="Center"
+                       >
+                Start Date:
+            </TextBlock>
+            <CalendarDatePicker x:Name="datePicker_start"
+                                Date="{x:Bind ViewModel.StartDate, Mode=TwoWay}"
+                                MinDate="{x:Bind ViewModel.firstDate, Mode=OneWay}"
+                                MaxDate="{x:Bind ViewModel.LatestOrderDate, Mode=OneWay}"
+                                Margin="0 0 10 0"
+                >
+            </CalendarDatePicker>
+
+            <TextBlock Foreground="White"
+                       VerticalAlignment="Center"
+                       >
+                End Date:
+            </TextBlock>
+            <CalendarDatePicker x:Name="datePicker_end"
+                    Date="{x:Bind ViewModel.EndDate, Mode=TwoWay}"
+                    MinDate="{x:Bind ViewModel.StartDate, Mode=OneWay}"
+                    MaxDate="{x:Bind ViewModel.LatestOrderDate, Mode=OneWay}"
+                    Margin="0 0 10 0"
+                >
+            </CalendarDatePicker>
+
+            <Button Command="{x:Bind ViewModel.GenerateReportCommand}"
+                Background="#FAC1D9"
+                >
+                Generate Report
+            </Button>
+            <!--<Button Command="{}"
+                    Background="#FAC1D9"
+                >
+                Export to Excel
+            </Button>-->
+        </StackPanel>
+
+        <ScrollView Grid.Row="1">
+            <Grid
+                Background="#DDDDDD"
+                Margin="20"
+                CornerRadius="5"
+                >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="400"/>
+                        <RowDefinition Height="500"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Background="#CCCCCC"
+                          CornerRadius="5"
+                          Grid.Row="0"
+                          Grid.Column="0"
+                          Margin="20"
+                          >
+                        <lvc:PieChart Series="{x:Bind ViewModel.CircleProductReportData, Mode=OneWay}" 
+                                  Title="{x:Bind ViewModel.CircleProductTitle, Mode=OneWay}"
+                                  >
+                        </lvc:PieChart>
+                    </Grid>
+
+
+                    <Grid Background="#CCCCCC"
+                          CornerRadius="5"
+                          Grid.Row="0"
+                          Grid.Column="1"
+                          Margin="20"
+                          >
+                        <lvc:PieChart Series="{x:Bind ViewModel.CircleCateReportData, Mode=OneWay}" 
+                                  Title="{x:Bind ViewModel.CircleCateTitle, Mode=OneWay}"
+                                  >
+
+                        </lvc:PieChart>
+                    </Grid>
+
+                    <Grid Background="#CCCCCC"
+                          CornerRadius="5"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Margin="20"
+                          >
+                        <lvc:CartesianChart Series="{x:Bind ViewModel.HorizontalCateReportSeries, Mode=OneWay}"
+                                        XAxes="{x:Bind ViewModel.XAxes, Mode=OneWay}"
+                                        YAxes="{x:Bind ViewModel.YAxes, Mode=OneWay}"
+                                        TooltipPosition="Top"
+                                        ZoomMode="Both"
+                                        Title="{x:Bind ViewModel.HorizontalTitle, Mode=OneWay}"    
+                                    >
+                            <lvc:CartesianChart.Tooltip>
+                                <vms:CustomTooltip></vms:CustomTooltip>
+                            </lvc:CartesianChart.Tooltip>
+                        </lvc:CartesianChart>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+        </ScrollView>
+
+
+    </Grid>
+</Page>

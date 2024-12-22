@@ -40,7 +40,7 @@ namespace BC_Market.ViewModels
         {
             new Axis
             {
-                LabelsPaint = new SolidColorPaint(SKColors.White),
+                LabelsPaint = new SolidColorPaint(SKColors.Black),
             }
         };
         public ObservableCollection<string> Filters { get; set; } = new ObservableCollection<string>
@@ -159,7 +159,7 @@ namespace BC_Market.ViewModels
                 {
 
                     Labels = Labels,
-                    LabelsPaint = new SolidColorPaint(SKColors.White),
+                    LabelsPaint = new SolidColorPaint(SKColors.Black),
                 }
             };
 

@@ -45,7 +45,7 @@
         </StackPanel>
         <Grid
             Grid.Row="1"
-            Background="#292C2D"
+            Background="#DDDDDD"
             Margin="30 20 40 60"
             CornerRadius="5"
             >

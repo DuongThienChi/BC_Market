@@ -19,17 +19,18 @@ using Windows.Foundation.Collections;
 
 namespace BC_Market.Views
 {
-   
-    public sealed partial class ReportOrderPage : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class ReportProductPage : Page
     {
+        private ReportProductViewModel ViewModel { get; set; }
 
-        public ReportOrderPageViewModel ViewModel { get; set; }
-        public ReportOrderPage()
+        public ReportProductPage()
         {
             this.InitializeComponent();
-            ViewModel = new ReportOrderPageViewModel();
+            ViewModel = new ReportProductViewModel();
             this.DataContext = ViewModel;
         }
     }
-  
 }

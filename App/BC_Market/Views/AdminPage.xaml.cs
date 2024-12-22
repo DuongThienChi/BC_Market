@@ -65,7 +65,7 @@ namespace BC_Market.Views
         }
         private void report_btn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(typeof(ReportOrderPage));
+            mainFrame.Navigate(typeof(ReportPage));
         }
     }
 }

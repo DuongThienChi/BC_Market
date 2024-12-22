@@ -47,6 +47,8 @@
 		<None Remove="Views\ManagerVoucherPage.xaml" />
 		<None Remove="Views\OrderSuccessPage.xaml" />
 		<None Remove="Views\ReportOrderPage.xaml" />
+		<None Remove="Views\ReportPage.xaml" />
+		<None Remove="Views\ReportProductPage.xaml" />
 		<None Remove="Views\ViewDetailOrderPage.xaml" />
 		<None Remove="Views\OrderPage.xaml" />
 	</ItemGroup>
@@ -94,7 +96,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="appsettings.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Assets\Images\fail.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -147,6 +149,12 @@
 		<None Update="Assets\Images\logout-button.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<Page Update="Views\ReportProductPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\ReportPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\ReportOrderPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</Page>

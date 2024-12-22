@@ -1,4 +1,3 @@
-using BC_Market.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -19,17 +18,25 @@ using Windows.Foundation.Collections;
 
 namespace BC_Market.Views
 {
-   
-    public sealed partial class ReportOrderPage : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class ReportPage : Page
     {
-
-        public ReportOrderPageViewModel ViewModel { get; set; }
-        public ReportOrderPage()
+        public ReportPage()
         {
             this.InitializeComponent();
-            ViewModel = new ReportOrderPageViewModel();
-            this.DataContext = ViewModel;
+            report_frame.Navigate(typeof(ReportProductPage));
+        }
+
+        private void product_report_Click(object sender, RoutedEventArgs e)
+        {
+            report_frame.Navigate(typeof(ReportProductPage));
+        }
+
+        private void order_report_Click(object sender, RoutedEventArgs e)
+        {
+            report_frame.Navigate(typeof(ReportOrderPage));
         }
     }
-  
 }

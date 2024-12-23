@@ -65,7 +65,7 @@
 
         <ScrollView Grid.Row="1">
             <Grid
-                Background="#DDDDDD"
+                Background="#040404"
                 Margin="20"
                 CornerRadius="5"
                 >
@@ -80,7 +80,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid Background="#CCCCCC"
+                    <Grid Background="#292C2D"
                           CornerRadius="5"
                           Grid.Row="0"
                           Grid.Column="0"
@@ -93,7 +93,7 @@
                     </Grid>
 
 
-                    <Grid Background="#CCCCCC"
+                    <Grid Background="#292C2D"
                           CornerRadius="5"
                           Grid.Row="0"
                           Grid.Column="1"
@@ -106,7 +106,7 @@
                         </lvc:PieChart>
                     </Grid>
 
-                    <Grid Background="#CCCCCC"
+                    <Grid Background="#292C2D"
                           CornerRadius="5"
                           Grid.Row="1"
                           Grid.Column="0"

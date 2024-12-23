@@ -160,7 +160,7 @@ namespace BC_Market.ViewModels
             Text = "Percent of amount of product sold",
             TextSize = 25,
             Padding = new LiveChartsCore.Drawing.Padding(15),
-            Paint = new SolidColorPaint(SKColors.Black)
+            Paint = new SolidColorPaint(SKColors.White)
         };
         private void initCircleProductData()
         {
@@ -238,7 +238,7 @@ namespace BC_Market.ViewModels
             Text = "Percent of amount of category sold",
             TextSize = 25,
             Padding = new LiveChartsCore.Drawing.Padding(15),
-            Paint = new SolidColorPaint(SKColors.Blue)
+            Paint = new SolidColorPaint(SKColors.White)
         };
         private void initCircleCateData()
         {
@@ -313,7 +313,8 @@ namespace BC_Market.ViewModels
         {
             Text = "Sale of each category",
             TextSize = 25,
-            Padding = new LiveChartsCore.Drawing.Padding(15)
+            Padding = new LiveChartsCore.Drawing.Padding(15),
+            Paint = new SolidColorPaint(SKColors.White)
         };
         private void initHorizontalReport()
         {

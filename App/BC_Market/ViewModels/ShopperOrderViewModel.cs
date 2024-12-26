@@ -39,6 +39,8 @@ namespace BC_Market.ViewModels
         private IBUS<USER> _userBus;
         private IFactory<PaymentMethod> _paymentMethodFactory = new PaymentMethodFactory();
         private IBUS<PaymentMethod> _paymentMethodBus;
+        private IFactory<Cart> _cartFactory = new CartFactory();
+        private IBUS<Cart> _cartBus;
         private IMomoService momoService;
         public DeliveryUnit selectedDelivery
         {
@@ -59,6 +61,7 @@ namespace BC_Market.ViewModels
         {
             momoService = App.GetService<IMomoService>();
             cart = SessionManager.Get("Cart") as Cart;
+            _cartBus = _cartFactory.CreateBUS();
             DeleteItemCommand = new RelayCommand<CartProduct>(DeleteItem);
             DeleteAllCommand = new RelayCommand(DeleteAll);
             OrderCommand = new RelayCommand(Order, CanOrder);
@@ -230,10 +233,12 @@ namespace BC_Market.ViewModels
                 if (item.Quantity > 1)
                 {
                     item.Quantity--;
+                    _cartBus.Update(cart);
                 }
                 else
                 {
                     cart.CartProducts.Remove(item);
+                    _cartBus.Update(cart);
                 }
                 OnPropertyChanged(nameof(Total));
                 OnPropertyChanged(nameof(FinalTotal));
@@ -249,6 +254,7 @@ namespace BC_Market.ViewModels
             {
                 var product = cart.CartProducts.FirstOrDefault(x => x.Product.Id == item.Product.Id);
                 cart.CartProducts.Remove(product);
+                _cartBus.Update(cart);
             }
             OnPropertyChanged(nameof(Total));
             OnPropertyChanged(nameof(FinalTotal));

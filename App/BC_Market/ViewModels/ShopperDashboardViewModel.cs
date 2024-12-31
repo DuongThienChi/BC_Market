@@ -32,6 +32,8 @@ namespace BC_Market.ViewModels
         private IBUS<Product> _bus;
         private IFactory<Category> _categoryFactory = new CategoryFactory();
         private IBUS<Category> _categoryBUS;
+        private IFactory<Cart> _cartFactory = new CartFactory();
+        private IBUS<Cart> _cartBus;
         private int totalPages; // Define the totalPages field
         public Cart cart { get; set; } // Define the cart field
         public int ProductInCart; // Number of products in the cart
@@ -115,6 +117,7 @@ namespace BC_Market.ViewModels
             NextPageCommand = new RelayCommand(GoNextPage);
             cart = SessionManager.Get("Cart") as Cart;
             _bus = _factory.CreateBUS();
+            _cartBus = _cartFactory.CreateBUS();
             LoadProducts(); // Load products
             LoadCategory(); // Load category
             ProductInCart = cart.count;
@@ -220,6 +223,7 @@ namespace BC_Market.ViewModels
                         return;
                     }
                     item.Quantity += 1;
+                    _cartBus.Update(cart);
                     OnPropertyChanged(nameof(ProductInCart));
                     ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
                     return;
@@ -229,6 +233,7 @@ namespace BC_Market.ViewModels
             if (product.Stock > 0) // Check if the product is in stock
             {
                 cart.CartProducts.Add(new CartProduct { Product = product, Quantity = 1 });
+                _cartBus.Update(cart);
                 ProductInCart++;
                 OnPropertyChanged(nameof(ProductInCart));
                 ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();

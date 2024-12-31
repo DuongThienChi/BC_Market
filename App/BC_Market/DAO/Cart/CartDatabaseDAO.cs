@@ -23,7 +23,7 @@ namespace BC_Market.DAO
                     try
                     {
                         // Insert the cart into the Cart table
-                        string cartSql = @"INSERT INTO ""Cart"" (userId) 
+                        string cartSql = @"INSERT INTO Cart (userId) 
                                            VALUES (@UserId) 
                                            RETURNING uniqueid";
                         using (var command = new NpgsqlCommand(cartSql, connection))
@@ -35,7 +35,7 @@ namespace BC_Market.DAO
                         }
 
                         // Insert the cart details into the CartDetail table
-                        string cartDetailSql = @"INSERT INTO ""CartDetail"" (CartId, ProductId, amount) 
+                        string cartDetailSql = @"INSERT INTO cartdetail (CartId, ProductId, amount) 
                                                  VALUES (@CartId, @ProductId, @Amount)";
                         foreach (var cartProduct in cart.CartProducts)
                         {
@@ -86,6 +86,19 @@ namespace BC_Market.DAO
                         {
                             cart.Id = (int)reader["uniqueid"];
                         }
+                        else
+                        {
+                            // Create a new cart if it does not exist
+                            reader.Close();
+                            string insertCartSql = @"INSERT INTO Cart (userId) 
+                                                     VALUES (@UserId) 
+                                                     RETURNING uniqueid";
+                            using (var insertCommand = new NpgsqlCommand(insertCartSql, connection))
+                            {
+                                insertCommand.Parameters.AddWithValue("@UserId", userid);
+                                cart.Id = (int)insertCommand.ExecuteScalar();
+                            }
+                        }
                     }
                 }
                 String sql = @"SELECT Product.uniqueid as productid, Product.stock, CartDetail.amount, 
@@ -100,7 +113,7 @@ namespace BC_Market.DAO
                     cart.customerId = userid;
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
                             Product product = new Product();
                             product.Id = (int)reader["productid"];
@@ -112,7 +125,7 @@ namespace BC_Market.DAO
                             product.ImagePath = (string)reader["imagepath"];
                             product.Status = (bool)reader["status"] == true ? "Active" : "Inactive";
                             product.OrderQuantity = (int)reader["orderquantity"];
-               
+
                             int Quantity = (int)(reader["amount"]);
                             CartProduct cartProduct = new CartProduct()
                             {
@@ -137,13 +150,7 @@ namespace BC_Market.DAO
                 {
                     try
                     {
-                        // Update CartDetail with new CustomerId
-                        using (var command = new NpgsqlCommand("UPDATE CartDetail SET userId = @CustomerId WHERE CartId = @CartId", connection))
-                        {
-                            command.Parameters.AddWithValue("@CustomerId", cart.customerId);
-                            command.Parameters.AddWithValue("@CartId", cart.Id);
-                            command.ExecuteNonQuery();
-                        }
+                        
 
                         // Delete existing CartProducts for the Cart
                         using (var command = new NpgsqlCommand("DELETE FROM CartDetail WHERE CartId = @CartId", connection))

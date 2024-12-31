@@ -94,6 +94,7 @@ namespace BC_Market.Views
                     break;
                 }
             }
+            this.Frame.Navigate(typeof(AdminManageAccountPage), ViewModel);
         }
     }
 }

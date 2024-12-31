@@ -22,6 +22,8 @@ namespace BC_Market.ViewModels
         private IBUS<Category> _cateBus;
         public ObservableCollection<Category> ListCategories { get; set; }
 
+        public ObservableCollection<string> ListCategoriesId { get; set; } = new ObservableCollection<string>();
+
         public ObservableCollection<Product> ProductByCategory { get; set; }
 
         public ObservableCollection<Product> ChosenProduct { get; set; } = new ObservableCollection<Product>();
@@ -58,6 +60,10 @@ namespace BC_Market.ViewModels
             _cateBus = _cateFactory.CreateBUS();
             var categories = _cateBus.Get(null);
             ListCategories = new ObservableCollection<Category>(categories); // Get all categories
+            foreach (Category c in ListCategories)
+            {
+                ListCategoriesId.Add(c.Id);
+            }
         }
 
         public void AddProduct(Product product) // Add a product
@@ -73,6 +79,7 @@ namespace BC_Market.ViewModels
             var dao = _cateBus.Dao();
             dao.Add(category);
             ListCategories.Add(category);
+            ListCategoriesId.Add(category.Id);
         }
 
         public void UpdateProduct(Product product) // Update a product
@@ -100,6 +107,7 @@ namespace BC_Market.ViewModels
             var dao = _cateBus.Dao();
             dao.Delete(category);
             ListCategories.Remove(category);
+            ListCategoriesId.Remove(category.Id);
         }
 
         public void SetProductByCategory(string category) // Set products by category

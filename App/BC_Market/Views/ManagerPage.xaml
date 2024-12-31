@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="#111315">
         <!-- Bố trí thành 2 hàng: 1 cho header, 1 cho navigation -->
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -74,11 +74,12 @@
             <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" RowSpacing="30">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <Button x:Name="product_btn" Click="product_btn_Click" Background="#3D4142"
@@ -98,11 +99,20 @@
                     </StackPanel>
 
                 </Button>
+                
                 <Button x:Name="order_btn" Click="order_btn_Click" Background="#3D4142" 
                         Grid.Row="2" HorizontalAlignment="Center" Width="100">
                     <StackPanel Orientation="Vertical">
                         <Image Source="../Assets\Images\feature-button.png" Width="25"/>
                         <TextBlock Text="Order" FontWeight="Bold"  Foreground="#FAC1D9"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="report_btn" Click="report_btn_Click" Background="#3D4142" 
+                        Grid.Row="3" HorizontalAlignment="Center" Width="100">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="../Assets\Images\feature-button.png" Width="25"/>
+                        <TextBlock Text="Report" FontWeight="Bold"  Foreground="#FAC1D9"/>
                     </StackPanel>
                 </Button>
 

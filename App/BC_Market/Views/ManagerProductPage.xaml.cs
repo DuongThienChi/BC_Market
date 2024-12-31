@@ -86,6 +86,7 @@ namespace BC_Market.Views
                     break;
                 }
             }
+            this.Frame.Navigate(typeof(ManagerProductPage), ViewModel);
         }
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {

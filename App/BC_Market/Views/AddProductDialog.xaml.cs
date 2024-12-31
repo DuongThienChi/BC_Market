@@ -18,14 +18,18 @@ using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.Storage;
 using Microsoft.UI.Xaml.Media.Imaging;
+using BC_Market.ViewModels;
+using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace BC_Market.Views
-{
+{ 
     public sealed partial class AddProductDialog : UserControl
     {
+        private ManageProductViewModel ViewModels { get; set; } = new ManageProductViewModel();
+        private ObservableCollection<string> ListStatus { get; set; } = new ObservableCollection<string> { "Active", "Inactive" };
         public AddProductDialog()
         {
             this.InitializeComponent();
@@ -50,7 +54,7 @@ namespace BC_Market.Views
             if( string.IsNullOrEmpty(Name.Text) ||
                 string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Price.Text) ||
                 string.IsNullOrEmpty(Stock.Text) ||
-                string.IsNullOrEmpty(CategoryId.Text) || string.IsNullOrEmpty(Status.Text))
+                string.IsNullOrEmpty(CategoryId.SelectedItem as string) || string.IsNullOrEmpty( Status.SelectedItem as string))
             {
                 Notice.Text = "Please fill all fields";
                 return;
@@ -64,8 +68,8 @@ namespace BC_Market.Views
                 Price = Double.Parse(Price.Text),
                 Stock = Int32.Parse(Stock.Text),
                 ImagePath = imagePath,
-                CategoryId = CategoryId.Text,
-                Status = Status.Text
+                CategoryId = CategoryId.SelectedItem as string,
+                Status = Status.SelectedItem as string,
             };
 
             // check to confirm all fields are filled

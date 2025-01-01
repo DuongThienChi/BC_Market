@@ -33,9 +33,11 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Properties", "functions_prop.html", null ]
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Variables", "functions_vars.html", null ],
+        [ "Properties", "functions_prop.html", null ],
+        [ "Events", "functions_evnt.html", null ]
       ] ]
     ] ]
   ] ]
@@ -44,7 +46,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_b_c___market_1_1_views_1_1_forgot_page.html#a820bc062f5c0dd8dec406801cfe125ff"
+"class_b_c___market_1_1_d_a_o_1_1_category_mock_d_a_o.html#a27160da23d6405ec4a2e2867730116e5",
+"class_b_c___market_1_1_models_1_1_order.html#ad26e2f01f2d42aa63e1877533f0f5f24",
+"class_b_c___market_1_1_view_models_1_1_report_product_view_model.html#ad009aebc9324afb5805aa2d49d575425",
+"class_b_c___market_1_1_views_1_1_forgot_page.html#a740d9b588ef103a5673b25ee85f79662",
+"interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

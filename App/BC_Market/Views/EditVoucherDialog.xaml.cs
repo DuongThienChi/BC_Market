@@ -19,21 +19,44 @@ using Windows.Foundation.Collections;
 
 namespace BC_Market.Views
 {
+    /// <summary>
+    /// A user control for editing a voucher.
+    /// </summary>
     public sealed partial class EditVoucherDialog : UserControl
     {
+        /// <summary>
+        /// Gets or sets the voucher to be edited.
+        /// </summary>
         public Voucher voucher { get; set; } = new Voucher();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditVoucherDialog"/> class.
+        /// </summary>
         public EditVoucherDialog()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Closes the dialog by setting its visibility to collapsed.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void closeDialog_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Occurs when a voucher is edited.
+        /// </summary>
         public event EventHandler<Voucher> VoucherEdited;
 
+        /// <summary>
+        /// Handles the Save button click event to save the edited voucher.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void saveVoucher_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Name.Text) ||
@@ -46,6 +69,7 @@ namespace BC_Market.Views
                 return;
             }
 
+            // Create new voucher from entered information
             var voucher = new Voucher
             {
                 VoucherId = Int32.Parse(Id.Text),
@@ -59,6 +83,7 @@ namespace BC_Market.Views
                 RankId = RankId.Text
             };
 
+            // Check to confirm all fields are filled
             VoucherEdited?.Invoke(this, voucher);
 
             this.Visibility = Visibility.Collapsed;

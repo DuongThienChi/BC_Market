@@ -26,27 +26,45 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class ManagerOrderPage : Page
     {
+        /// <summary>
+        /// Gets or sets the ViewModel for the ManagerOrderPage.
+        /// </summary>
         public ManagerOrderPageViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManagerOrderPage"/> class.
+        /// </summary>
         public ManagerOrderPage()
         {
             this.InitializeComponent();
             ViewModel = new ManagerOrderPageViewModel();
             this.DataContext = ViewModel;
         }
+
+        /// <summary>
+        /// Handles the DatePicker date changed event to filter orders by the selected date.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void OrderDatePicker_DateChanged(object sender, DatePickerValueChangedEventArgs e)
         {
             var selectedDate = new DateTimeOffset(e.NewDate.Date);
             ViewModel.FilterOrdersByDateCommand.Execute(selectedDate);
         }
+
+        /// <summary>
+        /// Handles the View button click event to navigate to the ViewDetailOrderPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void view_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             var order = button.DataContext as Order;
             Dictionary<string, string> configuration = new Dictionary<string, string>
-            {
-                { "OrderId", order.Id.ToString() }
-            };
+                {
+                    { "OrderId", order.Id.ToString() }
+                };
             order.Products = ViewModel._orderBus.Get(configuration);
             this.Frame.Navigate(typeof(ViewDetailOrderPage), order);
         }

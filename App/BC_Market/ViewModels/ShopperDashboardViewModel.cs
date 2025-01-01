@@ -22,29 +22,57 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace BC_Market.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the shopper dashboard.
+    /// </summary>
     [AddINotifyPropertyChangedInterface]
-    public class ShopperDashboardViewModel : ObservableObject // Define the ShopperDashboardViewModel class
+    public class ShopperDashboardViewModel : ObservableObject
     {
-        public ObservableCollection<Product> Products { get; set; } // Products property
-        private int PageSize = 15; // Define the PageSize field
-        private int currentPage = 1; // Define the currentPage field
+        /// <summary>
+        /// Gets or sets the collection of products.
+        /// </summary>
+        public ObservableCollection<Product> Products { get; set; }
+
+        private int PageSize = 15;
+        private int currentPage = 1;
         private IFactory<Product> _factory = new ProductFactory();
         private IBUS<Product> _bus;
         private IFactory<Category> _categoryFactory = new CategoryFactory();
         private IBUS<Category> _categoryBUS;
         private IFactory<Cart> _cartFactory = new CartFactory();
         private IBUS<Cart> _cartBus;
-        private int totalPages; // Define the totalPages field
-        public Cart cart { get; set; } // Define the cart field
-        public int ProductInCart; // Number of products in the cart
+        private int totalPages;
+
+        /// <summary>
+        /// Gets or sets the cart.
+        /// </summary>
+        public Cart cart { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of products in the cart.
+        /// </summary>
+        public int ProductInCart;
+
+        /// <summary>
+        /// Gets or sets the list of categories.
+        /// </summary>
         public List<Category> Categories { get; set; }
-        private List<string> _suggestions; 
+
+        private List<string> _suggestions;
+
+        /// <summary>
+        /// Gets or sets the list of suggestions.
+        /// </summary>
         public List<string> Suggestions
         {
             get => _suggestions;
             set => SetProperty(ref _suggestions, value);
         }
-        public int Skip // Skip pagee
+
+        /// <summary>
+        /// Gets or sets the number of items to skip.
+        /// </summary>
+        public int Skip
         {
             get => (CurrentPage - 1) * PageSize;
             set
@@ -56,7 +84,11 @@ namespace BC_Market.ViewModels
                 }
             }
         }
-        public int CurrentPage //Current page
+
+        /// <summary>
+        /// Gets or sets the current page.
+        /// </summary>
+        public int CurrentPage
         {
             get => currentPage;
             set
@@ -66,10 +98,13 @@ namespace BC_Market.ViewModels
                     currentPage = value;
                     OnPropertyChanged(nameof(CurrentPage));
                 }
-
             }
         }
-        public int TotalPages // Total pages
+
+        /// <summary>
+        /// Gets or sets the total number of pages.
+        /// </summary>
+        public int TotalPages
         {
             get => totalPages;
             set
@@ -77,13 +112,29 @@ namespace BC_Market.ViewModels
                 if (totalPages != value)
                 {
                     totalPages = value;
-                    OnPropertyChanged(nameof(TotalPages));  // Notify the TotalPages property has changed => Update the UI
+                    OnPropertyChanged(nameof(TotalPages));
                 }
             }
         }
-        public bool CanGoPrevious => CurrentPage > 1; // Check if can go to the previous page
-        public bool CanGoNext => CurrentPage < TotalPages; // Check if can go to the next page
+
+        /// <summary>
+        /// Gets a value indicating whether the user can go to the previous page.
+        /// </summary>
+        public bool CanGoPrevious => CurrentPage > 1;
+
+        /// <summary>
+        /// Gets a value indicating whether the user can go to the next page.
+        /// </summary>
+        public bool CanGoNext => CurrentPage < TotalPages;
+
+        /// <summary>
+        /// Gets the command to go to the previous page.
+        /// </summary>
         public ICommand PreviousPageCommand { get; }
+
+        /// <summary>
+        /// Gets the command to go to the next page.
+        /// </summary>
         public ICommand NextPageCommand { get; }
 
         private Dictionary<string, string> _configuration = new Dictionary<string, string>
@@ -94,7 +145,10 @@ namespace BC_Market.ViewModels
                 { "take", "15" }
             };
 
-        public Dictionary<string, string> configuration // Configuration property
+        /// <summary>
+        /// Gets or sets the configuration dictionary.
+        /// </summary>
+        public Dictionary<string, string> configuration
         {
             get => _configuration;
             set
@@ -106,11 +160,35 @@ namespace BC_Market.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the command to handle text changes.
+        /// </summary>
         public ICommand TextChangedCommand { get; }
+
+        /// <summary>
+        /// Gets the command to handle suggestion chosen.
+        /// </summary>
         public ICommand SuggestionChosenCommand { get; }
+
+        /// <summary>
+        /// Gets the command to handle query submission.
+        /// </summary>
         public ICommand QuerySubmittedCommand { get; }
+
+        /// <summary>
+        /// Gets the command to add a product to the cart.
+        /// </summary>
         public ICommand AddCartCommand { get; }
+
+        /// <summary>
+        /// Gets the command to get products by category.
+        /// </summary>
         public ICommand GetCategoryCommand { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShopperDashboardViewModel"/> class.
+        /// </summary>
         public ShopperDashboardViewModel()
         {
             PreviousPageCommand = new RelayCommand(GoPreviousPage);
@@ -118,8 +196,8 @@ namespace BC_Market.ViewModels
             cart = SessionManager.Get("Cart") as Cart;
             _bus = _factory.CreateBUS();
             _cartBus = _cartFactory.CreateBUS();
-            LoadProducts(); // Load products
-            LoadCategory(); // Load category
+            LoadProducts();
+            LoadCategory();
             ProductInCart = cart.count;
             GetCategoryCommand = new RelayCommand<Category>(GetProductsByCategory);
             Suggestions = Products.Select(p => p.Name).ToList();
@@ -129,28 +207,39 @@ namespace BC_Market.ViewModels
             AddCartCommand = new RelayCommand<Product>(AddCart, CanAddToCart);
         }
 
-        public void LoadCategory() // Load category
+        /// <summary>
+        /// Loads the categories.
+        /// </summary>
+        public void LoadCategory()
         {
             _categoryBUS = _categoryFactory.CreateBUS();
             Categories = new List<Category>(_categoryBUS.Get(null));
         }
-        private void LoadProducts()  // Load products
+
+        /// <summary>
+        /// Loads the products.
+        /// </summary>
+        private void LoadProducts()
         {
             var configCount = new Dictionary<string, string>(configuration);
             configCount["take"] = "100000";
             configCount["skip"] = "0";
-            var count = _bus.Get(configCount); // Get the count of products
-            var res = _bus.Get(configuration); // Get the products
+            var count = _bus.Get(configCount);
+            var res = _bus.Get(configuration);
             Products = new ObservableCollection<Product>(res);
             TotalPages = (int)Math.Ceiling((double)count / PageSize);
             ((RelayCommand)PreviousPageCommand).NotifyCanExecuteChanged();
             ((RelayCommand)NextPageCommand).NotifyCanExecuteChanged();
         }
+
+        /// <summary>
+        /// Gets the products by category.
+        /// </summary>
+        /// <param name="category">The category to filter by.</param>
         private void GetProductsByCategory(Category category)
         {
             try
             {
-                //Filter
                 CurrentPage = 1;
                 if (category != null)
                     configuration["category"] = category.Name;
@@ -161,11 +250,15 @@ namespace BC_Market.ViewModels
             }
             catch (Exception ex)
             {
-                // Error
                 Debug.WriteLine($"Error in GetProductsByCategory: {ex.Message}");
             }
         }
-        private void OnTextChanged(string text) // OnTextChanged method for AutoSuggestBox
+
+        /// <summary>
+        /// Handles text changes for the AutoSuggestBox.
+        /// </summary>
+        /// <param name="text">The text that changed.</param>
+        private void OnTextChanged(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -177,26 +270,35 @@ namespace BC_Market.ViewModels
                 newConfig["skip"] = "0";
                 newConfig["take"] = "6";
                 newConfig["searchKey"] = text;
-                var suggestProduct = _bus.Get(newConfig); // Get the suggested products
+                var suggestProduct = _bus.Get(newConfig);
                 Suggestions = ((IEnumerable<Product>)suggestProduct).Select(p => p.Name).ToList();
             }
         }
-        private void OnSuggestionChosen(string chosenItem) // OnSuggestionChosen method for AutoSuggestBox
-        {
 
+        /// <summary>
+        /// Handles suggestion chosen for the AutoSuggestBox.
+        /// </summary>
+        /// <param name="chosenItem">The chosen suggestion.</param>
+        private void OnSuggestionChosen(string chosenItem)
+        {
             if (chosenItem == null) return;
             CurrentPage = 1;
             chosenItem = chosenItem.Trim();
             configuration = new Dictionary<string, string>
-            {
-                { "searchKey", chosenItem },
-                { "category", "" },
-                { "skip", Skip.ToString() },
-                { "take", PageSize.ToString() }
-            };
+                {
+                    { "searchKey", chosenItem },
+                    { "category", "" },
+                    { "skip", Skip.ToString() },
+                    { "take", PageSize.ToString() }
+                };
             LoadProducts();
         }
-        private void OnQuerySubmitted(string query) // OnQuerySubmitted method for AutoSuggestBox
+
+        /// <summary>
+        /// Handles query submission for the AutoSuggestBox.
+        /// </summary>
+        /// <param name="query">The submitted query.</param>
+        private void OnQuerySubmitted(string query)
         {
             if (query == null) return;
             CurrentPage = 1;
@@ -209,15 +311,19 @@ namespace BC_Market.ViewModels
                     { "take", PageSize.ToString() }
                 };
             LoadProducts();
-
         }
-        private void AddCart(Product product) // Add a product to the cart
+
+        /// <summary>
+        /// Adds a product to the cart.
+        /// </summary>
+        /// <param name="product">The product to add.</param>
+        private void AddCart(Product product)
         {
             foreach (var item in cart.CartProducts)
             {
-                if (item.Product.Id == product.Id) // Check if the product is already in the cart
+                if (item.Product.Id == product.Id)
                 {
-                    if (item.Quantity >= product.Stock) // Check if the quantity exceeds the stock
+                    if (item.Quantity >= product.Stock)
                     {
                         ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
                         return;
@@ -230,7 +336,7 @@ namespace BC_Market.ViewModels
                 }
             }
 
-            if (product.Stock > 0) // Check if the product is in stock
+            if (product.Stock > 0)
             {
                 cart.CartProducts.Add(new CartProduct { Product = product, Quantity = 1 });
                 _cartBus.Update(cart);
@@ -243,9 +349,12 @@ namespace BC_Market.ViewModels
                 ((RelayCommand<Product>)AddCartCommand).NotifyCanExecuteChanged();
             }
         }
-        private void GoPreviousPage() // Go to the previous page
-        {
 
+        /// <summary>
+        /// Goes to the previous page.
+        /// </summary>
+        private void GoPreviousPage()
+        {
             if (CanGoPrevious)
             {
                 CurrentPage--;
@@ -256,9 +365,12 @@ namespace BC_Market.ViewModels
             }
             configuration["skip"] = Skip.ToString();
             LoadProducts();
-
         }
-        private void GoNextPage() // Go to the next page
+
+        /// <summary>
+        /// Goes to the next page.
+        /// </summary>
+        private void GoNextPage()
         {
             if (CanGoNext)
             {
@@ -271,6 +383,12 @@ namespace BC_Market.ViewModels
             configuration["skip"] = Skip.ToString();
             LoadProducts();
         }
+
+        /// <summary>
+        /// Determines whether a product can be added to the cart.
+        /// </summary>
+        /// <param name="product">The product to check.</param>
+        /// <returns>True if the product can be added; otherwise, false.</returns>
         private bool CanAddToCart(Product product)
         {
             var cartProduct = cart.CartProducts.FirstOrDefault(item => item.Product.Id == product.Id);

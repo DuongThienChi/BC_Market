@@ -1,5 +1,10 @@
 \doxysection{BC\+\_\+\+Market.\+Converter.\+Id\+To\+Color\+Converter Class Reference}
 \hypertarget{class_b_c___market_1_1_converter_1_1_id_to_color_converter}{}\label{class_b_c___market_1_1_converter_1_1_id_to_color_converter}\index{BC\_Market.Converter.IdToColorConverter@{BC\_Market.Converter.IdToColorConverter}}
+
+
+Converts the ID of an item to a color.  
+
+
 Inheritance diagram for BC\+\_\+\+Market.\+Converter.\+Id\+To\+Color\+Converter\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,12 +14,69 @@ Inheritance diagram for BC\+\_\+\+Market.\+Converter.\+Id\+To\+Color\+Converter\
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_b_c___market_1_1_converter_1_1_id_to_color_converter_adaa5afbbf5b49c52e5681a276fd0c384}\label{class_b_c___market_1_1_converter_1_1_id_to_color_converter_adaa5afbbf5b49c52e5681a276fd0c384} 
-object {\bfseries Convert} (object value, Type target\+Type, object parameter, string language)
-\item 
-\Hypertarget{class_b_c___market_1_1_converter_1_1_id_to_color_converter_a2eb404b6eb646e65e065cdf760412b27}\label{class_b_c___market_1_1_converter_1_1_id_to_color_converter_a2eb404b6eb646e65e065cdf760412b27} 
-object {\bfseries Convert\+Back} (object value, Type target\+Type, object parameter, string language)
-\end{DoxyCompactItemize}
+object \mbox{\hyperlink{class_b_c___market_1_1_converter_1_1_id_to_color_converter_adaa5afbbf5b49c52e5681a276fd0c384}{Convert}} (object value, Type target\+Type, object parameter, string language)
+\begin{DoxyCompactList}\small\item\em Converts an ID to a color. \end{DoxyCompactList}\item 
+object \mbox{\hyperlink{class_b_c___market_1_1_converter_1_1_id_to_color_converter_a2eb404b6eb646e65e065cdf760412b27}{Convert\+Back}} (object value, Type target\+Type, object parameter, string language)
+\begin{DoxyCompactList}\small\item\em Converts back the color to an ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Converts the ID of an item to a color. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_converter_1_1_id_to_color_converter_adaa5afbbf5b49c52e5681a276fd0c384}\index{BC\_Market.Converter.IdToColorConverter@{BC\_Market.Converter.IdToColorConverter}!Convert@{Convert}}
+\index{Convert@{Convert}!BC\_Market.Converter.IdToColorConverter@{BC\_Market.Converter.IdToColorConverter}}
+\doxysubsubsection{\texorpdfstring{Convert()}{Convert()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_converter_1_1_id_to_color_converter_adaa5afbbf5b49c52e5681a276fd0c384} 
+object BC\+\_\+\+Market.\+Converter.\+Id\+To\+Color\+Converter.\+Convert (\begin{DoxyParamCaption}\item[{object}]{value}{, }\item[{Type}]{target\+Type}{, }\item[{object}]{parameter}{, }\item[{string}]{language}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converts an ID to a color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The ID value to convert.\\
+\hline
+{\em target\+Type} & The type of the target property.\\
+\hline
+{\em parameter} & Optional parameter to be used in the converter logic.\\
+\hline
+{\em language} & The language of the conversion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A color corresponding to the ID.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_converter_1_1_id_to_color_converter_a2eb404b6eb646e65e065cdf760412b27}\index{BC\_Market.Converter.IdToColorConverter@{BC\_Market.Converter.IdToColorConverter}!ConvertBack@{ConvertBack}}
+\index{ConvertBack@{ConvertBack}!BC\_Market.Converter.IdToColorConverter@{BC\_Market.Converter.IdToColorConverter}}
+\doxysubsubsection{\texorpdfstring{ConvertBack()}{ConvertBack()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_converter_1_1_id_to_color_converter_a2eb404b6eb646e65e065cdf760412b27} 
+object BC\+\_\+\+Market.\+Converter.\+Id\+To\+Color\+Converter.\+Convert\+Back (\begin{DoxyParamCaption}\item[{object}]{value}{, }\item[{Type}]{target\+Type}{, }\item[{object}]{parameter}{, }\item[{string}]{language}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converts back the color to an ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to convert back.\\
+\hline
+{\em target\+Type} & The type of the target property.\\
+\hline
+{\em parameter} & Optional parameter to be used in the converter logic.\\
+\hline
+{\em language} & The language of the conversion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Throws Not\+Implemented\+Exception.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Exception} & Thrown always as this method is not implemented.\\
+\hline
+\end{DoxyExceptions}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

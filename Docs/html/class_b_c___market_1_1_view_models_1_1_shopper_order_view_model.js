@@ -1,0 +1,25 @@
+var class_b_c___market_1_1_view_models_1_1_shopper_order_view_model =
+[
+    [ "ShopperOrderViewModel", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a2862e9e94de81fdfbf1444a6c02d009e", null ],
+    [ "LoadDelivery", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a2f6a46946aae1b1a4e42f15c0e7d730a", null ],
+    [ "LoadPaymentMethod", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#aeae0088383b0b300d2a5dd3c173ef8e9", null ],
+    [ "LoadVoucher", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a840d304f4e962fb654a7f73ce012416f", null ],
+    [ "NotifyPropertyChanged", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a063f9f42133e5362e0e4690e4ed20341", null ],
+    [ "xamlRoot", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a416b9c9759879f55196642251e93e4d1", null ],
+    [ "Address", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a062ea09c2ad246ae1dcb728bc36a16cf", null ],
+    [ "cart", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a2e938ed90f51f4891567f7fe54d358f9", null ],
+    [ "DeleteAllCommand", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#ad551d0ad26ed5514e9eb98d060717fcf", null ],
+    [ "DeleteItemCommand", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a771eb0f087ad39f9470a8b5f4cb38239", null ],
+    [ "deliveries", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a856e9fb49ae3aab690d67a5883f321a2", null ],
+    [ "DeliveryCost", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#aabc504be9ea887f4aae5a681262c048a", null ],
+    [ "DiscountAmount", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a08023fd41307b2a0da56acfefc21d5f3", null ],
+    [ "FinalTotal", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#acebd9158fbeb613264ac53e0eb1e54cb", null ],
+    [ "OrderCommand", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#ac0e7a03f3fdde69ab0c8e8526f2f4860", null ],
+    [ "PaymentMethods", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a5f055f31a3f258ac78f60b9d6f8b5aa1", null ],
+    [ "selectedDelivery", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#af9823ce2e09a2ca99d05de1d7f1a9a7a", null ],
+    [ "SelectedPaymentMethod", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a1c91584d1e283f4b287afab91a9c4776", null ],
+    [ "selectedProducts", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a780e9362f4a9bf13de184ff585952799", null ],
+    [ "selectedVoucher", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#ac62a0271d42d356460ab1a04a554bfb8", null ],
+    [ "Total", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#ab3731ab73e485c6334d06955d9ae4a95", null ],
+    [ "Vouchers", "class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a455344a64bf964d9a7fa08fcce40cd7b", null ]
+];

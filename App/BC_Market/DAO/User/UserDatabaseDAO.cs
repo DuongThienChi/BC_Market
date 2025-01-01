@@ -9,9 +9,17 @@ using Windows.System;
 
 namespace BC_Market.DAO
 {
+    /// <summary>
+    /// Provides data access logic for managing users in the database.
+    /// </summary>
     public class UserDatabaseDAO : IDAO<USER>
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
+        /// <summary>
+        /// Adds a new user to the database.
+        /// </summary>
+        /// <param name="obj">The user object to add.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Add(USER obj)
         {
             Role role = getRole(obj.Roles[0].Name);
@@ -33,7 +41,11 @@ namespace BC_Market.DAO
             }
         }
 
-
+        /// <summary>
+        /// Removes a user from the database.
+        /// </summary>
+        /// <param name="obj">The user object to delete.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Delete(USER obj)
         {
             try
@@ -55,7 +67,11 @@ namespace BC_Market.DAO
                 return false;
             }
         }
-
+        /// <summary>
+        /// Retrieves users based on the provided configuration.
+        /// </summary>
+        /// <param name="configuration">A dictionary containing configuration parameters.</param>
+        /// <returns>A collection of users or specific user details based on the configuration.</returns>
         public dynamic Get(Dictionary<string, string> configuration)
         {
             if (configuration == null) {
@@ -134,7 +150,11 @@ namespace BC_Market.DAO
             }
                 return null;
             }
-
+        /// <summary>
+        /// Updates an existing user in the database.
+        /// </summary>
+        /// <param name="obj">The user object to update.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Update(USER obj)
         {
             var role = getRole(obj.Roles[0].Name);
@@ -157,7 +177,11 @@ namespace BC_Market.DAO
                 return true;
             }
         }
-
+        /// <summary>
+        /// Retrieves a role by its name.
+        /// </summary>
+        /// <param name="name">The name of the role.</param>
+        /// <returns>The role object.</returns>
         public Role getRole(string name)
         {
             Role role = new Role();

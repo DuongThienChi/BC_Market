@@ -8,10 +8,18 @@ using Npgsql;
 
 namespace BC_Market.DAO
 {
+    /// <summary>
+    /// Provides data access logic for managing delivery units in the database.
+    /// </summary>
     public class DeliveryUnitDatabaseDAO : IDAO<DeliveryUnit>
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
 
+        /// <summary>
+        /// Adds a new delivery unit to the database.
+        /// </summary>
+        /// <param name="obj">The delivery unit object to add.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Add(DeliveryUnit obj)
         {
             var sql = $@"INSERT INTO deliveryunit (name, price) VALUES (@Name, @Price)";
@@ -30,11 +38,15 @@ namespace BC_Market.DAO
             return true;
         }
 
+        /// <summary>
+        /// Deletes a delivery unit from the database.
+        /// </summary>
+        /// <param name="obj">The delivery unit object to delete.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Delete(DeliveryUnit obj)
         {
             try
             {
-                //obj = getDeliveryUnitByInformation(obj);
                 var sql = $@"DELETE FROM deliveryunit WHERE id = @Id";
                 using (var conn = new NpgsqlConnection(connectionString))
                 {
@@ -45,7 +57,6 @@ namespace BC_Market.DAO
                         cmd.ExecuteNonQuery();
                     }
                     conn.Close();
-
                 }
                 return true;
             }
@@ -55,6 +66,11 @@ namespace BC_Market.DAO
             }
         }
 
+        /// <summary>
+        /// Gets delivery units from the database based on the specified configuration.
+        /// </summary>
+        /// <param name="configuration">The configuration dictionary.</param>
+        /// <returns>A list of delivery units.</returns>
         public dynamic Get(Dictionary<string, string> configuration)
         {
             var sql = $@"SELECT * FROM deliveryunit";
@@ -82,6 +98,11 @@ namespace BC_Market.DAO
             return response;
         }
 
+        /// <summary>
+        /// Gets a delivery unit from the database based on its information.
+        /// </summary>
+        /// <param name="delivery">The delivery unit object containing the information.</param>
+        /// <returns>The matching delivery unit object.</returns>
         public dynamic getDeliveryUnitByInformation(DeliveryUnit delivery)
         {
             var sql = $@"SELECT * FROM deliveryunit WHERE name = @Name AND price = @Price";
@@ -111,9 +132,13 @@ namespace BC_Market.DAO
             }
         }
 
+        /// <summary>
+        /// Updates an existing delivery unit in the database.
+        /// </summary>
+        /// <param name="obj">The delivery unit object to update.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Update(DeliveryUnit obj)
         {
-            //obj = getDeliveryUnitByInformation(obj);
             var sql = $@"UPDATE deliveryunit SET name = @Name, price = @Price WHERE id = @Id";
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -127,7 +152,6 @@ namespace BC_Market.DAO
                 }
                 conn.Close();
             }
-
             return true;
         }
     }

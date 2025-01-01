@@ -109,6 +109,9 @@ $(function(){initNavTree('class_b_c___market_1_1_voucher_template_selector_1_1_v
   <div class="headertitle"><div class="title">BC_Market.VoucherTemplateSelector.VoucherTemplateSelector Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Selects a data template for a voucher based on its validity.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for BC_Market.VoucherTemplateSelector.VoucherTemplateSelector:</div>
 <div class="dyncontent">
@@ -118,19 +121,69 @@ Inheritance diagram for BC_Market.VoucherTemplateSelector.VoucherTemplateSelecto
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a9561a7cfe7422cfa57991e6c41d6bd3f" id="r_a9561a7cfe7422cfa57991e6c41d6bd3f"><td class="memItemLeft" align="right" valign="top"><a id="a9561a7cfe7422cfa57991e6c41d6bd3f" name="a9561a7cfe7422cfa57991e6c41d6bd3f"></a>
-override DataTemplate&#160;</td><td class="memItemRight" valign="bottom"><b>SelectTemplateCore</b> (object item, DependencyObject container)</td></tr>
+<tr class="memitem:a9561a7cfe7422cfa57991e6c41d6bd3f" id="r_a9561a7cfe7422cfa57991e6c41d6bd3f"><td class="memItemLeft" align="right" valign="top">override DataTemplate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9561a7cfe7422cfa57991e6c41d6bd3f">SelectTemplateCore</a> (object item, DependencyObject container)</td></tr>
+<tr class="memdesc:a9561a7cfe7422cfa57991e6c41d6bd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects the appropriate data template based on the voucher's validity.  <br /></td></tr>
 <tr class="separator:a9561a7cfe7422cfa57991e6c41d6bd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a637ff26826af08c05b53a42529fa0949" id="r_a637ff26826af08c05b53a42529fa0949"><td class="memItemLeft" align="right" valign="top"><a id="a637ff26826af08c05b53a42529fa0949" name="a637ff26826af08c05b53a42529fa0949"></a>
 DataTemplate&#160;</td><td class="memItemRight" valign="bottom"><b>ValidVoucherTemplate</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a637ff26826af08c05b53a42529fa0949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the data template for a valid voucher. <br /></td></tr>
 <tr class="separator:a637ff26826af08c05b53a42529fa0949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43236effb0df27cfdc3a8bce9134129c" id="r_a43236effb0df27cfdc3a8bce9134129c"><td class="memItemLeft" align="right" valign="top"><a id="a43236effb0df27cfdc3a8bce9134129c" name="a43236effb0df27cfdc3a8bce9134129c"></a>
 DataTemplate&#160;</td><td class="memItemRight" valign="bottom"><b>InvalidVoucherTemplate</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a43236effb0df27cfdc3a8bce9134129c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the data template for an invalid voucher. <br /></td></tr>
 <tr class="separator:a43236effb0df27cfdc3a8bce9134129c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Selects a data template for a voucher based on its validity. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9561a7cfe7422cfa57991e6c41d6bd3f" name="a9561a7cfe7422cfa57991e6c41d6bd3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9561a7cfe7422cfa57991e6c41d6bd3f">&#9670;&#160;</a></span>SelectTemplateCore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override DataTemplate BC_Market.VoucherTemplateSelector.VoucherTemplateSelector.SelectTemplateCore </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DependencyObject</td>          <td class="paramname"><span class="paramname"><em>container</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Selects the appropriate data template based on the voucher's validity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>The data item to select the template for.</td></tr>
+    <tr><td class="paramname">container</td><td>The container in which the template is to be displayed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The selected data template.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidOperationException</td><td>Thrown if the selected template is null.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>E:/University/Semester 5/Win/Project/BC_Market/App/BC_Market/Helper/<b>VoucherTemplateSelector.cs</b></li>
 </ul>

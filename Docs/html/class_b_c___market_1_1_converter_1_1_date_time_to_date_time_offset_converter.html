@@ -108,6 +108,9 @@ $(function(){initNavTree('class_b_c___market_1_1_converter_1_1_date_time_to_date
   <div class="headertitle"><div class="title">BC_Market.Converter.DateTimeToDateTimeOffsetConverter Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Converts between DateTime and DateTimeOffset.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for BC_Market.Converter.DateTimeToDateTimeOffsetConverter:</div>
 <div class="dyncontent">
@@ -117,13 +120,118 @@ Inheritance diagram for BC_Market.Converter.DateTimeToDateTimeOffsetConverter:</
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a55e912c6acccacccfe671b5bad9f0ec3" id="r_a55e912c6acccacccfe671b5bad9f0ec3"><td class="memItemLeft" align="right" valign="top"><a id="a55e912c6acccacccfe671b5bad9f0ec3" name="a55e912c6acccacccfe671b5bad9f0ec3"></a>
-object&#160;</td><td class="memItemRight" valign="bottom"><b>Convert</b> (object value, Type targetType, object parameter, string language)</td></tr>
+<tr class="memitem:a55e912c6acccacccfe671b5bad9f0ec3" id="r_a55e912c6acccacccfe671b5bad9f0ec3"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55e912c6acccacccfe671b5bad9f0ec3">Convert</a> (object value, Type targetType, object parameter, string language)</td></tr>
+<tr class="memdesc:a55e912c6acccacccfe671b5bad9f0ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a DateTime to a DateTimeOffset.  <br /></td></tr>
 <tr class="separator:a55e912c6acccacccfe671b5bad9f0ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90ee26eff3b3af1282f975a1e8c7585d" id="r_a90ee26eff3b3af1282f975a1e8c7585d"><td class="memItemLeft" align="right" valign="top"><a id="a90ee26eff3b3af1282f975a1e8c7585d" name="a90ee26eff3b3af1282f975a1e8c7585d"></a>
-object&#160;</td><td class="memItemRight" valign="bottom"><b>ConvertBack</b> (object value, Type targetType, object parameter, string language)</td></tr>
+<tr class="memitem:a90ee26eff3b3af1282f975a1e8c7585d" id="r_a90ee26eff3b3af1282f975a1e8c7585d"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90ee26eff3b3af1282f975a1e8c7585d">ConvertBack</a> (object value, Type targetType, object parameter, string language)</td></tr>
+<tr class="memdesc:a90ee26eff3b3af1282f975a1e8c7585d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a DateTimeOffset back to a DateTime.  <br /></td></tr>
 <tr class="separator:a90ee26eff3b3af1282f975a1e8c7585d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Converts between DateTime and DateTimeOffset. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a55e912c6acccacccfe671b5bad9f0ec3" name="a55e912c6acccacccfe671b5bad9f0ec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55e912c6acccacccfe671b5bad9f0ec3">&#9670;&#160;</a></span>Convert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object BC_Market.Converter.DateTimeToDateTimeOffsetConverter.Convert </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type</td>          <td class="paramname"><span class="paramname"><em>targetType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>parameter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>language</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a DateTime to a DateTimeOffset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The DateTime value to convert.</td></tr>
+    <tr><td class="paramname">targetType</td><td>The type of the target property.</td></tr>
+    <tr><td class="paramname">parameter</td><td>Optional parameter to be used in the converter logic.</td></tr>
+    <tr><td class="paramname">language</td><td>The language of the conversion.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A DateTimeOffset representing the DateTime value.</dd></dl>
+
+</div>
+</div>
+<a id="a90ee26eff3b3af1282f975a1e8c7585d" name="a90ee26eff3b3af1282f975a1e8c7585d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90ee26eff3b3af1282f975a1e8c7585d">&#9670;&#160;</a></span>ConvertBack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object BC_Market.Converter.DateTimeToDateTimeOffsetConverter.ConvertBack </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type</td>          <td class="paramname"><span class="paramname"><em>targetType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>parameter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>language</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a DateTimeOffset back to a DateTime. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The DateTimeOffset value to convert back.</td></tr>
+    <tr><td class="paramname">targetType</td><td>The type of the target property.</td></tr>
+    <tr><td class="paramname">parameter</td><td>Optional parameter to be used in the converter logic.</td></tr>
+    <tr><td class="paramname">language</td><td>The language of the conversion.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A DateTime representing the DateTimeOffset value.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>E:/University/Semester 5/Win/Project/BC_Market/App/BC_Market/Helper/<b>DateTimeToDateTimeOffsetConverter.cs</b></li>
 </ul>

@@ -1,5 +1,10 @@
 \doxysection{BC\+\_\+\+Market.\+Factory.\+Delivery\+Factory Class Reference}
 \hypertarget{class_b_c___market_1_1_factory_1_1_delivery_factory}{}\label{class_b_c___market_1_1_factory_1_1_delivery_factory}\index{BC\_Market.Factory.DeliveryFactory@{BC\_Market.Factory.DeliveryFactory}}
+
+
+\doxylink{namespace_b_c___market_1_1_factory}{Factory} class for creating instances of Delivery\+Unit related objects.  
+
+
 Inheritance diagram for BC\+\_\+\+Market.\+Factory.\+Delivery\+Factory\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,19 +14,49 @@ Inheritance diagram for BC\+\_\+\+Market.\+Factory.\+Delivery\+Factory\+:\begin{
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_b_c___market_1_1_factory_1_1_delivery_factory_aee07c2bd582be0c748558d618a03bb68}\label{class_b_c___market_1_1_factory_1_1_delivery_factory_aee07c2bd582be0c748558d618a03bb68} 
-\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_delivery_unit}{Delivery\+Unit}} $>$ {\bfseries Create\+BUS} ()
-\item 
-\Hypertarget{class_b_c___market_1_1_factory_1_1_delivery_factory_ad7b6fa3d7745d93bbd9cc58194dc8c90}\label{class_b_c___market_1_1_factory_1_1_delivery_factory_ad7b6fa3d7745d93bbd9cc58194dc8c90} 
-\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_delivery_unit}{Delivery\+Unit}} $>$ {\bfseries Create\+DAO} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_delivery_unit}{Delivery\+Unit}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_factory_1_1_delivery_factory_aee07c2bd582be0c748558d618a03bb68}{Create\+BUS}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of Delivery\+BUS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_delivery_unit}{Delivery\+Unit}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_factory_1_1_delivery_factory_ad7b6fa3d7745d93bbd9cc58194dc8c90}{Create\+DAO}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of Delivery\+Unit\+Database\+DAO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_b_c___market_1_1_factory_1_1_i_factory}{BC\+\_\+\+Market.\+Factory.\+IFactory$<$ Delivery\+Unit $>$}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ {\bfseries Create\+BUS} ()
-\item 
-\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ {\bfseries Create\+DAO} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_factory_1_1_i_factory_ad73a579f6f975c13b75b5334cc35ca98}{Create\+BUS}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of a business object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_factory_1_1_i_factory_a0c340370039d9d746dd54f39b9de63a3}{Create\+DAO}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of a data access object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{namespace_b_c___market_1_1_factory}{Factory} class for creating instances of Delivery\+Unit related objects. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_factory_1_1_delivery_factory_aee07c2bd582be0c748558d618a03bb68}\index{BC\_Market.Factory.DeliveryFactory@{BC\_Market.Factory.DeliveryFactory}!CreateBUS@{CreateBUS}}
+\index{CreateBUS@{CreateBUS}!BC\_Market.Factory.DeliveryFactory@{BC\_Market.Factory.DeliveryFactory}}
+\doxysubsubsection{\texorpdfstring{CreateBUS()}{CreateBUS()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_factory_1_1_delivery_factory_aee07c2bd582be0c748558d618a03bb68} 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_delivery_unit}{Delivery\+Unit}} $>$ BC\+\_\+\+Market.\+Factory.\+Delivery\+Factory.\+Create\+BUS (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates and returns an instance of Delivery\+BUS. 
+
+\begin{DoxyReturn}{Returns}
+An instance of IBUS\texorpdfstring{$<$}{<}Delivery\+Unit\texorpdfstring{$>$}{>}.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_factory_1_1_delivery_factory_ad7b6fa3d7745d93bbd9cc58194dc8c90}\index{BC\_Market.Factory.DeliveryFactory@{BC\_Market.Factory.DeliveryFactory}!CreateDAO@{CreateDAO}}
+\index{CreateDAO@{CreateDAO}!BC\_Market.Factory.DeliveryFactory@{BC\_Market.Factory.DeliveryFactory}}
+\doxysubsubsection{\texorpdfstring{CreateDAO()}{CreateDAO()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_factory_1_1_delivery_factory_ad7b6fa3d7745d93bbd9cc58194dc8c90} 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_delivery_unit}{Delivery\+Unit}} $>$ BC\+\_\+\+Market.\+Factory.\+Delivery\+Factory.\+Create\+DAO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates and returns an instance of Delivery\+Unit\+Database\+DAO. 
+
+\begin{DoxyReturn}{Returns}
+An instance of IDAO\texorpdfstring{$<$}{<}Delivery\+Unit\texorpdfstring{$>$}{>}.
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

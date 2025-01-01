@@ -108,6 +108,9 @@ $(function(){initNavTree('class_view_models_samples_1_1_general_1_1_templated_to
   <div class="headertitle"><div class="title">ViewModelsSamples.General.TemplatedTooltips.CustomTooltip Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Custom tooltip implementation for LiveCharts.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ViewModelsSamples.General.TemplatedTooltips.CustomTooltip:</div>
 <div class="dyncontent">
@@ -117,13 +120,87 @@ Inheritance diagram for ViewModelsSamples.General.TemplatedTooltips.CustomToolti
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9c4caec64c388639c72a89946df7dc21" id="r_a9c4caec64c388639c72a89946df7dc21"><td class="memItemLeft" align="right" valign="top"><a id="a9c4caec64c388639c72a89946df7dc21" name="a9c4caec64c388639c72a89946df7dc21"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Show</b> (IEnumerable&lt; ChartPoint &gt; foundPoints, Chart&lt; SkiaSharpDrawingContext &gt; chart)</td></tr>
+<tr class="memitem:a9c4caec64c388639c72a89946df7dc21" id="r_a9c4caec64c388639c72a89946df7dc21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c4caec64c388639c72a89946df7dc21">Show</a> (IEnumerable&lt; ChartPoint &gt; foundPoints, Chart&lt; SkiaSharpDrawingContext &gt; chart)</td></tr>
+<tr class="memdesc:a9c4caec64c388639c72a89946df7dc21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows the tooltip with the given chart points.  <br /></td></tr>
 <tr class="separator:a9c4caec64c388639c72a89946df7dc21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae9c222ae9dac108cf092218994b18a2" id="r_aae9c222ae9dac108cf092218994b18a2"><td class="memItemLeft" align="right" valign="top"><a id="aae9c222ae9dac108cf092218994b18a2" name="aae9c222ae9dac108cf092218994b18a2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Hide</b> (Chart&lt; SkiaSharpDrawingContext &gt; chart)</td></tr>
+<tr class="memitem:aae9c222ae9dac108cf092218994b18a2" id="r_aae9c222ae9dac108cf092218994b18a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae9c222ae9dac108cf092218994b18a2">Hide</a> (Chart&lt; SkiaSharpDrawingContext &gt; chart)</td></tr>
+<tr class="memdesc:aae9c222ae9dac108cf092218994b18a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hides the tooltip.  <br /></td></tr>
 <tr class="separator:aae9c222ae9dac108cf092218994b18a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Custom tooltip implementation for LiveCharts. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aae9c222ae9dac108cf092218994b18a2" name="aae9c222ae9dac108cf092218994b18a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae9c222ae9dac108cf092218994b18a2">&#9670;&#160;</a></span>Hide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ViewModelsSamples.General.TemplatedTooltips.CustomTooltip.Hide </td>
+          <td>(</td>
+          <td class="paramtype">Chart&lt; SkiaSharpDrawingContext &gt;</td>          <td class="paramname"><span class="paramname"><em>chart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Hides the tooltip. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chart</td><td>The chart instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9c4caec64c388639c72a89946df7dc21" name="a9c4caec64c388639c72a89946df7dc21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c4caec64c388639c72a89946df7dc21">&#9670;&#160;</a></span>Show()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ViewModelsSamples.General.TemplatedTooltips.CustomTooltip.Show </td>
+          <td>(</td>
+          <td class="paramtype">IEnumerable&lt; ChartPoint &gt;</td>          <td class="paramname"><span class="paramname"><em>foundPoints</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Chart&lt; SkiaSharpDrawingContext &gt;</td>          <td class="paramname"><span class="paramname"><em>chart</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shows the tooltip with the given chart points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">foundPoints</td><td>The chart points to display in the tooltip.</td></tr>
+    <tr><td class="paramname">chart</td><td>The chart instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>E:/University/Semester 5/Win/Project/BC_Market/App/BC_Market/Helper/<b>CustomToolTip.cs</b></li>
 </ul>

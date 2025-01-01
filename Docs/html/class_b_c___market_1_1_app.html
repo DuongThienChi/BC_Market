@@ -123,6 +123,10 @@ Inheritance diagram for BC_Market.App:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ad791904f0d83772af19b0dec92fdb25d" id="r_ad791904f0d83772af19b0dec92fdb25d"><td class="memItemLeft" align="right" valign="top"><a id="ad791904f0d83772af19b0dec92fdb25d" name="ad791904f0d83772af19b0dec92fdb25d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>App</b> ()</td></tr>
+<tr class="memdesc:ad791904f0d83772af19b0dec92fdb25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the singleton application object. This is the first line of authored code executed, and as such is the logical equivalent of main() or WinMain(). <br /></td></tr>
+<tr class="separator:ad791904f0d83772af19b0dec92fdb25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52a26820f1253a9c418545bf8c789fd5" id="r_a52a26820f1253a9c418545bf8c789fd5"><td class="memItemLeft" align="right" valign="top"><a id="a52a26820f1253a9c418545bf8c789fd5" name="a52a26820f1253a9c418545bf8c789fd5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeComponent</b> ()</td></tr>
 <tr class="memdesc:a52a26820f1253a9c418545bf8c789fd5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a52a26820f1253a9c418545bf8c789fd5" title="InitializeComponent()">InitializeComponent()</a> <br /></td></tr>
@@ -143,6 +147,7 @@ global::Microsoft.UI.Xaml.Markup.XmlnsDefinition[]&#160;</td><td class="memItemR
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ab2bc8d98ceb672af28be3206e58792eb" id="r_ab2bc8d98ceb672af28be3206e58792eb"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2bc8d98ceb672af28be3206e58792eb">GetService&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:ab2bc8d98ceb672af28be3206e58792eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a service of the specified type.  <br /></td></tr>
 <tr class="separator:ab2bc8d98ceb672af28be3206e58792eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
@@ -155,10 +160,11 @@ Protected Member Functions</h2></td></tr>
 Properties</h2></td></tr>
 <tr class="memitem:a0a2c2402eee0a354b262f33d6bd468f4" id="r_a0a2c2402eee0a354b262f33d6bd468f4"><td class="memItemLeft" align="right" valign="top"><a id="a0a2c2402eee0a354b262f33d6bd468f4" name="a0a2c2402eee0a354b262f33d6bd468f4"></a>
 IServiceProvider&#160;</td><td class="memItemRight" valign="bottom"><b>Services</b><code> [get]</code></td></tr>
-<tr class="memdesc:a0a2c2402eee0a354b262f33d6bd468f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the singleton application object. This is the first line of authored code executed, and as such is the logical equivalent of main() or WinMain(). <br /></td></tr>
+<tr class="memdesc:a0a2c2402eee0a354b262f33d6bd468f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the service provider for dependency injection. <br /></td></tr>
 <tr class="separator:a0a2c2402eee0a354b262f33d6bd468f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9c202eef357fbd68e7026cdc7301760" id="r_ae9c202eef357fbd68e7026cdc7301760"><td class="memItemLeft" align="right" valign="top"><a id="ae9c202eef357fbd68e7026cdc7301760" name="ae9c202eef357fbd68e7026cdc7301760"></a>
 static Window&#160;</td><td class="memItemRight" valign="bottom"><b>m_window</b><code> [get]</code></td></tr>
+<tr class="memdesc:ae9c202eef357fbd68e7026cdc7301760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the main application window. <br /></td></tr>
 <tr class="separator:ae9c202eef357fbd68e7026cdc7301760"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -186,6 +192,15 @@ static Window&#160;</td><td class="memItemRight" valign="bottom"><b>m_window</b>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets a service of the specified type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of service to get.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The service instance.</dd></dl>
 <div class="typeconstraint">
 <dl><dt><b>Type Constraints</b></dt><dd>
 <table border="0" cellspacing="2" cellpadding="0">

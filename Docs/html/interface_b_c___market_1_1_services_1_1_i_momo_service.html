@@ -108,25 +108,92 @@ $(function(){initNavTree('interface_b_c___market_1_1_services_1_1_i_momo_service
   <div class="headertitle"><div class="title">BC_Market.Services.IMomoService Interface Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Defines the interface for Momo payment services.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for BC_Market.Services.IMomoService:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="interface_b_c___market_1_1_services_1_1_i_momo_service.png" usemap="#BC_5FMarket.Services.IMomoService_map" alt=""/>
   <map id="BC_5FMarket.Services.IMomoService_map" name="BC_5FMarket.Services.IMomoService_map">
-<area href="class_b_c___market_1_1_services_1_1_momo_service.html" alt="BC_Market.Services.MomoService" shape="rect" coords="0,56,214,80"/>
+<area href="class_b_c___market_1_1_services_1_1_momo_service.html" title="Provides services for interacting with Momo payment API." alt="BC_Market.Services.MomoService" shape="rect" coords="0,56,214,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6fc6ac4f7898ed15e49c9c50ce984c33" id="r_a6fc6ac4f7898ed15e49c9c50ce984c33"><td class="memItemLeft" align="right" valign="top"><a id="a6fc6ac4f7898ed15e49c9c50ce984c33" name="a6fc6ac4f7898ed15e49c9c50ce984c33"></a>
-Task&lt; <a class="el" href="class_b_c___market_1_1_models_1_1_momo_create_payment_response_model.html">MomoCreatePaymentResponseModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CreatePaymentAsync</b> (<a class="el" href="class_b_c___market_1_1_models_1_1_order.html">Order</a> model)</td></tr>
+<tr class="memitem:a6fc6ac4f7898ed15e49c9c50ce984c33" id="r_a6fc6ac4f7898ed15e49c9c50ce984c33"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="class_b_c___market_1_1_models_1_1_momo_create_payment_response_model.html">MomoCreatePaymentResponseModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fc6ac4f7898ed15e49c9c50ce984c33">CreatePaymentAsync</a> (<a class="el" href="class_b_c___market_1_1_models_1_1_order.html">Order</a> model)</td></tr>
+<tr class="memdesc:a6fc6ac4f7898ed15e49c9c50ce984c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a payment request to Momo API.  <br /></td></tr>
 <tr class="separator:a6fc6ac4f7898ed15e49c9c50ce984c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa54d2aedfcdb1517d324a01bbd3b2a27" id="r_aa54d2aedfcdb1517d324a01bbd3b2a27"><td class="memItemLeft" align="right" valign="top"><a id="aa54d2aedfcdb1517d324a01bbd3b2a27" name="aa54d2aedfcdb1517d324a01bbd3b2a27"></a>
-Task&lt; <a class="el" href="class_b_c___market_1_1_models_1_1_momo_query_transaction_status_response_model.html">MomoQueryTransactionStatusResponseModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>QueryTransactionStatusAsync</b> (string orderId, string requestId)</td></tr>
+<tr class="memitem:aa54d2aedfcdb1517d324a01bbd3b2a27" id="r_aa54d2aedfcdb1517d324a01bbd3b2a27"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="class_b_c___market_1_1_models_1_1_momo_query_transaction_status_response_model.html">MomoQueryTransactionStatusResponseModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa54d2aedfcdb1517d324a01bbd3b2a27">QueryTransactionStatusAsync</a> (string orderId, string requestId)</td></tr>
+<tr class="memdesc:aa54d2aedfcdb1517d324a01bbd3b2a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries the transaction status from Momo API.  <br /></td></tr>
 <tr class="separator:aa54d2aedfcdb1517d324a01bbd3b2a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines the interface for Momo payment services. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6fc6ac4f7898ed15e49c9c50ce984c33" name="a6fc6ac4f7898ed15e49c9c50ce984c33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fc6ac4f7898ed15e49c9c50ce984c33">&#9670;&#160;</a></span>CreatePaymentAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt; <a class="el" href="class_b_c___market_1_1_models_1_1_momo_create_payment_response_model.html">MomoCreatePaymentResponseModel</a> &gt; BC_Market.Services.IMomoService.CreatePaymentAsync </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_b_c___market_1_1_models_1_1_order.html">Order</a></td>          <td class="paramname"><span class="paramname"><em>model</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a payment request to Momo API. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">model</td><td>The order model containing payment details.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A task that represents the asynchronous operation. The task result contains the Momo payment response model.</dd></dl>
+
+<p>Implemented in <a class="el" href="class_b_c___market_1_1_services_1_1_momo_service.html#ac120043d0f7cd0cb11a293eb30c471b2">BC_Market.Services.MomoService</a>.</p>
+
+</div>
+</div>
+<a id="aa54d2aedfcdb1517d324a01bbd3b2a27" name="aa54d2aedfcdb1517d324a01bbd3b2a27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa54d2aedfcdb1517d324a01bbd3b2a27">&#9670;&#160;</a></span>QueryTransactionStatusAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt; <a class="el" href="class_b_c___market_1_1_models_1_1_momo_query_transaction_status_response_model.html">MomoQueryTransactionStatusResponseModel</a> &gt; BC_Market.Services.IMomoService.QueryTransactionStatusAsync </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>orderId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>requestId</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Queries the transaction status from Momo API. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">orderId</td><td>The order identifier.</td></tr>
+    <tr><td class="paramname">requestId</td><td>The request identifier.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A task that represents the asynchronous operation. The task result contains the Momo transaction status response model.</dd></dl>
+
+<p>Implemented in <a class="el" href="class_b_c___market_1_1_services_1_1_momo_service.html#ae409ca071be5323e760f03605ec8bcdd">BC_Market.Services.MomoService</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
 <li>E:/University/Semester 5/Win/Project/BC_Market/App/BC_Market/Services/Momo/<b>IMomoService.cs</b></li>
 </ul>

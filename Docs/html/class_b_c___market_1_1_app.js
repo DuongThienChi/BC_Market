@@ -1,5 +1,6 @@
 var class_b_c___market_1_1_app =
 [
+    [ "App", "class_b_c___market_1_1_app.html#ad791904f0d83772af19b0dec92fdb25d", null ],
     [ "GetXamlType", "class_b_c___market_1_1_app.html#a34e67a4f0b89965e84c304b50be75aa6", null ],
     [ "GetXamlType", "class_b_c___market_1_1_app.html#a855c67bb289ea3976086a93860ff3004", null ],
     [ "GetXmlnsDefinitions", "class_b_c___market_1_1_app.html#a8d400b6462bd0c7b9a6ab156da36eaa6", null ],

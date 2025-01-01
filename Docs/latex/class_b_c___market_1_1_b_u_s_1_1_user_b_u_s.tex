@@ -1,5 +1,10 @@
 \doxysection{BC\+\_\+\+Market.\+BUS.\+User\+BUS Class Reference}
 \hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s}{}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+
+
+Provides business logic for managing users.  
+
+
 Inheritance diagram for BC\+\_\+\+Market.\+BUS.\+User\+BUS\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,48 +14,164 @@ Inheritance diagram for BC\+\_\+\+Market.\+BUS.\+User\+BUS\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af93a52ad47ca2f00b8e8d4f6bc2e1d86}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af93a52ad47ca2f00b8e8d4f6bc2e1d86} 
-\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ {\bfseries Create\+New} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ dao)
-\item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a91faf1c9001a37094b5d940cabdd8d11}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a91faf1c9001a37094b5d940cabdd8d11} 
-{\bfseries User\+BUS} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ dao)
-\item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2d057ce90539d7bce99c92657d7b2c2a}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2d057ce90539d7bce99c92657d7b2c2a} 
-dynamic {\bfseries Get} (Dictionary$<$ string, string $>$ configuration)
-\item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_ab8ad4a67ea7afe7be047712691ec7b36}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_ab8ad4a67ea7afe7be047712691ec7b36} 
-void {\bfseries Update\+User} (object user)
-\item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2fd0468bd0c87dd5ce4af9fbb4a6f8fb}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2fd0468bd0c87dd5ce4af9fbb4a6f8fb} 
-dynamic {\bfseries Add} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} obj)
-\item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af37b00feeb8dbeb3d9870208aea0c102}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af37b00feeb8dbeb3d9870208aea0c102} 
-dynamic {\bfseries Update} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} obj)
-\item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a8e5d8b6e88aca66106786b3f9de707bf}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a8e5d8b6e88aca66106786b3f9de707bf} 
-dynamic {\bfseries Delete} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} obj)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af93a52ad47ca2f00b8e8d4f6bc2e1d86}{Create\+New}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ dao)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s}{User\+BUS} class with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a91faf1c9001a37094b5d940cabdd8d11}{User\+BUS}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ dao)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s}{User\+BUS} class. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2d057ce90539d7bce99c92657d7b2c2a}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets user data based on the specified configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_ab8ad4a67ea7afe7be047712691ec7b36}{Update\+User}} (object user)
+\begin{DoxyCompactList}\small\item\em Updates the user information. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2fd0468bd0c87dd5ce4af9fbb4a6f8fb}{Add}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} obj)
+\begin{DoxyCompactList}\small\item\em Adds a new user. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af37b00feeb8dbeb3d9870208aea0c102}{Update}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing user. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a8e5d8b6e88aca66106786b3f9de707bf}{Delete}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} obj)
+\begin{DoxyCompactList}\small\item\em Deletes a user. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS$<$ USER $>$}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ {\bfseries Dao} ()
-\item 
-\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ {\bfseries Create\+New} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ dao)
-\item 
-dynamic {\bfseries Get} (Dictionary$<$ string, string $>$ configuration)
-\item 
-dynamic {\bfseries Add} (T obj)
-\item 
-dynamic {\bfseries Update} (T obj)
-\item 
-dynamic {\bfseries Delete} (T obj)
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a4509a071a7853a9ad11734cc0defac72}\label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a4509a071a7853a9ad11734cc0defac72} 
-readonly \mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ {\bfseries \+\_\+dao}
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ac5ed55a8fbce7a316b36e4b5a5680be4}{Dao}} ()
+\begin{DoxyCompactList}\small\item\em Gets the data access object for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a804040632d8e56f5697fcb086f3233c2}{Create\+New}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ dao)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the business logic service with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a85c26d3466d8e6998940000afcff3ba0}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets entity data based on the specified configuration. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a5ded81a94e7a3a6cbab56220b4f97388}{Add}} (T obj)
+\begin{DoxyCompactList}\small\item\em Adds a new entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ae4cbe56e8207d95067d506b33153b54c}{Update}} (T obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a54817ec8d1290a071f885fccaf335bb3}{Delete}} (T obj)
+\begin{DoxyCompactList}\small\item\em Deletes an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides business logic for managing users. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a91faf1c9001a37094b5d940cabdd8d11}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}!UserBUS@{UserBUS}}
+\index{UserBUS@{UserBUS}!BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+\doxysubsubsection{\texorpdfstring{UserBUS()}{UserBUS()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a91faf1c9001a37094b5d940cabdd8d11} 
+BC\+\_\+\+Market.\+BUS.\+User\+BUS.\+User\+BUS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$}]{dao}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s}{User\+BUS} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dao} & The data access object for users.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2fd0468bd0c87dd5ce4af9fbb4a6f8fb}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}!Add@{Add}}
+\index{Add@{Add}!BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2fd0468bd0c87dd5ce4af9fbb4a6f8fb} 
+dynamic BC\+\_\+\+Market.\+BUS.\+User\+BUS.\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a new user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The user object to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the add operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af93a52ad47ca2f00b8e8d4f6bc2e1d86}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}!CreateNew@{CreateNew}}
+\index{CreateNew@{CreateNew}!BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+\doxysubsubsection{\texorpdfstring{CreateNew()}{CreateNew()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af93a52ad47ca2f00b8e8d4f6bc2e1d86} 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ BC\+\_\+\+Market.\+BUS.\+User\+BUS.\+Create\+New (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$}]{dao}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s}{User\+BUS} class with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dao} & The data access object for users.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of \doxylink{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s}{User\+BUS}.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a8e5d8b6e88aca66106786b3f9de707bf}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}!Delete@{Delete}}
+\index{Delete@{Delete}!BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a8e5d8b6e88aca66106786b3f9de707bf} 
+dynamic BC\+\_\+\+Market.\+BUS.\+User\+BUS.\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The user object to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the delete operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2d057ce90539d7bce99c92657d7b2c2a}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}!Get@{Get}}
+\index{Get@{Get}!BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_a2d057ce90539d7bce99c92657d7b2c2a} 
+dynamic BC\+\_\+\+Market.\+BUS.\+User\+BUS.\+Get (\begin{DoxyParamCaption}\item[{Dictionary$<$ string, string $>$}]{configuration}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets user data based on the specified configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em configuration} & The configuration dictionary.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The user data.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af37b00feeb8dbeb3d9870208aea0c102}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}!Update@{Update}}
+\index{Update@{Update}!BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_af37b00feeb8dbeb3d9870208aea0c102} 
+dynamic BC\+\_\+\+Market.\+BUS.\+User\+BUS.\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates an existing user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The user object to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the update operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_ab8ad4a67ea7afe7be047712691ec7b36}\index{BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}!UpdateUser@{UpdateUser}}
+\index{UpdateUser@{UpdateUser}!BC\_Market.BUS.UserBUS@{BC\_Market.BUS.UserBUS}}
+\doxysubsubsection{\texorpdfstring{UpdateUser()}{UpdateUser()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_user_b_u_s_ab8ad4a67ea7afe7be047712691ec7b36} 
+void BC\+\_\+\+Market.\+BUS.\+User\+BUS.\+Update\+User (\begin{DoxyParamCaption}\item[{object}]{user}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the user information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user object.\\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

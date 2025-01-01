@@ -12,30 +12,56 @@ using System.Threading.Tasks;
 
 namespace BC_Market.ViewModels
 {
+    /// <summary>
+    /// ViewModel for managing products in the admin panel.
+    /// </summary>
     class ManageProductViewModel : ObservableObject
     {
         private IFactory<Product> _productFactory = new ProductFactory();
         private IBUS<Product> _productBus;
+
+        /// <summary>
+        /// Gets or sets the collection of products.
+        /// </summary>
         public ObservableCollection<Product> ListProduct { get; set; }
 
         private IFactory<Category> _cateFactory = new CategoryFactory();
         private IBUS<Category> _cateBus;
+
+        /// <summary>
+        /// Gets or sets the collection of categories.
+        /// </summary>
         public ObservableCollection<Category> ListCategories { get; set; }
 
+        /// <summary>
+        /// Gets or sets the collection of category IDs.
+        /// </summary>
         public ObservableCollection<string> ListCategoriesId { get; set; } = new ObservableCollection<string>();
 
+        /// <summary>
+        /// Gets or sets the collection of products filtered by category.
+        /// </summary>
         public ObservableCollection<Product> ProductByCategory { get; set; }
 
+        /// <summary>
+        /// Gets or sets the collection of chosen products.
+        /// </summary>
         public ObservableCollection<Product> ChosenProduct { get; set; } = new ObservableCollection<Product>();
 
+        /// <summary>
+        /// Gets or sets the total sum of chosen products.
+        /// </summary>
         public float sumTotal = 0;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManageProductViewModel"/> class.
+        /// </summary>
         public ManageProductViewModel()
         {
             LoadData();
             foreach (Product p in ListProduct)
             {
-                if(p.OrderQuantity > 0)
+                if (p.OrderQuantity > 0)
                 {
                     ChosenProduct.Add(p);
                     sumTotal += float.Parse(p.Total());
@@ -43,16 +69,19 @@ namespace BC_Market.ViewModels
             }
         }
 
-        public void LoadData() // Define the LoadData method
+        /// <summary>
+        /// Loads the product and category data.
+        /// </summary>
+        public void LoadData()
         {
             _productBus = _productFactory.CreateBUS();
-            var dict = new Dictionary<string, string>() // Define the dict variable
-            {
-                {"searchKey", ""},
-                {"category", ""},
-                {"skip", "0"},
-                {"take", "100"}
-            };
+            var dict = new Dictionary<string, string>()
+                {
+                    {"searchKey", ""},
+                    {"category", ""},
+                    {"skip", "0"},
+                    {"take", "100"}
+                };
             var products = _productBus.Get(dict); // Get all products
             ListProduct = new ObservableCollection<Product>(products);
             ProductByCategory = new ObservableCollection<Product>(products);
@@ -66,7 +95,11 @@ namespace BC_Market.ViewModels
             }
         }
 
-        public void AddProduct(Product product) // Add a product
+        /// <summary>
+        /// Adds a new product.
+        /// </summary>
+        /// <param name="product">The product to add.</param>
+        public void AddProduct(Product product)
         {
             var dao = _productBus.Dao();
             dao.Add(product);
@@ -74,7 +107,11 @@ namespace BC_Market.ViewModels
             ProductByCategory.Add(product);
         }
 
-        public void AddCategory(Category category)  // Add a category
+        /// <summary>
+        /// Adds a new category.
+        /// </summary>
+        /// <param name="category">The category to add.</param>
+        public void AddCategory(Category category)
         {
             var dao = _cateBus.Dao();
             dao.Add(category);
@@ -82,27 +119,42 @@ namespace BC_Market.ViewModels
             ListCategoriesId.Add(category.Id);
         }
 
-        public void UpdateProduct(Product product) // Update a product
+        /// <summary>
+        /// Updates an existing product.
+        /// </summary>
+        /// <param name="product">The product to update.</param>
+        public void UpdateProduct(Product product)
         {
             var dao = _productBus.Dao();
             dao.Update(product);
         }
 
-        public void UpdateCategory(Category category) // Update a category
+        /// <summary>
+        /// Updates an existing category.
+        /// </summary>
+        /// <param name="category">The category to update.</param>
+        public void UpdateCategory(Category category)
         {
             var dao = _cateBus.Dao();
             dao.Update(category);
         }
 
-        public void DeleteProduct(Product product) // Delete a product
+        /// <summary>
+        /// Deletes a product.
+        /// </summary>
+        /// <param name="product">The product to delete.</param>
+        public void DeleteProduct(Product product)
         {
             var dao = _productBus.Dao();
             dao.Delete(product);
             ListProduct.Remove(product);
-            //ProductByCategory.Remove(product);
         }
 
-        public void DeleteCategory(Category category) // Delete a category
+        /// <summary>
+        /// Deletes a category.
+        /// </summary>
+        /// <param name="category">The category to delete.</param>
+        public void DeleteCategory(Category category)
         {
             var dao = _cateBus.Dao();
             dao.Delete(category);
@@ -110,15 +162,19 @@ namespace BC_Market.ViewModels
             ListCategoriesId.Remove(category.Id);
         }
 
-        public void SetProductByCategory(string category) // Set products by category
+        /// <summary>
+        /// Sets the products filtered by the specified category.
+        /// </summary>
+        /// <param name="category">The category to filter by.</param>
+        public void SetProductByCategory(string category)
         {
-            if (category == "All") // If category is "All"
+            if (category == "All")
             {
-                ProductByCategory = new ObservableCollection<Product>(ListProduct); // Set ProductByCategory to ListProduct
+                ProductByCategory = new ObservableCollection<Product>(ListProduct);
             }
             else
             {
-                ProductByCategory = new ObservableCollection<Product>(); // Set ProductByCategory to an empty ObservableCollection
+                ProductByCategory = new ObservableCollection<Product>();
                 foreach (Product product in ListProduct)
                 {
                     if (product.CategoryId == category)
@@ -129,21 +185,29 @@ namespace BC_Market.ViewModels
             }
         }
 
-        public void SetChosenProduct() // Choose a product
+        /// <summary>
+        /// Sets the chosen products based on their order quantity.
+        /// </summary>
+        public void SetChosenProduct()
         {
             float res = 0;
-            this.ChosenProduct = new ObservableCollection<Product>();
+            ChosenProduct = new ObservableCollection<Product>();
             foreach (Product p in ListProduct)
             {
                 if (p.OrderQuantity > 0)
                 {
-                    this.ChosenProduct.Add(p);
+                    ChosenProduct.Add(p);
                     res += float.Parse(p.Total());
                 }
             }
             sumTotal = res;
         }
 
+        /// <summary>
+        /// Creates an order with the specified payment method and user ID.
+        /// </summary>
+        /// <param name="paymentID">The payment method ID.</param>
+        /// <param name="userID">The user ID.</param>
         public void CreateOrder(int paymentID, int userID)
         {
             Order order = new Order
@@ -174,9 +238,13 @@ namespace BC_Market.ViewModels
             ChangeInfoBeforeAdd(_productBus.Dao());
         }
 
+        /// <summary>
+        /// Updates product information before adding the order.
+        /// </summary>
+        /// <param name="dao">The product DAO.</param>
         private void ChangeInfoBeforeAdd(IDAO<Product> dao)
         {
-            foreach(Product p in ChosenProduct)
+            foreach (Product p in ChosenProduct)
             {
                 p.Stock -= p.OrderQuantity;
                 p.OrderQuantity = 0;

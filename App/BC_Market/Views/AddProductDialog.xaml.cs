@@ -26,24 +26,47 @@ using System.Collections.ObjectModel;
 
 namespace BC_Market.Views
 { 
+  /// <summary>
+    /// A dialog for adding a new product.
+    /// </summary>
     public sealed partial class AddProductDialog : UserControl
     {
         private ManageProductViewModel ViewModels { get; set; } = new ManageProductViewModel();
         private ObservableCollection<string> ListStatus { get; set; } = new ObservableCollection<string> { "Active", "Inactive" };
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddProductDialog"/> class.
+        /// </summary>
         public AddProductDialog()
         {
             this.InitializeComponent();
         }
+
+        /// <summary>
+        /// Closes the dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void CloseDialog(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Event that is triggered when a new product is added.
+        /// </summary>
         public event EventHandler<Product> ProductAdded;
+
         private string imagePath = "";
+
+        /// <summary>
+        /// Saves the new product.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void SaveCate(object sender, RoutedEventArgs e)
         {
-            if(imagePath == "")
+            if (imagePath == "")
             {
                 Notice.Text = "Please fill all fields";
                 return;
@@ -51,16 +74,16 @@ namespace BC_Market.Views
 
             string imagePathServer = UploadImage.UploadImagePath(imagePath).Result;
 
-            if( string.IsNullOrEmpty(Name.Text) ||
+            if (string.IsNullOrEmpty(Name.Text) ||
                 string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Price.Text) ||
                 string.IsNullOrEmpty(Stock.Text) ||
-                string.IsNullOrEmpty(CategoryId.SelectedItem as string) || string.IsNullOrEmpty( Status.SelectedItem as string))
+                string.IsNullOrEmpty(CategoryId.SelectedItem as string) || string.IsNullOrEmpty(Status.SelectedItem as string))
             {
                 Notice.Text = "Please fill all fields";
                 return;
             }
 
-            // create new Product from entered information
+            // Create new Product from entered information
             var product = new Product
             {
                 Name = Name.Text,
@@ -72,9 +95,9 @@ namespace BC_Market.Views
                 Status = Status.SelectedItem as string,
             };
 
-            // check to confirm all fields are filled
-            if ( string.IsNullOrEmpty(product.Name) || 
-                string.IsNullOrEmpty(product.Description) || string.IsNullOrEmpty(product.CategoryId) || 
+            // Check to confirm all fields are filled
+            if (string.IsNullOrEmpty(product.Name) ||
+                string.IsNullOrEmpty(product.Description) || string.IsNullOrEmpty(product.CategoryId) ||
                 string.IsNullOrEmpty(product.Status))
             {
                 Notice.Text = "Please fill all fields";
@@ -86,6 +109,11 @@ namespace BC_Market.Views
             this.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Handles the image upload click event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private async void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             // Create a file picker

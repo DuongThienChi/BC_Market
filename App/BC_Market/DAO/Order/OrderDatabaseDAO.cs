@@ -9,9 +9,17 @@ using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml.Controls;
 namespace BC_Market.DAO
 {
+    /// <summary>
+    /// Provides data access logic for managing delivery units in the database.
+    /// </summary>
     public class OrderDatabaseDAO : IDAO<Order>
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  //Get connection string from appsettings.json
+        /// <summary>
+        /// Adds a new order to the database.
+        /// </summary>
+        /// <param name="obj">The order object to add.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Add(Order obj)
         {
             try
@@ -69,7 +77,11 @@ namespace BC_Market.DAO
                 return false;
             }
         }
-
+        /// <summary>
+        /// Deletes an order from the database.
+        /// </summary>
+        /// <param name="obj">The order object to delete.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Delete(Order obj)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -108,7 +120,11 @@ namespace BC_Market.DAO
                 }
             }
         }
-
+        /// <summary>
+        /// Retrieves orders based on the provided configuration.
+        /// </summary>
+        /// <param name="configuration">A dictionary containing configuration parameters.</param>
+        /// <returns>A collection of orders or specific order details based on the configuration.</returns>
         public dynamic Get(Dictionary<string, string> configuration)
         {
             if (configuration == null)
@@ -141,7 +157,12 @@ namespace BC_Market.DAO
             }
             return null;
         }
-
+        /// <summary>
+        /// Retrieves a sales report by category within a date range.
+        /// </summary>
+        /// <param name="startDate">The start date of the report.</param>
+        /// <param name="endDate">The end date of the report.</param>
+        /// <returns>A collection of category sales data.</returns>
         private dynamic GetReportCateSale(string startDate, string endDate)
         {
             ObservableCollection<KeyValuePair<string, long>> cate_sale = new ObservableCollection<KeyValuePair<string, long>>();
@@ -176,7 +197,12 @@ namespace BC_Market.DAO
                 }
             }
         }
-
+        /// <summary>
+        /// Retrieves a quantity report by category within a date range.
+        /// </summary>
+        /// <param name="startDate">The start date of the report.</param>
+        /// <param name="endDate">The end date of the report.</param>
+        /// <returns>A collection of category quantity data.</returns>
         private dynamic GetReportCate(string startDate, string endDate)
         {
             ObservableCollection<KeyValuePair<string, int>> cate_quantity = new ObservableCollection<KeyValuePair<string, int>>();
@@ -211,7 +237,12 @@ namespace BC_Market.DAO
                 }
             }
         }
-
+        /// <summary>
+        /// Retrieves a quantity report by product within a date range.
+        /// </summary>
+        /// <param name="startDate">The start date of the report.</param>
+        /// <param name="endDate">The end date of the report.</param>
+        /// <returns>A collection of product quantity data.</returns>
         private dynamic GetReportProduct(string startDate, string endDate)
         {
             ObservableCollection<KeyValuePair<string, int>> product_quantity = new ObservableCollection<KeyValuePair<string, int>>();
@@ -245,7 +276,10 @@ namespace BC_Market.DAO
                 }
             }
         }
-
+        /// <summary>
+        /// Retrieves the latest order from the database.
+        /// </summary>
+        /// <returns>The latest order object.</returns>
         private dynamic GetLatestOrder()
         {
             var sql = @"SELECT * FROM ""Order"" ORDER BY createat DESC LIMIT 1";
@@ -276,7 +310,11 @@ namespace BC_Market.DAO
             }
             return false;
         }
-
+        /// <summary>
+        /// Retrieves orders by a specific date.
+        /// </summary>
+        /// <param name="date">The date to filter orders by.</param>
+        /// <returns>A collection of orders on the specified date.</returns>
         private dynamic GetOrderbyDate(string date)
         {
             List<Order> orders = new List<Order>();
@@ -317,7 +355,11 @@ namespace BC_Market.DAO
             }
             return orders;
         }
-
+        /// <summary>
+        /// Retrieves order details by order ID.
+        /// </summary>
+        /// <param name="id">The ID of the order.</param>
+        /// <returns>A collection of order details.</returns>
         private dynamic GetOrderDetailById(dynamic id)
         {
             ObservableCollection<CartProduct> orderDetail = new ObservableCollection<CartProduct>();
@@ -362,7 +404,10 @@ namespace BC_Market.DAO
             }
             return orderDetail;
         }
-
+        /// <summary>
+        /// Retrieves all orders from the database.
+        /// </summary>
+        /// <returns>A collection of all orders.</returns>
         public dynamic GetAll()
         {
             // Implementation of GetAll method
@@ -394,6 +439,11 @@ namespace BC_Market.DAO
             }
             return orders;
         }
+        /// <summary>
+        /// Updates an existing order in the database.
+        /// </summary>
+        /// <param name="obj">The order object to update.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Update(Order obj)
         {
             using (var connection = new NpgsqlConnection(connectionString))

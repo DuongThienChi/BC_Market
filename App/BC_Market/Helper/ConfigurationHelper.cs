@@ -3,9 +3,17 @@ using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.IO;
 
-public static class ConfigurationHelper // Get connection string from appsettings.json
+/// <summary>
+/// Helper class for retrieving configuration settings.
+/// </summary>
+public static class ConfigurationHelper
 {
-    public static string GetConnectionString(string name) 
+    /// <summary>
+    /// Gets the connection string from the appsettings.json file.
+    /// </summary>
+    /// <param name="name">The name of the connection string to retrieve.</param>
+    /// <returns>The connection string.</returns>
+    public static string GetConnectionString(string name)
     {
         var configuration = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)

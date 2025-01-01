@@ -19,26 +19,45 @@ using Windows.Foundation.Collections;
 
 namespace BC_Market.Views
 {
+    /// <summary>
+    /// A dialog for adding a new voucher.
+    /// </summary>
     public sealed partial class AddVoucherDialog : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddVoucherDialog"/> class.
+        /// </summary>
         public AddVoucherDialog()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Closes the dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void closeDialog_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Event that is triggered when a new voucher is added.
+        /// </summary>
         public event EventHandler<Voucher> VoucherAdded;
 
+        /// <summary>
+        /// Saves the new voucher.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void saveVoucher_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Name.Text) || 
-                string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Percent.Text) || 
-                string.IsNullOrEmpty(Amount.Text) || string.IsNullOrEmpty(Condition.Text) || 
-                string.IsNullOrEmpty(Stock.Text) || !Validate.SelectedDate.HasValue || 
+            if (string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Name.Text) ||
+                string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Percent.Text) ||
+                string.IsNullOrEmpty(Amount.Text) || string.IsNullOrEmpty(Condition.Text) ||
+                string.IsNullOrEmpty(Stock.Text) || !Validate.SelectedDate.HasValue ||
                 string.IsNullOrEmpty(RankId.Text))
             {
                 Notice.Text = "Please fill all fields";

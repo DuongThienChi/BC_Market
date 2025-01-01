@@ -24,8 +24,14 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class ReportProductPage : Page
     {
+        /// <summary>
+        /// Gets or sets the ViewModel for the ReportProductPage.
+        /// </summary>
         private ReportProductViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportProductPage"/> class.
+        /// </summary>
         public ReportProductPage()
         {
             this.InitializeComponent();

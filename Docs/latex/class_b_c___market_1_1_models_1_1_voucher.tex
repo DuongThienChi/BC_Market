@@ -1,44 +1,103 @@
 \doxysection{BC\+\_\+\+Market.\+Models.\+Voucher Class Reference}
 \hypertarget{class_b_c___market_1_1_models_1_1_voucher}{}\label{class_b_c___market_1_1_models_1_1_voucher}\index{BC\_Market.Models.Voucher@{BC\_Market.Models.Voucher}}
+
+
+Represents a voucher in the market.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a1d7965d1ef1ff2e34bd605668cd55210}\label{class_b_c___market_1_1_models_1_1_voucher_a1d7965d1ef1ff2e34bd605668cd55210} 
-\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_voucher}{Voucher}} {\bfseries Create\+Voucher} (string name, string description, int percent, int amount, double condition, int stock, Date\+Time validate, string rank\+Id)
-\item 
-\Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a13d8c50b411e5c2811e39c030ba27c1b}\label{class_b_c___market_1_1_models_1_1_voucher_a13d8c50b411e5c2811e39c030ba27c1b} 
-bool {\bfseries is\+Condition} (double total)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_voucher}{Voucher}} \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_voucher_a1d7965d1ef1ff2e34bd605668cd55210}{Create\+Voucher}} (string name, string description, int percent, int amount, double condition, int stock, Date\+Time validate, string rank\+Id)
+\begin{DoxyCompactList}\small\item\em Creates a new voucher with the specified details. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_voucher_a13d8c50b411e5c2811e39c030ba27c1b}{is\+Condition}} (double total)
+\begin{DoxyCompactList}\small\item\em Checks if the total amount meets the condition to use the voucher. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_acf1a0dfc5c9e250863314f6cbde095f4}\label{class_b_c___market_1_1_models_1_1_voucher_acf1a0dfc5c9e250863314f6cbde095f4} 
 int {\bfseries Voucher\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the unique identifier for the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_afb8b87afdc4a87871109f84b260c9483}\label{class_b_c___market_1_1_models_1_1_voucher_afb8b87afdc4a87871109f84b260c9483} 
 string {\bfseries Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the name of the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a09d5cdacfd64bc66902e6c51bb6b501c}\label{class_b_c___market_1_1_models_1_1_voucher_a09d5cdacfd64bc66902e6c51bb6b501c} 
 string {\bfseries Description}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the description of the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a107fc55c741214d6626aa5be14cb64d8}\label{class_b_c___market_1_1_models_1_1_voucher_a107fc55c741214d6626aa5be14cb64d8} 
 int {\bfseries Percent}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the discount percentage of the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a3cd0ebb0d031a165750220b825c0caa9}\label{class_b_c___market_1_1_models_1_1_voucher_a3cd0ebb0d031a165750220b825c0caa9} 
 int {\bfseries Amount}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the discount amount of the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a1fafa5dff04739fe6e3d67a4b17a47cc}\label{class_b_c___market_1_1_models_1_1_voucher_a1fafa5dff04739fe6e3d67a4b17a47cc} 
 double {\bfseries Condition}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the condition to use the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_abfca70140bd73b18b0e75cb5f24c17e5}\label{class_b_c___market_1_1_models_1_1_voucher_abfca70140bd73b18b0e75cb5f24c17e5} 
 int {\bfseries Stock}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the stock quantity of the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a797cb56baade1aa7f6750ca325ee0f3a}\label{class_b_c___market_1_1_models_1_1_voucher_a797cb56baade1aa7f6750ca325ee0f3a} 
 Date\+Time {\bfseries Validate}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gets or sets the validation date of the voucher. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a2f446319a80656c29a0933fc1b196fe0}\label{class_b_c___market_1_1_models_1_1_voucher_a2f446319a80656c29a0933fc1b196fe0} 
 string {\bfseries Rank\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets or sets the rank identifier required to use the voucher. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a voucher in the market. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a1d7965d1ef1ff2e34bd605668cd55210}\index{BC\_Market.Models.Voucher@{BC\_Market.Models.Voucher}!CreateVoucher@{CreateVoucher}}
+\index{CreateVoucher@{CreateVoucher}!BC\_Market.Models.Voucher@{BC\_Market.Models.Voucher}}
+\doxysubsubsection{\texorpdfstring{CreateVoucher()}{CreateVoucher()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_models_1_1_voucher_a1d7965d1ef1ff2e34bd605668cd55210} 
+\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_voucher}{Voucher}} BC\+\_\+\+Market.\+Models.\+Voucher.\+Create\+Voucher (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{string}]{description}{, }\item[{int}]{percent}{, }\item[{int}]{amount}{, }\item[{double}]{condition}{, }\item[{int}]{stock}{, }\item[{Date\+Time}]{validate}{, }\item[{string}]{rank\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new voucher with the specified details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the voucher.\\
+\hline
+{\em description} & The description of the voucher.\\
+\hline
+{\em percent} & The discount percentage of the voucher.\\
+\hline
+{\em amount} & The discount amount of the voucher.\\
+\hline
+{\em condition} & The condition to use the voucher.\\
+\hline
+{\em stock} & The stock quantity of the voucher.\\
+\hline
+{\em validate} & The validation date of the voucher.\\
+\hline
+{\em rank\+Id} & The rank identifier required to use the voucher.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of the \doxylink{class_b_c___market_1_1_models_1_1_voucher}{Voucher} class.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_models_1_1_voucher_a13d8c50b411e5c2811e39c030ba27c1b}\index{BC\_Market.Models.Voucher@{BC\_Market.Models.Voucher}!isCondition@{isCondition}}
+\index{isCondition@{isCondition}!BC\_Market.Models.Voucher@{BC\_Market.Models.Voucher}}
+\doxysubsubsection{\texorpdfstring{isCondition()}{isCondition()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_models_1_1_voucher_a13d8c50b411e5c2811e39c030ba27c1b} 
+bool BC\+\_\+\+Market.\+Models.\+Voucher.\+is\+Condition (\begin{DoxyParamCaption}\item[{double}]{total}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the total amount meets the condition to use the voucher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total} & The total amount to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the total meets the condition, otherwise false.
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

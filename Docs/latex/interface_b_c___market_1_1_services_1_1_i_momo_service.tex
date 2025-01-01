@@ -1,5 +1,10 @@
 \doxysection{BC\+\_\+\+Market.\+Services.\+IMomo\+Service Interface Reference}
 \hypertarget{interface_b_c___market_1_1_services_1_1_i_momo_service}{}\label{interface_b_c___market_1_1_services_1_1_i_momo_service}\index{BC\_Market.Services.IMomoService@{BC\_Market.Services.IMomoService}}
+
+
+Defines the interface for Momo payment services.  
+
+
 Inheritance diagram for BC\+\_\+\+Market.\+Services.\+IMomo\+Service\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,12 +14,62 @@ Inheritance diagram for BC\+\_\+\+Market.\+Services.\+IMomo\+Service\+:\begin{fi
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{interface_b_c___market_1_1_services_1_1_i_momo_service_a6fc6ac4f7898ed15e49c9c50ce984c33}\label{interface_b_c___market_1_1_services_1_1_i_momo_service_a6fc6ac4f7898ed15e49c9c50ce984c33} 
-Task$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_momo_create_payment_response_model}{Momo\+Create\+Payment\+Response\+Model}} $>$ {\bfseries Create\+Payment\+Async} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} model)
-\item 
-\Hypertarget{interface_b_c___market_1_1_services_1_1_i_momo_service_aa54d2aedfcdb1517d324a01bbd3b2a27}\label{interface_b_c___market_1_1_services_1_1_i_momo_service_aa54d2aedfcdb1517d324a01bbd3b2a27} 
-Task$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_momo_query_transaction_status_response_model}{Momo\+Query\+Transaction\+Status\+Response\+Model}} $>$ {\bfseries Query\+Transaction\+Status\+Async} (string order\+Id, string request\+Id)
-\end{DoxyCompactItemize}
+Task$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_momo_create_payment_response_model}{Momo\+Create\+Payment\+Response\+Model}} $>$ \mbox{\hyperlink{interface_b_c___market_1_1_services_1_1_i_momo_service_a6fc6ac4f7898ed15e49c9c50ce984c33}{Create\+Payment\+Async}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} model)
+\begin{DoxyCompactList}\small\item\em Creates a payment request to Momo API. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_momo_query_transaction_status_response_model}{Momo\+Query\+Transaction\+Status\+Response\+Model}} $>$ \mbox{\hyperlink{interface_b_c___market_1_1_services_1_1_i_momo_service_aa54d2aedfcdb1517d324a01bbd3b2a27}{Query\+Transaction\+Status\+Async}} (string order\+Id, string request\+Id)
+\begin{DoxyCompactList}\small\item\em Queries the transaction status from Momo API. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the interface for Momo payment services. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_b_c___market_1_1_services_1_1_i_momo_service_a6fc6ac4f7898ed15e49c9c50ce984c33}\index{BC\_Market.Services.IMomoService@{BC\_Market.Services.IMomoService}!CreatePaymentAsync@{CreatePaymentAsync}}
+\index{CreatePaymentAsync@{CreatePaymentAsync}!BC\_Market.Services.IMomoService@{BC\_Market.Services.IMomoService}}
+\doxysubsubsection{\texorpdfstring{CreatePaymentAsync()}{CreatePaymentAsync()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_services_1_1_i_momo_service_a6fc6ac4f7898ed15e49c9c50ce984c33} 
+Task$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_momo_create_payment_response_model}{Momo\+Create\+Payment\+Response\+Model}} $>$ BC\+\_\+\+Market.\+Services.\+IMomo\+Service.\+Create\+Payment\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}}}]{model}{}\end{DoxyParamCaption})}
+
+
+
+Creates a payment request to Momo API. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The order model containing payment details.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains the Momo payment response model.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_c___market_1_1_services_1_1_momo_service_ac120043d0f7cd0cb11a293eb30c471b2}{BC\+\_\+\+Market.\+Services.\+Momo\+Service}}.
+
+\Hypertarget{interface_b_c___market_1_1_services_1_1_i_momo_service_aa54d2aedfcdb1517d324a01bbd3b2a27}\index{BC\_Market.Services.IMomoService@{BC\_Market.Services.IMomoService}!QueryTransactionStatusAsync@{QueryTransactionStatusAsync}}
+\index{QueryTransactionStatusAsync@{QueryTransactionStatusAsync}!BC\_Market.Services.IMomoService@{BC\_Market.Services.IMomoService}}
+\doxysubsubsection{\texorpdfstring{QueryTransactionStatusAsync()}{QueryTransactionStatusAsync()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_services_1_1_i_momo_service_aa54d2aedfcdb1517d324a01bbd3b2a27} 
+Task$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_momo_query_transaction_status_response_model}{Momo\+Query\+Transaction\+Status\+Response\+Model}} $>$ BC\+\_\+\+Market.\+Services.\+IMomo\+Service.\+Query\+Transaction\+Status\+Async (\begin{DoxyParamCaption}\item[{string}]{order\+Id}{, }\item[{string}]{request\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Queries the transaction status from Momo API. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Id} & The order identifier.\\
+\hline
+{\em request\+Id} & The request identifier.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains the Momo transaction status response model.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_c___market_1_1_services_1_1_momo_service_ae409ca071be5323e760f03605ec8bcdd}{BC\+\_\+\+Market.\+Services.\+Momo\+Service}}.
+
 
 
 The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}

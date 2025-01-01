@@ -23,16 +23,29 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class ForgotPage : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ForgotPage"/> class.
+        /// </summary>
         public ForgotPage()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Submit button click event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void submit_button_Click(object sender, RoutedEventArgs e)
         {
-
+            // Add logic for submit button click event
         }
 
+        /// <summary>
+        /// Handles the Back to Login tap event to navigate back to the LoginPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BackToLogin_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LoginPage));

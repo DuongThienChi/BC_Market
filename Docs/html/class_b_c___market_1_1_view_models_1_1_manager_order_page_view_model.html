@@ -110,6 +110,9 @@ $(function(){initNavTree('class_b_c___market_1_1_view_models_1_1_manager_order_p
   <div class="headertitle"><div class="title">BC_Market.ViewModels.ManagerOrderPageViewModel Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>ViewModel for managing orders in the admin panel.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for BC_Market.ViewModels.ManagerOrderPageViewModel:</div>
 <div class="dyncontent">
@@ -119,8 +122,12 @@ Inheritance diagram for BC_Market.ViewModels.ManagerOrderPageViewModel:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a88d4d59b484b2f22f84346e4a92527b2" id="r_a88d4d59b484b2f22f84346e4a92527b2"><td class="memItemLeft" align="right" valign="top"><a id="a88d4d59b484b2f22f84346e4a92527b2" name="a88d4d59b484b2f22f84346e4a92527b2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>FilterOrdersByDate</b> (DateTimeOffset selectedDate)</td></tr>
+<tr class="memitem:a62916d03dd1ae252f984043e911aa182" id="r_a62916d03dd1ae252f984043e911aa182"><td class="memItemLeft" align="right" valign="top"><a id="a62916d03dd1ae252f984043e911aa182" name="a62916d03dd1ae252f984043e911aa182"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ManagerOrderPageViewModel</b> ()</td></tr>
+<tr class="memdesc:a62916d03dd1ae252f984043e911aa182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the <a class="el" href="class_b_c___market_1_1_view_models_1_1_manager_order_page_view_model.html" title="ViewModel for managing orders in the admin panel.">ManagerOrderPageViewModel</a> class. <br /></td></tr>
+<tr class="separator:a62916d03dd1ae252f984043e911aa182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88d4d59b484b2f22f84346e4a92527b2" id="r_a88d4d59b484b2f22f84346e4a92527b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88d4d59b484b2f22f84346e4a92527b2">FilterOrdersByDate</a> (DateTimeOffset selectedDate)</td></tr>
+<tr class="memdesc:a88d4d59b484b2f22f84346e4a92527b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters the orders by the specified date.  <br /></td></tr>
 <tr class="separator:a88d4d59b484b2f22f84346e4a92527b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -133,14 +140,53 @@ Public Attributes</h2></td></tr>
 Properties</h2></td></tr>
 <tr class="memitem:a52d70b464f32c46daa770bb57e566035" id="r_a52d70b464f32c46daa770bb57e566035"><td class="memItemLeft" align="right" valign="top"><a id="a52d70b464f32c46daa770bb57e566035" name="a52d70b464f32c46daa770bb57e566035"></a>
 ObservableCollection&lt; <a class="el" href="class_b_c___market_1_1_models_1_1_order.html">Order</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Orders</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a52d70b464f32c46daa770bb57e566035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the collection of orders. <br /></td></tr>
 <tr class="separator:a52d70b464f32c46daa770bb57e566035"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0c91346035f6db46b1b938dadf01b9c" id="r_ae0c91346035f6db46b1b938dadf01b9c"><td class="memItemLeft" align="right" valign="top"><a id="ae0c91346035f6db46b1b938dadf01b9c" name="ae0c91346035f6db46b1b938dadf01b9c"></a>
 ICommand&#160;</td><td class="memItemRight" valign="bottom"><b>FilterOrdersByDateCommand</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae0c91346035f6db46b1b938dadf01b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the command to filter orders by date. <br /></td></tr>
 <tr class="separator:ae0c91346035f6db46b1b938dadf01b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a636c74db9acdde7ae9a7fac50f773e" id="r_a8a636c74db9acdde7ae9a7fac50f773e"><td class="memItemLeft" align="right" valign="top"><a id="a8a636c74db9acdde7ae9a7fac50f773e" name="a8a636c74db9acdde7ae9a7fac50f773e"></a>
 ICommand&#160;</td><td class="memItemRight" valign="bottom"><b>ViewDetailOrderCommand</b><code> [get]</code></td></tr>
+<tr class="memdesc:a8a636c74db9acdde7ae9a7fac50f773e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the command to view order details. <br /></td></tr>
 <tr class="separator:a8a636c74db9acdde7ae9a7fac50f773e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>ViewModel for managing orders in the admin panel. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a88d4d59b484b2f22f84346e4a92527b2" name="a88d4d59b484b2f22f84346e4a92527b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88d4d59b484b2f22f84346e4a92527b2">&#9670;&#160;</a></span>FilterOrdersByDate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BC_Market.ViewModels.ManagerOrderPageViewModel.FilterOrdersByDate </td>
+          <td>(</td>
+          <td class="paramtype">DateTimeOffset</td>          <td class="paramname"><span class="paramname"><em>selectedDate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Filters the orders by the specified date. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">selectedDate</td><td>The date to filter orders by.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>E:/University/Semester 5/Win/Project/BC_Market/App/BC_Market/ViewModels/<b>ManagerOrderPageViewModel.cs</b></li>
 </ul>

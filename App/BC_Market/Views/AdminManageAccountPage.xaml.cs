@@ -29,7 +29,14 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class AdminManageAccountPage : Page
     {
+        /// <summary>
+        /// Gets or sets the ViewModel for managing accounts.
+        /// </summary>
         public AdminManageAccountViewModel ViewModel { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminManageAccountPage"/> class.
+        /// </summary>
         public AdminManageAccountPage()
         {
             this.InitializeComponent();
@@ -37,16 +44,30 @@ namespace BC_Market.Views
             this.DataContext = ViewModel;
         }
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ViewModel = new AdminManageAccountViewModel();
         }
 
+        /// <summary>
+        /// Handles the Add Account button click event to navigate to the AdminAddAccountPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void addAccount_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AdminAddAccountPage), ViewModel);
         }
 
+        /// <summary>
+        /// Handles the account list loaded event to set the width of the GridViewItem.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void accountList_Loaded(object sender, RoutedEventArgs e)
         {
             var gridViewItem = sender as GridViewItem;
@@ -56,11 +77,14 @@ namespace BC_Market.Views
             }
         }
 
-        // edit chosen Account
+        /// <summary>
+        /// Handles the Edit button click event to navigate to the AdminEditAccountPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void edit_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-
             var user = button.DataContext as USER;
             if (user == null)
             {
@@ -78,7 +102,11 @@ namespace BC_Market.Views
             }
         }
 
-        // delete chosen Account
+        /// <summary>
+        /// Handles the Delete button click event to delete the selected account.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void delete_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

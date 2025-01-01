@@ -1,4 +1,21 @@
 var searchData=
 [
-  ['id_0',['Id',['../class_b_c___market_1_1_models_1_1_cart.html#a864815b0743b630d9162582a795d1dcf',1,'BC_Market::Models::Cart']]]
+  ['cangonext_0',['CanGoNext',['../class_b_c___market_1_1_view_models_1_1_shopper_dashboard_view_model.html#ae76cb0890d88e3581666dc7366fbe964',1,'BC_Market::ViewModels::ShopperDashboardViewModel']]],
+  ['cangoprevious_1',['CanGoPrevious',['../class_b_c___market_1_1_view_models_1_1_shopper_dashboard_view_model.html#a2265a46bdf2b1bef59fed04cb207e865',1,'BC_Market::ViewModels::ShopperDashboardViewModel']]],
+  ['cart_2',['cart',['../class_b_c___market_1_1_view_models_1_1_shopper_dashboard_view_model.html#a5d65ffb5874ef760a8889c4731a04a38',1,'BC_Market.ViewModels.ShopperDashboardViewModel.cart'],['../class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a2e938ed90f51f4891567f7fe54d358f9',1,'BC_Market.ViewModels.ShopperOrderViewModel.cart']]],
+  ['cartproducts_3',['CartProducts',['../class_b_c___market_1_1_models_1_1_cart.html#af2ba4ef0308c151d5105c4ad559ecf2e',1,'BC_Market::Models::Cart']]],
+  ['categories_4',['Categories',['../class_b_c___market_1_1_view_models_1_1_shopper_dashboard_view_model.html#a25f08d4a25ded9c9f449df4bf6a330e1',1,'BC_Market::ViewModels::ShopperDashboardViewModel']]],
+  ['categoryid_5',['CategoryId',['../class_b_c___market_1_1_models_1_1_product.html#a88ea826659e1e88147cca582d1ce8ee0',1,'BC_Market::Models::Product']]],
+  ['chosenproduct_6',['ChosenProduct',['../class_b_c___market_1_1_view_models_1_1_manage_product_view_model.html#a250196656cc200788d08f61a1a221a6b',1,'BC_Market::ViewModels::ManageProductViewModel']]],
+  ['circlecatereportdata_7',['CircleCateReportData',['../class_b_c___market_1_1_view_models_1_1_report_product_view_model.html#ab1b91b4b11edeb171aa8d79f851db41b',1,'BC_Market::ViewModels::ReportProductViewModel']]],
+  ['circlecatetitle_8',['CircleCateTitle',['../class_b_c___market_1_1_view_models_1_1_report_product_view_model.html#aa1b511809b24c53b7dc0b023294f2412',1,'BC_Market::ViewModels::ReportProductViewModel']]],
+  ['circleproductreportdata_9',['CircleProductReportData',['../class_b_c___market_1_1_view_models_1_1_report_product_view_model.html#a9dcb28763846e8e95b03f35d69e8f96f',1,'BC_Market::ViewModels::ReportProductViewModel']]],
+  ['circleproducttitle_10',['CircleProductTitle',['../class_b_c___market_1_1_view_models_1_1_report_product_view_model.html#ab6ac96d651d8624acdedc2b0445ae371',1,'BC_Market::ViewModels::ReportProductViewModel']]],
+  ['condition_11',['Condition',['../class_b_c___market_1_1_models_1_1_voucher.html#a1fafa5dff04739fe6e3d67a4b17a47cc',1,'BC_Market::Models::Voucher']]],
+  ['configuration_12',['configuration',['../class_b_c___market_1_1_view_models_1_1_shopper_dashboard_view_model.html#a60130373da5994f620ad82d8d6749971',1,'BC_Market::ViewModels::ShopperDashboardViewModel']]],
+  ['count_13',['count',['../class_b_c___market_1_1_models_1_1_cart.html#aec3c258be87902bdfbfee87a1211c004',1,'BC_Market::Models::Cart']]],
+  ['createat_14',['createAt',['../class_b_c___market_1_1_models_1_1_order.html#a2c383b2641972ddf745410a4659bd15c',1,'BC_Market::Models::Order']]],
+  ['createdat_15',['CreatedAt',['../class_b_c___market_1_1_models_1_1_u_s_e_r.html#a35c82019847c9f972ce040ec3cde7710',1,'BC_Market::Models::USER']]],
+  ['currentpage_16',['CurrentPage',['../class_b_c___market_1_1_view_models_1_1_shopper_dashboard_view_model.html#a30863b9c438d9e03fdb50945b0c1e850',1,'BC_Market::ViewModels::ShopperDashboardViewModel']]],
+  ['customerid_17',['customerId',['../class_b_c___market_1_1_models_1_1_cart.html#a0c8b99e4ce7ea3de4f58c0c3f6613cdc',1,'BC_Market.Models.Cart.customerId'],['../class_b_c___market_1_1_models_1_1_order.html#aacb9fe854f26f20c74838e65692bd1ab',1,'BC_Market.Models.Order.customerId']]]
 ];

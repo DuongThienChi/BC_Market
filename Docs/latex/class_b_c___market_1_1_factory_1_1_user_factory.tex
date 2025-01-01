@@ -1,5 +1,10 @@
 \doxysection{BC\+\_\+\+Market.\+Factory.\+User\+Factory Class Reference}
 \hypertarget{class_b_c___market_1_1_factory_1_1_user_factory}{}\label{class_b_c___market_1_1_factory_1_1_user_factory}\index{BC\_Market.Factory.UserFactory@{BC\_Market.Factory.UserFactory}}
+
+
+\doxylink{namespace_b_c___market_1_1_factory}{Factory} class for creating instances of USER related objects.  
+
+
 Inheritance diagram for BC\+\_\+\+Market.\+Factory.\+User\+Factory\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,19 +14,49 @@ Inheritance diagram for BC\+\_\+\+Market.\+Factory.\+User\+Factory\+:\begin{figu
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_b_c___market_1_1_factory_1_1_user_factory_a1f7b7e848031c07bb01e09eed9137876}\label{class_b_c___market_1_1_factory_1_1_user_factory_a1f7b7e848031c07bb01e09eed9137876} 
-\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ {\bfseries Create\+BUS} ()
-\item 
-\Hypertarget{class_b_c___market_1_1_factory_1_1_user_factory_a54eab88b2dc7ceaa89ab69028e4e71ef}\label{class_b_c___market_1_1_factory_1_1_user_factory_a54eab88b2dc7ceaa89ab69028e4e71ef} 
-\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ {\bfseries Create\+DAO} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_factory_1_1_user_factory_a1f7b7e848031c07bb01e09eed9137876}{Create\+BUS}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of User\+BUS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_factory_1_1_user_factory_a54eab88b2dc7ceaa89ab69028e4e71ef}{Create\+DAO}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of User\+Database\+DAO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_b_c___market_1_1_factory_1_1_i_factory}{BC\+\_\+\+Market.\+Factory.\+IFactory$<$ USER $>$}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ {\bfseries Create\+BUS} ()
-\item 
-\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ {\bfseries Create\+DAO} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_factory_1_1_i_factory_ad73a579f6f975c13b75b5334cc35ca98}{Create\+BUS}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of a business object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_factory_1_1_i_factory_a0c340370039d9d746dd54f39b9de63a3}{Create\+DAO}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns an instance of a data access object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{namespace_b_c___market_1_1_factory}{Factory} class for creating instances of USER related objects. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_factory_1_1_user_factory_a1f7b7e848031c07bb01e09eed9137876}\index{BC\_Market.Factory.UserFactory@{BC\_Market.Factory.UserFactory}!CreateBUS@{CreateBUS}}
+\index{CreateBUS@{CreateBUS}!BC\_Market.Factory.UserFactory@{BC\_Market.Factory.UserFactory}}
+\doxysubsubsection{\texorpdfstring{CreateBUS()}{CreateBUS()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_factory_1_1_user_factory_a1f7b7e848031c07bb01e09eed9137876} 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ BC\+\_\+\+Market.\+Factory.\+User\+Factory.\+Create\+BUS (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates and returns an instance of User\+BUS. 
+
+\begin{DoxyReturn}{Returns}
+An instance of IBUS\texorpdfstring{$<$}{<}USER\texorpdfstring{$>$}{>}.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_factory_1_1_user_factory_a54eab88b2dc7ceaa89ab69028e4e71ef}\index{BC\_Market.Factory.UserFactory@{BC\_Market.Factory.UserFactory}!CreateDAO@{CreateDAO}}
+\index{CreateDAO@{CreateDAO}!BC\_Market.Factory.UserFactory@{BC\_Market.Factory.UserFactory}}
+\doxysubsubsection{\texorpdfstring{CreateDAO()}{CreateDAO()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_factory_1_1_user_factory_a54eab88b2dc7ceaa89ab69028e4e71ef} 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_u_s_e_r}{USER}} $>$ BC\+\_\+\+Market.\+Factory.\+User\+Factory.\+Create\+DAO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates and returns an instance of User\+Database\+DAO. 
+
+\begin{DoxyReturn}{Returns}
+An instance of IDAO\texorpdfstring{$<$}{<}USER\texorpdfstring{$>$}{>}.
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

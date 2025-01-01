@@ -14,6 +14,9 @@ Inheritance diagram for BC\+\_\+\+Market.\+App\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\Hypertarget{class_b_c___market_1_1_app_ad791904f0d83772af19b0dec92fdb25d}\label{class_b_c___market_1_1_app_ad791904f0d83772af19b0dec92fdb25d} 
+{\bfseries App} ()
+\begin{DoxyCompactList}\small\item\em Initializes the singleton application object. This is the first line of authored code executed, and as such is the logical equivalent of main() or Win\+Main(). \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_app_a52a26820f1253a9c418545bf8c789fd5}\label{class_b_c___market_1_1_app_a52a26820f1253a9c418545bf8c789fd5} 
 void {\bfseries Initialize\+Component} ()
 \begin{DoxyCompactList}\small\item\em \doxylink{class_b_c___market_1_1_app_a52a26820f1253a9c418545bf8c789fd5}{Initialize\+Component()} \end{DoxyCompactList}\item 
@@ -30,7 +33,7 @@ global\+::\+Microsoft.\+UI.\+Xaml.\+Markup.\+Xmlns\+Definition\mbox{[}$\,$\mbox{
 \begin{DoxyCompactItemize}
 \item 
 static T \mbox{\hyperlink{class_b_c___market_1_1_app_ab2bc8d98ceb672af28be3206e58792eb}{Get\+Service$<$ T $>$}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets a service of the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,10 +44,10 @@ override async void \mbox{\hyperlink{class_b_c___market_1_1_app_a153d9dde72754c3
 \item 
 \Hypertarget{class_b_c___market_1_1_app_a0a2c2402eee0a354b262f33d6bd468f4}\label{class_b_c___market_1_1_app_a0a2c2402eee0a354b262f33d6bd468f4} 
 IService\+Provider {\bfseries Services}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Initializes the singleton application object. This is the first line of authored code executed, and as such is the logical equivalent of main() or Win\+Main(). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the service provider for dependency injection. \end{DoxyCompactList}\item 
 \Hypertarget{class_b_c___market_1_1_app_ae9c202eef357fbd68e7026cdc7301760}\label{class_b_c___market_1_1_app_ae9c202eef357fbd68e7026cdc7301760} 
 static Window {\bfseries m\+\_\+window}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the main application window. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -57,6 +60,18 @@ Provides application-\/specific behavior to supplement the default Application c
 {\footnotesize\ttfamily \label{class_b_c___market_1_1_app_ab2bc8d98ceb672af28be3206e58792eb} 
 static T BC\+\_\+\+Market.\+App.\+Get\+Service$<$ T $>$ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
+
+
+Gets a service of the specified type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of service to get.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The service instance.
+\end{DoxyReturn}
 \begin{Desc}
 \item[Type Constraints]\begin{description}
 \item[{\em T} : {\em class}]\end{description}

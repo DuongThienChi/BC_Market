@@ -108,16 +108,68 @@ $(function(){initNavTree('interface_b_c___market_1_1_factory_1_1_i_factory.html'
   <div class="headertitle"><div class="title">BC_Market.Factory.IFactory&lt; T &gt; Interface Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Interface for factory classes that create instances of business and data access objects.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad73a579f6f975c13b75b5334cc35ca98" id="r_ad73a579f6f975c13b75b5334cc35ca98"><td class="memItemLeft" align="right" valign="top"><a id="ad73a579f6f975c13b75b5334cc35ca98" name="ad73a579f6f975c13b75b5334cc35ca98"></a>
-<a class="el" href="interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s.html">IBUS</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CreateBUS</b> ()</td></tr>
+<tr class="memitem:ad73a579f6f975c13b75b5334cc35ca98" id="r_ad73a579f6f975c13b75b5334cc35ca98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s.html">IBUS</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad73a579f6f975c13b75b5334cc35ca98">CreateBUS</a> ()</td></tr>
+<tr class="memdesc:ad73a579f6f975c13b75b5334cc35ca98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and returns an instance of a business object.  <br /></td></tr>
 <tr class="separator:ad73a579f6f975c13b75b5334cc35ca98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c340370039d9d746dd54f39b9de63a3" id="r_a0c340370039d9d746dd54f39b9de63a3"><td class="memItemLeft" align="right" valign="top"><a id="a0c340370039d9d746dd54f39b9de63a3" name="a0c340370039d9d746dd54f39b9de63a3"></a>
-<a class="el" href="interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o.html">IDAO</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CreateDAO</b> ()</td></tr>
+<tr class="memitem:a0c340370039d9d746dd54f39b9de63a3" id="r_a0c340370039d9d746dd54f39b9de63a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o.html">IDAO</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c340370039d9d746dd54f39b9de63a3">CreateDAO</a> ()</td></tr>
+<tr class="memdesc:a0c340370039d9d746dd54f39b9de63a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and returns an instance of a data access object.  <br /></td></tr>
 <tr class="separator:a0c340370039d9d746dd54f39b9de63a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for factory classes that create instances of business and data access objects. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the objects to be created.</td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad73a579f6f975c13b75b5334cc35ca98" name="ad73a579f6f975c13b75b5334cc35ca98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad73a579f6f975c13b75b5334cc35ca98">&#9670;&#160;</a></span>CreateBUS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s.html">IBUS</a>&lt; T &gt; <a class="el" href="interface_b_c___market_1_1_factory_1_1_i_factory.html">BC_Market.Factory.IFactory</a>&lt; T &gt;.CreateBUS </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates and returns an instance of a business object. </p>
+<dl class="section return"><dt>Returns</dt><dd>An instance of IBUS&lt;T&gt;.</dd></dl>
+
+</div>
+</div>
+<a id="a0c340370039d9d746dd54f39b9de63a3" name="a0c340370039d9d746dd54f39b9de63a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c340370039d9d746dd54f39b9de63a3">&#9670;&#160;</a></span>CreateDAO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o.html">IDAO</a>&lt; T &gt; <a class="el" href="interface_b_c___market_1_1_factory_1_1_i_factory.html">BC_Market.Factory.IFactory</a>&lt; T &gt;.CreateDAO </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates and returns an instance of a data access object. </p>
+<dl class="section return"><dt>Returns</dt><dd>An instance of IDAO&lt;T&gt;.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
 <li>E:/University/Semester 5/Win/Project/BC_Market/App/BC_Market/Factory/<b>IFACTORY.cs</b></li>
 </ul>

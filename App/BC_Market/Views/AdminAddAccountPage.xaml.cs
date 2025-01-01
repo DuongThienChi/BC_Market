@@ -28,24 +28,41 @@ namespace BC_Market.Views
     public sealed partial class AdminAddAccountPage : Page
     {
         private AdminManageAccountViewModel ViewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminAddAccountPage"/> class.
+        /// </summary>
         public AdminAddAccountPage()
         {
             this.InitializeComponent();
             RolesBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             ViewModel = e.Parameter as AdminManageAccountViewModel;
         }
 
+        /// <summary>
+        /// Handles the Cancel button tap event to navigate back to the AdminManageAccountPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void Cancel_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AdminManageAccountPage));
         }
 
-        // similar with RegisterPage
+        /// <summary>
+        /// Handles the Add Account button click event to add a new account.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void addAccount_btn_Click(object sender, RoutedEventArgs e)
         {
             var username = username_input.Text;
@@ -73,12 +90,12 @@ namespace BC_Market.Views
                     Username = username,
                     Password = password,
                     Roles = new List<Role>()
-                    {
-                        new Role()
                         {
-                            Name = role.Content.ToString()
+                            new Role()
+                            {
+                                Name = role.Content.ToString()
+                            }
                         }
-                    }
                 };
 
                 ViewModel.AddAccount(user);

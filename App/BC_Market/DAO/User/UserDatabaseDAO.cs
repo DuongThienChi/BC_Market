@@ -122,7 +122,8 @@ namespace BC_Market.DAO
                     var sql = $@"
                         SELECT * 
                         FROM ""User"" us Join Role r on us.roleid = r.uniqueid
-                        WHERE us.uniqueid = @Id";
+                        WHERE us.uniqueid = @Id
+                        ORDER BY us.uniqueid";
                     using (var conn = new NpgsqlConnection(connectionString))
                     {
                         conn.Open();

@@ -394,6 +394,8 @@ Phân công công việc sẽ nằm trong phần biên bản họp nhóm của t
 * Lần 3: https://docs.google.com/document/d/1DIFWppGFLUr29eYNqDLA6I9aNWPjPiI5QEyDqrR2mQc/edit?usp=sharing
 * Lần 4: https://docs.google.com/document/d/1JMT2xk-5ZQwdpWXM_bOaItpwmWyAulEXE25WnHM7HD4/edit?usp=sharing
 * Lần 5: https://docs.google.com/document/d/1SKZsRAvlXjmwk0xLN0y30C23pjqZXweAZr3pjmKK5E4/edit?usp=sharing
+* Lần 6: https://docs.google.com/document/d/161c4WLRU1OA6C3s1wWW9jPAcp1OP6uQhctGSfqbOkO8/edit?usp=sharing
+* Lần 7: https://docs.google.com/document/d/13FbxZb4TUCcrwwwsboa7dbTG9B6fx41cBfcT4E5Lmqg/edit?usp=sharing
 
 #### Git flow:
 
@@ -405,16 +407,19 @@ Phân công công việc sẽ nằm trong phần biên bản họp nhóm của t
 
 ### Quality Assurance
 
+- Document của source code ở link: https://drive.google.com/file/d/1iNiTHYFAwVoMwWtFJqTwPw7KUUAldG2D/view?usp=sharing
 - Nhóm đã dùng unit test cho một số hàm. Kết hợp với test thủ công thì với mỗi chức năng thành công sẽ chạy lại unit test và test thủ công. (UNIT có trong project)
 - Chỉ có một người trong nhóm được tạo pull request, với mỗi pull create được tạo sẽ cần sự cộng tác giữa các thành viên để hỗ trợ sửa conflict cũng như test lại chương trình.
 - Các điều trên được thể hiện qua git graph:
   ![Git Graph 1](assets/graph1.png)
 
-  ![Git Graph 1](assets/graph2.png)
+  ![Git Graph 2](assets/graph2.png)
 
-  ![Git Graph 1](assets/graph-milestone2-1.png)
+  ![Git Graph 3](assets/graph-milestone2-1.png)
 
-  ![Git Graph 1](assets/graph-milestone2-2.png)
+  ![Git Graph 4](assets/graph-milestone2-2.png)
+
+  ![Git Graph 5](assets/image.png)
 
 ## Set up:
 
@@ -439,3 +444,12 @@ Phân công công việc sẽ nằm trong phần biên bản họp nhóm của t
 ```
 
 #### Demo link: https://www.youtube.com/watch?v=Rk-GIqta89Q (Milestone 02)
+
+Ở milestone 3 có thêm chức năng xem báo cáo theo biểu đồ:
+![View Report 1](assets/report1.jpg)
+
+![View Report 2](assets/report2.jpg)
+
+![View Report 3](assets/report3.jpg)
+
+![View Report 4](assets/report4.jpg)

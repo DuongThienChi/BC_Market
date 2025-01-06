@@ -8,10 +8,17 @@ using Supabase.Storage;
 
 namespace BC_Market.Helper
 {
+    /// <summary>
+    /// Provides helper methods for initializing and accessing the Supabase client.
+    /// </summary>
     public static class SupabaseHelper
     {
         private static Supabase.Client client;
 
+        /// <summary>
+        /// Initializes the Supabase client asynchronously.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task InitializeAsync()
         {
             var options = new SupabaseOptions { AutoConnectRealtime = true };
@@ -25,11 +32,15 @@ namespace BC_Market.Helper
             // Initialize the Supabase client with your API URL and Key
             client = new Supabase.Client(
                 url,
-                key, 
+                key,
                 options);
             await client.InitializeAsync();
         }
 
+        /// <summary>
+        /// Gets the initialized Supabase client.
+        /// </summary>
+        /// <returns>The initialized Supabase client.</returns>
         public static Supabase.Client GetClient()
         {
             return client;

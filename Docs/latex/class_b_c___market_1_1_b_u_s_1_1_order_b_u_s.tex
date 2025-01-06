@@ -1,0 +1,194 @@
+\doxysection{BC\+\_\+\+Market.\+BUS.\+Order\+BUS Class Reference}
+\hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}{}\label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+
+
+Provides business logic for managing orders.  
+
+
+Inheritance diagram for BC\+\_\+\+Market.\+BUS.\+Order\+BUS\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_aed7b7045d048a071cdd11414e5c0ce36}{Create\+New}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$ dao)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}{Order\+BUS} class with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a0122ffc181fea63021173177152c5f8f}{Order\+BUS}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$ dao)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}{Order\+BUS} class. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a40afd0ec13656e292a870dfefc32cc90}{Add}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} order)
+\begin{DoxyCompactList}\small\item\em Adds a new order. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a8e7f164b95e2fd105405d71ea5f0d759}{Dao}} ()
+\begin{DoxyCompactList}\small\item\em Gets the data access object for orders. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a92aeb166c5c2be71189fffc9756cd906}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets order data based on the specified configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a4b43862c76e715266b01bd0df026178e}{Update\+User}} (object user)
+\begin{DoxyCompactList}\small\item\em Updates the user information. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_aa3999dd3118321e381ed0375f7a45663}{Update}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing order. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_af4bee16e1cfde491ab5a0fee2bc48cff}{Delete}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} obj)
+\begin{DoxyCompactList}\small\item\em Deletes an order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS$<$ Order $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ac5ed55a8fbce7a316b36e4b5a5680be4}{Dao}} ()
+\begin{DoxyCompactList}\small\item\em Gets the data access object for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a804040632d8e56f5697fcb086f3233c2}{Create\+New}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ dao)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the business logic service with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a85c26d3466d8e6998940000afcff3ba0}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets entity data based on the specified configuration. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a5ded81a94e7a3a6cbab56220b4f97388}{Add}} (T obj)
+\begin{DoxyCompactList}\small\item\em Adds a new entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ae4cbe56e8207d95067d506b33153b54c}{Update}} (T obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a54817ec8d1290a071f885fccaf335bb3}{Delete}} (T obj)
+\begin{DoxyCompactList}\small\item\em Deletes an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides business logic for managing orders. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a0122ffc181fea63021173177152c5f8f}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!OrderBUS@{OrderBUS}}
+\index{OrderBUS@{OrderBUS}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{OrderBUS()}{OrderBUS()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a0122ffc181fea63021173177152c5f8f} 
+BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Order\+BUS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$}]{dao}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}{Order\+BUS} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dao} & The data access object for orders.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a40afd0ec13656e292a870dfefc32cc90}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!Add@{Add}}
+\index{Add@{Add}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a40afd0ec13656e292a870dfefc32cc90} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}}}]{order}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a new order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & The order object to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the add operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_aed7b7045d048a071cdd11414e5c0ce36}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!CreateNew@{CreateNew}}
+\index{CreateNew@{CreateNew}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{CreateNew()}{CreateNew()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_aed7b7045d048a071cdd11414e5c0ce36} 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$ BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Create\+New (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$}]{dao}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}{Order\+BUS} class with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dao} & The data access object for orders.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of \doxylink{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s}{Order\+BUS}.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a8e7f164b95e2fd105405d71ea5f0d759}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!Dao@{Dao}}
+\index{Dao@{Dao}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{Dao()}{Dao()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a8e7f164b95e2fd105405d71ea5f0d759} 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}} $>$ BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Dao (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the data access object for orders. 
+
+\begin{DoxyReturn}{Returns}
+The data access object for orders.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_af4bee16e1cfde491ab5a0fee2bc48cff}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!Delete@{Delete}}
+\index{Delete@{Delete}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_af4bee16e1cfde491ab5a0fee2bc48cff} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes an order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The order object to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the delete operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a92aeb166c5c2be71189fffc9756cd906}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!Get@{Get}}
+\index{Get@{Get}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a92aeb166c5c2be71189fffc9756cd906} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Get (\begin{DoxyParamCaption}\item[{Dictionary$<$ string, string $>$}]{configuration}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets order data based on the specified configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em configuration} & The configuration dictionary.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The order data.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_aa3999dd3118321e381ed0375f7a45663}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!Update@{Update}}
+\index{Update@{Update}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_aa3999dd3118321e381ed0375f7a45663} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_order}{Order}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates an existing order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The order object to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the update operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a4b43862c76e715266b01bd0df026178e}\index{BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}!UpdateUser@{UpdateUser}}
+\index{UpdateUser@{UpdateUser}!BC\_Market.BUS.OrderBUS@{BC\_Market.BUS.OrderBUS}}
+\doxysubsubsection{\texorpdfstring{UpdateUser()}{UpdateUser()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_order_b_u_s_a4b43862c76e715266b01bd0df026178e} 
+void BC\+\_\+\+Market.\+BUS.\+Order\+BUS.\+Update\+User (\begin{DoxyParamCaption}\item[{object}]{user}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the user information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user object.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/\+BUS/Order\+BUS.\+cs\end{DoxyCompactItemize}

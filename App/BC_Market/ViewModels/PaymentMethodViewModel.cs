@@ -11,23 +11,34 @@ using System.Threading.Tasks;
 
 namespace BC_Market.ViewModels
 {
+    /// <summary>
+    /// ViewModel for managing payment methods.
+    /// </summary>
     class PaymentMethodViewModel : ObservableObject
     {
         private IFactory<PaymentMethod> _factory = new PaymentMethodFactory();
         private IBUS<PaymentMethod> _bus;
+
+        /// <summary>
+        /// Gets or sets the collection of payment methods.
+        /// </summary>
         public ObservableCollection<PaymentMethod> listMethod;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentMethodViewModel"/> class.
+        /// </summary>
         public PaymentMethodViewModel()
         {
             LoadData();
         }
 
-        public void LoadData() // Define the LoadData method
+        /// <summary>
+        /// Loads the payment method data into the listMethod collection.
+        /// </summary>
+        public void LoadData()
         {
             _bus = _factory.CreateBUS();
-
-            var payment = _bus.Get(null); // Get all users
-
+            var payment = _bus.Get(null); // Get all payment methods
             listMethod = new ObservableCollection<PaymentMethod>(payment);
         }
     }

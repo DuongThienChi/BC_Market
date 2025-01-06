@@ -19,23 +19,47 @@ using Windows.Foundation.Collections;
 
 namespace BC_Market.Views
 {
+    /// <summary>
+    /// A user control for editing a product.
+    /// </summary>
     public sealed partial class EditProductDialog : UserControl
     {
+        /// <summary>
+        /// Gets or sets the product to be edited.
+        /// </summary>
         public Product product { get; set; } = new Product();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditProductDialog"/> class.
+        /// </summary>
         public EditProductDialog()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Closes the dialog by setting its visibility to collapsed.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void CloseDialog(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Occurs when a product is edited.
+        /// </summary>
         public event EventHandler<Product> ProductEdited;
+
+        /// <summary>
+        /// Handles the Save button click event to save the edited product.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void SaveClick(object sender, RoutedEventArgs e)
         {
-            if( string.IsNullOrEmpty(Name.Text) ||
+            if (string.IsNullOrEmpty(Name.Text) ||
                 string.IsNullOrEmpty(Descript.Text) || string.IsNullOrEmpty(Price.Text) ||
                 string.IsNullOrEmpty(Stock.Text) || string.IsNullOrEmpty(CategoryId.Text) ||
                 string.IsNullOrEmpty(Status.Text))
@@ -44,7 +68,7 @@ namespace BC_Market.Views
                 return;
             }
 
-            // create new product from entered information
+            // Create new product from entered information
             var editedProduct = new Product
             {
                 Id = Int32.Parse(Id.Text),
@@ -57,7 +81,7 @@ namespace BC_Market.Views
                 ImagePath = product.ImagePath
             };
 
-            // check to confirm all fields are filled
+            // Check to confirm all fields are filled
             ProductEdited?.Invoke(this, editedProduct);
 
             this.Visibility = Visibility.Collapsed;

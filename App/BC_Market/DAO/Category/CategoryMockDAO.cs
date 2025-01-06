@@ -11,9 +11,11 @@ using System.Collections.ObjectModel;
 
 namespace BC_Market.DAO
 {
+    /// <summary>
+    /// Provides mock data access logic for managing categories.
+    /// </summary>
     public class CategoryMockDAO : IDAO<Category>
     {
-
         private ObservableCollection<Category> categories = new ObservableCollection<Category>
             {
                 new Category {
@@ -44,21 +46,41 @@ namespace BC_Market.DAO
                 new Category {
                     Id = "BH01",
                     Name = "Beauty & Health",
-                    Description = "Beauty & Health", }
+                    Description = "Beauty & Health",
+                }
             };
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CategoryMockDAO"/> class.
+        /// </summary>
         public CategoryMockDAO() { }
 
+        /// <summary>
+        /// Adds a new category to the mock data collection.
+        /// </summary>
+        /// <param name="obj">The category object to add.</param>
+        /// <returns>The added category object.</returns>
         public dynamic Add(Category obj)
         {
             categories.Add(obj);
             return obj;
         }
 
+        /// <summary>
+        /// Deletes a category from the mock data collection.
+        /// </summary>
+        /// <param name="obj">The category object to delete.</param>
+        /// <returns>Throws a <see cref="NotImplementedException"/>.</returns>
         public dynamic Delete(Category obj)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets categories from the mock data collection based on the specified configuration.
+        /// </summary>
+        /// <param name="configuration">The configuration dictionary.</param>
+        /// <returns>A list of categories or a specific category if specified in the configuration.</returns>
         public dynamic Get(Dictionary<string, string> configuration)
         {
             if (configuration != null)
@@ -73,18 +95,24 @@ namespace BC_Market.DAO
             else return categories;
         }
 
+        /// <summary>
+        /// Updates a category in the mock data collection.
+        /// </summary>
+        /// <param name="obj">The category object to update.</param>
+        /// <returns>Throws a <see cref="NotImplementedException"/>.</returns>
         public void Update(Category obj)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Updates a category in the mock data collection.
+        /// </summary>
+        /// <param name="obj">The category object to update.</param>
+        /// <returns>Throws a <see cref="NotImplementedException"/>.</returns>
         dynamic IDAO<Category>.Update(Category obj)
         {
             throw new NotImplementedException();
         }
-        //public PRODUCT GetByID(string id)
-        //{
-        //    return Get().FirstOrDefault(u => u.Id == id);
-        //}
     }
 }

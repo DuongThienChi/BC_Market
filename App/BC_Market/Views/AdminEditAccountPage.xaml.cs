@@ -30,34 +30,51 @@ namespace BC_Market.Views
         private USER user;
         private AdminManageAccountViewModel ViewModel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminEditAccountPage"/> class.
+        /// </summary>
         public AdminEditAccountPage()
         {
             this.InitializeComponent();
             RolesBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            // unpack package and set default data for TextBoxs
+            // Unpack package and set default data for TextBoxes
             var package = e.Parameter as dynamic;
             user = package.user;
             ViewModel = package.ViewModel;
             username_input.Text = user.Username;
             password_input.Password = user.Password;
             email_input.Text = user.Email;
-            // set SeletedItem of ComboBox by current Role
+            // Set SelectedItem of ComboBox by current Role
             RolesBox.SelectedItem = RolesBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Content.ToString() == user.Roles[0].Name);
         }
 
+        /// <summary>
+        /// Handles the Cancel button tap event to navigate back to the AdminManageAccountPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void Cancel_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AdminManageAccountPage));
         }
 
+        /// <summary>
+        /// Handles the Submit Edit button click event to update the account information.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void submitEdit_btn_Click(object sender, RoutedEventArgs e)
         {
-            // get all information of edited account
+            // Get all information of edited account
             var username = username_input.Text;
             var password = password_input.Password;
             var email = email_input.Text;
@@ -87,7 +104,7 @@ namespace BC_Market.Views
                 hashedPassword = password;
             }
 
-            // create new account and update to ListAccount
+            // Create new account and update to ListAccount
             var editedUser = new USER()
             {
                 Id = user.Id,
@@ -95,16 +112,16 @@ namespace BC_Market.Views
                 Password = hashedPassword,
                 Email = email,
                 Roles = new List<Role>()
-                {
-                    new Role()
                     {
-                        Name = role
+                        new Role()
+                        {
+                            Name = role
+                        }
                     }
-                }
             };
 
             ViewModel.Update(editedUser);
-            this.Frame.Navigate(typeof(AdminManageAccountPage),ViewModel);
+            this.Frame.Navigate(typeof(AdminManageAccountPage), ViewModel);
         }
     }
 }

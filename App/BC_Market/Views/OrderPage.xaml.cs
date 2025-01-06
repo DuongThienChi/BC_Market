@@ -34,6 +34,10 @@ namespace BC_Market.Views
         private PaymentMethodViewModel paymentMethodViewModel { get; set; } = new PaymentMethodViewModel();
         private AdminManageAccountViewModel AccountViewModel { get; set; } = new AdminManageAccountViewModel();
         float Total = 0;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrderPage"/> class.
+        /// </summary>
         public OrderPage()
         {
             this.InitializeComponent();
@@ -51,9 +55,13 @@ namespace BC_Market.Views
             this.DataContext = ViewModel;
         }
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(e.Parameter is ManageProductViewModel)
+            if (e.Parameter is ManageProductViewModel)
             {
                 ViewModel = e.Parameter as ManageProductViewModel;
             }
@@ -65,6 +73,11 @@ namespace BC_Market.Views
             Total = ViewModel.sumTotal;
         }
 
+        /// <summary>
+        /// Handles the Category button click event to filter products by category.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void cateButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -73,6 +86,11 @@ namespace BC_Market.Views
             this.Frame.Navigate(typeof(OrderPage), ViewModel);
         }
 
+        /// <summary>
+        /// Handles the Decrease Quantity button click event to decrease the order quantity of a product.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void descQuantity_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -87,6 +105,11 @@ namespace BC_Market.Views
             this.Frame.Navigate(typeof(OrderPage), ViewModel);
         }
 
+        /// <summary>
+        /// Handles the Increase Quantity button click event to increase the order quantity of a product.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void incQuantity_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -101,19 +124,34 @@ namespace BC_Market.Views
             this.Frame.Navigate(typeof(OrderPage), ViewModel);
         }
 
+        /// <summary>
+        /// Handles the event when the New Customer checkbox is checked.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void isNewCus_Checked(object sender, RoutedEventArgs e)
         {
             userEmail.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Handles the event when the New Customer checkbox is unchecked.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void isNewCus_Unchecked(object sender, RoutedEventArgs e)
         {
             userEmail.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Handles the Order button click event to create a new order.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private async void Order_Click(object sender, RoutedEventArgs e)
         {
-            if(ViewModel.ChosenProduct.Count == 0)
+            if (ViewModel.ChosenProduct.Count == 0)
             {
                 var dialog = new ContentDialog
                 {
@@ -143,7 +181,7 @@ namespace BC_Market.Views
                     return;
                 }
                 ViewModel.CreateOrder(paymentID: paymentMethodList.SelectedIndex, userID: user.Id);
-                user.Point += (int)Total/5;
+                user.Point += (int)Total / 5;
                 AccountViewModel.Update(user);
             }
             else

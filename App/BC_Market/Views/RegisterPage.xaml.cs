@@ -27,11 +27,19 @@ namespace BC_Market.Views
     public sealed partial class RegisterPage : Page
     {
         private LoginPageViewModel ViewModel = new LoginPageViewModel();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterPage"/> class.
+        /// </summary>
         public RegisterPage()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -39,13 +47,18 @@ namespace BC_Market.Views
             ViewModel = e.Parameter as LoginPageViewModel;
         }
 
+        /// <summary>
+        /// Handles the Register button click event to register a new user.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void register_button_Click(object sender, RoutedEventArgs e)
         {
             var username = username_input.Text;
             var password = password_input.Password;
             var reenterPassword = reenter_password_input.Password;
 
-            // Confirm that all field are filled
+            // Confirm that all fields are filled
             if (password != reenterPassword)
             {
                 notice_box.Text = "Password and re-enter password are not the same!";
@@ -60,20 +73,20 @@ namespace BC_Market.Views
             }
             else
             {
-                // if information are proper, add new account to ListAccount
+                // if information is proper, add new account to ListAccount
                 var user = new USER()
                 {
                     Username = username,
                     Password = password,
                     Roles = new List<Role>()
-                    {
-                        new Role()
                         {
-                            Id = "R03",
-                            // only Shopper Role can be created, Manager and Admin Role will be created by Admin account
-                            Name = "Shopper"
+                            new Role()
+                            {
+                                Id = "R03",
+                                // only Shopper Role can be created, Manager and Admin Role will be created by Admin account
+                                Name = "Shopper"
+                            }
                         }
-                    }
                 };
 
                 ViewModel.AddAccount(user);
@@ -84,7 +97,11 @@ namespace BC_Market.Views
             }
         }
 
-        // check isExist Account
+        /// <summary>
+        /// Checks if the username already exists in the list of accounts.
+        /// </summary>
+        /// <param name="username">The username to check.</param>
+        /// <returns>True if the username exists, otherwise false.</returns>
         public bool isUsernameExist(string username)
         {
             var listUser = ViewModel.ListAccount;
@@ -100,6 +117,11 @@ namespace BC_Market.Views
             return false;
         }
 
+        /// <summary>
+        /// Handles the event when the Back to Login text is tapped to navigate back to the Login page.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BackToLogin_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LoginPage));

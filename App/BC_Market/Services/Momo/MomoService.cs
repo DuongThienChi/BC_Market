@@ -16,15 +16,27 @@ using Windows.Web.Http;
 using BC_Market.Converter;
 namespace BC_Market.Services
 {
+    /// <summary>
+    /// Provides services for interacting with Momo payment API.
+    /// </summary>
     public class MomoService : IMomoService
     {
         private readonly IOptions<MomoOptionModel> _options;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MomoService"/> class.
+        /// </summary>
+        /// <param name="options">The Momo options configuration.</param>
         public MomoService(IOptions<MomoOptionModel> options)
         {
             _options = options;
-
         }
+
+        /// <summary>
+        /// Creates a payment request to Momo API.
+        /// </summary>
+        /// <param name="model">The order model containing payment details.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the Momo payment response model.</returns>
         public async Task<MomoCreatePaymentResponseModel> CreatePaymentAsync(Order model)
         {
             string OrderInfo = "Nội dung: " + model.GetOrderInfo();
@@ -65,23 +77,14 @@ namespace BC_Market.Services
             var response = await client.ExecuteAsync(request);
             var momoResponse = JsonConvert.DeserializeObject<MomoCreatePaymentResponseModel>(response.Content);
             return momoResponse;
-
         }
-        //public MomoExecuteResponseModel PaymentExecuteAsync(IQueryCollection collection)
-        //{
-        //    var amount = collection.First(s => s.Key == "amount").Value;
-        //    var orderInfo = collection.First(s => s.Key == "orderInfo").Value;
-        //    var orderId = collection.First(s => s.Key == "orderId").Value;
 
-        //    return new MomoExecuteResponseModel()
-        //    {
-        //        Amount = amount,
-        //        OrderId = orderId,
-        //        OrderInfo = orderInfo
-
-        //    };
-        //}
-
+        /// <summary>
+        /// Computes the HMAC SHA-256 hash of the given message using the specified secret key.
+        /// </summary>
+        /// <param name="message">The message to hash.</param>
+        /// <param name="secretKey">The secret key to use for hashing.</param>
+        /// <returns>The computed hash as a hexadecimal string.</returns>
         private string ComputeHmacSha256(string message, string secretKey)
         {
             var keyBytes = Encoding.UTF8.GetBytes(secretKey);
@@ -98,24 +101,32 @@ namespace BC_Market.Services
 
             return hashString;
         }
+
+        /// <summary>
+        /// Queries the transaction status from Momo API.
+        /// </summary>
+        /// <param name="orderId">The order identifier.</param>
+        /// <param name="requestId">The request identifier.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the Momo transaction status response model.</returns>
         public async Task<MomoQueryTransactionStatusResponseModel> QueryTransactionStatusAsync(string orderId, string requestId)
         {
-            // Dữ liệu cần để tính signature
+            // Data needed to compute the signature
             var rawData =
                 $"accessKey={_options.Value.AccessKey}" +
                 $"&orderId={orderId}" +
                 $"&partnerCode={_options.Value.PartnerCode}" +
                 $"&requestId={requestId}";
 
-            // Tính chữ ký Hmac_SHA256
+            // Compute HMAC_SHA256 signature
             var signature = ComputeHmacSha256(rawData, _options.Value.SecretKey);
 
-            // Tạo RestClient và RestRequest
+            // Create RestClient and RestRequest
             var client = new RestClient("https://test-payment.momo.vn");
             var request = new RestRequest("/v2/gateway/api/query", Method.Post);
             request.AddHeader("Content-Type", "application/json; charset=UTF-8");
             Debug.WriteLine(request.ToString());
-            // Dữ liệu gửi đi
+
+            // Data to send
             var requestData = new
             {
                 partnerCode = _options.Value.PartnerCode,
@@ -125,17 +136,16 @@ namespace BC_Market.Services
                 signature = signature
             };
 
-            // Gửi yêu cầu
+            // Send request
             request.AddParameter("application/json", JsonConvert.SerializeObject(requestData), ParameterType.RequestBody);
-            Console.WriteLine(JsonConvert.SerializeObject(requestData)); // Debug dữ liệu gửi đi
+            Console.WriteLine(JsonConvert.SerializeObject(requestData)); // Debug data to send
 
             var response = await client.ExecuteAsync(request);
 
             if (response.IsSuccessful)
             {
-                // Parse dữ liệu trả về
+                // Parse response data
                 var momoResponse = JsonConvert.DeserializeObject<MomoQueryTransactionStatusResponseModel>(response.Content);
-                //Console.WriteLine(response.Content);
                 return momoResponse;
             }
             else
@@ -143,8 +153,6 @@ namespace BC_Market.Services
                 throw new Exception($"Error from Momo API: {response.StatusCode}, {response.Content}");
             }
         }
-
-
     }
 
 }

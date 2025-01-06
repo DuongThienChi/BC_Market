@@ -25,7 +25,11 @@ namespace BC_Market.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class ShopperOrderViewModel : ObservableObject
     {
+        /// <summary>
+        /// The XamlRoot for the current view.
+        /// </summary>
         public XamlRoot xamlRoot;
+
         private IFactory<DeliveryUnit> _deliveryFactory = new DeliveryFactory();
         private IBUS<DeliveryUnit> _deliveryBus;
         private IFactory<Voucher> _voucherFactory = new VoucherFactory();
@@ -42,21 +46,42 @@ namespace BC_Market.ViewModels
         private IFactory<Cart> _cartFactory = new CartFactory();
         private IBUS<Cart> _cartBus;
         private IMomoService momoService;
+
+        /// <summary>
+        /// Gets or sets the selected delivery unit.
+        /// </summary>
         public DeliveryUnit selectedDelivery
         {
             get => _selectedDelivery;
             set => SetProperty(ref _selectedDelivery, value);
         }
-        public Voucher selectedVoucher { get; set; } // Define the selectedVoucher field
-        private USER _curUser = SessionManager.Get("curCustomer") as USER; // Get the current user from the session
-        public Cart cart { get; set; } // Define the cart field
+
+        /// <summary>
+        /// Gets or sets the selected voucher.
+        /// </summary>
+        public Voucher selectedVoucher { get; set; }
+
+        private USER _curUser = SessionManager.Get("curCustomer") as USER;
+
+        /// <summary>
+        /// Gets or sets the cart.
+        /// </summary>
+        public Cart cart { get; set; }
+
         private string _address;
+
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
         public string Address
         {
             get => _address;
             set => SetProperty(ref _address, value);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShopperOrderViewModel"/> class.
+        /// </summary>
         public ShopperOrderViewModel()
         {
             momoService = App.GetService<IMomoService>();
@@ -82,24 +107,45 @@ namespace BC_Market.ViewModels
             _productBus = _productFactory.CreateBUS();
             _userBus = _userFactory.CreateBUS();
         }
+
+        /// <summary>
+        /// Gets or sets the payment methods.
+        /// </summary>
         public ObservableCollection<PaymentMethod> PaymentMethods { get; set; }
 
         private PaymentMethod _selectedPaymentMethod;
+
+        /// <summary>
+        /// Gets or sets the selected payment method.
+        /// </summary>
         public PaymentMethod SelectedPaymentMethod
         {
             get => _selectedPaymentMethod;
             set => SetProperty(ref _selectedPaymentMethod, value);
         }
-        // DeliveryUnit
+
+        /// <summary>
+        /// Gets or sets the list of delivery units.
+        /// </summary>
         public List<DeliveryUnit> deliveries { get; set; } = new List<DeliveryUnit>();
+
+        /// <summary>
+        /// Loads the delivery units.
+        /// </summary>
         public void LoadDelivery()
         {
             _deliveryBus = _deliveryFactory.CreateBUS();
             deliveries = _deliveryBus.Get(null);
         }
 
-        // Voucher
+        /// <summary>
+        /// Gets or sets the list of vouchers.
+        /// </summary>
         public List<Voucher> Vouchers { get; set; } = new List<Voucher>();
+
+        /// <summary>
+        /// Loads the vouchers.
+        /// </summary>
         public void LoadVoucher()
         {
             _voucherBus = _voucherFactory.CreateBUS();
@@ -108,20 +154,26 @@ namespace BC_Market.ViewModels
             Vouchers = _voucherBus.Get(config);
         }
 
-        //Payment Method
+        /// <summary>
+        /// Loads the payment methods.
+        /// </summary>
         public void LoadPaymentMethod()
         {
             _paymentMethodBus = _paymentMethodFactory.CreateBUS();
             PaymentMethods = new ObservableCollection<PaymentMethod>(_paymentMethodBus.Get(null));
-   
         }
-        public List<Product> selectedProducts { get; set; } = new List<Product>(); // Define the selectedProducts for the selected products
+
+        /// <summary>
+        /// Gets or sets the selected products.
+        /// </summary>
+        public List<Product> selectedProducts { get; set; } = new List<Product>();
+
         private double _total;
 
-        public ICommand DeleteItemCommand { get; }
-        public ICommand DeleteAllCommand { get; }
-        public ICommand OrderCommand { get; }
-        public double Total // Price for all products in the cart
+        /// <summary>
+        /// Gets or sets the total price for all products in the cart.
+        /// </summary>
+        public double Total
         {
             get
             {
@@ -134,8 +186,13 @@ namespace BC_Market.ViewModels
             }
             set => SetProperty(ref _total, value);
         }
+
         private double deliveryCost = 0;
-        public double DeliveryCost // DeliveryUnit cost
+
+        /// <summary>
+        /// Gets or sets the delivery cost.
+        /// </summary>
+        public double DeliveryCost
         {
             get
             {
@@ -151,8 +208,13 @@ namespace BC_Market.ViewModels
             }
             set => SetProperty(ref deliveryCost, value);
         }
+
         private double _discountAmount = 0;
-        public double DiscountAmount // Discount amount
+
+        /// <summary>
+        /// Gets or sets the discount amount.
+        /// </summary>
+        public double DiscountAmount
         {
             get
             {
@@ -163,7 +225,6 @@ namespace BC_Market.ViewModels
                 _discountAmount = 0;
                 if (selectedVoucher != null)
                 {
-
                     if (selectedVoucher.isCondition(Total))
                     {
                         if (selectedVoucher.Name.Equals("Free Shipping") && selectedDelivery != null)
@@ -189,8 +250,13 @@ namespace BC_Market.ViewModels
             }
             set => SetProperty(ref _discountAmount, value);
         }
+
         private double _finalTotal;
-        public double FinalTotal // Price for cashing out
+
+        /// <summary>
+        /// Gets or sets the final total price for cashing out.
+        /// </summary>
+        public double FinalTotal
         {
             get
             {
@@ -225,6 +291,26 @@ namespace BC_Market.ViewModels
             }
             set => SetProperty(ref _finalTotal, value);
         }
+
+        /// <summary>
+        /// Command to delete an item from the cart.
+        /// </summary>
+        public ICommand DeleteItemCommand { get; }
+
+        /// <summary>
+        /// Command to delete all selected items from the cart.
+        /// </summary>
+        public ICommand DeleteAllCommand { get; }
+
+        /// <summary>
+        /// Command to place an order.
+        /// </summary>
+        public ICommand OrderCommand { get; }
+
+        /// <summary>
+        /// Deletes an item from the cart.
+        /// </summary>
+        /// <param name="product">The product to delete.</param>
         private void DeleteItem(CartProduct product)
         {
             var item = cart.CartProducts.FirstOrDefault(x => x.Product.Id == product.Product.Id);
@@ -246,7 +332,11 @@ namespace BC_Market.ViewModels
                 OnPropertyChanged(nameof(DeliveryCost));
             }
         }
-        private void DeleteAll() // Delete all products from the cart
+
+        /// <summary>
+        /// Deletes all selected items from the cart.
+        /// </summary>
+        private void DeleteAll()
         {
             var itemsToRemove = cart.CartProducts.Where(item => item.IsSelected).ToList();
 
@@ -262,12 +352,18 @@ namespace BC_Market.ViewModels
             OnPropertyChanged(nameof(DeliveryCost));
         }
 
+        /// <summary>
+        /// Determines whether an order can be placed.
+        /// </summary>
+        /// <returns>True if an order can be placed; otherwise, false.</returns>
         private bool CanOrder()
         {
             return cart.CartProducts.Count > 0 && !string.IsNullOrEmpty(Address) && selectedDelivery != null && SelectedPaymentMethod != null;
         }
 
-        // Inside the Order method
+        /// <summary>
+        /// Places an order.
+        /// </summary>
         private async void Order()
         {
             if (!CanOrder())
@@ -328,6 +424,12 @@ namespace BC_Market.ViewModels
                 ProcessOrder(order, param);
             }
         }
+
+        /// <summary>
+        /// Processes the order.
+        /// </summary>
+        /// <param name="order">The order to process.</param>
+        /// <param name="param">The parameters for the order.</param>
         private void ProcessOrder(Order order, object param)
         {
             try
@@ -366,6 +468,11 @@ namespace BC_Market.ViewModels
             }
         }
 
+        /// <summary>
+        /// Shows a dialog with the specified message and title.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
+        /// <param name="title">The title of the dialog.</param>
         private async Task ShowDialogAsync(string message, string title)
         {
             var dialog = new ContentDialog
@@ -373,29 +480,20 @@ namespace BC_Market.ViewModels
                 Title = title,
                 Content = message,
                 CloseButtonText = "OK",
-                XamlRoot = this.xamlRoot 
+                XamlRoot = this.xamlRoot
             };
 
             await dialog.ShowAsync();
         }
 
+        /// <summary>
+        /// Notifies that a property has changed.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that changed.</param>
         public void NotifyPropertyChanged(string propertyName)
         {
             OnPropertyChanged(propertyName);
         }
-
-        //private async Task ShowDialogAsync(string message, string title)
-        //{
-        //    var dialog = new ContentDialog
-        //    {
-        //        Title = title,
-        //        Content = message,
-        //        CloseButtonText = "OK",
-        //        XamlRoot = this.xamlRoot // Ensure the XamlRoot is set
-        //    };
-
-        //    await dialog.ShowAsync();
-        //}
     }
 
 }

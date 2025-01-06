@@ -19,11 +19,19 @@ using Windows.Foundation.Collections;
 
 namespace BC_Market.Views
 {
-   
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
     public sealed partial class ReportOrderPage : Page
     {
-
+        /// <summary>
+        /// Gets or sets the ViewModel for the ReportOrderPage.
+        /// </summary>
         public ReportOrderPageViewModel ViewModel { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportOrderPage"/> class.
+        /// </summary>
         public ReportOrderPage()
         {
             this.InitializeComponent();

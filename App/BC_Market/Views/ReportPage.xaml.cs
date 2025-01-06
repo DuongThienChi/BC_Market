@@ -23,17 +23,30 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class ReportPage : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportPage"/> class.
+        /// </summary>
         public ReportPage()
         {
             this.InitializeComponent();
             report_frame.Navigate(typeof(ReportProductPage));
         }
 
+        /// <summary>
+        /// Handles the Product Report button click event to navigate to the ReportProductPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void product_report_Click(object sender, RoutedEventArgs e)
         {
             report_frame.Navigate(typeof(ReportProductPage));
         }
 
+        /// <summary>
+        /// Handles the Order Report button click event to navigate to the ReportOrderPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void order_report_Click(object sender, RoutedEventArgs e)
         {
             report_frame.Navigate(typeof(ReportOrderPage));

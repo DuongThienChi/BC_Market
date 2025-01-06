@@ -14,6 +14,9 @@ using SkiaSharp;
 
 namespace ViewModelsSamples.General.TemplatedTooltips;
 
+/// <summary>
+/// Custom tooltip implementation for LiveCharts.
+/// </summary>
 public class CustomTooltip : IChartTooltip<SkiaSharpDrawingContext>
 {
     private StackPanel<RoundedRectangleGeometry, SkiaSharpDrawingContext>? _stackPanel;
@@ -21,6 +24,11 @@ public class CustomTooltip : IChartTooltip<SkiaSharpDrawingContext>
     private readonly SolidColorPaint _backgroundPaint = new(new SKColor(28, 49, 58)) { ZIndex = s_zIndex };
     private readonly SolidColorPaint _fontPaint = new(new SKColor(230, 230, 230)) { ZIndex = s_zIndex + 1 };
 
+    /// <summary>
+    /// Shows the tooltip with the given chart points.
+    /// </summary>
+    /// <param name="foundPoints">The chart points to display in the tooltip.</param>
+    /// <param name="chart">The chart instance.</param>
     public void Show(IEnumerable<ChartPoint> foundPoints, Chart<SkiaSharpDrawingContext> chart)
     {
         if (_stackPanel is null)
@@ -41,7 +49,7 @@ public class CustomTooltip : IChartTooltip<SkiaSharpDrawingContext>
                     nameof(_stackPanel.Y));
         }
 
-        // clear the previous elements.
+        // Clear the previous elements.
         foreach (var child in _stackPanel.Children.ToArray())
         {
             _ = _stackPanel.Children.Remove(child);
@@ -69,10 +77,10 @@ public class CustomTooltip : IChartTooltip<SkiaSharpDrawingContext>
                 VerticalAlignment = Align.Middle,
                 HorizontalAlignment = Align.Middle,
                 Children =
-                {
-                    skiaSeries.GetMiniature(point, s_zIndex),
-                    label
-                }
+                    {
+                        skiaSeries.GetMiniature(point, s_zIndex),
+                        label
+                    }
             };
 
             _stackPanel.Children.Add(sp);
@@ -88,6 +96,10 @@ public class CustomTooltip : IChartTooltip<SkiaSharpDrawingContext>
         chart.AddVisual(_stackPanel);
     }
 
+    /// <summary>
+    /// Hides the tooltip.
+    /// </summary>
+    /// <param name="chart">The chart instance.</param>
     public void Hide(Chart<SkiaSharpDrawingContext> chart)
     {
         if (chart is null || _stackPanel is null) return;

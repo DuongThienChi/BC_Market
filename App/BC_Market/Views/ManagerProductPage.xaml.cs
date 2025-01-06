@@ -27,12 +27,19 @@ namespace BC_Market.Views
     {
         private ManageProductViewModel ViewModel = new ManageProductViewModel();
 
-        // all functions are similar to AdminProductPage
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManagerProductPage"/> class.
+        /// </summary>
         public ManagerProductPage()
         {
             this.InitializeComponent();
             this.DataContext = ViewModel;
         }
+
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -41,6 +48,12 @@ namespace BC_Market.Views
                 ViewModel = e.Parameter as ManageProductViewModel;
             }
         }
+
+        /// <summary>
+        /// Handles the Category button click event to filter products by category.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void cateButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -48,19 +61,35 @@ namespace BC_Market.Views
             ViewModel.SetProductByCategory(cate);
             this.Frame.Navigate(typeof(ManagerProductPage), ViewModel);
         }
+
+        /// <summary>
+        /// Handles the Add Category button click event to show the Add Category dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void AddCateButton_Click(object sender, RoutedEventArgs e)
         {
             AddCateDialog.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Handles the event when a new category is added from the Add Category dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="newCate">The new category that was added.</param>
         private void AddCateDialog_CategoryAdded(object sender, Models.Category newCate)
         {
             ViewModel.AddCategory(newCate);
         }
+
+        /// <summary>
+        /// Handles the Edit button click event to show the Edit Product dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void edit_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-
             var curProduct = button.DataContext as Product;
             if (curProduct == null)
             {
@@ -69,8 +98,13 @@ namespace BC_Market.Views
 
             EditProductDialog.Visibility = Visibility.Visible;
             EditProductDialog.product = curProduct;
-            
         }
+
+        /// <summary>
+        /// Handles the Delete button click event to delete a product.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void delete_btn_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -88,15 +122,33 @@ namespace BC_Market.Views
             }
             this.Frame.Navigate(typeof(ManagerProductPage), ViewModel);
         }
+
+        /// <summary>
+        /// Handles the Add Product button click event to show the Add Product dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             AddProductDialog.Visibility = Visibility.Visible;
         }
+
+        /// <summary>
+        /// Handles the event when a new product is added from the Add Product dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="newProduct">The new product that was added.</param>
         private void AddProductDialog_ProductAdded(object sender, Models.Product newProduct)
         {
             ViewModel.AddProduct(newProduct);
             this.Frame.Navigate(typeof(ManagerProductPage), ViewModel);
         }
+
+        /// <summary>
+        /// Handles the event when a product is edited from the Edit Product dialog.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="newProduct">The product that was edited.</param>
         private void EditProductDialog_ProductEdited(object sender, Product newProduct)
         {
             ViewModel.UpdateProduct(newProduct);

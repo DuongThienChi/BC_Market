@@ -26,6 +26,10 @@ namespace BC_Market.Views
     public sealed partial class OrderSuccessPage : Page
     {
         public OrderSuccessPageViewModel ViewModel { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrderSuccessPage"/> class.
+        /// </summary>
         public OrderSuccessPage()
         {
             this.InitializeComponent();
@@ -34,10 +38,20 @@ namespace BC_Market.Views
             this.DataContext = ViewModel;
         }
 
+        /// <summary>
+        /// Handles the Back to Shopping button click event to navigate back to the Shopper Dashboard page.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BackToShopping_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(ShopperDashboardPage));
         }
+
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

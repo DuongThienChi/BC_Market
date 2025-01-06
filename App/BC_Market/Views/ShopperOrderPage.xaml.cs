@@ -27,56 +27,62 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class ShopperOrderPage : Page
     {
+        /// <summary>
+        /// Gets or sets the ViewModel for the ShopperOrderPage.
+        /// </summary>
         public ShopperOrderViewModel ViewModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of CheckBox controls.
+        /// </summary>
         private List<CheckBox> CheckBoxs { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShopperOrderPage"/> class.
+        /// </summary>
         public ShopperOrderPage()
         {
             this.InitializeComponent();
             ViewModel = new ShopperOrderViewModel();
             this.DataContext = ViewModel;
             this.CheckBoxs = new List<CheckBox>();
-
-
         }
-        // Receive CartList from ShopperDashboardPage
+
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            //if (e.Parameter is ObservableCollection<KeyValuePair<Product, int>> cartList)
-            //{
-            //    ViewModel.CartList = cartList;
-            //}
         }
-        // Remove item from cart
+
+        /// <summary>
+        /// Handles the Add Product button click event to navigate back to the ShopperDashboardPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void AddProduct_Clicked(object sender, RoutedEventArgs e)
         {
-            var shopPage = new ShopperDashboardPage();
-            //shopPage.ViewModel.CartList = ViewModel.CartList.ToDictionary(item => item.Key, item => item.Value);
-            //var NumberProduct = 0;
-            //foreach (var item in ViewModel.CartList)
-            //{
-            //    NumberProduct += item.Value;
-            //}
-            //shopPage.ViewModel.ProductInCart = NumberProduct;
-            //var Params = new
-            //{
-            //    CartList = ViewModel.CartList,
-            //    ProductInCart = NumberProduct,
-            //};
-            //this.Frame.Navigate(typeof(ShopperDashboardPage), Params);
             this.Frame.Navigate(typeof(ShopperDashboardPage));
         }
 
-        // Remove item from cart
+        /// <summary>
+        /// Handles the item CheckBox click event to update the allCheckBox state.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void itemCheckBox_Click(object sender, RoutedEventArgs e)
         {
             bool allSelected = ViewModel.cart.CartProducts.All(item => item.IsSelected);
             allCheckBox.IsChecked = allSelected;
         }
 
-
-
-        // Select all items
+        /// <summary>
+        /// Handles the allCheckBox click event to select or deselect all items.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void allCheckBox_Click(object sender, RoutedEventArgs e)
         {
             bool isChecked = allCheckBox.IsChecked ?? false;
@@ -85,11 +91,22 @@ namespace BC_Market.Views
                 item.IsSelected = isChecked;
             }
         }
+
+        /// <summary>
+        /// Handles the Voucher button click event to show the voucher flyout.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void VoucherButton_Click(object sender, RoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout(VoucherStackPanel);
         }
 
+        /// <summary>
+        /// Handles the voucher selection changed event to update the selected voucher.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void VoucherSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
@@ -99,29 +116,37 @@ namespace BC_Market.Views
                 {
                     SelectedVoucherTextBlock.Text = selectedVoucher.Name;
                     ViewModel.selectedVoucher = selectedVoucher;
-                    // Close the flyout after selection
                     FlyoutBase.GetAttachedFlyout(VoucherStackPanel).Hide();
                 }
                 else
                 {
-                    // Show a message or handle the case where the condition is not met
                     var dialog = new ContentDialog
                     {
                         Title = "Voucher Selection",
                         Content = "Total amount must be greater than the voucher condition.",
                         CloseButtonText = "OK",
-                        XamlRoot = ((FrameworkElement)sender).XamlRoot // Set the XamlRoot property
+                        XamlRoot = ((FrameworkElement)sender).XamlRoot
                     };
                     _ = dialog.ShowAsync();
                 }
             }
         }
+
+        /// <summary>
+        /// Handles the Delivery button click event to show the delivery flyout.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void DeliveryButton_Click(object sender, RoutedEventArgs e)
         {
-            
-             FlyoutBase.ShowAttachedFlyout(DeliveryStackPanel);
+            FlyoutBase.ShowAttachedFlyout(DeliveryStackPanel);
         }
 
+        /// <summary>
+        /// Handles the delivery selection changed event to update the selected delivery unit.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void DeliverySelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
@@ -129,15 +154,9 @@ namespace BC_Market.Views
                 var selectedDelivery = (DeliveryUnit)e.AddedItems[0];
                 SelectedDeliveryTextBlock.Text = selectedDelivery.Name;
                 ViewModel.selectedDelivery = selectedDelivery;
-
-                // Notify that DiscountAmount has changed
                 ViewModel.NotifyPropertyChanged(nameof(ViewModel.DiscountAmount));
-
-                // Close the flyout after selection
                 FlyoutBase.GetAttachedFlyout(DeliveryStackPanel).Hide();
             }
         }
-
-
     }
 }

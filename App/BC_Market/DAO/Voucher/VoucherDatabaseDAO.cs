@@ -9,10 +9,18 @@ using Npgsql;
 
 namespace BC_Market.DAO
 {
+    /// <summary>
+    /// Provides data access logic for managing vouchers in the database.
+    /// </summary>
     public class VoucherDatabaseDAO : IDAO<Voucher>
     {
         private DateOnly curdate = DateOnly.FromDateTime(DateTime.Now);
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");
+        /// <summary>
+        /// Adds a new voucher to the database.
+        /// </summary>
+        /// <param name="obj">The voucher object to add.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Add(Voucher obj)
         {
 
@@ -38,7 +46,11 @@ namespace BC_Market.DAO
                 return true;
             }
         }
-
+        /// <summary>
+        /// Removes a voucher from the database.
+        /// </summary>
+        /// <param name="obj">The voucher object to delete.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Delete(Voucher obj)
         {
             try
@@ -62,6 +74,11 @@ namespace BC_Market.DAO
             }
 
         }
+        /// <summary>
+        /// Retrieves vouchers based on the provided configuration.
+        /// </summary>
+        /// <param name="configuration">A dictionary containing configuration parameters.</param>
+        /// <returns>A collection of vouchers or specific voucher details based on the configuration.</returns>
         public dynamic Get (Dictionary<string, string> configuration)
         {
             if (configuration == null)
@@ -75,7 +92,11 @@ namespace BC_Market.DAO
             return null;
 
         }
-
+        /// <summary>
+        /// Retrieves vouchers by rank ID.
+        /// </summary>
+        /// <param name="rankid">The rank ID to filter vouchers.</param>
+        /// <returns>A collection of vouchers that match the rank ID.</returns>
         private dynamic GetVoucherbyRankid(string rankid)
         {
             var sql = $@"SELECT * FROM voucher WHERE rankid = @RankId AND validate > @CurDate";
@@ -111,7 +132,10 @@ namespace BC_Market.DAO
             }
             return response;
         }
-
+        /// <summary>
+        /// Retrieves all vouchers from the database.
+        /// </summary>
+        /// <returns>A collection of all vouchers.</returns>
         public dynamic GetAll()
         {
             var sql = $@"SELECT * FROM voucher";
@@ -146,7 +170,11 @@ namespace BC_Market.DAO
             return response;
         }
 
-
+        /// <summary>
+        /// Updates an existing voucher in the database.
+        /// </summary>
+        /// <param name="obj">The voucher object to update.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Update(Voucher obj)
         {
             var sql = $@"UPDATE voucher SET name = @Name, 

@@ -9,10 +9,18 @@ using System.Collections.ObjectModel;
 
 namespace BC_Market.DAO
 {
+    /// <summary>
+    /// Provides data access logic for managing carts in the database.
+    /// </summary>
     class CartDatabaseDAO : IDAO<Cart>
     {
-        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  //Get connection string from appsettings.json
+        private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection");  // Get connection string from appsettings.json
 
+        /// <summary>
+        /// Adds a new cart to the database.
+        /// </summary>
+        /// <param name="cart">The cart object to add.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Add(Cart cart)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -24,8 +32,8 @@ namespace BC_Market.DAO
                     {
                         // Insert the cart into the Cart table
                         string cartSql = @"INSERT INTO Cart (userId) 
-                                           VALUES (@UserId) 
-                                           RETURNING uniqueid";
+                                               VALUES (@UserId) 
+                                               RETURNING uniqueid";
                         using (var command = new NpgsqlCommand(cartSql, connection))
                         {
                             command.Parameters.AddWithValue("@UserId", cart.customerId);
@@ -36,7 +44,7 @@ namespace BC_Market.DAO
 
                         // Insert the cart details into the CartDetail table
                         string cartDetailSql = @"INSERT INTO cartdetail (CartId, ProductId, amount) 
-                                                 VALUES (@CartId, @ProductId, @Amount)";
+                                                     VALUES (@CartId, @ProductId, @Amount)";
                         foreach (var cartProduct in cart.CartProducts)
                         {
                             using (var command = new NpgsqlCommand(cartDetailSql, connection))
@@ -58,16 +66,25 @@ namespace BC_Market.DAO
                         transaction.Rollback();
                         return false;
                     }
-                   
                 }
             }
         }
 
+        /// <summary>
+        /// Deletes a cart from the database.
+        /// </summary>
+        /// <param name="obj">The cart object to delete.</param>
+        /// <returns>The result of the delete operation.</returns>
         public dynamic Delete(Cart obj)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets cart data based on the specified configuration.
+        /// </summary>
+        /// <param name="configuration">The configuration dictionary.</param>
+        /// <returns>The cart data.</returns>
         public dynamic Get(Dictionary<string, string> configuration)
         {
             Cart cart = new Cart();
@@ -91,8 +108,8 @@ namespace BC_Market.DAO
                             // Create a new cart if it does not exist
                             reader.Close();
                             string insertCartSql = @"INSERT INTO Cart (userId) 
-                                                     VALUES (@UserId) 
-                                                     RETURNING uniqueid";
+                                                         VALUES (@UserId) 
+                                                         RETURNING uniqueid";
                             using (var insertCommand = new NpgsqlCommand(insertCartSql, connection))
                             {
                                 insertCommand.Parameters.AddWithValue("@UserId", userid);
@@ -102,11 +119,11 @@ namespace BC_Market.DAO
                     }
                 }
                 String sql = @"SELECT Product.uniqueid as productid, Product.stock, CartDetail.amount, 
-                                Product.name, Product.price, Product.description, Product.imagepath, 
-                                Product.status,Product.orderquantity, Product.cateid
-                                FROM Cart Join CartDetail on Cart.uniqueid = CartDetail.CartId 
-                                Join Product on CartDetail.ProductId = Product.uniqueid
-                                WHERE Cart.userId = @CustomerId";
+                                    Product.name, Product.price, Product.description, Product.imagepath, 
+                                    Product.status,Product.orderquantity, Product.cateid
+                                    FROM Cart Join CartDetail on Cart.uniqueid = CartDetail.CartId 
+                                    Join Product on CartDetail.ProductId = Product.uniqueid
+                                    WHERE Cart.userId = @CustomerId";
                 using (var command = new NpgsqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@CustomerId", userid);
@@ -141,6 +158,11 @@ namespace BC_Market.DAO
             return cart;
         }
 
+        /// <summary>
+        /// Updates an existing cart in the database.
+        /// </summary>
+        /// <param name="cart">The cart object to update.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Update(Cart cart)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -150,8 +172,6 @@ namespace BC_Market.DAO
                 {
                     try
                     {
-                        
-
                         // Delete existing CartProducts for the Cart
                         using (var command = new NpgsqlCommand("DELETE FROM CartDetail WHERE CartId = @CartId", connection))
                         {

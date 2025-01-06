@@ -1,0 +1,118 @@
+\doxysection{BC\+\_\+\+Market.\+DAO.\+Cart\+Database\+DAO Class Reference}
+\hypertarget{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o}{}\label{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o}\index{BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}}
+
+
+Provides data access logic for managing carts in the database.  
+
+
+Inheritance diagram for BC\+\_\+\+Market.\+DAO.\+Cart\+Database\+DAO\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_ad848771f732c7801ff26078cacd8ca8e}{Add}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_cart}{Cart}} cart)
+\begin{DoxyCompactList}\small\item\em Adds a new cart to the database. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_a021cd15ccdd4dfec3e671ae05492a901}{Delete}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_cart}{Cart}} obj)
+\begin{DoxyCompactList}\small\item\em Deletes a cart from the database. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_ac5dd21da16eb5174fb1b8ca098c111b5}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets cart data based on the specified configuration. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_a5d6bdaadb45bafd1684e0ef39ef2f2f8}{Update}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_cart}{Cart}} cart)
+\begin{DoxyCompactList}\small\item\em Updates an existing cart in the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{BC\+\_\+\+Market.\+DAO.\+IDAO$<$ Cart $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o_ae203bf2c3dd702b324362060e51c08ab}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Retrieves objects based on the provided configuration. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o_a464fc2e3bf96f42c77eb488e3b1ef09b}{Add}} (T obj)
+\begin{DoxyCompactList}\small\item\em Adds a new object to the database. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o_adedfc3255b5aaa65e3234acebbcb24de}{Update}} (T obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing object in the database. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o_a88eb65521d7059e93f8abb065ce783c8}{Delete}} (T obj)
+\begin{DoxyCompactList}\small\item\em Removes an object from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides data access logic for managing carts in the database. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_ad848771f732c7801ff26078cacd8ca8e}\index{BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}!Add@{Add}}
+\index{Add@{Add}!BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_ad848771f732c7801ff26078cacd8ca8e} 
+dynamic BC\+\_\+\+Market.\+DAO.\+Cart\+Database\+DAO.\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_cart}{Cart}}}]{cart}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a new cart to the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cart} & The cart object to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation is successful, otherwise false.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_a021cd15ccdd4dfec3e671ae05492a901}\index{BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}!Delete@{Delete}}
+\index{Delete@{Delete}!BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_a021cd15ccdd4dfec3e671ae05492a901} 
+dynamic BC\+\_\+\+Market.\+DAO.\+Cart\+Database\+DAO.\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_cart}{Cart}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes a cart from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The cart object to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the delete operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_ac5dd21da16eb5174fb1b8ca098c111b5}\index{BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}!Get@{Get}}
+\index{Get@{Get}!BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_ac5dd21da16eb5174fb1b8ca098c111b5} 
+dynamic BC\+\_\+\+Market.\+DAO.\+Cart\+Database\+DAO.\+Get (\begin{DoxyParamCaption}\item[{Dictionary$<$ string, string $>$}]{configuration}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets cart data based on the specified configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em configuration} & The configuration dictionary.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cart data.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_a5d6bdaadb45bafd1684e0ef39ef2f2f8}\index{BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}!Update@{Update}}
+\index{Update@{Update}!BC\_Market.DAO.CartDatabaseDAO@{BC\_Market.DAO.CartDatabaseDAO}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_d_a_o_1_1_cart_database_d_a_o_a5d6bdaadb45bafd1684e0ef39ef2f2f8} 
+dynamic BC\+\_\+\+Market.\+DAO.\+Cart\+Database\+DAO.\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_cart}{Cart}}}]{cart}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates an existing cart in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cart} & The cart object to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation is successful, otherwise false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/\+DAO/\+Cart/Cart\+Database\+DAO.\+cs\end{DoxyCompactItemize}

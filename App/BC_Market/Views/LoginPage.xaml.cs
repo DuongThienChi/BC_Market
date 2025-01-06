@@ -32,6 +32,10 @@ namespace BC_Market.Views
     {
         private LoginPageViewModel ViewModel;
         private ManageProductViewModel ManageProductViewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginPage"/> class.
+        /// </summary>
         public LoginPage()
         {
             this.InitializeComponent();
@@ -44,54 +48,30 @@ namespace BC_Market.Views
             var password = (string)localSettings.Values["Password"];
             var username = (string)localSettings.Values["Username"];
 
-            if(password != null && username != null)
+            if (password != null && username != null)
             {
                 username_input.Text = username;
                 password_input.Password = password;
             }
         }
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually, the event data is a NavigationEventArgs.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //base.OnNavigatedTo(e);
-            //// Get only LoginPageView from previous page
-            //if (e.Parameter is LoginPageViewModel)
-            //{
-            //    ViewModel = e.Parameter as LoginPageViewModel;
-            //    return;
-            //}
-            //// Get only ListAccount from previous page
-            //if (e.Parameter is ObservableCollection<USER>)
-            //{
-            //    var listUser = e.Parameter as ObservableCollection<USER>;
-            //    ViewModel.ListAccount = listUser;
-            //    return;
-            //}
-            //// Get only ManageProductViewModel from previous page
-            //if (e.Parameter is ManageProductViewModel)
-            //{
-            //    ManageProductViewModel = e.Parameter as ManageProductViewModel;
-            //    return;
-            //}
-            //// Get only ShopperDashboardViewModel from previous page
-            //if (e.Parameter is ShopperDashboardViewModel)
-            //{
-            //    return;
-            //}
-            //// Get ListAccount and ManageProductViewModel from previous page
-            //var package = e.Parameter as dynamic;
-            //if (package != null)
-            //{
-            //    if (package.ListAccount != null)
-            //        ViewModel.ListAccount = package.ListAccount;
-            //    if (package.ManageProductViewModel != null)
-            //        ManageProductViewModel = package.ManageProductViewModel;
-            //}
+            // Add logic for handling navigation to this page
         }
 
+        /// <summary>
+        /// Handles the Login button click event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void login_button_Click(object sender, RoutedEventArgs e)
         {
-            // get current username and password
+            // Get current username and password
             var username = username_input.Text;
             var password = password_input.Password;
 
@@ -99,10 +79,10 @@ namespace BC_Market.Views
 
             foreach (var user in listUser)
             {
-                // check username and password
+                // Check username and password
                 if (user.Username == username && (BCrypt.Net.BCrypt.Verify(password, user.Password) || password == user.Password))
                 {
-                    // store username and password if remember_me.IsChecked
+                    // Store username and password if remember_me.IsChecked
                     if (remember_me.IsChecked == true)
                     {
                         var localSettings = ApplicationData.Current.LocalSettings;
@@ -111,7 +91,7 @@ namespace BC_Market.Views
                         localSettings.Values["Username"] = username;
                     }
 
-                    // navigate to proper Frame and send data
+                    // Navigate to proper Frame and send data
                     if (user.Roles[0].Name == "Admin")
                     {
                         var package = new
@@ -142,11 +122,21 @@ namespace BC_Market.Views
             notice_box.Text = "Username or password is incorrect!";
         }
 
+        /// <summary>
+        /// Handles the Forgot Password text tap event to navigate to the ForgotPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void forgot_text_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ForgotPage), ViewModel);
         }
 
+        /// <summary>
+        /// Handles the Register button click event to navigate to the RegisterPage.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void register_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(RegisterPage), ViewModel);

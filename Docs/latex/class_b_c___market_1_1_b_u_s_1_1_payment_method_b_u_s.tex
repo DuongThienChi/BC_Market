@@ -1,0 +1,177 @@
+\doxysection{BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS Class Reference}
+\hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}{}\label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+
+
+Provides business logic for managing payment methods.  
+
+
+Inheritance diagram for BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a219b237eb1349f998ee3b880e3f132bb}{Create\+New}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$ dao)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}{Payment\+Method\+BUS} class with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a3c7ee887ab329f36ca7e552a175508a4}{Payment\+Method\+BUS}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$ dao)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}{Payment\+Method\+BUS} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$ \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a5ff2e451212c6c98d142bc8c41078ac3}{Dao}} ()
+\begin{DoxyCompactList}\small\item\em Gets the data access object for payment methods. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_ab9acbfb4e6201c110e814b606f25e776}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets payment method data based on the specified configuration. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a00fad821b2d1032023d3768ed1a1eb8b}{Add}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} obj)
+\begin{DoxyCompactList}\small\item\em Adds a new payment method. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a405359139ecaec7ab9625672b887c0d7}{Update}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing payment method. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a84e84e3cea396bec2d2d77917b903a81}{Delete}} (\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} obj)
+\begin{DoxyCompactList}\small\item\em Deletes a payment method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS$<$ Payment\+Method $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ac5ed55a8fbce7a316b36e4b5a5680be4}{Dao}} ()
+\begin{DoxyCompactList}\small\item\em Gets the data access object for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a804040632d8e56f5697fcb086f3233c2}{Create\+New}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ dao)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the business logic service with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a85c26d3466d8e6998940000afcff3ba0}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets entity data based on the specified configuration. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a5ded81a94e7a3a6cbab56220b4f97388}{Add}} (T obj)
+\begin{DoxyCompactList}\small\item\em Adds a new entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ae4cbe56e8207d95067d506b33153b54c}{Update}} (T obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a54817ec8d1290a071f885fccaf335bb3}{Delete}} (T obj)
+\begin{DoxyCompactList}\small\item\em Deletes an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides business logic for managing payment methods. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a3c7ee887ab329f36ca7e552a175508a4}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}!PaymentMethodBUS@{PaymentMethodBUS}}
+\index{PaymentMethodBUS@{PaymentMethodBUS}!BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+\doxysubsubsection{\texorpdfstring{PaymentMethodBUS()}{PaymentMethodBUS()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a3c7ee887ab329f36ca7e552a175508a4} 
+BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS.\+Payment\+Method\+BUS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$}]{dao}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}{Payment\+Method\+BUS} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dao} & The data access object for payment methods.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a00fad821b2d1032023d3768ed1a1eb8b}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}!Add@{Add}}
+\index{Add@{Add}!BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a00fad821b2d1032023d3768ed1a1eb8b} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS.\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a new payment method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The payment method object to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the add operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a219b237eb1349f998ee3b880e3f132bb}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}!CreateNew@{CreateNew}}
+\index{CreateNew@{CreateNew}!BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+\doxysubsubsection{\texorpdfstring{CreateNew()}{CreateNew()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a219b237eb1349f998ee3b880e3f132bb} 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$ BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS.\+Create\+New (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$}]{dao}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new instance of the \doxylink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}{Payment\+Method\+BUS} class with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dao} & The data access object for payment methods.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of \doxylink{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s}{Payment\+Method\+BUS}.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a5ff2e451212c6c98d142bc8c41078ac3}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}!Dao@{Dao}}
+\index{Dao@{Dao}!BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+\doxysubsubsection{\texorpdfstring{Dao()}{Dao()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a5ff2e451212c6c98d142bc8c41078ac3} 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ \mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}} $>$ BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS.\+Dao (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the data access object for payment methods. 
+
+\begin{DoxyReturn}{Returns}
+The data access object for payment methods.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a84e84e3cea396bec2d2d77917b903a81}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}!Delete@{Delete}}
+\index{Delete@{Delete}!BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a84e84e3cea396bec2d2d77917b903a81} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS.\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes a payment method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The payment method object to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the delete operation.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_ab9acbfb4e6201c110e814b606f25e776}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}!Get@{Get}}
+\index{Get@{Get}!BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_ab9acbfb4e6201c110e814b606f25e776} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS.\+Get (\begin{DoxyParamCaption}\item[{Dictionary$<$ string, string $>$}]{configuration}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets payment method data based on the specified configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em configuration} & The configuration dictionary.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The payment method data.
+\end{DoxyReturn}
+\Hypertarget{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a405359139ecaec7ab9625672b887c0d7}\index{BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}!Update@{Update}}
+\index{Update@{Update}!BC\_Market.BUS.PaymentMethodBUS@{BC\_Market.BUS.PaymentMethodBUS}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_b_u_s_1_1_payment_method_b_u_s_a405359139ecaec7ab9625672b887c0d7} 
+dynamic BC\+\_\+\+Market.\+BUS.\+Payment\+Method\+BUS.\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_b_c___market_1_1_models_1_1_payment_method}{Payment\+Method}}}]{obj}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates an existing payment method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The payment method object to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the update operation.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/\+BUS/Payment\+Method\+BUS.\+cs\end{DoxyCompactItemize}

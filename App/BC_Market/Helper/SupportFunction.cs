@@ -7,9 +7,17 @@ using System.Threading.Tasks;
 
 namespace BC_Market.Helper
 {
+    /// <summary>
+    /// Provides support functions for the BC Market application.
+    /// </summary>
     public static class SupportFunction
     {
-        public static bool isUsernameExist(this string username) // Check if username is exist
+        /// <summary>
+        /// Checks if the specified username exists.
+        /// </summary>
+        /// <param name="username">The username to check.</param>
+        /// <returns>True if the username exists; otherwise, false.</returns>
+        public static bool isUsernameExist(this string username)
         {
             var userFactory = new UserFactory();
             var userBUS = userFactory.CreateBUS();

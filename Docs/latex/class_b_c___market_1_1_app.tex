@@ -1,0 +1,101 @@
+\doxysection{BC\+\_\+\+Market.\+App Class Reference}
+\hypertarget{class_b_c___market_1_1_app}{}\label{class_b_c___market_1_1_app}\index{BC\_Market.App@{BC\_Market.App}}
+
+
+Provides application-\/specific behavior to supplement the default Application class.  
+
+
+Inheritance diagram for BC\+\_\+\+Market.\+App\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.830860cm]{class_b_c___market_1_1_app}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_c___market_1_1_app_ad791904f0d83772af19b0dec92fdb25d}\label{class_b_c___market_1_1_app_ad791904f0d83772af19b0dec92fdb25d} 
+{\bfseries App} ()
+\begin{DoxyCompactList}\small\item\em Initializes the singleton application object. This is the first line of authored code executed, and as such is the logical equivalent of main() or Win\+Main(). \end{DoxyCompactList}\item 
+\Hypertarget{class_b_c___market_1_1_app_a52a26820f1253a9c418545bf8c789fd5}\label{class_b_c___market_1_1_app_a52a26820f1253a9c418545bf8c789fd5} 
+void {\bfseries Initialize\+Component} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_b_c___market_1_1_app_a52a26820f1253a9c418545bf8c789fd5}{Initialize\+Component()} \end{DoxyCompactList}\item 
+\Hypertarget{class_b_c___market_1_1_app_a34e67a4f0b89965e84c304b50be75aa6}\label{class_b_c___market_1_1_app_a34e67a4f0b89965e84c304b50be75aa6} 
+global\+::\+Microsoft.\+UI.\+Xaml.\+Markup.\+IXaml\+Type {\bfseries Get\+Xaml\+Type} (global\+::\+System.\+Type type)
+\begin{DoxyCompactList}\small\item\em Get\+Xaml\+Type(\+Type) \end{DoxyCompactList}\item 
+\Hypertarget{class_b_c___market_1_1_app_a855c67bb289ea3976086a93860ff3004}\label{class_b_c___market_1_1_app_a855c67bb289ea3976086a93860ff3004} 
+global\+::\+Microsoft.\+UI.\+Xaml.\+Markup.\+IXaml\+Type {\bfseries Get\+Xaml\+Type} (string full\+Name)
+\begin{DoxyCompactList}\small\item\em Get\+Xaml\+Type(\+String) \end{DoxyCompactList}\item 
+\Hypertarget{class_b_c___market_1_1_app_a8d400b6462bd0c7b9a6ab156da36eaa6}\label{class_b_c___market_1_1_app_a8d400b6462bd0c7b9a6ab156da36eaa6} 
+global\+::\+Microsoft.\+UI.\+Xaml.\+Markup.\+Xmlns\+Definition\mbox{[}$\,$\mbox{]} {\bfseries Get\+Xmlns\+Definitions} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_b_c___market_1_1_app_a8d400b6462bd0c7b9a6ab156da36eaa6}{Get\+Xmlns\+Definitions()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T \mbox{\hyperlink{class_b_c___market_1_1_app_ab2bc8d98ceb672af28be3206e58792eb}{Get\+Service$<$ T $>$}} ()
+\begin{DoxyCompactList}\small\item\em Gets a service of the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override async void \mbox{\hyperlink{class_b_c___market_1_1_app_a153d9dde72754c31a85039c1bf37f6dd}{On\+Launched}} (Microsoft.\+UI.\+Xaml.\+Launch\+Activated\+Event\+Args args)
+\begin{DoxyCompactList}\small\item\em Invoked when the application is launched. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_c___market_1_1_app_a0a2c2402eee0a354b262f33d6bd468f4}\label{class_b_c___market_1_1_app_a0a2c2402eee0a354b262f33d6bd468f4} 
+IService\+Provider {\bfseries Services}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the service provider for dependency injection. \end{DoxyCompactList}\item 
+\Hypertarget{class_b_c___market_1_1_app_ae9c202eef357fbd68e7026cdc7301760}\label{class_b_c___market_1_1_app_ae9c202eef357fbd68e7026cdc7301760} 
+static Window {\bfseries m\+\_\+window}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the main application window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides application-\/specific behavior to supplement the default Application class. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_c___market_1_1_app_ab2bc8d98ceb672af28be3206e58792eb}\index{BC\_Market.App@{BC\_Market.App}!GetService$<$ T $>$@{GetService$<$ T $>$}}
+\index{GetService$<$ T $>$@{GetService$<$ T $>$}!BC\_Market.App@{BC\_Market.App}}
+\doxysubsubsection{\texorpdfstring{GetService$<$ T $>$()}{GetService< T >()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_app_ab2bc8d98ceb672af28be3206e58792eb} 
+static T BC\+\_\+\+Market.\+App.\+Get\+Service$<$ T $>$ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Gets a service of the specified type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of service to get.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The service instance.
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em class}]\end{description}
+\end{Desc}
+\Hypertarget{class_b_c___market_1_1_app_a153d9dde72754c31a85039c1bf37f6dd}\index{BC\_Market.App@{BC\_Market.App}!OnLaunched@{OnLaunched}}
+\index{OnLaunched@{OnLaunched}!BC\_Market.App@{BC\_Market.App}}
+\doxysubsubsection{\texorpdfstring{OnLaunched()}{OnLaunched()}}
+{\footnotesize\ttfamily \label{class_b_c___market_1_1_app_a153d9dde72754c31a85039c1bf37f6dd} 
+override async void BC\+\_\+\+Market.\+App.\+On\+Launched (\begin{DoxyParamCaption}\item[{Microsoft.\+UI.\+Xaml.\+Launch\+Activated\+Event\+Args}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Invoked when the application is launched. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Details about the launch request and process.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/App.\+xaml.\+cs\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/obj/x64/\+Debug/net8.\+0-\/windows10.\+0.\+19041.\+0/App.\+g.\+cs\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/obj/x64/\+Debug/net8.\+0-\/windows10.\+0.\+19041.\+0/App.\+g.\+i.\+cs\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/obj/x64/\+Debug/net8.\+0-\/windows10.\+0.\+19041.\+0/Xaml\+Type\+Info.\+g.\+cs\end{DoxyCompactItemize}

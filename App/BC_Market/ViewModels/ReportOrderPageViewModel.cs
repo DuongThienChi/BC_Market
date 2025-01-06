@@ -26,33 +26,71 @@ using System.IO;
 using System.Windows.Forms;
 namespace BC_Market.ViewModels
 {
+    /// <summary>
+    /// ViewModel for generating and exporting order reports.
+    /// </summary>
     [AddINotifyPropertyChangedInterface]
     public partial class ReportOrderPageViewModel : ObservableObject
     {
         private IFactory<Order> _factory;
         private IBUS<Order> _bus;
+
+        /// <summary>
+        /// Command to generate the report.
+        /// </summary>
         public ICommand GenerateReportCommand { get; set; }
+
+        /// <summary>
+        /// Command to select the filter.
+        /// </summary>
         public ICommand SelectedFilterCommand { get; set; }
+
+        /// <summary>
+        /// Command to export the report to Excel.
+        /// </summary>
         public ICommand ExportExcelCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the series for the chart.
+        /// </summary>
         public ObservableCollection<ISeries> Series { get; set; }
+
+        /// <summary>
+        /// Gets or sets the X axes for the chart.
+        /// </summary>
         public ObservableCollection<ICartesianAxis> XAxes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Y axes for the chart.
+        /// </summary>
         public ObservableCollection<ICartesianAxis> YAxes { get; set; } = new ObservableCollection<ICartesianAxis>
-        {
-            new Axis
             {
-                LabelsPaint = new SolidColorPaint(SKColors.Black),
-            }
-        };
+                new Axis
+                {
+                    LabelsPaint = new SolidColorPaint(SKColors.Black),
+                }
+            };
+
+        /// <summary>
+        /// Gets or sets the available filters.
+        /// </summary>
         public ObservableCollection<string> Filters { get; set; } = new ObservableCollection<string>
-        {
-            "Quarter per Year",
-            "Month per Year"
-        };
+            {
+                "Quarter per Year",
+                "Month per Year"
+            };
+
         [ObservableProperty]
         private string selectedFilter;
 
+        /// <summary>
+        /// Gets or sets the grouped orders.
+        /// </summary>
         public Dictionary<string, float> groupedOrders { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportOrderPageViewModel"/> class.
+        /// </summary>
         public ReportOrderPageViewModel()
         {
             LoadData();
@@ -60,6 +98,9 @@ namespace BC_Market.ViewModels
             ExportExcelCommand = new RelayCommand(ExportExcel);
         }
 
+        /// <summary>
+        /// Exports the report to an Excel file.
+        /// </summary>
         private void ExportExcel()
         {
             if (string.IsNullOrEmpty(SelectedFilter))
@@ -115,6 +156,9 @@ namespace BC_Market.ViewModels
             }
         }
 
+        /// <summary>
+        /// Generates the report based on the selected filter.
+        /// </summary>
         private void GenerateReport()
         {
             Debug.WriteLine(SelectedFilter);
@@ -133,7 +177,7 @@ namespace BC_Market.ViewModels
             {
                 groupedOrders = ListOrder
                      .OrderBy(o => o.createAt)
-                    .GroupBy(o => $"{o.createAt:MMMM yyyy}")       
+                    .GroupBy(o => $"{o.createAt:MMMM yyyy}")
                     .ToDictionary(g => g.Key, g => g.Sum(o => o.totalPrice));
                 Labels = ListOrder
                     .OrderBy(o => o.createAt)
@@ -143,32 +187,38 @@ namespace BC_Market.ViewModels
             }
 
             Series = new ObservableCollection<ISeries>
-            {
-                new LineSeries<float>
                 {
-                    Values = groupedOrders.Values.ToArray()
-                },
-                new ColumnSeries<float>
-                {
-                    Values = groupedOrders.Values.ToArray()
-                }
-            };
+                    new LineSeries<float>
+                    {
+                        Values = groupedOrders.Values.ToArray()
+                    },
+                    new ColumnSeries<float>
+                    {
+                        Values = groupedOrders.Values.ToArray()
+                    }
+                };
             XAxes = new ObservableCollection<ICartesianAxis>
-            {
-                new Axis
                 {
+                    new Axis
+                    {
 
-                    Labels = Labels,
-                    LabelsPaint = new SolidColorPaint(SKColors.Black),
-                }
-            };
+                        Labels = Labels,
+                        LabelsPaint = new SolidColorPaint(SKColors.Black),
+                    }
+                };
 
             OnPropertyChanged(nameof(Series));
             OnPropertyChanged(nameof(XAxes));
         }
 
+        /// <summary>
+        /// Gets or sets the collection of orders.
+        /// </summary>
         public ObservableCollection<Order> ListOrder { get; set; }
 
+        /// <summary>
+        /// Loads the order data into the ListOrder collection.
+        /// </summary>
         void LoadData()
         {
             _factory = new OrderFactory();

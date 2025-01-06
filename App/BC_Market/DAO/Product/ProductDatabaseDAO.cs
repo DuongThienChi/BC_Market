@@ -12,12 +12,18 @@ using System.Collections.ObjectModel;
 
 namespace BC_Market.DAO
 {
+    /// <summary>
+    /// Provides data access logic for managing products in the database.
+    /// </summary>
     public class ProductDatabaseDAO : IDAO<Product> // Implement interface IDAO with model Product
     {
         private string connectionString = ConfigurationHelper.GetConnectionString("DefaultConnection"); // Get connection string from appsettings.json
         public ProductDatabaseDAO() { }
-
-        // Add a new product to the database
+        /// <summary>
+        /// Adds a new product to the database.
+        /// </summary>
+        /// <param name="obj">The product object to add.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Add(Product obj)
         {
             bool status = obj.Status == "Active" ? true : false;
@@ -41,8 +47,11 @@ namespace BC_Market.DAO
                 return true;
             }
         }
-
-        // Remove a product from the database
+        /// <summary>
+        /// Removes a product from the database.
+        /// </summary>
+        /// <param name="obj">The product object to delete.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Delete(Product obj)
         {
             try
@@ -96,7 +105,11 @@ namespace BC_Market.DAO
                 }
             }
         }*/
-        // Get all products from the database
+        /// <summary>
+        /// Retrieves products based on the provided configuration.
+        /// </summary>
+        /// <param name="configuration">A dictionary containing configuration parameters.</param>
+        /// <returns>A collection of products or specific product details based on the configuration.</return>
         public dynamic Get(Dictionary<string, string> configuration)
         {
             List<Product> response = new List<Product>();
@@ -177,7 +190,11 @@ namespace BC_Market.DAO
                 return response;
             }
         }
-
+        /// <summary>
+        /// Retrieves a product by its information.
+        /// </summary>
+        /// <param name="cur_product">The product object containing the information.</param>
+        /// <returns>The product object if found, otherwise null.</returns>
         public dynamic getProductByInformation(Product cur_product)
         {
             var sql = $@"SELECT * FROM product WHERE name = @name AND description = @description AND price = @price AND stock = @stock AND cateid = @cateid AND imagepath = @imagepath AND status = @status AND orderquantity = @orderquantity";
@@ -217,7 +234,12 @@ namespace BC_Market.DAO
             }
         }
 
-        // Update a product in the database
+
+        /// <summary>
+        /// Updates an existing product in the database.
+        /// </summary>
+        /// <param name="obj">The product object to update.</param>
+        /// <returns>True if the operation is successful, otherwise false.</returns>
         public dynamic Update(Product obj)
         {
             //obj = getProductByInformation(obj);

@@ -1,0 +1,143 @@
+\doxysection{BC\+\_\+\+Market.\+BUS.\+IBUS\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Interface Template Reference}
+\hypertarget{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{}\label{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}\index{BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}}
+
+
+Defines the interface for business logic services.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ac5ed55a8fbce7a316b36e4b5a5680be4}{Dao}} ()
+\begin{DoxyCompactList}\small\item\em Gets the data access object for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a804040632d8e56f5697fcb086f3233c2}{Create\+New}} (\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ dao)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the business logic service with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a85c26d3466d8e6998940000afcff3ba0}{Get}} (Dictionary$<$ string, string $>$ configuration)
+\begin{DoxyCompactList}\small\item\em Gets entity data based on the specified configuration. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a5ded81a94e7a3a6cbab56220b4f97388}{Add}} (T obj)
+\begin{DoxyCompactList}\small\item\em Adds a new entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ae4cbe56e8207d95067d506b33153b54c}{Update}} (T obj)
+\begin{DoxyCompactList}\small\item\em Updates an existing entity. \end{DoxyCompactList}\item 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a54817ec8d1290a071f885fccaf335bb3}{Delete}} (T obj)
+\begin{DoxyCompactList}\small\item\em Deletes an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the interface for business logic services. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the entity.\\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a5ded81a94e7a3a6cbab56220b4f97388}\index{BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}!Add@{Add}}
+\index{Add@{Add}!BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a5ded81a94e7a3a6cbab56220b4f97388} 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS}}$<$ T $>$.Add (\begin{DoxyParamCaption}\item[{T}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The entity object to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the add operation.
+\end{DoxyReturn}
+\Hypertarget{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a804040632d8e56f5697fcb086f3233c2}\index{BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}!CreateNew@{CreateNew}}
+\index{CreateNew@{CreateNew}!BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{CreateNew()}{CreateNew()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a804040632d8e56f5697fcb086f3233c2} 
+\mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{IBUS}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS}}$<$ T $>$.Create\+New (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$}]{dao}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new instance of the business logic service with the specified \doxylink{namespace_b_c___market_1_1_d_a_o}{DAO}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dao} & The data access object for the entity.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of the business logic service.
+\end{DoxyReturn}
+\Hypertarget{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ac5ed55a8fbce7a316b36e4b5a5680be4}\index{BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}!Dao@{Dao}}
+\index{Dao@{Dao}!BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Dao()}{Dao()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ac5ed55a8fbce7a316b36e4b5a5680be4} 
+\mbox{\hyperlink{interface_b_c___market_1_1_d_a_o_1_1_i_d_a_o}{IDAO}}$<$ T $>$ \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS}}$<$ T $>$.Dao (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the data access object for the entity. 
+
+\begin{DoxyReturn}{Returns}
+The data access object for the entity.
+\end{DoxyReturn}
+\Hypertarget{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a54817ec8d1290a071f885fccaf335bb3}\index{BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}!Delete@{Delete}}
+\index{Delete@{Delete}!BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a54817ec8d1290a071f885fccaf335bb3} 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS}}$<$ T $>$.Delete (\begin{DoxyParamCaption}\item[{T}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+Deletes an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The entity object to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the delete operation.
+\end{DoxyReturn}
+\Hypertarget{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a85c26d3466d8e6998940000afcff3ba0}\index{BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}!Get@{Get}}
+\index{Get@{Get}!BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_a85c26d3466d8e6998940000afcff3ba0} 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS}}$<$ T $>$.Get (\begin{DoxyParamCaption}\item[{Dictionary$<$ string, string $>$}]{configuration}{}\end{DoxyParamCaption})}
+
+
+
+Gets entity data based on the specified configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em configuration} & The configuration dictionary.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The entity data.
+\end{DoxyReturn}
+\Hypertarget{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ae4cbe56e8207d95067d506b33153b54c}\index{BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}!Update@{Update}}
+\index{Update@{Update}!BC\_Market.BUS.IBUS$<$ T $>$@{BC\_Market.BUS.IBUS$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s_ae4cbe56e8207d95067d506b33153b54c} 
+dynamic \mbox{\hyperlink{interface_b_c___market_1_1_b_u_s_1_1_i_b_u_s}{BC\+\_\+\+Market.\+BUS.\+IBUS}}$<$ T $>$.Update (\begin{DoxyParamCaption}\item[{T}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+Updates an existing entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The entity object to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the update operation.
+\end{DoxyReturn}
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+University/\+Semester 5/\+Win/\+Project/\+BC\+\_\+\+Market/\+App/\+BC\+\_\+\+Market/\+BUS/IBUS.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,13 @@
+var searchData=
+[
+  ['deeplink_0',['Deeplink',['../class_b_c___market_1_1_models_1_1_momo_create_payment_response_model.html#afa0703ef599e258dd185c02e17abe5f2',1,'BC_Market::Models::MomoCreatePaymentResponseModel']]],
+  ['deeplinkwebinapp_1',['DeeplinkWebInApp',['../class_b_c___market_1_1_models_1_1_momo_create_payment_response_model.html#a44bd5ab7e1dc81999acf27aa7307601f',1,'BC_Market::Models::MomoCreatePaymentResponseModel']]],
+  ['deleteallcommand_2',['DeleteAllCommand',['../class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#ad551d0ad26ed5514e9eb98d060717fcf',1,'BC_Market::ViewModels::ShopperOrderViewModel']]],
+  ['deleteitemcommand_3',['DeleteItemCommand',['../class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a771eb0f087ad39f9470a8b5f4cb38239',1,'BC_Market::ViewModels::ShopperOrderViewModel']]],
+  ['deliveries_4',['deliveries',['../class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a856e9fb49ae3aab690d67a5883f321a2',1,'BC_Market::ViewModels::ShopperOrderViewModel']]],
+  ['delivery_5',['Delivery',['../class_b_c___market_1_1_view_models_1_1_order_success_page_view_model.html#ae03a4efe7988a14be8d2b57d59cf3c85',1,'BC_Market::ViewModels::OrderSuccessPageViewModel']]],
+  ['deliverycost_6',['DeliveryCost',['../class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#aabc504be9ea887f4aae5a681262c048a',1,'BC_Market::ViewModels::ShopperOrderViewModel']]],
+  ['deliveryid_7',['deliveryId',['../class_b_c___market_1_1_models_1_1_order.html#a4b1397c91117df9856d054d39bd612c9',1,'BC_Market::Models::Order']]],
+  ['description_8',['Description',['../class_b_c___market_1_1_models_1_1_category.html#a6abd4de7be623e01e5b6ec64d9d7b591',1,'BC_Market.Models.Category.Description'],['../class_b_c___market_1_1_models_1_1_payment_method.html#a1ab0c8816c1b1fe8c3adf785c6c5b6ac',1,'BC_Market.Models.PaymentMethod.Description'],['../class_b_c___market_1_1_models_1_1_product.html#a6bffe8512c127a6f9b6ee2fefba36559',1,'BC_Market.Models.Product.Description'],['../class_b_c___market_1_1_models_1_1_role.html#a0d8ba99846e388b8d019a53d9e679211',1,'BC_Market.Models.Role.Description'],['../class_b_c___market_1_1_models_1_1_voucher.html#a09d5cdacfd64bc66902e6c51bb6b501c',1,'BC_Market.Models.Voucher.Description']]],
+  ['discountamount_9',['DiscountAmount',['../class_b_c___market_1_1_view_models_1_1_order_success_page_view_model.html#abcf7685e572cd5325edc67e597907ac2',1,'BC_Market.ViewModels.OrderSuccessPageViewModel.DiscountAmount'],['../class_b_c___market_1_1_view_models_1_1_shopper_order_view_model.html#a08023fd41307b2a0da56acfefc21d5f3',1,'BC_Market.ViewModels.ShopperOrderViewModel.DiscountAmount']]]
+];

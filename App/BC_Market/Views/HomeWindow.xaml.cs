@@ -23,10 +23,14 @@ namespace BC_Market.Views
     /// </summary>
     public sealed partial class HomeWindow : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeWindow"/> class.
+        /// </summary>
         public HomeWindow()
         {
             this.InitializeComponent();
 
+            // Navigate to LoginPage by default
             mainFrame.Navigate(typeof(LoginPage));
         }
     }

@@ -29,50 +29,54 @@ namespace BC_Market
     public partial class App : Application
     {
         /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// Gets the service provider for dependency injection.
         /// </summary>
         public IServiceProvider Services { get; }
+
+        /// <summary>
+        /// Initializes the singleton application object. This is the first line of authored code
+        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// </summary>
         public App()
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-
             IConfiguration configuration = builder.Build();
-
 
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection, configuration);
 
-
             Services = serviceCollection.BuildServiceProvider();
             this.InitializeComponent();
         }
+
+        /// <summary>
+        /// Configures the services for dependency injection.
+        /// </summary>
+        /// <param name="services">The service collection to configure.</param>
+        /// <param name="configuration">The application configuration.</param>
         private void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            // Đăng ký cấu hình từ appsettings.json
-
-            var section = configuration.GetSection("MomoAPI");
-
-
-
+            // Register configuration from appsettings.json
             services.Configure<MomoOptionModel>(options => configuration.GetSection("MomoAPI").Bind(options));
 
-            // Đăng ký các dịch vụ
+            // Register services
             services.AddScoped<IMomoService, MomoService>();
             services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<MomoOptionModel>>().Value);
-
-            // Đăng ký ViewModels nếu cần
-            //services.AddSingleton<PaymentViewModel>();
-            //services.AddSingleton<PaymentView>();
         }
 
+        /// <summary>
+        /// Gets a service of the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of service to get.</typeparam>
+        /// <returns>The service instance.</returns>
         public static T GetService<T>() where T : class
         {
             return (Current as App).Services.GetService<T>();
         }
+
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
@@ -86,6 +90,9 @@ namespace BC_Market
             m_window.Activate();
         }
 
+        /// <summary>
+        /// Gets the main application window.
+        /// </summary>
         public static Window m_window { get; private set; }
     }
 }

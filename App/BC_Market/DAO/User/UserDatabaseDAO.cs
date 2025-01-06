@@ -79,7 +79,8 @@ namespace BC_Market.DAO
                 bool isCount = false;
                 var sql = $@"
                     SELECT * 
-                    FROM ""User"" us Join Role r on us.roleid = r.uniqueid";
+                    FROM ""User"" us Join Role r on us.roleid = r.uniqueid
+                    ORDER BY us.uniqueid";
                 using (var conn = new NpgsqlConnection(connectionString))
                 {
                     conn.Open();

@@ -38,6 +38,7 @@ namespace UnitTest_Bao
             // Arrange
             var product = new Product
             {
+                Id = 99999,
                 Name = "Test Product",
                 Price = 10.0f,
                 Description = "Test Description",
@@ -60,59 +61,61 @@ namespace UnitTest_Bao
             Assert.IsTrue(result);
         }
 
-        //[TestMethod]
-        //public void Update_Product_Success()
-        //{
-        //    // Arrange
-        //    var product = new Product
-        //    {
-        //        Name = "Test Product",
-        //        Price = 10.0f,
-        //        Description = "Test Description",
-        //        Stock = 100,
-        //        CategoryId = "M01",
-        //        ImagePath = "Test Image Path",
-        //        Status = "Test Status",
-        //        OrderQuantity = 0
-        //    };
+        [TestMethod]
+        public void Update_Product_Success()
+        {
+            // Arrange
+            var product = new Product
+            {
+                Id = 99999,
+                Name = "Test Product",
+                Price = 10.0f,
+                Description = "Test Description",
+                Stock = 100,
+                CategoryId = "M01",
+                ImagePath = "Test Image Path",
+                Status = "Test Status",
+                OrderQuantity = 0
+            };
 
-        //    mockConnection.Setup(c => c.Open());
-        //    mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
-        //    mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
+            mockConnection.Setup(c => c.Open());
+            mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
+            mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
 
-        //    // Act
-        //    var result = productDatabaseDAO.Update(product);
+            // Act
+            var result = productDatabaseDAO.Update(product);
 
-        //    // Assert
-        //    Assert.IsTrue(result);
-        //}
+            // Assert
+            Assert.IsTrue(result);
+        }
 
-        //[TestMethod]
-        //public void Delete_Product_Success()
-        //{
-        //    // Arrange
-        //    var product = new Product
-        //    {
-        //        Name = "Test Product",
-        //        Price = 10.0f,
-        //        Description = "Test Description",
-        //        Stock = 100,
-        //        CategoryId = "M01",
-        //        ImagePath = "Test Image Path",
-        //        Status = "Test Status",
-        //        OrderQuantity = 0
-        //    };
+        [TestMethod]
+        public void Delete_Product_Success()
+        {
+            // Arrange
+            var product = new Product
+            {
+                Id = 99999,
+                Name = "Test Product",
+                Price = 10.0f,
+                Description = "Test Description",
+                Stock = 100,
+                CategoryId = "M01",
+                ImagePath = "Test Image Path",
+                Status = "Test Status",
+                OrderQuantity = 0
+            };
 
-        //    mockConnection.Setup(c => c.Open());
-        //    mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
-        //    mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
+            mockConnection.Setup(c => c.Open());
+            mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
+            mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
 
-        //    // Act
-        //    var result = productDatabaseDAO.Delete(product);
+            // Act
+            var result = productDatabaseDAO.Delete(product);
 
-        //    // Assert
-        //    Assert.IsTrue(result);
-        //}
+            // Assert
+            Assert.IsTrue(result);
+        }
 
         [TestMethod]
         public void Get_Product_Success()
@@ -142,7 +145,7 @@ namespace UnitTest_Bao
             mockDataReader.SetupSequence(r => r.Read())
                 .Returns(true)
                 .Returns(false);
-            mockDataReader.Setup(r => r["id"]).Returns(1);
+            mockDataReader.Setup(r => r["id"]).Returns(99999);
             mockDataReader.Setup(r => r["name"]).Returns("Test Product");
             mockDataReader.Setup(r => r["price"]).Returns(10.0);
             mockDataReader.Setup(r => r["description"]).Returns("Test Description");

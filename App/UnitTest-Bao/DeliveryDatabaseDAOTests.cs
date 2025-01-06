@@ -38,6 +38,7 @@ namespace UnitTest_Bao
             // Arrange
             var delivery = new DeliveryUnit
             {
+                Id = 99999,
                 Name = "Test Delivery",
                 Price = 10.0f
             };
@@ -54,47 +55,49 @@ namespace UnitTest_Bao
             Assert.IsTrue(result);
         }
 
-        //[TestMethod]
-        //public void Update_Delivery_Success()
-        //{
-        //    // Arrange
-        //    var delivery = new DeliveryUnit
-        //    {
-        //        Name = "Test Delivery",
-        //        Price = 10.0f
-        //    };
+        [TestMethod]
+        public void Update_Delivery_Success()
+        {
+            // Arrange
+            var delivery = new DeliveryUnit
+            {
+                Id = 99999,
+                Name = "Test Delivery",
+                Price = 10.0f
+            };
 
-        //    mockConnection.Setup(c => c.Open());
-        //    mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
-        //    mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
+            mockConnection.Setup(c => c.Open());
+            mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
+            mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
 
-        //    // Act
-        //    var result = deliveryUnitDatabaseDAO.Update(delivery);
+            // Act
+            var result = deliveryUnitDatabaseDAO.Update(delivery);
 
-        //    // Assert
-        //    Assert.IsTrue(result);
-        //}
+            // Assert
+            Assert.IsTrue(result);
+        }
 
-        //[TestMethod]
-        //public void Delete_Delivery_Success()
-        //{
-        //    // Arrange
-        //    var delivery = new DeliveryUnit
-        //    {
-        //        Name = "Test Delivery",
-        //        Price = 10.0f
-        //    };
+        [TestMethod]
+        public void Delete_Delivery_Success()
+        {
+            // Arrange
+            var delivery = new DeliveryUnit
+            {
+                Id = 99999,
+                Name = "Test Delivery",
+                Price = 10.0f
+            };
 
-        //    mockConnection.Setup(c => c.Open());
-        //    mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
-        //    mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
+            mockConnection.Setup(c => c.Open());
+            mockConnection.Setup(c => c.BeginTransaction()).Returns(mockTransaction.Object);
+            mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(1);
 
-        //    // Act
-        //    var result = deliveryUnitDatabaseDAO.Delete(delivery);
+            // Act
+            var result = deliveryUnitDatabaseDAO.Delete(delivery);
 
-        //    // Assert
-        //    Assert.IsTrue(result);
-        //}
+            // Assert
+            Assert.IsTrue(result);
+        }
 
         [TestMethod]
         public void Get_Delivery_Success()
@@ -102,6 +105,7 @@ namespace UnitTest_Bao
             // Arrange
             var delivery = new DeliveryUnit
             {
+                Id = 99999,
                 Name = "Test Delivery",
                 Price = 10.0f
             };

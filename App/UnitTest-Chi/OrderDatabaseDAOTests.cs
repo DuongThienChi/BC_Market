@@ -125,6 +125,70 @@ namespace UnitTest_Chi
             Assert.IsInstanceOfType(result, typeof(List<Order>));
         }
 
+        [TestMethod]
+        public void getReportProduct_Success()
+        {
+            // Arrange
+            var configuration = new Dictionary<string, string> { { "reportProduct", "true" }, { "start", "2024-01-01" }, { "end", "2024-12-31" } };
+
+            mockConnection.Setup(c => c.Open());
+            mockCommand.Setup(c => c.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(MockDataReader());
+
+            // Act
+            var result = orderDatabaseDAO.Get(configuration);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ObservableCollection<KeyValuePair<string, int>>));
+        }
+
+        [TestMethod]
+        public void getReportCate_Success()
+        {
+            // Arrange
+            var configuration = new Dictionary<string, string> { { "reportCate", "true" }, { "start", "2024-01-01" }, { "end", "2024-12-31" } };
+
+            mockConnection.Setup(c => c.Open());
+            mockCommand.Setup(c => c.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(MockDataReader());
+
+            // Act
+            var result = orderDatabaseDAO.Get(configuration);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ObservableCollection<KeyValuePair<string, int>>));
+        }
+
+        [TestMethod]
+        public void getReportCateSale_Success()
+        {
+            // Arrange
+            var configuration = new Dictionary<string, string> { { "reportCateSale", "true" }, { "start", "2024-01-01" }, { "end", "2024-12-31" } };
+
+            mockConnection.Setup(c => c.Open());
+            mockCommand.Setup(c => c.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(MockDataReader());
+
+            // Act
+            var result = orderDatabaseDAO.Get(configuration);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ObservableCollection<KeyValuePair<string, long>>));
+        }
+
+        [TestMethod]
+        public void Get_LatestOrder_Success()
+        {
+            // Arrange
+            var configuration = new Dictionary<string, string> { { "latest", "true" } };
+
+            mockConnection.Setup(c => c.Open());
+            mockCommand.Setup(c => c.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(MockDataReader());
+
+            // Act
+            var result = orderDatabaseDAO.Get(configuration);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(Order));
+        }
+
         private IDataReader MockDataReader()
         {
             var mockDataReader = new Mock<IDataReader>();

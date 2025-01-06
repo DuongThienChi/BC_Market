@@ -38,6 +38,7 @@ namespace UnitTest_Bao
             // Arrange
             USER user = new USER
             {
+                Id = 99999,
                 Username = "Test User",
                 Password = "Test Password",
                 Email = "Test Email",
@@ -71,6 +72,7 @@ namespace UnitTest_Bao
             // Arrange
             USER user = new USER
             {
+                Id = 99999,
                 Username = "Test User",
                 Password = "Test Password",
                 Email = "Test Email",
@@ -103,6 +105,7 @@ namespace UnitTest_Bao
             // Arrange
             USER user = new USER
             {
+                Id = 99999,
                 Username = "Test User",
                 Password = "Test Password",
                 Email = "Test Email",
@@ -150,7 +153,7 @@ namespace UnitTest_Bao
             mockDataReader.SetupSequence(r => r.Read())
                 .Returns(true)
                 .Returns(false);
-            mockDataReader.Setup(r => r["id"]).Returns(1);
+            mockDataReader.Setup(r => r["id"]).Returns(99999);
             mockDataReader.Setup(r => r["username"]).Returns("Test User");
             mockDataReader.Setup(r => r["password"]).Returns("Test Password");
             mockDataReader.Setup(r => r["email"]).Returns("Test Email");
